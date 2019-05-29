@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
-
-// need to import Root component, then render root
+import Root from './components/root';
 
 
 // imported these for testing only (remove later):
@@ -13,13 +12,11 @@ import * as ThunkActions from './actions/session_actions';
 document.addEventListener('DOMContentLoaded', () => {
     const store = configureStore();
     const root = document.getElementById("root");
-    ReactDOM.render(<h1>Welcome to Shavasana!</h1>, root);
-    // render Root component when it's ready!
+    ReactDOM.render(<Root store={store}/>, root)
 
-    // TESTING START - REMOVE LATER
+    // for testing only! DELETE LATER!
     window.getState = store.getState;
     window.dispatch = store.dispatch;
-    // TESTING END
 });
 
 

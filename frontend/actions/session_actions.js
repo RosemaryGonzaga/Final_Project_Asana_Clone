@@ -44,7 +44,10 @@ export const login = user => {
         return SessionApiUtil.login(user)
             .then(
                 successPayload => dispatch(receiveCurrentUser(successPayload)),
-                rejectPromise => dispatch(receiveErrors(rejectPromise.responseJSON.errors))
+                rejectPromise => {
+                    // debugger
+                    return dispatch(receiveErrors(rejectPromise.responseJSON.errors))
+                }
             )
     };
 };

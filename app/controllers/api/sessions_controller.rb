@@ -21,8 +21,10 @@ class Api::SessionsController < ApplicationController
     end
 
     def destroy
+        # debugger
         logout!
-        redirect_to new_api_session_url
+        # redirect_to new_api_session_url
         # or should I render an empty {} upon logout? (BenchBnB instructions)
+        render json: {}, status: 200
     end
 end

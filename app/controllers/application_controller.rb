@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
     # celll
     def current_user
-        # debugger
         @current_user ||= User.find_by(session_token: session[:session_token])
     end
 
@@ -18,14 +17,12 @@ class ApplicationController < ActionController::Base
     end
 
     def logout!
-        # debugger
-        @current_user.reset_session_token!
+        current_user.reset_session_token! # temporarily comment this out b/c it's not letting me reset my currentUser! --> the fix: change @current_user to current_user
         session[:session_token] = nil
         @current_user = nil
     end
 
     def logged_in?
-        # debugger
         !!current_user
     end
 end

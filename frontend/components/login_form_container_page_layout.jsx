@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
 import { login } from '../actions/session_actions';
-import React from 'react';  // added this for LoginForm component
+import React from 'react';
 
 const msp = (state, ownProps) => {
     const { errors } = state;
@@ -20,18 +20,17 @@ const mdp = dispatch => {
 
 // I'm wrapping SessionForm in a different parent component for signup vs login
 // so I can apply different styling... is there a way to make this more dry?
-class LoginForm extends React.Component {
+class LoginFormPage extends React.Component {
 
     render() {
         return (
             <div>
                 <SessionForm {...this.props} />
-                <p>You are on the login form! Remember to style me as a modal later.</p>
+                <p>This is the login form page. It is NOT a modal.</p>
             </div>
         );
     }
 }
 
 
-export default connect(msp, mdp)(LoginForm);
-// export default connect(msp, mdp)(SessionForm);
+export default connect(msp, mdp)(LoginFormPage);

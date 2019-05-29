@@ -53,7 +53,9 @@ export const login = user => {
 };
 
 export const logout = () => {
+    // debugger
     return dispatch => {
+        // debugger
         return SessionApiUtil.logout()
             .then(() => dispatch(logoutCurrentUser()))
     };

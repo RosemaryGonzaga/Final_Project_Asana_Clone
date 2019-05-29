@@ -10,13 +10,24 @@ import * as ThunkActions from './actions/session_actions';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const store = configureStore();
+    let preloadedState = {}
+    if (window.currentUser) {   // bootstrap currentUser to window
+        preloadedState = {
+            entities: {
+                users: { [window.currentUser.id]: window.currentUser }
+            },
+            session: { id: window.currentUser.id }
+        };
+        delete window.currentUser;  // clean up after ourselves
+    }
+    const store = configureStore(preloadedState);
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store}/>, root)
 
     // for testing only! DELETE LATER!
     window.getState = store.getState;
     window.dispatch = store.dispatch;
+    // delete the above!
 });
 
 

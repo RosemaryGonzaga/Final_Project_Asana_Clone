@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :ensure_logged_in
+    helper_method :current_user, :logged_in?
+    # remember to use :ensure_logged_in before_action in the other controllers!
+
     # celll
     def current_user
+        # debugger
         @current_user ||= User.find_by(session_token: session[:session_token])
     end
 
@@ -15,12 +18,14 @@ class ApplicationController < ActionController::Base
     end
 
     def logout!
+        # debugger
         @current_user.reset_session_token!
         session[:session_token] = nil
         @current_user = nil
     end
 
     def logged_in?
+        # debugger
         !!current_user
     end
 end

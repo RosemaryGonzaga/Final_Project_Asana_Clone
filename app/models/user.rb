@@ -6,14 +6,14 @@
 #  primary_email   :string           not null
 #  password_digest :string           not null
 #  session_token   :string           not null
-#  full_name       :string           not null
+#  full_name       :string
 #  photo_url       :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
 class User < ApplicationRecord
-    validates :primary_email, :password_digest, :session_token, :full_name, presence: true
+    validates :primary_email, :password_digest, :session_token, presence: true
     validates :primary_email, :session_token, uniqueness: true
     validates :password, length: { minimum: 6 }, allow_nil: true
 
@@ -24,9 +24,9 @@ class User < ApplicationRecord
 
     # class methods
 
-    def self.find_by_credentials(email, password)
-        user = User.find_by(email: email)
-        (user && user.is_password(password)) ? user : nil
+    def self.find_by_credentials(primary_email, password)
+        user = User.find_by(primary_email: primary_email)
+        (user && user.is_password?(password)) ? user : nil
     end
 
     def self.generate_session_token

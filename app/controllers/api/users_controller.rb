@@ -1,3 +1,5 @@
+require_relative '../../../lib/controller_helpers/auth_error_helpers.rb'    # is this right??? --> seems to work...
+
 class Api::UsersController < ApplicationController
     def new
         @user = User.new
@@ -5,16 +7,25 @@ class Api::UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        if @user.save
-            # redirect to projects index page?
-        else
-            # render json: ["Invalid username or password"], status: 401
-            render @user.errors # is this right?
+        @errors = validate_email_signup(@user.primary_email)  # defined in auth_error_helpers.rb
+        
+        if @errors
+            render 'api/errors/auth_errors', status: 401
+        elsif !@user.valid?
+            if @user.errors.messages[:primary_email].include?("has already been taken")
+                @errors = "Hey there, we’ve already met! Looks like you already have an account. Please sign in."
+            else    # not sure if I need this branch?
+                @errors = "Something doesn't look right. Please check the email and try again."
+            end
+            render 'api/errors/auth_errors', status: 401
+        elsif @user.save    # convert to "else", or is it better to be explicit here?
+            login!(@user)
+            render :show, status: 200
         end
     end
 
     private
     def user_params
-        params.require(:user).permit(:email, :password)
+        params.require(:user).permit(:primary_email, :password)
     end
 end

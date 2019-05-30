@@ -31,26 +31,38 @@ class SessionForm extends React.Component {
         const { formType, errors } = this.props;
         const formText = formType === "login" ? "Log In" : "Sign Up";
         const errorMessage = errors.session;
+        // added the below code...need to test...
+        let disabled = false;
+        // debugger
+        if (primaryEmail === "") {
+            disabled = true;
+        }
 
         return (
             <div className="session-form-container">
-                <h1 className="session-form-header">{formText}</h1>
+                <div className="session-form-header">
+                    <p>{formText}</p>
+                </div>
                 <form className="session-form-content" onSubmit={this.handleSubmit}>
-                    <div className="session-form-google">Use Google Account</div>
-                    <div className="session-form-or">or</div>
+                    <button className="session-form-google">Use Google Account</button>
+                    <div className="session-form-or">
+                        <div className="session-form-line"></div>
+                        <span>or</span>
+                        <div className="session-form-line"></div>
+                    </div>
 
                     <div className="session-form-email">
-                        <label htmlFor="primaryEmail">Email Address</label>
-                        <input type="text" value={primaryEmail} onChange={this.handleChange("primaryEmail")} id="primaryEmail"/>
+                        <label className="session-form-label" htmlFor="primaryEmail">Email Address</label>
+                        <input className="session-form-input"type="text" value={primaryEmail} onChange={this.handleChange("primaryEmail")} id="primaryEmail"/>
                     </div>
 
                     <div className="session-form-password">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" value={password} onChange={this.handleChange("password")} id="password" />
+                        <label className="session-form-label" htmlFor="password">Password</label>
+                        <input className="session-form-input" type="password" value={password} onChange={this.handleChange("password")} id="password" />
                     </div>
 
-                    <div>
-                        <input type="submit" value={formText}/>
+                    <div className="session-form-button">
+                        <input type="submit" value={formText} disabled={disabled}/>
                     </div>                    
                 </form>
                 <p>{errorMessage}</p>

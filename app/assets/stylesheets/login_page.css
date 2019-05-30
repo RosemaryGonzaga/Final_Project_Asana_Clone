@@ -26,22 +26,124 @@
     background: white;
     justify-content: space-around;
     align-items: center;
+    box-shadow: -1px 1px 2px #26151B26;
 }
+
+
+
+.session-form-google {
+    height: 40px;
+    width: 154px;
+    background-color: #14aaf5;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 80%;
+    /* position: absolute;
+    right: 10px; */
+    cursor: pointer;
+}
+
+/* google and or div styling here */
+
+.session-form-or {
+    width: 405px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.session-form-or span {
+    font-size: 24px;
+    color: #b7bfc6;
+}
+
+.session-form-line {
+    border-top: 1px solid #e0e6e8;
+    width: 45%;
+    margin-top: 4px;
+}
+
 
 .session-form-header {
     height: 115px;
     font-size: 32px;
     text-align: center;
-    background: green; /* TEMPORARY */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: green; TEMPORARY */
 }
 
 .session-form-content {
-    display: block;
+    /* background: blue; TEMPORARY */
     height: 451px;
-    background: blue; /* TEMPORARY */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
+.session-form-email {
+    width: 405px;
+    height: 67px;
+    display: flex;
+    flex-direction: column;
+}
 
+.session-form-password {
+    width: 405px;
+    height: 67px;
+    display: flex;
+    flex-direction: column;
+}
+
+.session-form-label {
+    height: 18px;
+    size: 12px;  /* Asana's font size is actual 12px, but it seems too small*/
+    color: #848f99;
+    font-weight: 500;
+}
+
+.session-form-input {
+    height: 42px;
+    border-radius: 5px;
+    font-size: 100%;
+    /* box-sizing: content-box; */
+    margin-top: 10px;
+    outline: none; 
+    border: 1px solid lightgray;
+}
+
+.session-form-input:focus {
+    /* border: 2px solid purple; */
+    border: 2px solid #b7bfc6;
+}
+
+.session-form-button {
+    height: 40px;
+    width: 405px;
+    position: relative;
+}
+
+.session-form-button > input {
+    height: 40px;
+    width: 70px;
+    background-color: #14aaf5;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 100%;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.session-form-button > input:disabled {
+    background-color: #edf1f2;
+    border: 1px solid #e0e6e8;
+    color: #b7bfca;
+}
 
 
 /* Header (logo) & footer styling */

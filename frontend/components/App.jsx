@@ -6,8 +6,8 @@ import { Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => {
-    // playing around with this component
-    const loginPage = <AuthRoute path="/login_page" component={LoginFormContainerPageLayout} />;
+    // playing around with this component --> need to render a user welcome page when signed in, and it will have the logout button inside of it
+    // const signOutButton = <ProtectedRoute path="/logout" component={LogoutButton} />;
 
     return (
         <div>

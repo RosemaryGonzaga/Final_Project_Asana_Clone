@@ -1,5 +1,6 @@
 import React from 'react';
 import { merge } from 'lodash';
+import { clearErrors } from '../actions/session_actions';
 
 class SessionForm extends React.Component {
     constructor(props) {
@@ -7,17 +8,24 @@ class SessionForm extends React.Component {
         this.state = {
             primaryEmail: "",
             password: "",
+            // errorMessage: this.props.errors.session.slice(), // comment out when drawing errors from props
+            // errorMessage: "",
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     // lifecycle methods?
+    componentDidUpdate() {        // this is definitely wrong: delete!
+        // debugger
+        // this.setState({ errorMessage: this.props.errors.session });
+    }
 
     handleSubmit(e) {
         e.preventDefault();
         const { processForm } = this.props;
         const user = merge({}, this.state);
         processForm(user);
+        // debugger
     }
 
     handleChange(field) {
@@ -27,13 +35,36 @@ class SessionForm extends React.Component {
     }
 
     render() {
-        const {primaryEmail, password} = this.state;
+        const {primaryEmail, password } = this.state;
         const { formType, errors } = this.props;
+        // const { primaryEmail, password, errorMessage } = this.state;
+        // const { formType } = this.props;
         const formText = formType === "login" ? "Log In" : "Sign Up";
-        const errorMessage = errors.session;
-        // added the below code...need to test...
-        let disabled = false;
+
         // debugger
+        // // error rendering
+        let errorMessage = errors.session;  // comment this out when testing errors in state
+        let errorTooltipClass = errorMessage === "" ? "tooltip-hidden" : "tooltip-visible";
+
+        // need a CLEAR ERRORS ACTION!
+
+        // debugger
+        if (errorMessage !== "") {
+            // debugger
+            const { clearErrors } = this.props;
+            setTimeout(() => {
+                // debugger
+                // this.setState({ errorMessage: "" });
+                // alert("testing")
+                clearErrors();
+                // errorMessage = "";
+                // errorTooltipClass = "tooltip-hidden";
+            }, 1700)
+            // this.render()
+        }
+
+        // login button effect
+        let disabled = false;
         if (primaryEmail === "") {
             disabled = true;
         }
@@ -53,7 +84,8 @@ class SessionForm extends React.Component {
 
                     <div className="session-form-email">
                         <label className="session-form-label" htmlFor="primaryEmail">Email Address</label>
-                        <input className="session-form-input"type="text" value={primaryEmail} onChange={this.handleChange("primaryEmail")} id="primaryEmail"/>
+                        <input className="session-form-input email" type="text" value={primaryEmail} onChange={this.handleChange("primaryEmail")} id="primaryEmail" title="SAMPLE TOOLTIP"/>
+                        <div className={errorTooltipClass}>{errorMessage}</div>
                     </div>
 
                     <div className="session-form-password">
@@ -65,7 +97,6 @@ class SessionForm extends React.Component {
                         <input type="submit" value={formText} disabled={disabled}/>
                     </div>                    
                 </form>
-                <p>{errorMessage}</p>
             </div>
         );
     }

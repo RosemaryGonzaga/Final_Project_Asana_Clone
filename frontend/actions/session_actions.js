@@ -3,6 +3,7 @@ import * as SessionApiUtil from '../util/session_api_util';
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const REMOVE_CURRENT_USER = "REMOVE_CURRENT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS"; // ADDED THIS!
 
 // regular action creators
 
@@ -25,6 +26,13 @@ const receiveErrors = errors => {   // naming implies the arg is an array, but r
         errors,              
     };
 };
+
+export const clearErrors = () => {     // added this
+    // debugger
+    return {
+        type: CLEAR_ERRORS,
+    }
+}
 
 
 // thunk action creators --> not sure if I implemented errors correctly?

@@ -100,6 +100,7 @@
     height: 67px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .session-form-password {
@@ -125,6 +126,28 @@
     outline: none; 
     border: 1px solid lightgray;
 }
+
+
+/* testing */
+.tooltip-visible {
+    box-sizing: border-box;
+    padding: 10px;
+    visibility: visible;
+    position: absolute;
+    top: 70px;
+    background: white;
+    border: 1px solid darkgray;
+    box-shadow: 2px 2px 2px #26151B26;
+    border-radius: 5px;
+    height: 60px;
+}
+
+.tooltip-hidden {
+    visibility: hidden;
+}
+/* testing */
+
+
 
 .session-form-input:focus {
     /* border: 2px solid purple; */
@@ -216,4 +239,7 @@
 .login-page-cushion {
     height: 70px;
 }
+
+
+
 

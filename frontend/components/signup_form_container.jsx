@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
-import { signup } from '../actions/session_actions';
+import { signup, clearErrors } from '../actions/session_actions';
 import React from 'react';  // added this for SignupForm component
 
 const msp = (state, ownProps) => {
@@ -14,6 +14,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
     return {
         processForm: user => dispatch(signup(user)),
+        clearErrors: () => dispatch(clearErrors()),
     };
 };
 

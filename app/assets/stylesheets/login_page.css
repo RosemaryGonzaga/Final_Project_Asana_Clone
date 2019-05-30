@@ -18,6 +18,17 @@
     flex-direction: column;
 }
 
+.login-page-cushion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-page-cushion > img {
+    width: 120px;
+    height: 24px;
+}
+
 .session-form-container {
     width: 585px;
     height: 566px;
@@ -149,23 +160,60 @@
 /* Header (logo) & footer styling */
 
 .login-page-footer {
+    height: 76px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    color: white;
+    size: 14px;
 }
 
 .login-page-footer-top {
+    width: 284px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    color: white;
+    size: 14px;
 }
 
-.login-page-footer-bottom {
+.login-page-signup-wrapper {
+    height: 30px;
+    line-height: 30px;
+    width: 70px;
+    /* background-color: none; */
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    font-size: 100%;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.login-page-signup-wrapper:hover {
+    background-color: white;
+    color: gray;
+}
+
+.login-page-footer-bottom > nav {
+    width: 284px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+.login-page-footer-bottom > nav > a {
+    color: white;
+    size: 14px;
+    text-decoration: none;
+}
+
+.login-page-footer-bottom > nav > a:hover {
+    text-decoration: underline;
 }
 
 .login-page-cushion {
     height: 70px;
 }
+

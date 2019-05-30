@@ -31,7 +31,7 @@ class LoginFormPage extends React.Component {
                     <footer className="login-page-footer">
                         <div className="login-page-footer-top">
                             <p>Don't have an account?</p>
-                            <Link to="/signup">Sign Up</Link>
+                            <Link to="/signup" className="login-page-signup-wrapper">Sign Up</Link>
                         </div>
                         <div className="login-page-footer-bottom">
                             <nav>
@@ -44,7 +44,7 @@ class LoginFormPage extends React.Component {
                         </div>
                     </footer>
                 </div>
-               <div className="login-page-cushion">Empty div for justifying content</div>
+               <div className="login-page-cushion"></div>
             </div>
         );
     }

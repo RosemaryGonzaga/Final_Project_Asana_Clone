@@ -33,16 +33,25 @@ class SessionForm extends React.Component {
         const errorMessage = errors.session;
 
         return (
-            <div>
+            <div className="session-form-container">
                 <h1 className="session-form-header">{formText}</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="primaryEmail">Email Address</label>
-                    <input type="text" value={primaryEmail} onChange={this.handleChange("primaryEmail")} id="primaryEmail"/>
+                <form className="session-form-content" onSubmit={this.handleSubmit}>
+                    <div className="session-form-google">Use Google Account</div>
+                    <div className="session-form-or">or</div>
 
-                    <label htmlFor="password">Password</label>
-                    <input type="password" value={password} onChange={this.handleChange("password")} id="password" />
+                    <div className="session-form-email">
+                        <label htmlFor="primaryEmail">Email Address</label>
+                        <input type="text" value={primaryEmail} onChange={this.handleChange("primaryEmail")} id="primaryEmail"/>
+                    </div>
 
-                    <input type="submit" value={formText}/>
+                    <div className="session-form-password">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" value={password} onChange={this.handleChange("password")} id="password" />
+                    </div>
+
+                    <div>
+                        <input type="submit" value={formText}/>
+                    </div>                    
                 </form>
                 <p>{errorMessage}</p>
             </div>

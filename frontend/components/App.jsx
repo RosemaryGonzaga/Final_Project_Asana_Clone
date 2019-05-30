@@ -13,7 +13,7 @@ const App = () => {
 
     return (
         <div>
-            <h1>Shavasana</h1>
+            {/* <h1>Shavasana</h1> */}
             <ProtectedRoute exact path="/home" component={Home} />
             <AuthRoute exact path="/" component={Splash} />
             <AuthRoute path="/signup" component={SignupFormContainer} />

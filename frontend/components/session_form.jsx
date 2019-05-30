@@ -34,7 +34,7 @@ class SessionForm extends React.Component {
 
         return (
             <div>
-                <h1>{formText}</h1>
+                <h1 className="session-form-header">{formText}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="primaryEmail">Email Address</label>
                     <input type="text" value={primaryEmail} onChange={this.handleChange("primaryEmail")} id="primaryEmail"/>

@@ -17,14 +17,11 @@ const mdp = dispatch => {
     };
 };
 
-
-// I'm wrapping SessionForm in a different parent component for signup vs login
-// so I can apply different styling... is there a way to make this more dry?
 class LoginFormPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="login-page-container">
                 <SessionForm {...this.props} />
                 <p>This is the login form page. It is NOT a modal.</p>
             </div>

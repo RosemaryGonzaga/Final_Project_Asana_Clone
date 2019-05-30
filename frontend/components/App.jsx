@@ -24,10 +24,3 @@ const App = () => {
 };
 
 export default App;
-
-
-{/* <ProtectedRoute exact path="/home" component={Home} />
-<AuthRoute exact path="/" component={Splash} />
-<AuthRoute path="/signup" component={SignupFormContainer} />
-<AuthRoute path="/login" component={LoginFormContainer} />
-<AuthRoute path="/login_page" component={LoginFormContainerPageLayout} /> */}

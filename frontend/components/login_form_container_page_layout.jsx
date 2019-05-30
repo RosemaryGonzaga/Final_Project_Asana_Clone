@@ -23,7 +23,9 @@ class LoginFormPage extends React.Component {
     render() {
         return (
             <div className="login-page-container">
-                <div className="login-page-cushion">Logo will go here</div>
+                <div className="login-page-cushion">
+                    <img src={window.asanaLogoWhite} alt="Asana Logo White"/>
+                </div>
                 <div className="session-form-wrapper">
                     <SessionForm {...this.props} />
                     <footer className="login-page-footer">

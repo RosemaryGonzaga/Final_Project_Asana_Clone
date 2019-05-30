@@ -7,9 +7,16 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%= favicon_link_tag 'asana_reskin_logo.png' %>
+
   </head>
 
   <body>
+    <script type="text/javascript">
+       window.asanaLogoWhite = "<%= image_url('asana_reskin_logo.png') %>"
+   </script>
+
+    <%= image_tag "asana_reskin_logo.png" %>
     <%= yield %>
   </body>
 </html>

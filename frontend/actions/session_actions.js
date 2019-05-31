@@ -1,4 +1,5 @@
 import * as SessionApiUtil from '../util/session_api_util';
+import { closeModal } from './modal_actions';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const REMOVE_CURRENT_USER = "REMOVE_CURRENT_USER";
@@ -51,7 +52,11 @@ export const login = user => {
     return dispatch => {
         return SessionApiUtil.login(user)
             .then(
-                successPayload => dispatch(receiveCurrentUser(successPayload)),
+                // successPayload => dispatch(receiveCurrentUser(successPayload)), // should I also dispatch close modal action on sucess?
+                successPayload => {
+                    dispatch(receiveCurrentUser(successPayload)),
+                    dispatch(closeModal())
+                },
                 rejectPromise => {
                     // debugger
                     return dispatch(receiveErrors(rejectPromise.responseJSON.errors))

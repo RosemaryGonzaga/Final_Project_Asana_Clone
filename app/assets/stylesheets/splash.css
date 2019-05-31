@@ -5,7 +5,9 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 5325px;
+    /* height: 5325px; */
+    height: 1600px;
+
     /* display: flex;
     flex-direction: column;
     justify-content: space-around; */
@@ -115,17 +117,17 @@
 }
 
 .temporary-cushion {
-    height: 20px;
+    height: 50px;
 }
 
 .splash-section {
-    height: 500px;
+    height: 400px;
     width: 100%;
     background-color: #fcbd01e6; /* TEMPORARY: change to white or transparent later */
     display: flex;
 }
 
-.gray {
+.splash-value-prop-banner {
     background-color: #edf1f2;
 }
 
@@ -158,4 +160,36 @@
 
 .splashGreetingForm > form {
     height: 50px;
+}
+
+.splash-footer {
+    /* height: 112px; */
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* background-color: #222b37; */
+    /* background-color: #151b26; */
+}
+
+.splash-footer > div {
+    height: 90px;
+    background-color: #151b26;
+}
+
+.splash-footer > footer {
+    height: 110px;
+    background-color: #222b37;
+    display: flex;
+    align-items: center;
+}
+
+.splash-footer > footer > ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    color: white;
+    font-size: 14px;
+    font-weight: 100;
+    letter-spacing: 1px;
 }

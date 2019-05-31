@@ -1,0 +1,74 @@
+/* .mini-signup-form-container {
+    width: 750px;
+    height: 50px;
+    border-radius: 5px;
+    background: white;
+    justify-content: center;
+    align-items: center;
+} */
+
+.mini-signup-form-content {
+    width: 730px;
+    height: 50px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .mini-signup-form-email {
+    width: 405px;
+    height: 67px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+} */
+
+.mini-signup-form-input {
+    height: 50px;
+    width: 250px;
+    border-radius: 5px;
+    /* font-size: 100%; */
+    font-size: 16px;
+    outline: none;
+    border: 2px solid #e0e6e8;
+    box-sizing: border-box;
+    padding-left: 10px;
+    color: #646F79;
+}
+
+::placeholder {
+    color: #e0e6e8;
+}
+
+.mini-signup-form-input:focus {
+    border: 2px solid #aba3ff;
+    /* color: #646F79; */
+}
+
+/* .mini-signup-form-password {
+    width: 405px;
+    height: 67px;
+    display: flex;
+    flex-direction: column;
+} */
+
+.mini-signup-form-button {
+    height: 50px;
+    width: 143px;
+    background-color: #786eff;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 16px;
+    /* font-size: 90%; */
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mini-signup-form-button:hover {
+    background-color: #635ac7;
+}

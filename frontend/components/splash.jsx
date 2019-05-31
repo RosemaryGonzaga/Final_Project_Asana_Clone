@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-// new code
 import { openModal } from '../actions/modal_actions';
 
+// new new code
+import SignupFormMini from './signup_form_mini';
 
 const Splash = props => {
     const { openModal } = props;
@@ -31,21 +31,26 @@ const Splash = props => {
 
             <div className="splash-background">
                 <div className="temporary-cushion"></div>
-                <p id="temp">Under construction. Please sign in with the following credentials. Username: user1@shavasana.com, Password: password. Also visit this route and throw some errors at it: /#/login_page</p>
                 <div className="splash-section splashGreetingForm">
                     <h1>Make more time for the work that matters most</h1>
                     <h2>Asana is the work management platform teams use to stay focused on the goals, projects, and daily tasks that grow business.</h2>
-                    <form><p>Placeholder for free trial form</p></form>
+                    
+                    <SignupFormMini />
                 </div>
                 <div className="splash-section splash-images-banner">placeholder for images and animation</div>
-                <div className="splash-section splash-value-prop-banner gray">placeholder for value prop</div>
-                <div className="splash-section splash-watch-asana-banner">placeholder for demo</div>
-                <div className="splash-section splash-testimonial-banner gray">placeholder for testimonial</div>
-                <div className="splash-section splash-new-noteworthy-banner">placeholder for new and noteworthy</div>
-                <div className="splash-section splash-forrester-banner gray">placeholder for forrester</div>
-                <div className="splash-section splash-another-free-trial-banner">placeholder for another free trial form</div>
-                <div className="splash-section splash-bottom-nav">placeholder for bottom nav</div>
-                <div className="splash-section splash--footer">placeholder for footer</div>
+                <div className="splash-section splash-value-prop-banner">placeholder for value prop</div>
+                <div className="splash-section splash-footer">
+                    <div></div>
+                    <footer>
+                        <ul>
+                            <li>English</li>
+                            <li>Privacy</li>
+                            <li>Social Media</li>
+                            <li>Download on the App Store</li>
+                            <li>Get it on Google Play</li>
+                        </ul>
+                    </footer>
+                </div>
 
                 {/* <p>To do: add modal, images, signup form...</p> */}
             </div>

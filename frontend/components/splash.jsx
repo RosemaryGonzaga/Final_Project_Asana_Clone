@@ -12,7 +12,7 @@ const Splash = props => {
         <div className="splash-container">
             <header className="splash-main-nav">
                 <div className="splash-left-nav">
-                    <img src={window.asanaLogoSplash} alt="logo"/>
+                    <img src={window.asanaLogoSplash} alt="logo" />
                 </div>
                 <nav className="splash-right-nav">
                     <ul>
@@ -23,19 +23,33 @@ const Splash = props => {
                         <a href="">Contact Sales</a>
                         {/* <Link to="/login">Log In</Link> */}
                         {/* <div className="free-trial-button"><Link to="/signup">Try for Free</Link></div> */}
-                        <button onClick={() => openModal('login')}>Log In</button>
-                        <button onClick={() => openModal('signup')}>Signup</button>
+                        <button className="splash-login-button" onClick={() => openModal('login')}>Log In</button>
+                        <button className="splash-free-trial-button" onClick={() => openModal('signup')}>Try for free</button>
                     </ul>
                 </nav>
             </header>
 
             <div className="splash-background">
-                <h2>This is the splash page.</h2>
-                <p>It's still under construction.</p>
-                <p>In the meantime, please visit this route and throw some errors at it: /#/login_page</p>
-                <p>To do: add modal, images, signup form...</p>
+                <div className="temporary-cushion"></div>
+                <p id="temp">This is the splash page. While it's under construction, please visit this route and throw some errors at it: /#/login_page</p>
+                <div className="splash-section splashGreetingForm">
+                    <h1>Make more time for the work that matters most</h1>
+                    <h2>Asana is the work management platform teams use to stay focused on the goals, projects, and daily tasks that grow business.</h2>
+                    <form><p>Placeholder for free trial form</p></form>
+                </div>
+                <div className="splash-section splash-images-banner">placeholder for images and animation</div>
+                <div className="splash-section splash-value-prop-banner gray">placeholder for value prop</div>
+                <div className="splash-section splash-watch-asana-banner">placeholder for demo</div>
+                <div className="splash-section splash-testimonial-banner gray">placeholder for testimonial</div>
+                <div className="splash-section splash-new-noteworthy-banner">placeholder for new and noteworthy</div>
+                <div className="splash-section splash-forrester-banner gray">placeholder for forrester</div>
+                <div className="splash-section splash-another-free-trial-banner">placeholder for another free trial form</div>
+                <div className="splash-section splash-bottom-nav">placeholder for bottom nav</div>
+                <div className="splash-section splash--footer">placeholder for footer</div>
+
+                {/* <p>To do: add modal, images, signup form...</p> */}
             </div>
-        </div>
+        </div>     
     );
 };
 

@@ -1,9 +1,11 @@
 .splash-container {
     position: absolute;
+    /* position: relative; */
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    height: 5325px;
     /* display: flex;
     flex-direction: column;
     justify-content: space-around; */
@@ -12,13 +14,15 @@
 
 .splash-main-nav {
     /* background-image: linear-gradient(to top right, #ff5263e6 10%, #ff7381e6 65%, #fcbd01e6 125%); TEMPORARY - change to white later */
+    
     background-color: white;
-    position: absolute;
+    /* position: absolute; */
+    position: fixed;
     z-index: 9;
     top: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 56px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,7 +59,7 @@
 .splash-right-nav > ul > a {
     text-decoration: none;
     color: #646f79;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -63,27 +67,95 @@
     color: #796eff;
 }
 
-.free-trial-button {
+/*  */
+
+.splash-login-button {
+    text-decoration: none;
+    color: #646f79;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: none;
+    border: none;
+}
+
+.splash-login-button:hover {
+    color: #796eff;
+}
+
+/*  */
+
+.splash-free-trial-button {
     height: 36px;
     width: 115px;
     background-color: #786eff;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     color: white;
-    font-size: 100%;
+    font-size: 14px;
+    /* font-size: 90%; */
+    font-weight: 500;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.free-trial-button > a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    font-weight: 500;
+.splash-free-trial-button:hover {
+    background-color: #635ac7;
 }
 
-.free-trial-button:hover {
-    background-color: #635ac7;
+
+
+/* styling for splash background sections */
+
+#temp {
+    font-style: italic;
+    font-size: 12px;
+    color: red;
+}
+
+.temporary-cushion {
+    height: 20px;
+}
+
+.splash-section {
+    height: 500px;
+    width: 100%;
+    background-color: #fcbd01e6; /* TEMPORARY: change to white or transparent later */
+    display: flex;
+}
+
+.gray {
+    background-color: #edf1f2;
+}
+
+.splashGreetingForm {
+    height: 310px;
+    width: 60%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white; /* Get rid of this after changing .splash-section color to white */
+}
+
+.splashGreetingForm > h1 {
+    text-align: center;
+    /* font-size: 45px; */
+    font-size: 3.0rem;
+    color: #151b26;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.splashGreetingForm > h2 {
+    text-align: center;
+    font-size: 22px;
+    color: #646F79;
+    font-weight: 260;
+    letter-spacing: 2px;
+    line-height: 150%
+}
+
+.splashGreetingForm > form {
+    height: 50px;
 }

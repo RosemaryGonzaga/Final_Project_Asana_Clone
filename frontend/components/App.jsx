@@ -7,13 +7,22 @@ import Splash from './splash';
 import { Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
+// new code for modal
+import Modal from './modal';
+
+
 const App = () => {
     // NOTE: All routes should live at the top level (in App component)!
     // Each component in each route should then render the appropriate buttons (links?) the redirect to those routes
 
     return (
         <div>
-            {/* <h1>Shavasana</h1> */}
+            <Modal />
+            <header>
+                {/* <Splash /> */}
+            </header>
+            
+            {/*<h1>Shavasana</h1> */}
             <ProtectedRoute exact path="/home" component={Home} />
             <AuthRoute exact path="/" component={Splash} />
             <AuthRoute path="/signup" component={SignupFormContainer} />

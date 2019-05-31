@@ -2,9 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+// new code
+import { openModal } from '../actions/modal_actions';
+
 
 const Splash = props => {
-
+    const { openModal } = props;
     return (
         <div className="splash-container">
             <header className="splash-main-nav">
@@ -18,8 +21,10 @@ const Splash = props => {
                         <a href="">Pricing</a>
                         <a href="">Solutions</a>
                         <a href="">Contact Sales</a>
-                        <Link to="/login">Log In</Link>
-                        <div className="free-trial-button"><Link to="/signup">Try for Free</Link></div>
+                        {/* <Link to="/login">Log In</Link> */}
+                        {/* <div className="free-trial-button"><Link to="/signup">Try for Free</Link></div> */}
+                        <button onClick={() => openModal('login')}>Log In</button>
+                        <button onClick={() => openModal('signup')}>Signup</button>
                     </ul>
                 </nav>
             </header>
@@ -34,4 +39,15 @@ const Splash = props => {
     );
 };
 
-export default Splash;
+
+// export default Splash;
+
+// new code for modal:
+const mdp = dispatch => {
+    debugger
+    return ({
+        openModal: modal => dispatch(openModal(modal))
+    });
+};
+
+export default connect(null, mdp)(Splash);

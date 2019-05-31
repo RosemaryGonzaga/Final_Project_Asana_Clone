@@ -6,7 +6,7 @@ import { closeModal } from '../actions/modal_actions';
 
 const Modal = props => {
     const { modal, closeModal } = props;
-    debugger
+    // debugger
     if (!modal) {
         return null;
     }
@@ -21,7 +21,7 @@ const Modal = props => {
         default:
             return null;
     }
-    debugger
+    // debugger
     return (
         <div className="modal-background" onClick={closeModal}>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
@@ -32,7 +32,7 @@ const Modal = props => {
 };
 
 const msp = (state, ownProps) => {
-    debugger
+    // debugger
     return {
         modal: state.ui.modal,
     };

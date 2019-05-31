@@ -1,7 +1,7 @@
 import { OPEN_MODAL, CLOSE_MODAL } from '../actions/modal_actions';
 
 export const modalReducer = (oldState = null, action) => {
-    debugger
+    // debugger
     switch (action.type) {
         case OPEN_MODAL:
             return action.modal

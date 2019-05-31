@@ -31,10 +31,11 @@ const mdp = dispatch => {
 class LoginForm extends React.Component {
 
     render() {
+        const { closeModal } = this.props;
         return (
-            <div>
+            <div className="modal-wrapper">
                 <SessionForm {...this.props} />
-                <p>You are on the login form! Remember to style me as a modal later.</p>
+                <button onClick={closeModal}></button>
             </div>
         );
     }

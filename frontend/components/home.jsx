@@ -17,9 +17,26 @@ class Home extends React.Component {
     render() {
         const { signout, currentUser } = this.props;
         return (
-            <div>
-                <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1>
-                <button onClick={this.handleClick}>Sign Out</button>
+            <div className="home-container">
+                {/* <button onClick={this.handleClick}>Sign Out</button> */}
+                <div className="home-sidebar">Sidebar</div>
+                <div className="home-main">
+                    <div className="home-topbar">
+                        <nav className="home-topbar-left">Left Nav (dynamic)</nav>
+                        <nav className="home-topbar-right">
+                            <ul>
+                                <li>Search</li>
+                                <li>+ New</li>
+                                <li>Question</li>
+                                <li>Upgrade</li>
+                                <li><button onClick={this.handleClick}>Sign Out</button></li>
+                            </ul>                            
+                        </nav>
+                    </div>
+                    <div className="home-main-content">
+                        <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1>
+                    </div>
+                </div>
             </div>
         );
     }

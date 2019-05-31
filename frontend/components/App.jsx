@@ -18,11 +18,6 @@ const App = () => {
     return (
         <div>
             <Modal />
-            <header>
-                {/* <Splash /> */}
-            </header>
-            
-            {/*<h1>Shavasana</h1> */}
             <ProtectedRoute exact path="/home" component={Home} />
             <AuthRoute exact path="/" component={Splash} />
             <AuthRoute path="/signup" component={SignupFormContainer} />

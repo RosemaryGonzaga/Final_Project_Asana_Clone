@@ -44,10 +44,19 @@ const Splash = props => {
 
 // new code for modal:
 const mdp = dispatch => {
-    debugger
+    // debugger
     return ({
         openModal: modal => dispatch(openModal(modal))
     });
 };
 
 export default connect(null, mdp)(Splash);
+
+/* THINGS LEARNED / BUGS: 
+1. Since I didn't unpack openModal from the presentational component's 
+    props, I was actually invoking the openModal action in the Log In
+    button's callback, instead of invoking the openModal prop, which meant 
+    I wasn't dispatching the action. (Issue with similarly named vars.)
+    Used debuggers to figure out the action wasn't actually hitting my
+    modal reducer.
+*/

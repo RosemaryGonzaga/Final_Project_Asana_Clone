@@ -35,7 +35,7 @@ class LoginForm extends React.Component {
         return (
             <div className="modal-wrapper">
                 <SessionForm {...this.props} />
-                <button onClick={closeModal}></button>
+                <button className="close-btn" onClick={closeModal}></button>
             </div>
         );
     }

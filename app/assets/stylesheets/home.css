@@ -13,10 +13,17 @@
 .home-sidebar {
     width: 244px;
     background-color: #ff7381e6;
+    position: fixed;
+    height: 100%;
 }
 
 .home-main {
-    width: 1190px;
+    /* width: 1190px; */
+    /* width: 100%; */
+    /* min-width: 920px; */
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
     background-color: #fcbd01e6;
     display: flex;
     flex-direction: column;

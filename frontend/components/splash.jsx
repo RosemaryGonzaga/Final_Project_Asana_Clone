@@ -31,7 +31,7 @@ const Splash = props => {
 
             <div className="splash-background">
                 <div className="temporary-cushion"></div>
-                <p id="temp">This is the splash page. While it's under construction, please visit this route and throw some errors at it: /#/login_page</p>
+                <p id="temp">Under construction. Please sign in with the following credentials. Username: user1@shavasana.com, Password: password. Also visit this route and throw some errors at it: /#/login_page</p>
                 <div className="splash-section splashGreetingForm">
                     <h1>Make more time for the work that matters most</h1>
                     <h2>Asana is the work management platform teams use to stay focused on the goals, projects, and daily tasks that grow business.</h2>

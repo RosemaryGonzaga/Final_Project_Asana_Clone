@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { merge } from 'lodash';
-// import { clearErrors } from '../actions/session_actions';
+// import { clearErrors } from '../../actions/session_actions';
 import { connect } from 'react-redux';
-import { signup, clearErrors, login } from '../actions/session_actions';
+import { signup, clearErrors, login } from '../../actions/session_actions';
 
 class SignupFormMini extends React.Component {
     constructor(props) {

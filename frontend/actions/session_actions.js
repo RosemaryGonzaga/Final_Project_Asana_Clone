@@ -28,15 +28,14 @@ const receiveErrors = errors => {   // naming implies the arg is an array, but r
     };
 };
 
-export const clearErrors = () => {     // added this
-    // debugger
+export const clearErrors = () => {
     return {
         type: CLEAR_ERRORS,
     }
 }
 
 
-// thunk action creators --> not sure if I implemented errors correctly?
+// thunk action creators
 
 export const signup = user => {
     return dispatch => {
@@ -52,13 +51,11 @@ export const login = user => {
     return dispatch => {
         return SessionApiUtil.login(user)
             .then(
-                // successPayload => dispatch(receiveCurrentUser(successPayload)), // should I also dispatch close modal action on sucess?
                 successPayload => {
                     dispatch(receiveCurrentUser(successPayload)),
                     dispatch(closeModal())
                 },
                 rejectPromise => {
-                    // debugger
                     return dispatch(receiveErrors(rejectPromise.responseJSON.errors))
                 }
             )
@@ -66,9 +63,7 @@ export const login = user => {
 };
 
 export const logout = () => {
-    // debugger
     return dispatch => {
-        // debugger
         return SessionApiUtil.logout()
             .then(() => dispatch(logoutCurrentUser()))
     };

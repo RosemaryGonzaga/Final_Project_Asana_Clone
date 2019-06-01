@@ -1,6 +1,6 @@
 import React from 'react';
 import { merge } from 'lodash';
-import { clearErrors } from '../actions/session_actions';
+import { clearErrors } from '../../actions/session_actions';
 
 class SessionForm extends React.Component {
     constructor(props) {
@@ -15,17 +15,12 @@ class SessionForm extends React.Component {
     }
 
     // lifecycle methods?
-    componentDidUpdate() {        // this is definitely wrong: delete!
-        // debugger
-        // this.setState({ errorMessage: this.props.errors.session });
-    }
 
     handleSubmit(e) {
         e.preventDefault();
         const { processForm } = this.props;
         const user = merge({}, this.state);
         processForm(user);
-        // debugger
     }
 
     handleChange(field) {
@@ -46,21 +41,11 @@ class SessionForm extends React.Component {
         let errorMessage = errors.session;  // comment this out when testing errors in state
         let errorTooltipClass = errorMessage === "" ? "tooltip-hidden" : "tooltip-visible";
 
-        // need a CLEAR ERRORS ACTION!
-
-        // debugger
         if (errorMessage !== "") {
-            // debugger
             const { clearErrors } = this.props;
             setTimeout(() => {
-                // debugger
-                // this.setState({ errorMessage: "" });
-                // alert("testing")
                 clearErrors();
-                // errorMessage = "";
-                // errorTooltipClass = "tooltip-hidden";
             }, 1700)
-            // this.render()
         }
 
         // login button effect

@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SignupFormContainer from './signup_form_container';
-import LoginFormContainer from './login_form_container';
+import SignupFormContainer from './auth/signup_form_container';
+import LoginFormContainer from './auth/login_form_container';
 import { closeModal } from '../actions/modal_actions';
 
 const Modal = props => {
     const { modal, closeModal } = props;
-    // debugger
     if (!modal) {
         return null;
     }
@@ -21,7 +20,7 @@ const Modal = props => {
         default:
             return null;
     }
-    // debugger
+    
     return (
         <div className="modal-background" onClick={closeModal}>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
@@ -32,7 +31,6 @@ const Modal = props => {
 };
 
 const msp = (state, ownProps) => {
-    // debugger
     return {
         modal: state.ui.modal,
     };

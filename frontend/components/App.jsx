@@ -1,13 +1,11 @@
 import React from 'react';
-import SignupFormContainer from './signup_form_container';
-import LoginFormContainer from './login_form_container';
-import LoginFormContainerPageLayout from './login_form_container_page_layout';
+import SignupFormContainer from './auth/signup_form_container';
+import LoginFormContainer from './auth/login_form_container';
+import LoginFormContainerPageLayout from './auth/login_form_container_page_layout';
 import Home from './home';
 import Splash from './splash';
 import { Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-
-// new code for modal
 import Modal from './modal';
 
 

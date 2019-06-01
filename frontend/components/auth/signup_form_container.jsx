@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
-import { signup, clearErrors, login } from '../actions/session_actions';
+import { signup, clearErrors, login } from '../../actions/session_actions';
 import React from 'react';  // added this for SignupForm component
-import { closeModal } from '../actions/modal_actions'; // added this for modal
+import { closeModal } from '../../actions/modal_actions'; // added this for modal
 
 const msp = (state, ownProps) => {
     const { errors } = state;
@@ -38,7 +38,6 @@ class SignupForm extends React.Component {
     }
 
     render() {
-        // const { closeModal } = this.props;
         const { closeModal } = this.props;
         // const demoUser = { primaryEmail: "user1@shavasana.com", password: "password" }
         return (
@@ -61,4 +60,3 @@ class SignupForm extends React.Component {
 
 
 export default connect(msp, mdp)(SignupForm);
-// export default connect(msp, mdp)(SessionForm);

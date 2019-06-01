@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store}/>, root)
 
-    // for testing only! DELETE LATER!
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
-    // delete the above!
+    // // for testing only! DELETE LATER!
+    // window.getState = store.getState;
+    // window.dispatch = store.dispatch;
+    // // delete the above!
 });
 
 
@@ -36,6 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // window.signup = SessionApiUtil.signup
 // window.login = SessionApiUtil.login
 // window.logout = SessionApiUtil.logout
-window.signupThunk = ThunkActions.signup
-window.loginThunk = ThunkActions.login
-window.logoutThunk = ThunkActions.logout
+// window.signupThunk = ThunkActions.signup
+// window.loginThunk = ThunkActions.login
+// window.logoutThunk = ThunkActions.logout

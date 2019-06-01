@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { openModal } from '../actions/modal_actions';
-
-// new new code
-import SignupFormMini from './signup_form_mini';
+import SignupFormMini from './auth/signup_form_mini';
 
 const Splash = props => {
     const { openModal } = props;
@@ -51,31 +49,16 @@ const Splash = props => {
                         </ul>
                     </footer>
                 </div>
-
-                {/* <p>To do: add modal, images, signup form...</p> */}
             </div>
         </div>     
     );
 };
 
 
-// export default Splash;
-
-// new code for modal:
 const mdp = dispatch => {
-    // debugger
     return ({
         openModal: modal => dispatch(openModal(modal))
     });
 };
 
 export default connect(null, mdp)(Splash);
-
-/* THINGS LEARNED / BUGS: 
-1. Since I didn't unpack openModal from the presentational component's 
-    props, I was actually invoking the openModal action in the Log In
-    button's callback, instead of invoking the openModal prop, which meant 
-    I wasn't dispatching the action. (Issue with similarly named vars.)
-    Used debuggers to figure out the action wasn't actually hitting my
-    modal reducer.
-*/

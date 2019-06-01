@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
-import { login, clearErrors } from '../actions/session_actions';
-import { openModal, closeModal } from '../actions/modal_actions';
+import { login, clearErrors } from '../../actions/session_actions';
+import { openModal, closeModal } from '../../actions/modal_actions';
 import React from 'react';  // added this for LoginForm component
 
 const msp = (state, ownProps) => {
@@ -43,4 +43,3 @@ class LoginForm extends React.Component {
 
 
 export default connect(msp, mdp)(LoginForm);
-// export default connect(msp, mdp)(SessionForm);

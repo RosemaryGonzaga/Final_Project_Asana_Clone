@@ -137,9 +137,9 @@
     display: flex;
 }
 
-.splash-value-prop-banner {
+/* .splash-value-prop-banner {
     background-color: #edf1f2;
-}
+} */
 
 .splashGreetingForm {
     height: 310px;
@@ -172,14 +172,31 @@
     height: 50px;
 }
 
+
+
+.splash-video-banner {
+    background-color: #f6f7fa;
+    position: relative;
+    height: 800px;
+    width: 100%;
+}
+
+.splash-video-banner > video {
+    /* height: 708px; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+
 .splash-footer {
     /* height: 112px; */
     height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    /* background-color: #222b37; */
-    /* background-color: #151b26; */
 }
 
 .splash-footer > div {

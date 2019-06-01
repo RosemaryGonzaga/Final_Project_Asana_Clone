@@ -31,12 +31,14 @@ const Splash = props => {
                 <div className="temporary-cushion"></div>
                 <div className="splash-section splashGreetingForm">
                     <h1>Make more time for the work that matters most</h1>
-                    <h2>Asana is the work management platform teams use to stay focused on the goals, projects, and daily tasks that grow business.</h2>
-                    
+                    <h2>Asana is the work management platform teams use to stay focused on the goals, projects, and daily tasks that grow business.</h2>                    
                     <SignupFormMini />
                 </div>
-                <div className="splash-section splash-images-banner">placeholder for images and animation</div>
-                <div className="splash-section splash-value-prop-banner">placeholder for value prop</div>
+
+                <div className="splash-section splash-video-banner">
+                    <video src={window.splashVideo} autoPlay loop muted></video>
+                </div>
+
                 <div className="splash-section splash-footer">
                     <div></div>
                     <footer>

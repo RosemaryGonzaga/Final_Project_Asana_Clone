@@ -211,7 +211,28 @@
 .splash-footer-top {
     height: 110px;
     background-color: #151b26;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
+
+.fab {
+    font-size: 30px;
+    color: white;
+}
+
+.fa-github {
+    margin-right: 90px;
+}
+
+.fa-facebook {
+    margin-right: 40px;
+}
+
+/* .fa-facebook-f {
+    margin-right: 40px;
+} */
+
 
 .splash-footer > footer {
     height: 110px;
@@ -228,11 +249,4 @@
     font-size: 14px;
     font-weight: 100;
     letter-spacing: 1px;
-}
-
-.splash-footer-top > i {
-    /* height: 20px;
-    width: 20px; */
-    height: 110px;
-    display: block;
 }

@@ -39,8 +39,9 @@ const Splash = props => {
 
                 <div className="splash-section splash-footer">
                     <div className="splash-footer-top">
-                        <i className="fab fa-github"></i>
-                        <i className="fas fa-cog"></i>
+                        {/* <i className="fab fa-facebook-f"></i> */}
+                        <a href="https://www.facebook.com/rosemary.gonzaga.1"><i className="fab fa-facebook"></i></a>
+                        <a href="https://github.com/RosemaryGonzaga"><i className="fab fa-github"></i></a>
                     </div>
                     <footer>
                         <ul>

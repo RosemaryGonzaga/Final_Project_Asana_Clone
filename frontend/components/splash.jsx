@@ -7,6 +7,23 @@ import SignupFormMini from './auth/signup_form_mini';
 const Splash = props => {
     const { openModal } = props;
 
+    // function handleScroll() {
+    //     document.getElementsByClassName('splash-main-nav').setAttribute("class", "topbar-scrolled");
+    // }
+
+    window.onscroll = function() { 
+        // document.getElementsByClassName('splash-main-nav').setAttribute("class", "topbar-scrolled");
+        let topNav = document.getElementsByClassName('splash-main-nav');
+        // topNav[0].setAttribute("class", "topbar-scrolled");
+        topNav[0].className += ' topbar-scrolled';
+        // debugger
+        let yOffset = window.pageYOffset;
+        if (yOffset === 0) {
+            topNav[0].className = 'splash-main-nav';
+        }
+        // debugger
+    }
+
     return (
         <div className="splash-container">
             <header className="splash-main-nav">

@@ -6,7 +6,7 @@
     left: 0;
     right: 0;
     /* height: 5325px; */
-    height: 1600px;
+    height: 1550px;
 
     /* display: flex;
     flex-direction: column;
@@ -38,13 +38,18 @@
     right: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
 /* continue styling left nav */
 
 .splash-left-nav > img {
+    height: 26px;
+    margin-left: 18px;
+}
+
+.splash-logo-link {
     height: 26px;
     margin-left: 18px;
 }
@@ -80,6 +85,7 @@
     /* background-color: none; */
     border: none;
     transition: color 2s;
+    cursor: pointer;
 }
 
 .splash-login-button:hover {
@@ -126,14 +132,14 @@
     color: red;
 }
 
-.temporary-cushion {
-    height: 50px;
+.cushion {
+    height: 100px;
 }
 
 .splash-section {
     height: 400px;
     width: 100%;
-    background-color: #fcbd01e6; /* TEMPORARY: change to white or transparent later */
+    background-color: transparent;
     display: flex;
 }
 
@@ -141,16 +147,18 @@
     background-color: #edf1f2;
 } */
 
-.splashGreetingForm {
+.splash-greeting-form {
     height: 310px;
     width: 60%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: white; /* Get rid of this after changing .splash-section color to white */
+    margin-top: 30px;
+    margin-bottom: 85px;
 }
 
-.splashGreetingForm > h1 {
+.splash-greeting-form > h1 {
     text-align: center;
     /* font-size: 45px; */
     font-size: 3.0rem;
@@ -159,7 +167,7 @@
     letter-spacing: 3px;
 }
 
-.splashGreetingForm > h2 {
+.splash-greeting-form > h2 {
     text-align: center;
     font-size: 22px;
     color: #646F79;
@@ -168,7 +176,7 @@
     line-height: 150%
 }
 
-.splashGreetingForm > form {
+.splash-greeting-form > form {
     height: 50px;
 }
 
@@ -179,6 +187,7 @@
     position: relative;
     height: 800px;
     width: 100%;
+    /* margin-top: 15px; */
 }
 
 .splash-video-banner > video {
@@ -193,14 +202,14 @@
 
 .splash-footer {
     /* height: 112px; */
-    height: 200px;
+    height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-.splash-footer > div {
-    height: 90px;
+.splash-footer-top {
+    height: 110px;
     background-color: #151b26;
 }
 
@@ -219,4 +228,11 @@
     font-size: 14px;
     font-weight: 100;
     letter-spacing: 1px;
+}
+
+.splash-footer-top > i {
+    /* height: 20px;
+    width: 20px; */
+    height: 110px;
+    display: block;
 }

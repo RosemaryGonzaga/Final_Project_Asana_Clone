@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { openModal } from '../actions/modal_actions';
 import SignupFormMini from './auth/signup_form_mini';
 
 const Splash = props => {
     const { openModal } = props;
+
     return (
         <div className="splash-container">
             <header className="splash-main-nav">
-                <div className="splash-left-nav">
-                    <img src={window.asanaLogoSplash} alt="logo" />
-                </div>
+                {/* <Link to="/"><img src={window.asanaLogoSplash} alt="logo" className="splash-logo-link"/></Link> */}
+                <a href=""><img src={window.asanaLogoSplash} alt="logo" className="splash-logo-link" /></a>
                 <nav className="splash-right-nav">
                     <ul>
                         <a href="">Templates</a>
@@ -19,8 +19,6 @@ const Splash = props => {
                         <a href="">Pricing</a>
                         <a href="">Solutions</a>
                         <a href="">Contact Sales</a>
-                        {/* <Link to="/login">Log In</Link> */}
-                        {/* <div className="free-trial-button"><Link to="/signup">Try for Free</Link></div> */}
                         <button className="splash-login-button" onClick={() => openModal('login')}>Log In</button>
                         <button className="splash-free-trial-button" onClick={() => openModal('signup')}>Try for free</button>
                     </ul>
@@ -28,8 +26,8 @@ const Splash = props => {
             </header>
 
             <div className="splash-background">
-                <div className="temporary-cushion"></div>
-                <div className="splash-section splashGreetingForm">
+                <div className="cushion"></div>
+                <div className="splash-section splash-greeting-form">
                     <h1>Make more time for the work that matters most</h1>
                     <h2>Asana is the work management platform teams use to stay focused on the goals, projects, and daily tasks that grow business.</h2>                    
                     <SignupFormMini />
@@ -40,7 +38,10 @@ const Splash = props => {
                 </div>
 
                 <div className="splash-section splash-footer">
-                    <div></div>
+                    <div className="splash-footer-top">
+                        <i className="fab fa-github"></i>
+                        <i className="fas fa-cog"></i>
+                    </div>
                     <footer>
                         <ul>
                             <li>English</li>

@@ -47,7 +47,9 @@ class SignupForm extends React.Component {
                 {/* <button onClick={closeModal}><img src="../app/assets/images/close-button.svg" alt="X"/></button> */}
                 {/* <button onClick={closeModal}><img src="close-button.svg" alt="X" /></button> */}
 
-                <button className="close-btn" onClick={closeModal}></button>
+                <button className="close-btn" onClick={closeModal}>
+                    <img src={window.closeButtonHover} alt="x"/>
+                </button>
                 <button className="demo-btn" onClick={this.handleDemoClick}>Demo</button>
 
                 {/* need to include the below credit for the close modal icon? */}

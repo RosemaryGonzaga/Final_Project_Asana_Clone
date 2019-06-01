@@ -67,6 +67,7 @@
 
 .splash-right-nav > ul > a:hover {
     color: #796eff;
+    transition: color 400ms ease-in;
 }
 
 /*  */
@@ -76,12 +77,17 @@
     color: #646f79;
     font-size: 14px;
     font-weight: 500;
-    background-color: none;
+    /* background-color: none; */
     border: none;
+    transition: color 2s;
 }
 
 .splash-login-button:hover {
     color: #796eff;
+}
+
+.splash-login-button:focus {
+    outline: none;
 }
 
 /*  */
@@ -105,6 +111,10 @@
 .splash-free-trial-button:hover {
     background-color: #635ac7;
 }
+
+/* .splash-free-trial-button:focus {
+    outline: none;
+} */
 
 
 

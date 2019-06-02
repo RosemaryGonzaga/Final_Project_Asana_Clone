@@ -7,7 +7,7 @@ export const REMOVE_PROJECT = "REMOVE_PROJECT";
 
 
 // regular action creators
-const receiveAllProjects = projects => {
+const receiveAllProjects = projects => {    // to think about: should projects come in as an array or object? prob obj since my state shape is an obj?
     return {
         type: RECEIVE_ALL_PROJECTS,
         projects,

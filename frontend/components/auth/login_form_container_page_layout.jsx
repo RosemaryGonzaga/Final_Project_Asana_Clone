@@ -17,6 +17,7 @@ const mdp = dispatch => {
     return {
         processForm: user => dispatch(login(user)),
         clearErrors: () => dispatch(clearErrors()),
+        openSignupModal: () => dispatch(openModal('signup')),
     };
 };
 
@@ -33,7 +34,11 @@ class LoginFormPageContainer extends React.Component {
                     <footer className="login-page-footer">
                         <div className="login-page-footer-top">
                             <p>Don't have an account?</p>
-                            <Link to="/signup" className="login-page-signup-wrapper">Sign Up</Link>
+                            <Link to="/" 
+                                    className="login-page-signup-wrapper" 
+                                    onClick={this.props.openSignupModal}>
+                                    Sign Up
+                            </Link>
                         </div>
                         <div className="login-page-footer-bottom">
                             <nav>

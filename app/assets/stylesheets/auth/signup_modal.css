@@ -1,0 +1,250 @@
+/* remove the wrapper for the "trial" modal (it doesn't need it) */
+.signup-form-wrapper {
+    width: 1000px;
+    height: 570px;
+    border-radius: 3px;
+    background: #edf1f2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: -1px 1px 2px #26151B26;
+    position: relative;
+}
+
+.signup-form-container {
+    width: 633px;
+    height: 570px;
+    /* border-radius: 3px; */
+    /* background: white; */
+    background: #f6f8f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 1px 0 20px #26151B26;
+    position: relative;
+}
+
+
+.signup-form-header {
+    width: 475px;
+    /* height: 15px; */
+    font-size: 45px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-align: start;
+    margin-top: 105px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.signup-form-content {
+    width: 475px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.signup-form-tagline {
+    font-size: 16px;
+    color: #646f79;
+    font-weight: 220;
+    line-height: 30px;
+    letter-spacing: 1px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.signup-form-email {
+    width: 475px;
+    height: 60px;
+    display: flex;
+    /* flex-direction: column;
+    /* position: relative; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signup-form-password {
+    width: 475px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    /* flex-direction: column; */
+}
+
+/* .signup-form-label {
+    font-size: 17px;
+    color: #646F79;
+    font-weight: 250;
+} */
+
+.signup-form-input {
+    width: 346px;
+    height: 50px;
+    border-radius: 5px;
+    /* margin-top: 10px; */
+    font-size: 16px;
+    outline: none;
+    border: 2px solid #e0e6e8;
+    box-sizing: border-box;
+    padding-left: 10px;
+    color: #646F79;
+    font-weight: 250;
+}
+
+::placeholder {
+    color: #e0e6e8;
+}
+
+.signup-form-input:focus {
+    border: 2px solid #aba3ff;
+}
+
+.signup-form-button {
+    height: 50px;
+    width: 113px;
+    background-color: #786eff;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.signup-form-button:hover {
+    background-color: #635ac7;
+}
+
+.demo-button {
+    height: 50px;
+    width: 250px;
+    background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+    opacity: 60%;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.demo-button:hover {
+    background: #635ac7;
+}
+
+.signup-form-bottom-txt {
+    width: 400px;
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    color: #9ca6af;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 200;
+    color: #646f79;
+    margin-right: 70px;
+    margin-bottom: 20px;
+}
+
+
+
+.signup-modal-right {
+    width: 367px;
+    box-sizing: border-box;
+    padding: 40px;
+    padding-top: 10px;
+    padding-bottom: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-modal-right-content {
+    width: 251px;
+    height: 350px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.signup-modal-right-content > img {
+    width: 40px;
+    height: 55px;
+}
+
+.signup-modal-right-content > h3 {
+    font-size: 16px;
+    color: #646F79;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.signup-modal-right-content > p {
+    font-size: 14px;
+    color: #646F79;
+    font-weight: 200;
+    letter-spacing: 1px;
+    line-height: 24px;
+}
+
+
+
+.close-btn {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    border: none;
+    background: transparent;
+    height: 26px;
+    width: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.close-btn > img {
+    height: 26px;
+    width: 26px;
+    margin: none;
+} 
+
+/* The following few lines override styling for "x" close button */
+/* It's smaller on the signup form than it is on the login form */
+
+.signup-modal-close-btn > img {
+    height: 17px;
+    width: 17px;
+} 
+
+
+
+
+/* ------- */ 
+/* ------- */ 
+/* ------- */ 
+/* testing */
+.tooltip-visible {
+    box-sizing: border-box;
+    padding: 10px;
+    visibility: visible;
+    position: absolute;
+    top: 70px;
+    background: white;
+    border: 1px solid darkgray;
+    box-shadow: 2px 2px 2px #26151B26;
+    border-radius: 5px;
+    height: 60px;
+}
+
+.tooltip-hidden {
+    visibility: hidden;
+}
+/* testing */

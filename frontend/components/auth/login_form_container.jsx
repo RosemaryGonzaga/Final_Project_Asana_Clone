@@ -27,20 +27,4 @@ const mdp = dispatch => {
 };
 
 
-// // I'm wrapping SessionForm in a different parent component for signup vs login
-// // so I can apply different styling... is there a way to make this more dry?
-// class LoginForm extends React.Component {
-
-//     render() {
-//         const { closeModal } = this.props;
-//         return (
-//             <div className="modal-wrapper">
-//                 <SessionForm {...this.props} />
-//                 <button className="close-btn" onClick={closeModal}></button>
-//             </div>
-//         );
-//     }
-// }
-
-
 export default connect(msp, mdp)(LoginFormModal);

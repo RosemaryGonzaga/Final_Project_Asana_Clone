@@ -41,22 +41,22 @@ class LoginFormModal extends React.Component {
         const { formType, errors, closeModal, otherForm } = this.props;
         const formText = formType === "login" ? "Log in" : "Sign up";
 
-        // error rendering
-        let errorMessage = errors.session;
-        let errorTooltipClass = errorMessage === "" ? "tooltip-hidden" : "tooltip-visible";
+        // // error rendering
+        // let errorMessage = errors.session;
+        // let errorTooltipClass = errorMessage === "" ? "tooltip-hidden" : "tooltip-visible";
 
-        if (errorMessage !== "") {
-            const { clearErrors } = this.props;
-            setTimeout(() => {
-                clearErrors();
-            }, 1700)
-        }
+        // if (errorMessage !== "") {
+        //     const { clearErrors } = this.props;
+        //     setTimeout(() => {
+        //         clearErrors();
+        //     }, 1700)
+        // }
 
-        // login button effect
-        let disabled = false;
-        if (primaryEmail === "") {
-            disabled = true;
-        }
+        // // login button effect
+        // let disabled = false;
+        // if (primaryEmail === "") {
+        //     disabled = true;
+        // }
 
         return (
             <div className="login-form-container">
@@ -71,11 +71,6 @@ class LoginFormModal extends React.Component {
                         <i className="fab fa-google"></i>
                         <button className="login-form-google">Use Google Account</button>
                     </div>
-
-                    {/* <button className="login-form-google">
-                        <i className="fab fa-google"></i>
-                        Use Google Account
-                    </button> */}
                     
                     <div className="login-form-or">
                         <div className="login-form-line"></div>
@@ -92,7 +87,7 @@ class LoginFormModal extends React.Component {
                                 id="primaryEmail" 
                                 placeholder="name@company.com"
                         />
-                        <div className={errorTooltipClass}>{errorMessage}</div>
+                        {/* <div className={errorTooltipClass}>{errorMessage}</div> */}
                     </div>
 
                     <div className="login-form-password">
@@ -109,7 +104,7 @@ class LoginFormModal extends React.Component {
                     <input className="login-form-button" 
                             type="submit" 
                             value={formText} 
-                            disabled={disabled} 
+                            // disabled={disabled} 
                     />
 
                     <div className="demo-button">

@@ -1,0 +1,212 @@
+.login-form-container {
+    width: 900px;
+    height: 748px;
+    border-radius: 3px;
+    /* margin: 0 auto; */
+    margin-top: 45px;
+    /* background: white; */
+    background: #f6f8f9;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: -1px 1px 2px #26151B26;
+}
+
+.login-form-google {
+    height: 40px;
+    width: 154px;
+    background-color: #14aaf5;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 80%;
+    /* position: absolute;
+    right: 10px; */
+    cursor: pointer;
+}
+
+/* google and or div styling here */
+
+.login-form-or {
+    width: 405px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-form-or span {
+    font-size: 24px;
+    color: #b7bfc6;
+}
+
+.login-form-line {
+    border-top: 1px solid #e0e6e8;
+    width: 45%;
+    margin-top: 4px;
+}
+
+
+.login-form-header {
+    height: 115px;
+    font-size: 50px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: green; TEMPORARY */
+}
+
+.login-form-content {
+    /* background: blue; TEMPORARY */
+    height: 623px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login-form-email {
+    width: 516px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.login-form-password {
+    width: 516px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form-label {
+    /* height: 18px; */
+    font-size: 17px;  /* Asana's font size is actual 12px, but it seems too small*/
+    /* color: #848f99;
+    font-weight: 300; */
+    color: #646F79;
+    font-weight: 250;
+}
+
+.login-form-input {
+    height: 50px;
+    border-radius: 5px;
+    /* font-size: 100%; */
+    margin-top: 10px;
+    /* outline: none;  */
+    /* border: 1px solid lightgray; */
+    /*  */
+    font-size: 16px;
+    outline: none;
+    border: 2px solid #e0e6e8;
+    box-sizing: border-box;
+    padding-left: 10px;
+    color: #646F79;
+    font-weight: 250;
+}
+
+::placeholder {
+    color: #e0e6e8;
+}
+
+.login-form-input:focus {
+    border: 2px solid #aba3ff;
+}
+
+
+/* testing */
+.tooltip-visible {
+    box-sizing: border-box;
+    padding: 10px;
+    visibility: visible;
+    position: absolute;
+    top: 70px;
+    background: white;
+    border: 1px solid darkgray;
+    box-shadow: 2px 2px 2px #26151B26;
+    border-radius: 5px;
+    height: 60px;
+}
+
+.tooltip-hidden {
+    visibility: hidden;
+}
+/* testing */
+
+
+/* .login-form-button {
+    height: 40px;
+    width: 405px;
+    position: relative;
+} */
+
+.login-form-button {
+    height: 50px;
+    width: 516px;
+    background-color: #786eff;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.login-form-button:hover {
+    background-color: #635ac7;
+}
+
+
+.demo-button {
+    height: 50px;
+    width: 250px;
+    /* background-color: #786eff; */
+    background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+    opacity: 60%;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.demo-button:hover {
+    background: #635ac7;
+}
+
+.login-form-bottom-txt {
+    width: 230px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #9ca6af;
+    align-items: center;
+}
+
+.redirect-to-signin {
+    display: flex;
+    justify-content: space-between;
+    width: 230px;
+    font-weight: 200;
+}
+
+.redirect-to-signin > span > button {
+    background: #f6f8f9;
+    text-decoration: none;
+    border: none;
+    transition: color 400ms;
+    cursor: pointer;
+    color: #796eff;
+    font-size: 16px;
+    padding: 0;
+    padding-bottom: 2px;
+}
+
+.redirect-to-signin > span > button:hover {
+    color: #635ac7;
+    text-decoration: underline;
+}

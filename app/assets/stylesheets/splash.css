@@ -1,24 +1,14 @@
 .splash-container {
     position: absolute;
-    /* position: relative; */
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    /* height: 5325px; */
     height: 1550px;
-
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-around; */
-    /* background-image: linear-gradient(to top right, #ff5263e6 10%, #ff7381e6 65%, #fcbd01e6 125%); TEMPORARY - change to white later */
 }
 
 .splash-main-nav {
-    /* background-image: linear-gradient(to top right, #ff5263e6 10%, #ff7381e6 65%, #fcbd01e6 125%); TEMPORARY - change to white later */
-    
     background-color: white;
-    /* position: absolute; */
     position: fixed;
     z-index: 9;
     top: 0;
@@ -31,11 +21,8 @@
 }
 
 .topbar-scrolled {
-    /* background-color: green; */
-    /* border-bottom: 1px solid lightgray; */
     border-bottom: #e0e6e8;
     box-shadow: 0 1px 2px #e0e6e8;
-    /* box-shadow: 0 1px 3px #26151B26; */
 }
 
 .splash-background {
@@ -90,9 +77,8 @@
     color: #646f79;
     font-size: 14px;
     font-weight: 500;
-    /* background-color: none; */
     border: none;
-    transition: color 2s;
+    transition: color 400ms;
     cursor: pointer;
 }
 
@@ -150,10 +136,6 @@
     background-color: transparent;
     display: flex;
 }
-
-/* .splash-value-prop-banner {
-    background-color: #edf1f2;
-} */
 
 .splash-greeting-form {
     height: 310px;
@@ -236,10 +218,6 @@
 .fa-facebook {
     margin-right: 40px;
 }
-
-/* .fa-facebook-f {
-    margin-right: 40px;
-} */
 
 
 .splash-footer > footer {

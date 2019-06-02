@@ -7,27 +7,18 @@ import SignupFormMini from './auth/signup_form_mini';
 const Splash = props => {
     const { openModal } = props;
 
-    // function handleScroll() {
-    //     document.getElementsByClassName('splash-main-nav').setAttribute("class", "topbar-scrolled");
-    // }
-
     window.onscroll = function() { 
-        // document.getElementsByClassName('splash-main-nav').setAttribute("class", "topbar-scrolled");
         let topNav = document.getElementsByClassName('splash-main-nav');
-        // topNav[0].setAttribute("class", "topbar-scrolled");
         topNav[0].className += ' topbar-scrolled';
-        // debugger
         let yOffset = window.pageYOffset;
         if (yOffset === 0) {
             topNav[0].className = 'splash-main-nav';
         }
-        // debugger
     }
 
     return (
         <div className="splash-container">
             <header className="splash-main-nav">
-                {/* <Link to="/"><img src={window.asanaLogoSplash} alt="logo" className="splash-logo-link"/></Link> */}
                 <a href=""><img src={window.asanaLogoSplash} alt="logo" className="splash-logo-link" /></a>
                 <nav className="splash-right-nav">
                     <ul>
@@ -56,7 +47,6 @@ const Splash = props => {
 
                 <div className="splash-section splash-footer">
                     <div className="splash-footer-top">
-                        {/* <i className="fab fa-facebook-f"></i> */}
                         <a href="https://www.facebook.com/rosemary.gonzaga.1"><i className="fab fa-facebook"></i></a>
                         <a href="https://github.com/RosemaryGonzaga"><i className="fab fa-github"></i></a>
                     </div>

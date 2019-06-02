@@ -58,8 +58,7 @@ class SignupFormMini extends React.Component {
                             type="email" 
                             value={primaryEmail} 
                             onChange={this.handleChange("primaryEmail")} 
-                            id="primaryEmail" 
-                            title="SAMPLE TOOLTIP" 
+                            id="primaryEmail"
                             placeholder="name@company.com"
                     />
 

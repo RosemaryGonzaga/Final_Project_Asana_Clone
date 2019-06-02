@@ -1,6 +1,6 @@
 json.id project.id
 json.name project.name
-json.desription project.description
+json.description project.description
 json.layout project.layout
 json.privacy project.privacy
 json.ownerId project.owner_id

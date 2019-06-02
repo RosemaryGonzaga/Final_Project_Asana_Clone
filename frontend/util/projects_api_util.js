@@ -19,7 +19,7 @@ export const createProject = project => {
         url: '/api/projects',
         data: {
             project: {
-                name, description, layout, privacy, 
+                name, description, layout, privacy,
                 owner_id: ownerId
             }
         }
@@ -33,8 +33,9 @@ export const updateProject = project => {
         url: `/api/projects/${project.id}`,
         data: {
             project: {
-                name, description, layout, privacy,
-                owner_id: ownerId
+                name, description, layout, privacy, color,
+                owner_id: ownerId,
+                due_on: dueOn,
             }
         }
     });

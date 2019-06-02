@@ -16,7 +16,7 @@
     transform: translate(-50%, -50%);
 }
 
-/* Styling for login and signup containers */
+/* Styling for login and signup containers
 .modal-wrapper {
     position: relative;
 }
@@ -34,4 +34,4 @@
 .close-btn > img {
     height: 16px;
     width: 16px;
-} 
+}  */

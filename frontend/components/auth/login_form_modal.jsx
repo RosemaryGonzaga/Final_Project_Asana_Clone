@@ -11,6 +11,7 @@ class LoginFormModal extends React.Component {
             password: "",
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDemoClick = this.handleDemoClick.bind(this);
     }
 
     // lifecycle methods?
@@ -59,12 +60,23 @@ class LoginFormModal extends React.Component {
 
         return (
             <div className="login-form-container">
-                <button className="close-btn" onClick={closeModal}></button>
+                <button className="close-btn" onClick={closeModal}>
+                    <img src={window.closeButtonHover} alt="x" />
+                </button>
                 <div className="login-form-header">
                     <p>{formText}</p>
                 </div>
                 <form className="login-form-content" onSubmit={this.handleSubmit}>
-                    <button className="login-form-google">Use Google Account</button>
+                    <div className="login-form-google-container">
+                        <i className="fab fa-google"></i>
+                        <button className="login-form-google">Use Google Account</button>
+                    </div>
+
+                    {/* <button className="login-form-google">
+                        <i className="fab fa-google"></i>
+                        Use Google Account
+                    </button> */}
+                    
                     <div className="login-form-or">
                         <div className="login-form-line"></div>
                         <span>or</span>

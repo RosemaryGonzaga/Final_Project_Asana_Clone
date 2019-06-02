@@ -4,46 +4,61 @@
     border-radius: 3px;
     /* margin: 0 auto; */
     margin-top: 45px;
-    /* background: white; */
     background: #f6f8f9;
     justify-content: space-around;
     align-items: center;
     box-shadow: -1px 1px 2px #26151B26;
+    position: relative;
+}
+
+.login-form-google-container {
+    /* width: 516px; */
+    position: relative;
+}
+
+.fa-google {
+    position: absolute;
+    left: 34px;
+    top: 14px;
+    font-size: 22px;
+    color: #ea4335;
 }
 
 .login-form-google {
-    height: 40px;
-    width: 154px;
-    background-color: #14aaf5;
-    border: none;
-    border-radius: 5px;
-    color: white;
     font-size: 80%;
-    /* position: absolute;
-    right: 10px; */
+    height: 50px;
+    width: 516px;
+    /* background-color: #786eff; */
+    /* border: 1px solid lightgray; */
+    border: none;
+    border-radius: 3px;
+    color: #9ca6af;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
     cursor: pointer;
+    box-shadow: 0 3px 5px 0 rgba(36,50,66,.2)
 }
-
-/* google and or div styling here */
 
 .login-form-or {
     width: 405px;
     display: flex;
+    /* font-size: 16px; */
     justify-content: space-between;
     align-items: center;
+    font-size: 16px;
 }
 
 .login-form-or span {
-    font-size: 24px;
+    font-size: 16px;
     color: #b7bfc6;
 }
 
 .login-form-line {
     border-top: 1px solid #e0e6e8;
-    width: 45%;
+    width: 35%;
     margin-top: 4px;
 }
-
 
 .login-form-header {
     height: 115px;
@@ -54,11 +69,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background: green; TEMPORARY */
 }
 
 .login-form-content {
-    /* background: blue; TEMPORARY */
     height: 623px;
     display: flex;
     flex-direction: column;
@@ -82,10 +95,10 @@
 }
 
 .login-form-label {
+    font-size: 17px;
     /* height: 18px; */
-    font-size: 17px;  /* Asana's font size is actual 12px, but it seems too small*/
-    /* color: #848f99;
-    font-weight: 300; */
+    /* color: #848f99; */
+    /* font-weight: 300; */
     color: #646F79;
     font-weight: 250;
 }
@@ -93,11 +106,7 @@
 .login-form-input {
     height: 50px;
     border-radius: 5px;
-    /* font-size: 100%; */
     margin-top: 10px;
-    /* outline: none;  */
-    /* border: 1px solid lightgray; */
-    /*  */
     font-size: 16px;
     outline: none;
     border: 2px solid #e0e6e8;
@@ -115,33 +124,6 @@
     border: 2px solid #aba3ff;
 }
 
-
-/* testing */
-.tooltip-visible {
-    box-sizing: border-box;
-    padding: 10px;
-    visibility: visible;
-    position: absolute;
-    top: 70px;
-    background: white;
-    border: 1px solid darkgray;
-    box-shadow: 2px 2px 2px #26151B26;
-    border-radius: 5px;
-    height: 60px;
-}
-
-.tooltip-hidden {
-    visibility: hidden;
-}
-/* testing */
-
-
-/* .login-form-button {
-    height: 40px;
-    width: 405px;
-    position: relative;
-} */
-
 .login-form-button {
     height: 50px;
     width: 516px;
@@ -158,11 +140,9 @@
     background-color: #635ac7;
 }
 
-
 .demo-button {
     height: 50px;
     width: 250px;
-    /* background-color: #786eff; */
     background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
     opacity: 60%;
     border: none;
@@ -179,12 +159,13 @@
 
 .login-form-bottom-txt {
     width: 230px;
-    height: 50px;
+    height: 55px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: #9ca6af;
     align-items: center;
+    /* margin-bottom: 4px; */
 }
 
 .redirect-to-signin {
@@ -204,9 +185,58 @@
     font-size: 16px;
     padding: 0;
     padding-bottom: 2px;
+    /* margin-bottom: 2px; */
 }
 
 .redirect-to-signin > span > button:hover {
     color: #635ac7;
     text-decoration: underline;
+    /* border-bottom: 1px solid #635ac7; */
 }
+
+
+.close-btn {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    border: none;
+    background: transparent;
+    height: 26px;
+    width: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.close-btn > img {
+    height: 26px;
+    width: 26px;
+    margin: none;
+} 
+
+
+
+
+
+/* ------- */ 
+/* ------- */ 
+/* ------- */ 
+/* testing */
+.tooltip-visible {
+    box-sizing: border-box;
+    padding: 10px;
+    visibility: visible;
+    position: absolute;
+    top: 70px;
+    background: white;
+    border: 1px solid darkgray;
+    box-shadow: 2px 2px 2px #26151B26;
+    border-radius: 5px;
+    height: 60px;
+}
+
+.tooltip-hidden {
+    visibility: hidden;
+}
+/* testing */

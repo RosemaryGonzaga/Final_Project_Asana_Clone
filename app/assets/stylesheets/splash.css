@@ -206,7 +206,7 @@
     align-items: center;
 }
 
-.fab {
+.splash-footer > div > a > .fab {
     font-size: 30px;
     color: white;
 }

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import SessionForm from './session_form';
+import LoginFormPage from './login_form_page_layout';
 import { login, clearErrors } from '../../actions/session_actions';
+import { openModal } from '../../actions/modal_actions';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -19,7 +20,7 @@ const mdp = dispatch => {
     };
 };
 
-class LoginFormPage extends React.Component {
+class LoginFormPageContainer extends React.Component {
 
     render() {
         return (
@@ -28,7 +29,7 @@ class LoginFormPage extends React.Component {
                     <img src={window.asanaLogoWhite} alt="Asana Logo White"/>
                 </div>
                 <div className="session-form-wrapper">
-                    <SessionForm {...this.props} />
+                    <LoginFormPage {...this.props} />
                     <footer className="login-page-footer">
                         <div className="login-page-footer-top">
                             <p>Don't have an account?</p>
@@ -45,11 +46,11 @@ class LoginFormPage extends React.Component {
                         </div>
                     </footer>
                 </div>
-               <div className="login-page-cushion"></div>
+               <div className="login-page-cushion" ></div>
             </div>
         );
     }
 }
 
 
-export default connect(msp, mdp)(LoginFormPage);
+export default connect(msp, mdp)(LoginFormPageContainer);

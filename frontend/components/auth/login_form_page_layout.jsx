@@ -8,13 +8,9 @@ class LoginFormPage extends React.Component {
         this.state = {
             primaryEmail: "",
             password: "",
-            // errorMessage: this.props.errors.session.slice(), // comment out when drawing errors from props
-            // errorMessage: "",
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    // lifecycle methods?
 
     handleSubmit(e) {
         e.preventDefault();
@@ -32,21 +28,23 @@ class LoginFormPage extends React.Component {
     render() {
         const { primaryEmail, password } = this.state;
         const { formType, errors } = this.props;
-        // const { primaryEmail, password, errorMessage } = this.state;
-        // const { formType } = this.props;
         const formText = formType === "login" ? "Log In" : "Sign Up";
 
-        // debugger
         // // error rendering
-        let errorMessage = errors.session;  // comment this out when testing errors in state
-        let errorTooltipClass = errorMessage === "" ? "tooltip-hidden" : "tooltip-visible";
+        const errorMessage1 = "The username or password is not correct.";
+        const errorMessage2 = "Did you forget your password?";
+        const errorClass = errors.session === "" ? "error-message-hidden" : "error-message-visible";
+        // const sessionFormContainerClass = errors.session === "" ? "session-form-container" : "session-form-container-errors";
 
-        if (errorMessage !== "") {
-            const { clearErrors } = this.props;
-            setTimeout(() => {
-                clearErrors();
-            }, 1700)
-        }
+        // let errorTooltipMessage = errors.session;
+        // let errorTooltipClass = errorTooltipMessage === "" ? "tooltip-hidden" : "tooltip-visible";
+
+        // if (errorTooltipMessage !== "") {
+        //     const { clearErrors } = this.props;
+        //     setTimeout(() => {
+        //         clearErrors();
+        //     }, 1700)
+        // }
 
         // login button effect
         let disabled = false;
@@ -67,10 +65,15 @@ class LoginFormPage extends React.Component {
                         <div className="session-form-line"></div>
                     </div>
 
+                    <div className={errorClass}>
+                        <p className={errorClass}>{errorMessage1}</p>
+                        <p className={errorClass}>{errorMessage2}</p>
+                    </div>
+
                     <div className="session-form-email">
                         <label className="session-form-label" htmlFor="primaryEmail">Email Address</label>
                         <input className="session-form-input email" type="text" value={primaryEmail} onChange={this.handleChange("primaryEmail")} id="primaryEmail" title="SAMPLE TOOLTIP" />
-                        <div className={errorTooltipClass}>{errorMessage}</div>
+                        {/* <div className={errorTooltipClass}>{errorTooltipMessage}</div> */}
                     </div>
 
                     <div className="session-form-password">

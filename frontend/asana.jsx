@@ -5,7 +5,7 @@ import Root from './components/root';
 
 
 // imported these for testing only (remove later):
-import * as SessionApiUtil from './util/session_api_util';
+import * as ProjectApiUtil from './util/projects_api_util';
 import * as ThunkActions from './actions/session_actions';
 
 
@@ -39,3 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // window.signupThunk = ThunkActions.signup
 // window.loginThunk = ThunkActions.login
 // window.logoutThunk = ThunkActions.logout
+// window.fetchProjects = ProjectApiUtil.fetchProjects;
+// window.fetchProject = ProjectApiUtil.fetchProject;
+// window.createProject = ProjectApiUtil.createProject;
+// window.updateProject = ProjectApiUtil.updateProject;
+// window.deleteProject = ProjectApiUtil.deleteProject;

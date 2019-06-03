@@ -1,12 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const ProjectIndexItem = props => {
     const { project } = props;
-    console.log(project);
     return (
-        <div className="project-index-item-container">
+        <Link to={`/projects/${project.id}`} className="project-index-item-container">
             <div className="project-index-item-tile"></div>
-            <h1>{project.name}</h1>
-        </div>
+            {project.name}
+        </Link>
     );
 };

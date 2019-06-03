@@ -19,10 +19,30 @@ class Home extends React.Component {
         return (
             <div className="home-container">
                 {/* <button onClick={this.handleClick}>Sign Out</button> */}
-                <div className="home-sidebar">Sidebar</div>
+                <div className="home-sidebar"></div>
                 <div className="home-main">
                     <div className="home-topbar">
-                        <nav className="home-topbar-left">Left Nav (dynamic)</nav>
+                        <nav className="home-topbar-left">
+                           <div className="home-topbar-left-icon"></div>
+                           <div className="home-topbar-left-navs">
+                                <ul className="topbar-project-info">
+                                    <li>Placeholder for title</li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                                <ul className="topbar-project-views">
+                                    <li>List</li>
+                                    <li>Timeline</li>
+                                    <li>Calendar</li>
+                                    <li>Forms</li>
+                                    <li>Conversations</li>
+                                    <li>Progress</li>
+                                    <li>Files</li>
+                                </ul>
+                           </div>
+                        </nav>
                         <nav className="home-topbar-right">
                             <ul>
                                 <li>Search</li>

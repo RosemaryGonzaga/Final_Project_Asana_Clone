@@ -57,7 +57,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ff5263e6;
+    /* background-color: #ff5263e6; */
     z-index: 2;
     margin-left: 12px;
 
@@ -140,4 +140,40 @@
     left: 244px;
     right: 0;
     background-color: #f6f8f9;
+}
+
+
+
+
+
+
+/* testing */
+
+.topbar-new-project-button {
+    height: 30px;
+    line-height: 30px;
+    width: 62px;
+    background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topbar-new-project-button > a {
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+}
+.topbar-new-project-button > a > i {
+    color: white;
+    font-size: 11px;
+    margin-right: 2px;
+}
+
+
+.topbar-new-project-button:hover {
+    background-color: white;
+    color: gray;
 }

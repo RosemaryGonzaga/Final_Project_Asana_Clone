@@ -1,9 +1,10 @@
 import React from 'react';
+import Splash from './splash';
 import SignupFormContainer from './auth/signup_form_container';
 import LoginFormContainer from './auth/login_form_container';
 import LoginFormContainerPageLayout from './auth/login_form_container_page_layout';
 import Home from './home';
-import Splash from './splash';
+import NewProjectForm from './projects/new_project_form';
 import { Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Modal from './modal';
@@ -16,11 +17,12 @@ const App = () => {
     return (
         <div>
             <Modal />
-            <ProtectedRoute exact path="/home" component={Home} />
             <AuthRoute exact path="/" component={Splash} />
             <AuthRoute path="/signup" component={SignupFormContainer} />
             <AuthRoute path="/login" component={LoginFormContainer} />
             <AuthRoute path="/login_page" component={LoginFormContainerPageLayout} />
+            <ProtectedRoute exact path="/home" component={Home} />
+            <ProtectedRoute path="/projects/new" component={NewProjectForm} />
         </div>
     );
 };

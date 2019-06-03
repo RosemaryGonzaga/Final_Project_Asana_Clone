@@ -4,17 +4,16 @@ import ProjectBoardView from './project_board_view';
 
 class ProjectShow extends React.Component {
     componentDidMount() {
-        // debugger
-        const { project, fetchProject } = this.props;
-        fetchProject(project.id);
-        // debugger
+        const { fetchProject } = this.props;
+        fetchProject(this.props.match.params.projectId);
     }
 
     render() {
         const { project } = this.props;
-        // debugger
         let layout;
-        if (project.layout === "list") {
+        if (!project) {
+            return null;
+        } else if (project.layout === "list") {
             layout = <ProjectListView />;
         } else {
             layout = <ProjectBoardView />;

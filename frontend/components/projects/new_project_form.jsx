@@ -33,6 +33,12 @@ class NewProjectForm extends React.Component {
 
     render() {
         const { name, description, layout, privacy } = this.state;
+
+        // login button effect
+        let disabled = false;
+        if (name === "") {
+            disabled = true;
+        }
         return (
             <div className="new-project-page">
                 <Link to="/" className="arrow-link-to-home">
@@ -71,7 +77,7 @@ class NewProjectForm extends React.Component {
                             <input type="radio" name="privacy" value="private" id="privacy" 
                                     onChange={this.handleChange("privacy")}/> Private<br />
                         </div>
-                        <input type="submit"/>
+                        <input type="submit" disabled={disabled} value="Create project"/>
                     </form>
                 </div>
             </div>

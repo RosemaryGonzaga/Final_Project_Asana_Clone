@@ -28,7 +28,7 @@
 
 .new-project-form-container {
     width: 420px;
-    height: 525px;  /* height is initially 464 (before expanding description input) */
+    height: 565px;  /* height is initially 464 (before expanding description input) */
     background-color: purple;
     display: flex;
     flex-direction: column;
@@ -38,10 +38,35 @@
 
 .new-project-form-container > form {
     width: 420px;
-    height: 475px;
+    height: 500px; /* height is initially 420 (before expanding description input) */
     /* add padding-top 30 to all inputs in the form? */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    background-color: lightskyblue;
+}
+
+
+
+
+
+
+.new-project-form-container > form > input[type="submit"] {
+    height: 40px;
+    width: 70px;
+    background-color: #14aaf5;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 100%;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.new-project-form-container > form > input[type="submit"]:disabled {
+    background-color: #edf1f2;
+    border: 1px solid #e0e6e8;
+    color: #b7bfca;
 }

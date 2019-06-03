@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../actions/session_actions';
-import NewProjectForm from './projects/new_project_form';
+import ProjectIndexContainer from './projects/project_index_container';
 
 class Home extends React.Component {
     constructor(props) {
@@ -48,7 +48,7 @@ class Home extends React.Component {
                         <nav className="home-topbar-right">
                             <ul>
                                 <li>Search</li>
-                                <li className="topbar-new-project-button"><Link to="/projects/new"><i class="fas fa-plus"></i> New</Link></li>
+                                <li className="topbar-new-project-button"><Link to="/projects/new"><i className="fas fa-plus"></i> New</Link></li>
                                 <li>Question</li>
                                 <li>Upgrade</li>
                                 <li><button onClick={this.handleClick}>Sign Out</button></li>
@@ -58,6 +58,7 @@ class Home extends React.Component {
                     <div className="home-main-content">
                         <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1>
                         {/* <NewProjectForm /> */}
+                        <ProjectIndexContainer />
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ class NewProjectForm extends React.Component {
             name: "",
             description: "",
             layout: "list",
-            privacy: "private",
+            privacy: "public",
             ownerId: this.props.currentUserId,
             addDescription: false, // not part of project info; testing this as a way to change form height
         };

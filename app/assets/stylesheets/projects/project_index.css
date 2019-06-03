@@ -1,0 +1,30 @@
+.project-index-container > ul {
+    width: 800px;
+    min-width: 630px;
+    margin: 100px auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-index-item-container {
+    width: 150px;
+    height: 211px;
+    background-color: #f6f8f9;
+    /* border: 1px solid gray; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 450;
+    color: #151b26;
+}
+
+.project-index-item-tile {
+    background-color: #7a6ff0;
+    width: 124px;
+    height: 124px;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+}

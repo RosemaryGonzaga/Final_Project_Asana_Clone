@@ -6,7 +6,7 @@ import Root from './components/root';
 
 // imported these for testing only (remove later):
 import * as ProjectApiUtil from './util/projects_api_util';
-import * as ThunkActions from './actions/session_actions';
+import * as ThunkActions from './actions/project_actions';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // // for testing only! DELETE LATER!
     // window.getState = store.getState;
-    // window.dispatch = store.dispatch;
+    window.dispatch = store.dispatch;
     // // delete the above!
 });
 
@@ -44,3 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // window.createProject = ProjectApiUtil.createProject;
 // window.updateProject = ProjectApiUtil.updateProject;
 // window.deleteProject = ProjectApiUtil.deleteProject;
+window.fetchProjectsThunk = ThunkActions.fetchProjects;
+window.fetchProjectThunk = ThunkActions.fetchProject;
+window.createProjectThunk = ThunkActions.createProject;
+window.updateProjectThunk = ThunkActions.updateProject;
+window.deleteProjectThunk = ThunkActions.deleteProject;

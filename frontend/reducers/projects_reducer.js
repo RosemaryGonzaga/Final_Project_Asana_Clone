@@ -8,7 +8,7 @@ const projectsReducer = (oldState = {}, action) => {
             return merge({}, action.projects);
         case RECEIVE_PROJECT:
             const { project } = action;
-            return merge({}, oldState, [project.id]: project);
+            return merge({}, oldState, { [project.id]: project });
         case REMOVE_PROJECT:
             const { projectId } = action;
             let newState = merge({}, oldState);

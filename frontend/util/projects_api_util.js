@@ -27,7 +27,7 @@ export const createProject = project => {
 }
 
 export const updateProject = project => {
-    const { name, description, layout, privacy, ownerId } = project;
+    const { name, description, layout, privacy, ownerId, color, dueOn } = project;
     return $.ajax({
         method: 'PATCH',
         url: `/api/projects/${project.id}`,

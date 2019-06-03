@@ -20,6 +20,12 @@ class User < ApplicationRecord
     after_initialize :ensure_session_token
     attr_reader :password
 
+    # may need to rewrite this later to allow for many-to-many association...
+    has_many :projects,
+        primary_key: :id,
+        foreign_key: :owner_id,
+        class_name: :Project
+
     # figvaper
 
     # class methods

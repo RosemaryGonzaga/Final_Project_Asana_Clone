@@ -18,4 +18,9 @@ class Project < ApplicationRecord
     validates :name, :layout, :privacy, :owner_id, presence: true
 
     # to do later: associations (belongs to team, has many tasks, has many members via teams?)
+    # may need to rewrite this later to allow for many-to-many association...
+    belongs_to :user,
+        primary_key: :id,
+        foreign_key: :owner_id,
+        class_name: :User
 end

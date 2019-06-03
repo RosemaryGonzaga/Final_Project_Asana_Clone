@@ -127,6 +127,7 @@
     margin-top: 10px;
     outline: none; 
     border: 1px solid lightgray;
+    padding-left: 10px;
 }
 
 .session-form-input:focus {

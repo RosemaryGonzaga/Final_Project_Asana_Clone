@@ -2,6 +2,7 @@ export const fetchProjects = () => {
     return $.ajax({
         method: 'GET',
         url: '/api/projects',
+        // pass current user id in the params?
     });
 }
 

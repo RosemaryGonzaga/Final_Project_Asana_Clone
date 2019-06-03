@@ -21,7 +21,8 @@ class Api::ProjectsController < ApplicationController
     end
 
     def index
-        @projects = Project.all
+        # @projects = Project.all
+        @projects = current_user.projects
     end
 
     def show

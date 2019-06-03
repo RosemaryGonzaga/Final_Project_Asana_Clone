@@ -3,7 +3,6 @@
     margin: 0 auto;
     width: 1180px;
     height: 720px;
-    background-color: lightseagreen;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,30 +27,90 @@
 
 .new-project-form-container {
     width: 420px;
-    height: 565px;  /* height is initially 464 (before expanding description input) */
-    background-color: purple;
+    height: 464px;  /* initial height (no description) */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
+}
+
+.new-project-form-container-expanded {
+    width: 420px;
+    height: 565px;  /* expanded height (with description) */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+.new-project-page > div > h1 {
+    color: #151b26;
+    font-size: 24px;
 }
 
 .new-project-form-container > form {
     width: 420px;
-    height: 500px; /* height is initially 420 (before expanding description input) */
-    /* add padding-top 30 to all inputs in the form? */
+    height: 420px; /* initial height (no description) */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: lightskyblue;
+    /* add padding-top 30 to all inputs in the form? */
 }
 
-.new-project-form-container {
+.new-project-form-container-expanded > form {
+    width: 420px;
+    height: 500px; /* expanded height (with description) */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-color: lightskyblue; */
+    /* add padding-top 30 to all inputs in the form? */
+}
+
+.new-project-form-container, .new-project-form-container-expanded {
     color: #848f99;
     font-size: 12px;
 }
 
-.new-project-layout > p {
+
+.new-project-form-container input[type="text"], textarea,
+.new-project-form-container-expanded input[type="text"], textarea {
+    width: 420px;
+    height: 42px;
+    border-radius: 5px;
+    font-size: 100%;
+    margin-top: 10px;
+    outline: none; 
+    border: 1px solid #b7bfc6;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+#project-name-invalid-input {
+    border: 1px solid #ff5263;
+}
+
+#description-link {
+    color: #14aaf5;
+    font-size: 13px;
+    cursor: pointer;
+    transition-duration: 250ms;
+    transition-property: color, text-decoration;
+}
+
+#description-link:hover {
+    color: #32c1ff;
+    text-decoration: underline;
+}
+
+.new-project-description > textarea {
+    width: 420px;
+    height: 90px;
+    resize: none;
+    padding: 10px;
+}
+
+.new-project-layout > p, .new-project-privacy > p {
     margin-bottom: 8px;
 }
 
@@ -70,38 +129,10 @@
 }
 
 
-
-
-.new-project-form-container input[type="text"], textarea {
+.new-project-form-container > form > input[type="submit"],
+.new-project-form-container-expanded > form > input[type="submit"] {
     width: 420px;
     height: 42px;
-    border-radius: 5px;
-    font-size: 100%;
-    margin-top: 10px;
-    outline: none; 
-    border: 1px solid lightgray;
-    box-sizing: border-box;
-    padding-left: 10px;
-}
-
-.new-project-form-container input, textarea {
-    border: 2px solid #b7bfc6;
-}
-
-.new-project-description > textarea {
-    width: 420px;
-    height: 90px;
-    resize: none;
-    padding: 10px;
-}
-
-
-
-
-.new-project-form-container > form > input[type="submit"] {
-    width: 420px;
-    height: 42px;
-    background-color: #14aaf5;
     border: none;
     border-radius: 5px;
     color: white;
@@ -112,7 +143,8 @@
     transition-property: background-color, border;
 }
 
-.new-project-form-container > form > input[type="submit"]:disabled {
+.new-project-form-container > form > input[type="submit"]:disabled,
+.new-project-form-container-expanded > form > input[type="submit"]:disabled {
     background-color: #edf1f2;
     border: 1px solid #e0e6e8;
     color: #b7bfca;

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createProject } from '../../actions/project_actions';
+import ProjectDescription from './project_description_form';
 
 class NewProjectForm extends React.Component {
     constructor(props) {
@@ -12,10 +13,12 @@ class NewProjectForm extends React.Component {
             layout: "",
             privacy: "",
             ownerId: this.props.currentUserId,
+            addDescription: false, // not part of project info; testing this as a way to change form height
         };
 
-        // bind event handlers
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSetDescription = this.handleSetDescription.bind(this);
+        this.handleAddDescription = this.handleAddDescription.bind(this);
     }
 
     handleSubmit(e) {
@@ -31,14 +34,39 @@ class NewProjectForm extends React.Component {
         };
     }
 
-    render() {
-        const { name, description, layout, privacy } = this.state;
+    handleAddDescription() {
+        this.setState({ addDescription: true });
+    }
 
-        // login button effect
+    handleSetDescription() {
+        return e => {
+            this.setState({ description: e.target.value });
+        };
+    }
+
+    render() {
+        const { name, description, layout, privacy, addDescription } = this.state;
+
+        let descriptionText;
+        let containerClass = "new-project-form-container";
+        if (addDescription) {
+            containerClass = "new-project-form-container-expanded";
+            descriptionText = (<ProjectDescription description={description} 
+                                                    handleSetDescription={this.handleSetDescription} />);
+        } else {
+            descriptionText = (<p onClick={this.handleAddDescription}
+                                    id="description-link">
+                                Add a description
+                                </p>);
+        }
+
         let disabled = false;
+        let projectNameId = "project-name";
         if (name === "") {
             disabled = true;
+            projectNameId = "project-name-invalid-input";
         }
+
         return (
             <div className="new-project-page">
                 <Link to="/" className="arrow-link-to-home">
@@ -49,24 +77,19 @@ class NewProjectForm extends React.Component {
                     <img src={window.closeButtonHover} alt="x" />
                 </Link>
 
-                <div className="new-project-form-container">
+                <div className={containerClass}>
                     <h1>Add project details</h1>
                     <form onSubmit={this.handleSubmit}>
                         <div className="new-project-name">
                             <label htmlFor="projectName">Project name</label>
                             <input type="text" value={name} id="projectName" 
-                                    onChange={this.handleChange("name")}/>
-                        </div>
-                        <div className="new-project-description">
-                            <label htmlFor="description">Description</label>
-                            <textarea id="description" 
-                                        value={description} id="description"
-                                        onChange={this.handleChange("description")}>
-                            </textarea>
+                                    onChange={this.handleChange("name")}
+                                    id={projectNameId}/>
                         </div>
 
+                        {descriptionText}
+
                         <div className="new-project-layout">
-                            {/* <label htmlFor="layout">Default view</label><br /> */}
                             <p>Default view</p>
                                 
                             <label htmlFor="list">
@@ -77,17 +100,22 @@ class NewProjectForm extends React.Component {
                             <label htmlFor="board"> 
                             <input type="radio" name="layout" value="board" id="board"
                                 onChange={this.handleChange("layout")} /> Board
-                            </label>
-                            
+                            </label>                           
                         </div>
 
-                        {/* <div className="new-project-privacy">
-                            <label htmlFor="privacy">Default view</label>
-                            <input type="radio" name="privacy" value="public" id="privacy" 
-                                    onChange={this.handleChange("privacy")}/> Public
-                            <input type="radio" name="privacy" value="private" id="privacy" 
-                                    onChange={this.handleChange("privacy")}/> Private
-                        </div> */}
+                        <div className="new-project-privacy">
+                            <p>Privacy</p>
+
+                            <label htmlFor="public">
+                                <input type="radio" name="privacy" value="public" id="public" 
+                                        onChange={this.handleChange("privacy")}/> Public
+                            </label>
+
+                            <label htmlFor="private">
+                                <input type="radio" name="privacy" value="private" id="private" 
+                                        onChange={this.handleChange("privacy")}/> Private
+                            </label>
+                        </div>
                         <input type="submit" disabled={disabled} value="Create project"/>
                     </form>
                 </div>

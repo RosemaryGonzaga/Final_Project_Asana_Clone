@@ -1,0 +1,47 @@
+.new-project-page {
+    position: relative;
+    margin: 0 auto;
+    width: 1180px;
+    height: 720px;
+    background-color: lightseagreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow-link-to-home {
+    position: absolute;
+    top: 23px;
+    left: 23px;
+}
+
+.x-link-to-home {
+    position: absolute;
+    top: 23px;
+    right: 23px;
+}
+
+.x-link-to-home > img {
+    width: 20px;
+    height: 20px;
+}
+
+.new-project-form-container {
+    width: 420px;
+    height: 525px;  /* height is initially 464 (before expanding description input) */
+    background-color: purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-project-form-container > form {
+    width: 420px;
+    height: 475px;
+    /* add padding-top 30 to all inputs in the form? */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}

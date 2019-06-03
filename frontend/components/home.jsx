@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../actions/session_actions';
+import NewProjectForm from './projects/new_project_form';
 
 class Home extends React.Component {
     constructor(props) {
@@ -55,6 +56,7 @@ class Home extends React.Component {
                     </div>
                     <div className="home-main-content">
                         <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1>
+                        <NewProjectForm />
                     </div>
                 </div>
             </div>

@@ -10,8 +10,8 @@ class NewProjectForm extends React.Component {
         this.state = {
             name: "",
             description: "",
-            layout: "",
-            privacy: "",
+            layout: "list",
+            privacy: "private",
             ownerId: this.props.currentUserId,
             addDescription: false, // not part of project info; testing this as a way to change form height
         };
@@ -94,7 +94,7 @@ class NewProjectForm extends React.Component {
                                 
                             <label htmlFor="list">
                                 <input type="radio" name="layout" value="list" id="list"
-                                    onChange={this.handleChange("layout")} /> List
+                                    onChange={this.handleChange("layout")} checked /> List
                             </label>
                         
                             <label htmlFor="board"> 
@@ -108,7 +108,7 @@ class NewProjectForm extends React.Component {
 
                             <label htmlFor="public">
                                 <input type="radio" name="privacy" value="public" id="public" 
-                                        onChange={this.handleChange("privacy")}/> Public
+                                        onChange={this.handleChange("privacy")} checked/> Public
                             </label>
 
                             <label htmlFor="private">

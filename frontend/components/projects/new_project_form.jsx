@@ -59,24 +59,35 @@ class NewProjectForm extends React.Component {
                         </div>
                         <div className="new-project-description">
                             <label htmlFor="description">Description</label>
-                            <input type="text" value={description} id="description" 
-                                    onChange={this.handleChange("description")} />
-                            {/* <textarea id="description" cols="30" rows="10">{description}</textarea> */}
+                            <textarea id="description" 
+                                        value={description} id="description"
+                                        onChange={this.handleChange("description")}>
+                            </textarea>
                         </div>
+
                         <div className="new-project-layout">
-                            <label htmlFor="layout">Default view</label><br />
-                            <input type="radio" name="layout" value="list" id="layout" 
-                                    onChange={this.handleChange("layout")}/> List<br />
-                            <input type="radio" name="layout" value="board" id="layout" 
-                                    onChange={this.handleChange("layout")}/> Board<br />
+                            {/* <label htmlFor="layout">Default view</label><br /> */}
+                            <p>Default view</p>
+                                
+                            <label htmlFor="list">
+                                <input type="radio" name="layout" value="list" id="list"
+                                    onChange={this.handleChange("layout")} /> List
+                            </label>
+                        
+                            <label htmlFor="board"> 
+                            <input type="radio" name="layout" value="board" id="board"
+                                onChange={this.handleChange("layout")} /> Board
+                            </label>
+                            
                         </div>
-                        <div className="new-project-privacy">
-                            <label htmlFor="privacy">Default view</label><br />
+
+                        {/* <div className="new-project-privacy">
+                            <label htmlFor="privacy">Default view</label>
                             <input type="radio" name="privacy" value="public" id="privacy" 
-                                    onChange={this.handleChange("privacy")}/> Public<br />
+                                    onChange={this.handleChange("privacy")}/> Public
                             <input type="radio" name="privacy" value="private" id="privacy" 
-                                    onChange={this.handleChange("privacy")}/> Private<br />
-                        </div>
+                                    onChange={this.handleChange("privacy")}/> Private
+                        </div> */}
                         <input type="submit" disabled={disabled} value="Create project"/>
                     </form>
                 </div>

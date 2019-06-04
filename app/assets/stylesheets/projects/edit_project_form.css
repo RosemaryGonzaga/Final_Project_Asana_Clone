@@ -1,0 +1,132 @@
+.edit-project-container {
+    width: 580px;
+    height: 280px;
+    border-radius: 3px;
+    background: white;
+    box-shadow: -1px 1px 2px #26151B26;
+    position: relative;
+    margin-bottom: 250px;
+}
+
+.edit-project-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    height: 12px;
+    width: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.edit-project-close-btn > img {
+    height: 12px;
+    width: 12px;
+    margin: none;
+} 
+
+.edit-project-header {
+    height: 50px;
+    border-bottom: 1px solid #e0e6e8;
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+}
+
+.edit-project-header > h1 {
+    font-size: 24px;
+    color: #151b26;
+    font-weight: 500;
+}
+
+.edit-project-header > h1:last-of-type {
+    font-size: 24px;
+    color: #848f99;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.edit-project-container > form {
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.edit-project-container > form > div {
+    width: 520px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.edit-project-container > form > div:last-of-type {
+    margin-top: 25px;
+}
+
+.edit-project-container > form > div > input {
+    position: absolute;
+    right: 0;
+    width: 405px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #151b26;
+    outline: none; 
+    border: 1px solid #e0e6e8;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+.edit-project-container > form > div > input:focus,
+.edit-project-container > form > div > textarea:focus {
+    border: 1px solid #b7bfc6;
+}
+
+.edit-project-container > form > div > textarea {
+    position: absolute;
+    right: 0;
+    width: 405px;
+    height: 60px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #151b26;
+    outline: none; 
+    border: 1px solid #e0e6e8;
+    box-sizing: border-box;
+    resize: none;
+    padding: 10px;
+    margin-top: 0;
+}
+
+.edit-project-container > form > div > label {
+    color: #848f99;
+    font-size: 12px;
+    text-align: end;
+    position: absolute;
+    right: 420px;
+}
+
+.edit-project-container > form > input[type="submit"] {
+    width: 124px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #14aaf5;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition-duration: 250ms;
+    transition-property: background-color, border;
+    margin-left: 396px;
+}
+
+.edit-project-container > form > input[type="submit"]:hover {
+    background-color: #008ce3;
+}

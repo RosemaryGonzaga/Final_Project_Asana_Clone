@@ -37,12 +37,16 @@ class EditProjectForm extends React.Component {
         const { closeModal } = this.props;
         const { name, description } = this.state;
         return (
-            <div className="edit-project-page">
-                <button className="close-btn" onClick={closeModal}>
+            <div className="edit-project-container">
+                <button className="edit-project-close-btn" onClick={closeModal}>
                     <img src={window.closeButtonHover} alt="x" />
                 </button>
 
-                <h1>Edit {name}</h1>
+                <div className="edit-project-header">
+                    <h1>Edit </h1>
+                    <h1> {name}</h1>
+                </div>
+                
                 <form onSubmit={this.handleSubmit}>
                     <div className="edit-project-name">
                         <label htmlFor="editProjectName">Project name</label>
@@ -50,7 +54,7 @@ class EditProjectForm extends React.Component {
                             onChange={this.handleChange("name")} />
                     </div>
 
-                    <div className="new-project-description">
+                    <div className="edit-project-description">
                         <label htmlFor="editDescription">Description</label>
                         <textarea id="editDescription"
                             value={description}

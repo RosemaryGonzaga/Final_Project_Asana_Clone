@@ -10,11 +10,6 @@ class DeleteProjectForm extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    // componentDidMount() {
-    //     const { fetchProject } = this.props;
-    //     fetchProject(this.props.project.id);
-    // }
-
     handleClick(e) {
         // e.preventDefault(); // remember: preventDefault would stop the Link from routing to '/home/projects'
         const { deleteProject, project } = this.props;
@@ -22,7 +17,7 @@ class DeleteProjectForm extends React.Component {
     }
 
     render() {
-        const { closeModal, project } = this.props;
+        const { closeModal, project} = this.props;
         // debugger
         return (
             <div className="edit-project-page">
@@ -53,7 +48,6 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
     return {
-        // fetchProject: id => dispatch(fetchProject(id)),
         deleteProject: id => dispatch(deleteProject(id)),
         closeModal: () => dispatch(closeModal()),
     };

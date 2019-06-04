@@ -28,7 +28,6 @@ class NewProjectForm extends React.Component {
         createProject(project).then(payload => {
             const { project } = payload;
             const path = `/home/projects/${project.id}`;
-            debugger
             this.props.history.push(path);
         });
     }

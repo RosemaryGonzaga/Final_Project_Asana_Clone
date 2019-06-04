@@ -27,15 +27,15 @@ class ProjectShow extends React.Component {
         if (!project) {
             return null;
         } else if (project.layout === "list") {
-            layout = <ProjectListView />;
+            layout = <ProjectListView project={project} />;
         } else {
-            layout = <ProjectBoardView />;
+            layout = <ProjectBoardView project={project} />;
         }
 
         return (
             <div className="project-show-container">
-                {layout}
                 <Link to="/home" onClick={this.handleRedirectToHome}>Back to all projects</Link>
+                {layout}
             </div>
         );
     }

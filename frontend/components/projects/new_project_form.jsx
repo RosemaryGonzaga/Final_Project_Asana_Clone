@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { createProject } from '../../actions/project_actions';
 import ProjectDescription from './project_description_form';
 
@@ -23,7 +23,7 @@ class NewProjectForm extends React.Component {
 
     handleSubmit(e) {
         debugger
-        e.preventDefault;
+        e.preventDefault(); // this didn't invoke preventDefault (as of 6/3 evening); does that matter? maybe we shouldn't even be calling this?
         const { createProject } = this.props;
         const project = this.state;
         createProject(project);
@@ -144,3 +144,4 @@ const mdp = dispatch => {
 }
 
 export default connect(msp, mdp)(NewProjectForm);
+// export default withRouter(connect(msp, mdp)(NewProjectForm));

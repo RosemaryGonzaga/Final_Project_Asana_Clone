@@ -1,0 +1,20 @@
+.board-project-wrapper {
+    position: relative;
+    height: 100vh;
+    background-color: green;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.board-cols {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100vw;
+}
+
+.board-col {
+    width: 254px;
+    background-color: purple;
+}

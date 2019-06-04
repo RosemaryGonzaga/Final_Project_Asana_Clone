@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(<Root store={store}/>, root)
 
     // // for testing only! DELETE LATER!
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
+    // window.getState = store.getState;
+    // window.dispatch = store.dispatch;
     // // delete the above!
 });
 
@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // window.createProject = ProjectApiUtil.createProject;
 // window.updateProject = ProjectApiUtil.updateProject;
 // window.deleteProject = ProjectApiUtil.deleteProject;
-window.fetchProjectsThunk = ThunkActions.fetchProjects;
-window.fetchProjectThunk = ThunkActions.fetchProject;
-window.createProjectThunk = ThunkActions.createProject;
-window.updateProjectThunk = ThunkActions.updateProject;
-window.deleteProjectThunk = ThunkActions.deleteProject;
+// window.fetchProjectsThunk = ThunkActions.fetchProjects;
+// window.fetchProjectThunk = ThunkActions.fetchProject;
+// window.createProjectThunk = ThunkActions.createProject;
+// window.updateProjectThunk = ThunkActions.updateProject;
+// window.deleteProjectThunk = ThunkActions.deleteProject;

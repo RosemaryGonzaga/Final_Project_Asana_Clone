@@ -1,9 +1,14 @@
 import React from 'react';
 
 class ProjectListView extends React.Component {
-    render () {
+    render() {
+        const { project } = this.props;
         return (
-            <div>You are viewing a List project</div>
+            <div>
+                <h1>Name: {project.name}</h1>
+                <div>Description: {project.description}</div>
+                <div>Layout: {project.layout}</div>
+            </div>
         );
     }
 }

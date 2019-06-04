@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../actions/session_actions';
 import ProjectIndexContainer from './projects/project_index_container';
+import ProjectShowContainer from './projects/project_show_container';
+// import { receiveMainContent } from '../actions/main_content_actions';
+// import { receiveNavHeader } from '../../actions/nav_header_actions';
 
 class Home extends React.Component {
     constructor(props) {
@@ -17,7 +20,15 @@ class Home extends React.Component {
     }
 
     render() {
-        const { signout, currentUser } = this.props;
+        // debugger
+        const { signout, currentUser, mainContent, navHeader } = this.props; // Added mainContent and navHeader--> test if this works
+        let contentToRender;
+        if (mainContent === "projectIndex") {
+            contentToRender = (<ProjectIndexContainer />);
+        } else if (mainContent === "projectShow") {
+            contentToRender = (<ProjectShowContainer />); // need to import this component
+        }
+
         return (
             <div className="home-container">
                 {/* <button onClick={this.handleClick}>Sign Out</button> */}
@@ -28,7 +39,7 @@ class Home extends React.Component {
                            <div className="home-topbar-left-icon"></div>
                            <div className="home-topbar-left-navs">
                                 <ul className="topbar-project-info">
-                                    <li>Placeholder for title</li>
+                                    <li>{navHeader}</li>
                                     <li></li>
                                     <li></li>
                                     <li></li>
@@ -58,7 +69,8 @@ class Home extends React.Component {
                     <div className="home-main-content">
                         <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1>
                         {/* <NewProjectForm /> */}
-                        <ProjectIndexContainer />
+                        {/* <ProjectIndexContainer /> */}
+                        {contentToRender}
                     </div>
                 </div>
             </div>
@@ -69,12 +81,14 @@ class Home extends React.Component {
 const msp = (state, ownProps) => {
     const currentUserId = state.session.id;
     const currentUser = state.entities.users[currentUserId];
-    return ({ currentUser });
+    const { mainContent, navHeader } = state.ui;       // test if this is correct
+    return ({ currentUser, mainContent, navHeader });  // added mainContent and navHeader -> need to test if it works
 };
 
 const mdp = dispatch => {
     return ({
-        logout: () => dispatch(logout())
+        logout: () => dispatch(logout()),
+        // receiveMainContent: content => dispatch(receiveMainContent(content)),
     });
 };
 

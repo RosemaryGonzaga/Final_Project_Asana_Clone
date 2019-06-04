@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProjectShow from './project_show';
 import { fetchProject } from '../../actions/project_actions';
+import { receiveNavHeader } from '../../actions/nav_header_actions';
+import { receiveMainContent } from '../../actions/main_content_actions';
 
 const msp = (state, ownProps) => {
     // debugger
@@ -14,7 +16,9 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
     // debugger
     return {
-        fetchProject: id => dispatch(fetchProject(id))
+        fetchProject: id => dispatch(fetchProject(id)),
+        receiveNavHeader: header => dispatch(receiveNavHeader(header)),
+        receiveMainContent: content => dispatch(receiveMainContent(content)),
     };
 };
 

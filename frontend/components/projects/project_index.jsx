@@ -10,9 +10,9 @@ class ProjectIndex extends React.Component {
     }
 
     render() {
-        const { projects, receiveNavHeader } = this.props;
+        const { projects, receiveNavHeader, receiveMainContent } = this.props;
         const projectItems = projects.map( project => { 
-            return <ProjectIndexItem project={project} key={project.id} receiveNavHeader={receiveNavHeader} />;
+            return <ProjectIndexItem project={project} key={project.id} receiveNavHeader={receiveNavHeader} receiveMainContent={receiveMainContent} />;
         });
 
         return (

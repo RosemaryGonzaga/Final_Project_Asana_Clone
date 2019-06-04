@@ -5,8 +5,9 @@ export const ProjectIndexItem = props => {
 
     const handleClick = e => {
         // e.preventDefault(); // we don't want to prevent default here b/c that will prevent rendering the show page!!!
-        const { receiveNavHeader, project } = props;
+        const { receiveNavHeader, project, receiveMainContent } = props;
         receiveNavHeader(project.name);
+        receiveMainContent("projectShow");
     }
 
     const { project } = props;

@@ -25,7 +25,8 @@ const App = () => {
             <AuthRoute path="/login_page" component={LoginFormContainerPageLayout} />
             <ProtectedRoute exact path="/home" component={Home} />
             <ProtectedRoute path="/projects/new" component={NewProjectForm} />
-            <ProtectedRoute path="/projects/:projectId" component={ProjectShowContainer} />
+            {/* <ProtectedRoute path="/projects/:projectId" component={ProjectShowContainer} /> */}
+            <ProtectedRoute path="/projects/:projectId" component={Home} />
         </div>
     );
 };

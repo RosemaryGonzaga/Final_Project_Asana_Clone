@@ -22,12 +22,12 @@ class NewProjectForm extends React.Component {
     }
 
     handleSubmit(e) {
-        debugger
+        // debugger
         e.preventDefault(); // this didn't invoke preventDefault (as of 6/3 evening); does that matter? maybe we shouldn't even be calling this?
         const { createProject } = this.props;
         const project = this.state;
         createProject(project);
-        debugger
+        // debugger
     }
 
     handleChange(field) {
@@ -47,7 +47,7 @@ class NewProjectForm extends React.Component {
     }
 
     render() {
-        debugger
+        // debugger
         const { name, description, layout, privacy, addDescription } = this.state;
 
         let descriptionText;
@@ -63,7 +63,7 @@ class NewProjectForm extends React.Component {
                                 </p>);
         }
 
-        debugger
+        // debugger
 
         let disabled = false;
         let projectNameId = "project-name";
@@ -72,7 +72,7 @@ class NewProjectForm extends React.Component {
             projectNameId = "project-name-invalid-input";
         }
 
-        debugger
+        // debugger
 
         return (
             <div className="new-project-page">

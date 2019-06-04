@@ -15,6 +15,7 @@ const receiveAllProjects = projects => {    // to think about: should projects c
 };
 
 const receiveProject = project => {
+    debugger
     return {
         type: RECEIVE_PROJECT,
         project,
@@ -46,9 +47,9 @@ export const fetchProject = id => {
 }
 
 export const createProject = project => {
-    // debugger
+    debugger
     return dispatch => {
-        // debugger
+        debugger
         return ProjectApiUtil.createProject(project)
             .then(payload => dispatch(receiveProject(payload)));
     };

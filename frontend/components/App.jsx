@@ -16,6 +16,10 @@ const App = () => {
     // REPEAT: Put all routes here! Don't keep making this mistake...
     // Each component in each route should then render the appropriate buttons (links?) the redirect to those routes
 
+
+    // Updated Note (as of Mon 6/3 pm): the last ProtectedRoute (path="/projects/:projectId", rendering Home) breaks my new project form
+    // the error message when I try to click the "New" button to create new proejct: "history cannot PUSH the same path; a new entry will not be added to the history stack"
+
     return (
         <div>
             <Modal />
@@ -24,9 +28,9 @@ const App = () => {
             <AuthRoute path="/login" component={LoginFormContainer} />
             <AuthRoute path="/login_page" component={LoginFormContainerPageLayout} />
             <ProtectedRoute exact path="/home" component={Home} />
-            <ProtectedRoute path="/projects/new" component={NewProjectForm} />
+            <ProtectedRoute exact path="/projects/new" component={NewProjectForm} />
             {/* <ProtectedRoute path="/projects/:projectId" component={ProjectShowContainer} /> */}
-            <ProtectedRoute path="/projects/:projectId" component={Home} />
+            <ProtectedRoute exact path="/projects/:projectId" component={Home} />
         </div>
     );
 };

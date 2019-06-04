@@ -14,16 +14,6 @@ import EditProjectForm from './projects/edit_project_form';
 
 
 const App = () => {
-    // NOTE: All routes should live at the top level (in App component)!
-    // REPEAT: Put all routes here! Don't keep making this mistake...
-    // Each component in each route should then render the appropriate buttons (links?) the redirect to those routes
-
-
-    // Updated Note (as of Mon 6/3 pm): the last ProtectedRoute (path="/projects/:projectId", rendering Home) breaks my new project form
-    // the error message when I try to click the "New" button to create new proejct: "history cannot PUSH the same path; a new entry will not be added to the history stack"
-
-    // 6/4 Update to the Update: nested frontend routes (like anything nested under '/home') can be rendered by the parent component (in this case, Home)
-    // added the route on line 43 for testing (temporarily - it should be nested under project show url)
 
     return (
         <div>

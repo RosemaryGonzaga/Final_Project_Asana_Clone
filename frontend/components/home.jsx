@@ -4,16 +4,28 @@ import { Link } from 'react-router-dom';
 import { logout } from '../actions/session_actions';
 import ProjectIndexContainer from './projects/project_index_container';
 import ProjectShowContainer from './projects/project_show_container';
-// import { receiveMainContent } from '../actions/main_content_actions';
-// import { receiveNavHeader } from '../../actions/nav_header_actions';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
-import NewProjectForm from './projects/new_project_form';
+import { fetchProjects } from '../actions/project_actions';
+// import { receiveMainContent } from '../actions/main_content_actions';
+// import { receiveNavHeader } from '../../actions/nav_header_actions';
+// import NewProjectForm from './projects/new_project_form';
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentDidMount() {
+        // note: this doesn't solve issue of refreshing page on a project show component
+        // home component renders before hitting this lifecycle method
+        // which means the projects slice of state is empty, so there's nothing to key into when accessing a specific projectId
+        // maybe try putting conditional logic in the render method...
+        // ...if currentResource.project is undefined, skip that logic until homeComponent has a chance to mount
+        // IT WORKED!!!!!!! (see line 47)
+        // debugger    
+        this.props.fetchProjects();
     }
 
     handleClick(e) {
@@ -30,34 +42,14 @@ class Home extends React.Component {
             navHeader = "Home";
         } else if (currentResource.component === "projectIndex") {
             navHeader = "Projects";
-        } else if (currentResource.component === "projectShow") {
+        } else if (currentResource.component === "projectShow" && currentResource.project) {
             navHeader = currentResource.project.name;
+        } else {    // this condition allows control flow to proceed to componentDidUpdate in case currentResource.project is undefined
+            navHeader = ""
         }
-
-        // console.log(this.props);
-        // const { currentUser, history, match } = this.props;
-        // const path = history.location.pathname;
-        // const projectId = match.params;
-        // let navHeader;
-        // if (path === "/home") {
-        //     navHeader = "Home";
-        // } else if (path === "/home/projects") {
-        //     navHeader = "Projects";
-        // } else {
-        //     navHeader = `Current project id: ${projectId}`
-        // }
-
-        // const { signout, currentUser, mainContent, navHeader } = this.props; // Added mainContent and navHeader--> test if this works
-        // let contentToRender;
-        // if (mainContent === "projectIndex") {
-        //     contentToRender = (<ProjectIndexContainer />);
-        // } else if (mainContent === "projectShow") {
-        //     contentToRender = (<ProjectShowContainer />); // need to import this component
-        // }
 
         return (
             <div className="home-container">
-                {/* <button onClick={this.handleClick}>Sign Out</button> */}
                 <div className="home-sidebar"><Link to="/home/projects">Projects Index</Link></div>
                 <div className="home-main">
                     <div className="home-topbar">
@@ -94,12 +86,8 @@ class Home extends React.Component {
                     </div>
                     <div className="home-main-content">
                         <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1>
-                        {/* <NewProjectForm /> */}
-                        {/* <ProjectIndexContainer /> */}
 
-                        
                         <Switch>
-                            {/* <ProtectedRoute path="/home/projects/new" component={NewProjectForm} /> */}
                             <ProtectedRoute path="/home/projects/:projectId" component={ProjectShowContainer} />
                             <ProtectedRoute path="/home/projects" component={ProjectIndexContainer} />
                         </Switch>
@@ -124,7 +112,7 @@ const msp = (state, ownProps) => {
     // } else if (resource === "tasks") {
     //     currentResource = {
     //         component: "taskShow",
-    //         task: state.entities.tasks[resourceId],         // pass current task as a prop
+    //         task: state.entities.tasks[resourceId],      // to flesh out later: pass current task as a prop
     //     }
     } else if (resource === "home") {
         currentResource = {
@@ -136,21 +124,15 @@ const msp = (state, ownProps) => {
         }
     };
 
-    // console.log(pathParts);
-    // console.log(resource);
-    // console.log(resourceId);
-    // debugger
     const currentUserId = state.session.id;
     const currentUser = state.entities.users[currentUserId];
-    // const { mainContent, navHeader } = state.ui;       // test if this is correct
-    // return ({ currentUser, mainContent, navHeader });  // added mainContent and navHeader -> need to test if it works
     return ({ currentUser, currentResource });
 };
 
 const mdp = dispatch => {
     return ({
         logout: () => dispatch(logout()),
-        // receiveMainContent: content => dispatch(receiveMainContent(content)),
+        fetchProjects: () => dispatch(fetchProjects()),
     });
 };
 

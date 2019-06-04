@@ -38,9 +38,9 @@ const App = () => {
             <AuthRoute path="/signup" component={SignupFormContainer} />
             <AuthRoute path="/login" component={LoginFormContainer} />
             <AuthRoute path="/login_page" component={LoginFormContainerPageLayout} />
+            <ProtectedRoute path="/projects/new" component={NewProjectForm} />
             <ProtectedRoute path="/home" component={Home} />
             {/* <Switch>
-                <ProtectedRoute path="/projects/new" component={NewProjectForm} />
                 <ProtectedRoute exact path="/projects/:projectId" component={ProjectShowContainer} />
                 <ProtectedRoute exact path="/projects" component={ProjectIndexContainer} />
             </Switch> */}

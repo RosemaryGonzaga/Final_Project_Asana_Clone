@@ -62,7 +62,7 @@ class Home extends React.Component {
                         <nav className="home-topbar-right">
                             <ul>
                                 <li>Search</li>
-                                <li className="topbar-new-project-button"><Link to="/home/projects/new"><i className="fas fa-plus"></i> New</Link></li>
+                                <li className="topbar-new-project-button"><Link to="/projects/new"><i className="fas fa-plus"></i> New</Link></li>
                                 <li>Question</li>
                                 <li>Upgrade</li>
                                 <li><button onClick={this.handleClick}>Sign Out</button></li>
@@ -76,7 +76,7 @@ class Home extends React.Component {
 
                         
                         <Switch>
-                            <ProtectedRoute path="/home/projects/new" component={NewProjectForm} />
+                            {/* <ProtectedRoute path="/home/projects/new" component={NewProjectForm} /> */}
                             <ProtectedRoute exact path="/home/projects/:projectId" component={ProjectShowContainer} />
                             <ProtectedRoute path="/home/projects" component={ProjectIndexContainer} />
                         </Switch>

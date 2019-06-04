@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import SignupFormContainer from './auth/signup_form_container';
 import LoginFormContainer from './auth/login_form_container';
 import EditProjectForm from './projects/edit_project_form';
+import DeleteProjectForm from './projects/delete_project_form';
 import { closeModal } from '../actions/modal_actions';
 
 const Modal = props => {
@@ -20,6 +21,9 @@ const Modal = props => {
             break;
         case "editProject":
             component = <EditProjectForm />;
+            break;
+        case "deleteProject":
+            component = <DeleteProjectForm />;
             break;
         default:
             return null;

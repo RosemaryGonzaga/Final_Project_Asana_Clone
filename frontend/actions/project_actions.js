@@ -8,7 +8,7 @@ export const REMOVE_PROJECT = "REMOVE_PROJECT";
 
 
 // regular action creators
-const receiveAllProjects = projects => {    // to think about: should projects come in as an array or object? prob obj since my state shape is an obj?
+const receiveAllProjects = projects => {
     return {
         type: RECEIVE_ALL_PROJECTS,
         projects,
@@ -16,14 +16,13 @@ const receiveAllProjects = projects => {    // to think about: should projects c
 };
 
 const receiveProject = project => {
-    // debugger
     return {
         type: RECEIVE_PROJECT,
         project,
     };
 };
 
-const removeProject = projectId => {    // double check later
+const removeProject = projectId => {
     return {
         type: REMOVE_PROJECT,
         projectId,
@@ -48,9 +47,7 @@ export const fetchProject = id => {
 }
 
 export const createProject = project => {
-    // debugger
     return dispatch => {
-        // debugger
         return ProjectApiUtil.createProject(project)
             .then(payload => dispatch(receiveProject(payload)));
     };
@@ -69,6 +66,6 @@ export const updateProject = project => {
 export const deleteProject = id => {
     return dispatch => {
         return ProjectApiUtil.deleteProject(id)
-            .then(payload => dispatch(removeProject(id)));  // double check later
+            .then(payload => dispatch(removeProject(id)));
     };
 }

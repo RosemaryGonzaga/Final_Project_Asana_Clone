@@ -22,25 +22,15 @@ class NewProjectForm extends React.Component {
     }
 
     handleSubmit(e) {
-        // debugger
         e.preventDefault();
         const { createProject } = this.props;
         const project = this.state;
-        // createProject(project);
         createProject(project).then(payload => {
-            // debugger
-            // console.log(payload);
-            // console.log(payload.project);
-            console.log(payload.project.id);
-            // console.log(this.props);
-            // console.log(this.props.history);
-            console.log(this.props.history.push);
-
             const { project } = payload;
             const path = `/home/projects/${project.id}`;
+            debugger
             this.props.history.push(path);
         });
-        // debugger
     }
 
     handleChange(field) {
@@ -60,7 +50,6 @@ class NewProjectForm extends React.Component {
     }
 
     render() {
-        // debugger
         const { name, description, layout, privacy, addDescription } = this.state;
 
         let descriptionText;
@@ -76,16 +65,12 @@ class NewProjectForm extends React.Component {
                                 </p>);
         }
 
-        // debugger
-
         let disabled = false;
         let projectNameId = "project-name";
         if (name === "") {
             disabled = true;
             projectNameId = "project-name-invalid-input";
         }
-
-        // debugger
 
         return (
             <div className="new-project-page">

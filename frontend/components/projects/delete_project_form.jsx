@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { fetchProject, updateProject } from '../../actions/project_actions';
+import { fetchProject, deleteProject } from '../../actions/project_actions';
 import { closeModal } from '../../actions/modal_actions';
 
-class EditProjectForm extends React.Component {
+class DeleteProjectForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            id: this.props.project.id,
-            name: this.props.project.name,
-            description: this.props.project.description,
-        };
-        
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.state = {
+        //     id: this.props.project.id,
+        //     name: this.props.project.name,
+        //     description: this.props.project.description,
+        // };
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -21,29 +21,33 @@ class EditProjectForm extends React.Component {
         fetchProject(this.props.match.params.projectId);
     }
 
-    handleSubmit(e) {
+    handleClick(e) {
         e.preventDefault();
-        const { updateProject } = this.props;
-        updateProject(this.state);
+        const { deleteProject, project } = this.props;
+        deleteProject(project.id);
     }
 
-    handleChange(field) {
-        return e => {
-            this.setState({ [field]: e.target.value });
-        };
-    }
+    // handleChange(field) {
+    //     return e => {
+    //         this.setState({ [field]: e.target.value });
+    //     };
+    // }
 
     render() {
-        const { closeModal } = this.props;
-        const { name, description } = this.state;
+        const { closeModal, project } = this.props;
+        // const { name, description } = this.state;
         return (
             <div className="edit-project-page">
                 <button className="close-btn" onClick={closeModal}>
                     <img src={window.closeButtonHover} alt="x" />
                 </button>
 
-                <h1>Edit {name}</h1>
-                <form onSubmit={this.handleSubmit}>
+                <h1>Delete the '{project.name}' project?</h1>
+                <h2>This will delete the project and any unassigned tasks that are only in this project.</h2>
+                <button onClick={closeModal}>Cancel</button>
+                <Link to="/home/projects" onClick={this.handleClick}>Delete</Link>
+
+                {/* <form onSubmit={this.handleSubmit}>
                     <div className="edit-project-name">
                         <label htmlFor="editProjectName">Project name</label>
                         <input type="text" value={name} id="editProjectName"
@@ -57,16 +61,17 @@ class EditProjectForm extends React.Component {
                             onChange={this.handleChange("description")}>
                         </textarea>
                     </div>
-                    
+
                     <input type="submit" value="Update Project" />
-                </form>
-                
+                </form> */}
+
             </div>
         );
     }
 }
 
 const msp = (state, ownProps) => {
+    debugger
     const currentUserId = state.session.id;
     const { projects } = state.entities;
     const pathParts = ownProps.location.pathname.split("/");
@@ -79,9 +84,9 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
     return {
         fetchProject: id => dispatch(fetchProject(id)),
-        updateProject: project => dispatch(updateProject(project)),
+        deleteProject: id => dispatch(deleteProject(id)),
         closeModal: () => dispatch(closeModal()),
     };
 }
 
-export default withRouter(connect(msp, mdp)(EditProjectForm));
+export default withRouter(connect(msp, mdp)(DeleteProjectForm));

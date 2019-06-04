@@ -22,7 +22,7 @@ class ProjectShow extends React.Component {
     }
 
     render() {
-        const { project, openEditProjectModal } = this.props;
+        const { project, openEditProjectModal, openDeleteProjectModal } = this.props;
         console.log(this.props);
         let layout;
         if (!project) {
@@ -41,6 +41,7 @@ class ProjectShow extends React.Component {
                     <div>Description: {project.description}</div>
                     <div>Layout: {project.layout}</div>
                     <button onClick={openEditProjectModal}>Edit Project!</button>
+                    <button onClick={openDeleteProjectModal}>Delete Project?</button>
                 </section>
                 {layout}
             </div>

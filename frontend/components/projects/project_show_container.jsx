@@ -21,6 +21,7 @@ const mdp = dispatch => {
         receiveNavHeader: header => dispatch(receiveNavHeader(header)),
         receiveMainContent: content => dispatch(receiveMainContent(content)),
         openEditProjectModal: () => dispatch(openModal('editProject')),
+        openDeleteProjectModal: () => dispatch(openModal('deleteProject')),
     };
 };
 

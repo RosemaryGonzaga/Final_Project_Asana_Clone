@@ -8,7 +8,7 @@ import NewProjectForm from './projects/new_project_form';
 import ProjectShowContainer from './projects/project_show_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Modal from './modal';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 
 const App = () => {
@@ -23,14 +23,17 @@ const App = () => {
     return (
         <div>
             <Modal />
-            <AuthRoute exact path="/" component={Splash} />
-            <AuthRoute path="/signup" component={SignupFormContainer} />
-            <AuthRoute path="/login" component={LoginFormContainer} />
-            <AuthRoute path="/login_page" component={LoginFormContainerPageLayout} />
-            <ProtectedRoute path="/home" component={Home} />
-            <ProtectedRoute path="/projects/new" component={NewProjectForm} />
             {/* <ProtectedRoute path="/projects/:projectId" component={ProjectShowContainer} /> */}
-            <ProtectedRoute exact path="/projects/:projectId" component={Home} />
+
+            <Switch> 
+                <AuthRoute exact path="/splash" component={Splash} />
+                <AuthRoute path="/signup" component={SignupFormContainer} />
+                <AuthRoute path="/login" component={LoginFormContainer} />
+                <AuthRoute path="/login_page" component={LoginFormContainerPageLayout} />
+                <ProtectedRoute path="/projects/new" component={NewProjectForm} />
+                <ProtectedRoute exact path="/projects/:projectId" component={Home} />
+                <ProtectedRoute path="/" component={Home} />
+            </Switch>
         </div>
     );
 };

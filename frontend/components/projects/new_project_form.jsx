@@ -23,10 +23,23 @@ class NewProjectForm extends React.Component {
 
     handleSubmit(e) {
         // debugger
-        e.preventDefault(); // this didn't invoke preventDefault (as of 6/3 evening); does that matter? maybe we shouldn't even be calling this?
+        e.preventDefault();
         const { createProject } = this.props;
         const project = this.state;
-        createProject(project);
+        // createProject(project);
+        createProject(project).then(payload => {
+            // debugger
+            // console.log(payload);
+            // console.log(payload.project);
+            console.log(payload.project.id);
+            // console.log(this.props);
+            // console.log(this.props.history);
+            console.log(this.props.history.push);
+
+            const { project } = payload;
+            const path = `/home/projects/${project.id}`;
+            this.props.history.push(path);
+        });
         // debugger
     }
 

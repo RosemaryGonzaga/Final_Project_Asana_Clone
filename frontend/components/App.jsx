@@ -21,6 +21,8 @@ const App = () => {
     // Updated Note (as of Mon 6/3 pm): the last ProtectedRoute (path="/projects/:projectId", rendering Home) breaks my new project form
     // the error message when I try to click the "New" button to create new proejct: "history cannot PUSH the same path; a new entry will not be added to the history stack"
 
+    // 6/4 Update to the Update: nested frontend routes (like anything nested under '/home') can be rendered by the parent component (in this case, Home)
+
     return (
         <div>
             {/* <Modal />

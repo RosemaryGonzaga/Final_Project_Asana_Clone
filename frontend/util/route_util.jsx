@@ -9,7 +9,7 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 const Auth = ({ component: Component, loggedIn, exact, path }) => {
     return (
         <Route path={path} exact={exact} render={props => (
-            !loggedIn ? <Component {...props} /> : <Redirect to ="/" />
+            !loggedIn ? <Component {...props} /> : <Redirect to ="/home" />
         )}/>
     );
 };

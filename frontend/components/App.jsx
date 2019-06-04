@@ -23,17 +23,25 @@ const App = () => {
     return (
         <div>
             <Modal />
+            <AuthRoute exact path="/" component={Splash} />
+            <AuthRoute path="/signup" component={SignupFormContainer} />
+            <AuthRoute path="/login" component={LoginFormContainer} />
+            <AuthRoute path="/login_page" component={LoginFormContainerPageLayout} />
             {/* <ProtectedRoute path="/projects/:projectId" component={ProjectShowContainer} /> */}
+            <ProtectedRoute path="/projects/new" component={NewProjectForm} />
+            <ProtectedRoute exact path="/projects/:projectId" component={Home} />
+            <ProtectedRoute path="/home" component={Home} />
 
-            <Switch> 
-                <AuthRoute exact path="/splash" component={Splash} />
-                <AuthRoute path="/signup" component={SignupFormContainer} />
-                <AuthRoute path="/login" component={LoginFormContainer} />
-                <AuthRoute path="/login_page" component={LoginFormContainerPageLayout} />
+            {/* <Modal />
+            <AuthRoute exact path="/" component={Splash} />
+            <AuthRoute path="/signup" component={SignupFormContainer} />
+            <AuthRoute path="/login" component={LoginFormContainer} />
+            <AuthRoute path="/login_page" component={LoginFormContainerPageLayout} />
+            <Switch>
                 <ProtectedRoute path="/projects/new" component={NewProjectForm} />
                 <ProtectedRoute exact path="/projects/:projectId" component={Home} />
-                <ProtectedRoute path="/" component={Home} />
-            </Switch>
+                <ProtectedRoute path="/home" component={Home} />
+            </Switch> */}
         </div>
     );
 };

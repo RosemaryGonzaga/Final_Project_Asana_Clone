@@ -1,5 +1,7 @@
 import * as SessionApiUtil from '../util/session_api_util';
 import { closeModal } from './modal_actions';
+import { resetNavHeader } from './nav_header_actions';
+import { resetMainContent } from './main_content_actions';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const REMOVE_CURRENT_USER = "REMOVE_CURRENT_USER";
@@ -68,6 +70,12 @@ export const login = user => {
 export const logout = () => {
     return dispatch => {
         return SessionApiUtil.logout()
-            .then(() => dispatch(logoutCurrentUser()))
+            .then(
+                () => {
+                    dispatch(logoutCurrentUser()),
+                    dispatch(resetNavHeader()),     // 6.3: added two more actions to the .then success callback
+                    dispatch(resetMainContent())    // added these to address recently introduced bugs...
+                }
+        )
     };
 };

@@ -1,4 +1,5 @@
 import * as ProjectApiUtil from '../util/projects_api_util';
+import { closeModal } from './modal_actions';
 
 // action types
 export const RECEIVE_ALL_PROJECTS = "RECEIVE_ALL_PROJECTS";
@@ -58,7 +59,10 @@ export const createProject = project => {
 export const updateProject = project => {
     return dispatch => {
         return ProjectApiUtil.updateProject(project)
-            .then(payload => dispatch(receiveProject(payload)));
+            .then(payload => {
+                dispatch(receiveProject(payload)),
+                dispatch(closeModal())
+            });
     };
 }
 

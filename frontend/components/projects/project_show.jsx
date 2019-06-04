@@ -40,7 +40,7 @@ class ProjectShow extends React.Component {
                     <h1>Name: {project.name}</h1>
                     <div>Description: {project.description}</div>
                     <div>Layout: {project.layout}</div>
-                    
+                    <button onClick={openEditProjectModal}>Edit Project!</button>
                 </section>
                 {layout}
             </div>

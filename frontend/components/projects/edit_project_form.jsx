@@ -35,22 +35,21 @@ class EditProjectForm extends React.Component {
     }
 
     render() {
-        const { project, closeModal } = this.props;
+        const { closeModal } = this.props;
+        const { name, description } = this.state;
         return (
             <div className="edit-project-page">
                 <button className="close-btn" onClick={closeModal}>
                     <img src={window.closeButtonHover} alt="x" />
                 </button>
 
-                <h1>Edit {project.name}</h1>
+                <h1>Edit {name}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div className="edit-project-name">
                         <label htmlFor="editProjectName">Project name</label>
                         <input type="text" value={name} id="editProjectName"
                             onChange={this.handleChange("name")} />
                     </div>
-
-                    {descriptionText}
 
                     <div className="new-project-description">
                         <label htmlFor="editDescription">Description</label>
@@ -72,7 +71,9 @@ const msp = (state, ownProps) => {
     // debugger
     const currentUserId = state.session.id;
     const { projects } = state.entities;
-    const projectId = ownProps.match.params.projectId;  // params is empty, yet the url has the project id in it --> why?
+    const pathParts = ownProps.location.pathname.split("/");
+    const projectId = pathParts[pathParts.length - 1];
+    // const projectId = ownProps.match.params.projectId;  // params is empty --> need to use same strategy as in Home component's msp (see above line)
     const project = projects[projectId];
     return ({ currentUserId, project });
 };

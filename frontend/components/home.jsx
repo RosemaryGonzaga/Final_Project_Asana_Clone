@@ -6,6 +6,9 @@ import ProjectIndexContainer from './projects/project_index_container';
 import ProjectShowContainer from './projects/project_show_container';
 // import { receiveMainContent } from '../actions/main_content_actions';
 // import { receiveNavHeader } from '../../actions/nav_header_actions';
+import { Route, Switch } from 'react-router-dom';
+import { ProtectedRoute } from '../util/route_util';
+import NewProjectForm from './projects/new_project_form';
 
 class Home extends React.Component {
     constructor(props) {
@@ -32,7 +35,7 @@ class Home extends React.Component {
         return (
             <div className="home-container">
                 {/* <button onClick={this.handleClick}>Sign Out</button> */}
-                <div className="home-sidebar"></div>
+                <div className="home-sidebar"><Link to="/home/projects">Projects Index</Link></div>
                 <div className="home-main">
                     <div className="home-topbar">
                         <nav className="home-topbar-left">
@@ -59,7 +62,7 @@ class Home extends React.Component {
                         <nav className="home-topbar-right">
                             <ul>
                                 <li>Search</li>
-                                <li className="topbar-new-project-button"><Link to="/projects/new"><i className="fas fa-plus"></i> New</Link></li>
+                                <li className="topbar-new-project-button"><Link to="/home/projects/new"><i className="fas fa-plus"></i> New</Link></li>
                                 <li>Question</li>
                                 <li>Upgrade</li>
                                 <li><button onClick={this.handleClick}>Sign Out</button></li>
@@ -70,7 +73,13 @@ class Home extends React.Component {
                         <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1>
                         {/* <NewProjectForm /> */}
                         {/* <ProjectIndexContainer /> */}
-                        {contentToRender}
+
+                        
+                        <Switch>
+                            <ProtectedRoute path="/home/projects/new" component={NewProjectForm} />
+                            <ProtectedRoute exact path="/home/projects/:projectId" component={ProjectShowContainer} />
+                            <ProtectedRoute path="/home/projects" component={ProjectIndexContainer} />
+                        </Switch>
                     </div>
                 </div>
             </div>

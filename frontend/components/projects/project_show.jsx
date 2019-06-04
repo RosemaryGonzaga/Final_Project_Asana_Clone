@@ -34,7 +34,7 @@ class ProjectShow extends React.Component {
 
         return (
             <div className="project-show-container">
-                <Link to="/home" onClick={this.handleRedirectToHome}>Back to all projects</Link>
+                <Link to="/home/projects" onClick={this.handleRedirectToHome}>Back to all projects</Link>
                 {layout}
             </div>
         );

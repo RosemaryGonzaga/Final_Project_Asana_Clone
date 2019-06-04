@@ -12,7 +12,7 @@ export const ProjectIndexItem = props => {
 
     const { project } = props;
     return (
-        <Link to={`/projects/${project.id}`} 
+        <Link to={`/home/projects/${project.id}`} 
                 className="project-index-item-container"
                 onClick={handleClick}>
             <div className="project-index-item-tile"></div>

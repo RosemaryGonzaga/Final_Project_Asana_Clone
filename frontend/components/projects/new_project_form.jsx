@@ -76,11 +76,11 @@ class NewProjectForm extends React.Component {
 
         return (
             <div className="new-project-page">
-                <Link to="/" className="arrow-link-to-home">
+                <Link to="/home" className="arrow-link-to-home">
                     arrow
                 </Link>
                 
-                <Link to="/" className="x-link-to-home">
+                <Link to="/home" className="x-link-to-home">
                     <img src={window.closeButtonHover} alt="x" />
                 </Link>
 

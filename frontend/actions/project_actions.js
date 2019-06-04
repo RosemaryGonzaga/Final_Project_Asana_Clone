@@ -66,6 +66,9 @@ export const updateProject = project => {
 export const deleteProject = id => {
     return dispatch => {
         return ProjectApiUtil.deleteProject(id)
-            .then(payload => dispatch(removeProject(id)));
+            .then(payload => {
+                dispatch(removeProject(id)),
+                dispatch(closeModal())
+            });
     };
 }

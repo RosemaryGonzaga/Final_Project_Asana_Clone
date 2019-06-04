@@ -6,7 +6,7 @@ import ProjectIndexContainer from './projects/project_index_container';
 import ProjectShowContainer from './projects/project_show_container';
 // import { receiveMainContent } from '../actions/main_content_actions';
 // import { receiveNavHeader } from '../../actions/nav_header_actions';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
 import NewProjectForm from './projects/new_project_form';
 
@@ -24,13 +24,36 @@ class Home extends React.Component {
 
     render() {
         // debugger
-        const { signout, currentUser, mainContent, navHeader } = this.props; // Added mainContent and navHeader--> test if this works
-        let contentToRender;
-        if (mainContent === "projectIndex") {
-            contentToRender = (<ProjectIndexContainer />);
-        } else if (mainContent === "projectShow") {
-            contentToRender = (<ProjectShowContainer />); // need to import this component
+        const { currentUser, currentResource } = this.props;
+        let navHeader;
+        if (currentResource.component === "home") {
+            navHeader = "Home";
+        } else if (currentResource.component === "projectIndex") {
+            navHeader = "Projects";
+        } else if (currentResource.component === "projectShow") {
+            navHeader = currentResource.project.name;
         }
+
+        // console.log(this.props);
+        // const { currentUser, history, match } = this.props;
+        // const path = history.location.pathname;
+        // const projectId = match.params;
+        // let navHeader;
+        // if (path === "/home") {
+        //     navHeader = "Home";
+        // } else if (path === "/home/projects") {
+        //     navHeader = "Projects";
+        // } else {
+        //     navHeader = `Current project id: ${projectId}`
+        // }
+
+        // const { signout, currentUser, mainContent, navHeader } = this.props; // Added mainContent and navHeader--> test if this works
+        // let contentToRender;
+        // if (mainContent === "projectIndex") {
+        //     contentToRender = (<ProjectIndexContainer />);
+        // } else if (mainContent === "projectShow") {
+        //     contentToRender = (<ProjectShowContainer />); // need to import this component
+        // }
 
         return (
             <div className="home-container">
@@ -77,7 +100,7 @@ class Home extends React.Component {
                         
                         <Switch>
                             {/* <ProtectedRoute path="/home/projects/new" component={NewProjectForm} /> */}
-                            <ProtectedRoute exact path="/home/projects/:projectId" component={ProjectShowContainer} />
+                            <ProtectedRoute path="/home/projects/:projectId" component={ProjectShowContainer} />
                             <ProtectedRoute path="/home/projects" component={ProjectIndexContainer} />
                         </Switch>
                     </div>
@@ -88,10 +111,40 @@ class Home extends React.Component {
 }
 
 const msp = (state, ownProps) => {
+    const pathParts = ownProps.location.pathname.split("/");
+    const resource = pathParts[pathParts.length - 2];   // Should be either "projects" or "tasks" (if it's blank show home; if it's "home", show projects index )
+    const resourceId = pathParts[pathParts.length - 1]; // Should be a number ...
+
+    let currentResource
+    if (resource === "projects") {
+        currentResource = {
+            component: "projectShow",
+            project: state.entities.projects[resourceId],   // pass current project as a prop
+        }
+    // } else if (resource === "tasks") {
+    //     currentResource = {
+    //         component: "taskShow",
+    //         task: state.entities.tasks[resourceId],         // pass current task as a prop
+    //     }
+    } else if (resource === "home") {
+        currentResource = {
+            component: "projectIndex",
+        }
+    } else if (resource === "") {
+        currentResource = {
+            component: "home",
+        }
+    };
+
+    // console.log(pathParts);
+    // console.log(resource);
+    // console.log(resourceId);
+    // debugger
     const currentUserId = state.session.id;
     const currentUser = state.entities.users[currentUserId];
-    const { mainContent, navHeader } = state.ui;       // test if this is correct
-    return ({ currentUser, mainContent, navHeader });  // added mainContent and navHeader -> need to test if it works
+    // const { mainContent, navHeader } = state.ui;       // test if this is correct
+    // return ({ currentUser, mainContent, navHeader });  // added mainContent and navHeader -> need to test if it works
+    return ({ currentUser, currentResource });
 };
 
 const mdp = dispatch => {
@@ -101,4 +154,5 @@ const mdp = dispatch => {
     });
 };
 
-export default connect(msp, mdp)(Home);
+// export default connect(msp, mdp)(Home);
+export default withRouter(connect(msp, mdp)(Home));

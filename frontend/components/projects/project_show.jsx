@@ -22,19 +22,26 @@ class ProjectShow extends React.Component {
     }
 
     render() {
-        const { project } = this.props;
+        const { project, openEditProjectModal } = this.props;
+        console.log(this.props);
         let layout;
         if (!project) {
             return null;
         } else if (project.layout === "list") {
-            layout = <ProjectListView project={project} />;
+            layout = <ProjectListView project={project} openEditProjectModal={openEditProjectModal} />;
         } else {
-            layout = <ProjectBoardView project={project} />;
+            layout = <ProjectBoardView project={project} openEditProjectModal={openEditProjectModal} />;
         }
 
         return (
             <div className="project-show-container">
                 <Link to="/home/projects" onClick={this.handleRedirectToHome}>Back to all projects</Link>
+                <section className="project-info">
+                    <h1>Name: {project.name}</h1>
+                    <div>Description: {project.description}</div>
+                    <div>Layout: {project.layout}</div>
+                    
+                </section>
                 {layout}
             </div>
         );

@@ -4,6 +4,7 @@ import ProjectShow from './project_show';
 import { fetchProject } from '../../actions/project_actions';
 import { receiveNavHeader } from '../../actions/nav_header_actions';
 import { receiveMainContent } from '../../actions/main_content_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const msp = (state, ownProps) => {
     // debugger
@@ -19,6 +20,7 @@ const mdp = dispatch => {
         fetchProject: id => dispatch(fetchProject(id)),
         receiveNavHeader: header => dispatch(receiveNavHeader(header)),
         receiveMainContent: content => dispatch(receiveMainContent(content)),
+        openEditProjectModal: () => dispatch(openModal('editProject')),
     };
 };
 

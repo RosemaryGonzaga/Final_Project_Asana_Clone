@@ -63,7 +63,7 @@ class SignupFormModal extends React.Component {
                                 type="email"
                                 value={primaryEmail}
                                 onChange={this.handleChange("primaryEmail")}
-                                id="primaryEmail"
+                                // id="primaryEmail"   // should this be a name attribute instead?
                                 placeholder="name@company.com"
                             />
 
@@ -78,7 +78,7 @@ class SignupFormModal extends React.Component {
                                 type="password"
                                 value={password}
                                 onChange={this.handleChange("password")}
-                                id="password"
+                                // id="password"  // should this be a name attribute instead?
                                 placeholder="password"
                             />
                         </div>

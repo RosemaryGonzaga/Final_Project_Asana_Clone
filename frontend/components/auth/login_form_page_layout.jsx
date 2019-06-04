@@ -71,14 +71,21 @@ class LoginFormPage extends React.Component {
                     </div>
 
                     <div className="session-form-email">
-                        <label className="session-form-label" htmlFor="primaryEmail">Email Address</label>
-                        <input className="session-form-input email" type="email" value={primaryEmail} onChange={this.handleChange("primaryEmail")} id="primaryEmail" title="SAMPLE TOOLTIP" />
+                        <label className="session-form-label" htmlFor="primaryEmail1">Email Address</label>
+                        <input className="session-form-input email" 
+                                type="email" value={primaryEmail} 
+                                onChange={this.handleChange("primaryEmail")} 
+                                id="primaryEmail1" 
+                                title="SAMPLE TOOLTIP" />
                         {/* <div className={errorTooltipClass}>{errorTooltipMessage}</div> */}
                     </div>
 
                     <div className="session-form-password">
-                        <label className="session-form-label" htmlFor="password">Password</label>
-                        <input className="session-form-input" type="password" value={password} onChange={this.handleChange("password")} id="password" />
+                        <label className="session-form-label" htmlFor="password1">Password</label>
+                        <input className="session-form-input" 
+                                type="password" value={password} 
+                                onChange={this.handleChange("password")} 
+                                id="password1" />
                     </div>
 
                     <div className="session-form-button">

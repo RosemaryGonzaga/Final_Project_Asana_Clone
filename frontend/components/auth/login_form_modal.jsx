@@ -79,24 +79,24 @@ class LoginFormModal extends React.Component {
                     </div>
 
                     <div className="login-form-email">
-                        <label className="login-form-label" htmlFor="primaryEmail">Email Address</label>
+                        <label className="login-form-label" htmlFor="primaryEmail2">Email Address</label>
                         <input className="login-form-input email" 
                                 type="email" 
                                 value={primaryEmail} 
                                 onChange={this.handleChange("primaryEmail")} 
-                                id="primaryEmail" 
+                                id="primaryEmail2" 
                                 placeholder="name@company.com"
                         />
                         {/* <div className={errorTooltipClass}>{errorMessage}</div> */}
                     </div>
 
                     <div className="login-form-password">
-                        <label className="login-form-label" htmlFor="password">Password</label>
+                        <label className="login-form-label" htmlFor="password2">Password</label>
                         <input className="login-form-input" 
                                 type="password" 
                                 value={password} 
                                 onChange={this.handleChange("password")} 
-                                id="password"
+                                id="password2"
                                 placeholder="password" 
                         />
                     </div>

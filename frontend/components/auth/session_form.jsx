@@ -69,13 +69,21 @@ class SessionForm extends React.Component {
 
                     <div className="session-form-email">
                         <label className="session-form-label" htmlFor="primaryEmail">Email Address</label>
-                        <input className="session-form-input email" type="text" value={primaryEmail} onChange={this.handleChange("primaryEmail")} id="primaryEmail" title="SAMPLE TOOLTIP"/>
+                        <input className="session-form-input email" 
+                                type="text" value={primaryEmail} 
+                                onChange={this.handleChange("primaryEmail")} 
+                                // id="primaryEmail"    // should this be a name attribute instead?
+                                title="SAMPLE TOOLTIP"/>
                         <div className={errorTooltipClass}>{errorMessage}</div>
                     </div>
 
                     <div className="session-form-password">
                         <label className="session-form-label" htmlFor="password">Password</label>
-                        <input className="session-form-input" type="password" value={password} onChange={this.handleChange("password")} id="password" />
+                        <input className="session-form-input" 
+                                type="password" value={password} 
+                                onChange={this.handleChange("password")} 
+                                // id="password"    // should this be a name attribute instead?
+                                />
                     </div>
 
                     <div className="session-form-button">

@@ -14,7 +14,12 @@ import { fetchProjects } from '../actions/project_actions';
 class Home extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            avatarClass: "avatar avatar-not-selected",
+        }
+
         this.handleClick = this.handleClick.bind(this);
+        this.handleAvatarClick = this.handleAvatarClick.bind(this);
     }
 
     componentDidMount() {
@@ -34,9 +39,17 @@ class Home extends React.Component {
         logout()
     }
 
+    handleAvatarClick(e) {
+        e.preventDefault();
+        this.setState({ avatarClass: "avatar avatar-selected" });
+        // how do I toggle the class back when a user clicks off the menu? (or selects something from the menu?)
+        // is it fair to set a timeout that resets local state? (wouldn't exactly replicate Asana's behavior)
+    }
+
     render() {
         // debugger
         const { currentUser, currentResource } = this.props;
+        let initials = currentUser.primaryEmail.slice(0,2).toUpperCase();  // this is temporary --> need to grab initials from user's full name
         let navHeader;
         let layoutIcon;
         if (currentResource.component === "home") {
@@ -67,7 +80,7 @@ class Home extends React.Component {
                     <br/>
                     <ul className="home-sidebar-top">
                         <li><Link to="/home"><i className="fas fa-home"></i> Home</Link></li>
-                        <li><Link to="/home/projects">Projects</Link></li>
+                        <li><Link to="/home/projects"><i className="fas fa-list fa-list-sidebar"></i>Projects</Link></li>
                         <li><Link to=""><i className="far fa-check-circle"></i>Tasks</Link></li>
                     </ul>
                     {/* <Link to="/home/projects">Projects Index</Link> */}
@@ -98,10 +111,14 @@ class Home extends React.Component {
                         <nav className="home-topbar-right">
                             <ul>
                                 <li>Search</li>
-                                <li className="topbar-new-project-button"><Link to="/projects/new"><i className="fas fa-plus"></i> New</Link></li>
+                                <li className="topbar-new-project-button">
+                                    <Link to="/projects/new"><i className="fas fa-plus"></i> New</Link>
+                                </li>
                                 <li>Question</li>
-                                <li>Upgrade</li>
                                 <li><button onClick={this.handleClick}>Sign Out</button></li>
+                                <li className={this.state.avatarClass} onClick={this.handleAvatarClick}>
+                                    {initials}
+                                </li>
                             </ul>                            
                         </nav>
                     </div>

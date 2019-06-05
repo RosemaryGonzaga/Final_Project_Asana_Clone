@@ -5,9 +5,9 @@ class ProjectListView extends React.Component {
         const { project } = this.props;
         return (
             <div>
-                <h1>Name: {project.name}</h1>
+                {/* <h1>Name: {project.name}</h1>
                 <div>Description: {project.description}</div>
-                <div>Layout: {project.layout}</div>
+                <div>Layout: {project.layout}</div> */}
             </div>
         );
     }

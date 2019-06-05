@@ -4,12 +4,12 @@
 }
 
 .project-index-container > ul {
-    width: 800px;
+    width: 815px;
     min-width: 630px;
     margin: 100px auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .project-index-item-container {
@@ -30,6 +30,7 @@
     text-align: center;
     text-decoration: none;
     transition-duration: 400ms;
+    margin-right: 13px;
 }
 
 .project-index-item-container:hover {

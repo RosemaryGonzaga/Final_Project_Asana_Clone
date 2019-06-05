@@ -43,22 +43,32 @@
     justify-content: center;
     height: 28px;
     padding-left: 14px;
+    transition-duration: 200ms;
+    transition-property: background-color;
+}
+
+.home-sidebar-top > li:hover {
+    background-color: #ffffff14;
+}
+
+/* NOTE: need to accomplish the selected effect w/ JS (might need to factor out this nav component) */
+.home-sidebar-top > li:active {
+    background-color: #ffffff29; 
 }
 
 .home-sidebar-top > li > a {
     text-decoration: none;
     color: #d5dce0;
     font-size: 14px;
-    /* margin-right: 20x; */
 }
 
 .home-sidebar-top > li > a > i {
-    /* text-decoration: none;
-    color: #d5dce0; */
-    font-size: 14px;
-    margin-right: 20x;
+    font-size: 16px;
+    margin-right: 12px;
 }
 
+
+/* MAIN: TOPBAR AND MAIN CONTENT */
 
 .home-main {
     position: fixed;
@@ -66,7 +76,6 @@
     right: 0;
     display: flex;
 }
-
 
 
 /* TOPBAR STYLING */
@@ -87,13 +96,14 @@
 
 .home-topbar-right {
     z-index: 2;
+    /* background-color: red; */
 }
 
 .home-topbar-right > ul {
     height: 70px;
     width: 532px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     /* background-color: #ff5263e6; */
     z-index: 2;
@@ -103,6 +113,27 @@
 .home-topbar-right > li {
     height: 30px;
 }
+
+.avatar {
+    width: 23px;
+    height: 23px;
+    background-color: #eec300;
+    border: 1px solid #be9c09;
+    padding: none;
+    border-radius: 12px;
+    font-size: 11px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.avatar-selected {
+    background-color: red;
+}
+
 
 .home-topbar-left {
     height: 70px;

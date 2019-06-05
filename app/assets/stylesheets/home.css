@@ -160,6 +160,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition-duration: 300ms;
+    transition-property: background;
+}
+
+.topbar-new-project-button:hover {
+    background: linear-gradient(to top right, #ff1f35, #ff4053 35%, #c99701);
 }
 
 .topbar-new-project-button > a {

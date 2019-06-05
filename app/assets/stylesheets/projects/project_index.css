@@ -1,15 +1,21 @@
+.project-index-container {
+    height: 800px;
+    overflow-y: auto;
+}
+
 .project-index-container > ul {
     width: 800px;
     min-width: 630px;
     margin: 100px auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .project-index-item-container {
     width: 150px;
     height: 211px;
-    background-color: #f6f8f9;
+    background-color: white;
     /* border: 1px solid gray; */
     display: flex;
     flex-direction: column;
@@ -18,7 +24,19 @@
     font-size: 13px;
     font-weight: 450;
     color: #151b26;
+    box-sizing: border-box;
+    padding-left: 13px;
+    padding-right: 13px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 400ms;
 }
+
+.project-index-item-container:hover {
+    background-color: #f6f8f9;
+    transform: translate3d(0px, -10px, 0px);
+}
+
 
 .project-index-item-tile {
     background-color: #7a6ff0;
@@ -27,4 +45,10 @@
     border-radius: 20px;
     margin-top: 20px;
     margin-bottom: 12px;
+}
+
+.project-index-item-container > p {
+    width: 124px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

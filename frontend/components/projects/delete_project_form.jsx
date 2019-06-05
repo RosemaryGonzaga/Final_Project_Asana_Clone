@@ -20,16 +20,18 @@ class DeleteProjectForm extends React.Component {
         const { closeModal, project} = this.props;
         // debugger
         return (
-            <div className="edit-project-page">
-                <button className="close-btn" onClick={closeModal}>
+            <div className="delete-project-container">
+                <button className="delete-project-close-btn" onClick={closeModal}>
                     <img src={window.closeButtonHover} alt="x" />
                 </button>
 
                 {/* <h1>Delete the '{project.name}' project?</h1> */}
                 <h1>Delete the project?</h1>
                 <h2>This will delete the project and any unassigned tasks that are only in this project.</h2>
-                <button onClick={closeModal}>Cancel</button>
-                <Link to="/home/projects" onClick={this.handleClick}>Delete</Link>
+                <button className="cancel-delete-project" onClick={closeModal}>Cancel</button>
+                <Link to="/home/projects" onClick={this.handleClick}
+                        className="delete-project-button" >Delete
+                </Link>
 
             </div>
         );

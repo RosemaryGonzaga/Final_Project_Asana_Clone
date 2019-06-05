@@ -11,12 +11,12 @@ class Api::SectionsController < ApplicationController
 
     def index
         # @sections = current_user.sections
-        debugger
+        # debugger
         current_project = Project.find_by(id: params[:project_id])  # need to structure Ajax request to include projectId in the params
         @sections = current_project.sections
         # render :index
         # render 'api/sections/index.json.jbuilder'
-        render 'api/sections/index'
+        # render 'api/sections/index'
     end
 
     def show
@@ -56,12 +56,12 @@ end
 
 # # JS code for manual testing w/ AJAX functions in Chrome console:
 # let section_params = {
-#     name: 'first section',
-#     description: 'optional',
-#     layout: 'list',
-#     project_id: 62,
-#     assignee_id: 15,
-#     due_on: new Date(),
+#     name: 'another section',
+#     description: 'descriptive description',
+#     layout: 'board',
+#     projectId: 62,
+#     assigneeId: 15,
+#     dueOn: new Date(),
 #     completed: false,
 # }
 

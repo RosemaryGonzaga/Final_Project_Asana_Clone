@@ -5,8 +5,8 @@ import Root from './components/root';
 
 
 // imported these for testing only (remove later):
-import * as TaskApiUtil from './util/tasks_api_util';
-import * as ThunkActions from './actions/task_actions';
+import * as SectionApiUtil from './util/sections_api_util';
+import * as ThunkActions from './actions/section_actions';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(<Root store={store}/>, root)
 
     // // for testing only! DELETE LATER!
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
+    // window.getState = store.getState;
+    // window.dispatch = store.dispatch;
     // // delete the above!
 });
 
@@ -39,13 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // window.signupThunk = ThunkActions.signup
 // window.loginThunk = ThunkActions.login
 // window.logoutThunk = ThunkActions.logout
-window.fetchTasks = TaskApiUtil.fetchTasks;
-window.fetchTask = TaskApiUtil.fetchTask;
-window.createTask = TaskApiUtil.createTask;
-window.updateTask = TaskApiUtil.updateTask;
-window.deleteTask = TaskApiUtil.deleteTask;
-window.fetchTasksThunk = ThunkActions.fetchTasks;
-window.fetchTaskThunk = ThunkActions.fetchTask;
-window.createTaskThunk = ThunkActions.createTask;
-window.updateTaskThunk = ThunkActions.updateTask;
-window.deleteTaskThunk = ThunkActions.deleteTask;
+// window.fetchSections = SectionApiUtil.fetchSections;
+// window.fetchSection = SectionApiUtil.fetchSection;
+// window.createSection = SectionApiUtil.createSection;
+// window.updateSection = SectionApiUtil.updateSection;
+// window.deleteSection = SectionApiUtil.deleteSection;
+// window.fetchSectionsThunk = ThunkActions.fetchSections;
+// window.fetchSectionThunk = ThunkActions.fetchSection;
+// window.createSectionThunk = ThunkActions.createSection;
+// window.updateSectionThunk = ThunkActions.updateSection;
+// window.deleteSectionThunk = ThunkActions.deleteSection;

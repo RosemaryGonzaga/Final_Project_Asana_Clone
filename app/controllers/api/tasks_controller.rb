@@ -55,10 +55,10 @@ end
 # let task_params = {
 #     name: 'first task',
 #     description: 'optional',
-#     project_id: 62,
-#     section_id: 1,
-#     assignee_id: 15,
-#     due_on: new Date(),
+#     projectId: 62,
+#     sectionId: 1,
+#     assigneeId: 15,
+#     dueOn: new Date(),
 #     completed: false,
 # }
 

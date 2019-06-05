@@ -1,4 +1,3 @@
-debugger
 json.id section.id
 json.name section.name
 json.description section.description

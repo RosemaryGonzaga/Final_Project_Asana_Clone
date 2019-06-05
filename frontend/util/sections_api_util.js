@@ -1,4 +1,4 @@
-export const fetchSections = projectId => {
+export const fetchSections = projectId => {     // different from the usual pattern
     return $.ajax({
         method: 'GET',
         url: '/api/sections',

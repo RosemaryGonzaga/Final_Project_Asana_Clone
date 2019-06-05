@@ -79,7 +79,7 @@ end
 
 # $.ajax({
 #     method: 'PATCH',
-#     url: '/api/tasks/1',
+#     url: '/api/tasks/2',
 #     data: {
 #         task: task_params
 #     }

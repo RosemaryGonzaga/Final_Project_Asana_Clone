@@ -11,12 +11,12 @@ class Api::SectionsController < ApplicationController
 
     def index
         # @sections = current_user.sections
+        debugger
         current_project = Project.find_by(id: params[:project_id])  # need to structure Ajax request to include projectId in the params
         @sections = current_project.sections
-        # debugger
         # render :index
         # render 'api/sections/index.json.jbuilder'
-        # render 'sections/index.json.jbuilder'
+        render 'api/sections/index'
     end
 
     def show

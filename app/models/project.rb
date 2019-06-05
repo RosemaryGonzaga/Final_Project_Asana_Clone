@@ -30,7 +30,11 @@ class Project < ApplicationRecord
         class_name: :Section
 
     has_many :tasks,
-        primary_key: :id,
-        foreign_key: :project_id,
-        class_name: :Task
+        through: :sections,
+        source: :tasks
+
+    # has_many :tasks,
+    #     primary_key: :id,
+    #     foreign_key: :project_id,
+    #     class_name: :Task
 end

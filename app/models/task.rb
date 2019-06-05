@@ -19,10 +19,10 @@ class Task < ApplicationRecord
     validates :name, presence: true
 
     # validations: belongs to both project and section for now (later it would be one or the other)
-    belongs_to :project,
-        primary_key: :id,
-        foreign_key: :project_id,
-        class_name: :Project
+    # belongs_to :project,
+    #     primary_key: :id,
+    #     foreign_key: :project_id,
+    #     class_name: :Project
 
     belongs_to :section,
         primary_key: :id,
@@ -33,4 +33,8 @@ class Task < ApplicationRecord
         primary_key: :id,
         foreign_key: :assignee_id,
         class_name: :User
+
+    has_one :project,
+        through: :section,
+        source: :project
 end

@@ -1,8 +1,8 @@
-export const fetchSections = () => {
+export const fetchSections = projectId => {
     return $.ajax({
         method: 'GET',
         url: '/api/sections',
-        // pass current user id in the params?
+        data: { project_id: projectId }
     });
 }
 

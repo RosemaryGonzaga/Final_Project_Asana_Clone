@@ -52,24 +52,40 @@ end
 # let task_params = {
 #     name: 'first task',
 #     description: 'optional',
-#     project_id: 1,
+#     project_id: 62,
+#     section_id: 1,
 #     assignee_id: 15,
 #     due_on: new Date(),
 #     completed: false,
 # }
 
 # $.ajax({
-#     method: 'GET',
-#     url: '/api/projects',
+#     method: 'POST',
+#     url: '/api/tasks',
+#     data: {
+#         task: task_params
+#     }
 # })
 
 # $.ajax({
-#     method: "POST",
-#     url: "api/projects",
-#     data: { 
-#         user: {
-#             primary_email: user.primaryEmail,
-#             password: user.password,
-#         }
-#     },
+#     method: 'GET',
+#     url: '/api/tasks',
+# })
+
+# $.ajax({
+#     method: 'GET',
+#     url: '/api/tasks/1',
+# })
+
+# $.ajax({
+#     method: 'PATCH',
+#     url: '/api/tasks/1',
+#     data: {
+#         task: task_params
+#     }
+# })
+
+# $.ajax({
+#     method: 'DELETE',
+#     url: '/api/tasks/1',
 # })

@@ -60,10 +60,10 @@ class Home extends React.Component {
             navHeader = currentResource.project.name;
             if (currentResource.project.layout === "list") {
                 // debugger
-                layoutIcon = <i class="fas fa-list"></i>;
+                layoutIcon = <i className="fas fa-list"></i>;
             } else if (currentResource.project.layout === "board") {
                 // debugger
-                layoutIcon = <i class="fab fa-trello"></i>
+                layoutIcon = <i className="fab fa-trello"></i>
             } else {
                 layoutIcon = null;
             }

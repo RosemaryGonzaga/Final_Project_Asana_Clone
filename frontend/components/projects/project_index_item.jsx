@@ -13,9 +13,9 @@ export const ProjectIndexItem = props => {
     const { project } = props;
     let layoutIcon;
     if (project.layout === "list") {
-        layoutIcon = <i class="fas fa-list"></i>;
+        layoutIcon = <i className="fas fa-list"></i>;
     } else if (project.layout === "board") {
-        layoutIcon = <i class="fab fa-trello"></i>
+        layoutIcon = <i className="fab fa-trello"></i>
     } else {
         layoutIcon = null;
     }

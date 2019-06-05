@@ -11,8 +11,12 @@ class Api::SectionsController < ApplicationController
 
     def index
         # @sections = current_user.sections
-        current_project = Project.find_by(project_id: params[:section][:project_id])  # need to structure Ajax request to include projectId in the params
+        current_project = Project.find_by(id: params[:project_id])  # need to structure Ajax request to include projectId in the params
         @sections = current_project.sections
+        # debugger
+        # render :index
+        # render 'api/sections/index.json.jbuilder'
+        # render 'sections/index.json.jbuilder'
     end
 
     def show
@@ -48,3 +52,47 @@ class Api::SectionsController < ApplicationController
         params.require(:section).permit(:name, :description, :layout, :project_id, :assignee_id, :due_on, :completed, :completed_at)
     end
 end
+
+
+# # JS code for manual testing w/ AJAX functions in Chrome console:
+# let section_params = {
+#     name: 'first section',
+#     description: 'optional',
+#     layout: 'list',
+#     project_id: 62,
+#     assignee_id: 15,
+#     due_on: new Date(),
+#     completed: false,
+# }
+
+# $.ajax({
+#     method: 'POST',
+#     url: '/api/sections',
+#     data: {
+#         section: section_params
+#     }
+# })
+
+# $.ajax({
+#     method: 'GET',
+#     url: '/api/sections',
+#     data: { project_id: 62 }
+# })
+
+# $.ajax({
+#     method: 'GET',
+#     url: '/api/sections/1',
+# })
+
+# $.ajax({
+#     method: 'PATCH',
+#     url: '/api/sections/2',
+#     data: {
+#         section: section_params
+#     }
+# })
+
+# $.ajax({
+#     method: 'DELETE',
+#     url: '/api/sections/3',
+# })

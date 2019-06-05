@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { logout } from '../actions/session_actions';
 import ProjectIndexContainer from './projects/project_index_container';
 import ProjectShowContainer from './projects/project_show_container';
+import TaskShowContainer from './tasks/task_show_container';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
 import { fetchProjects } from '../actions/project_actions';
@@ -67,6 +68,8 @@ class Home extends React.Component {
             } else {
                 layoutIcon = null;
             }
+        } else if (currentResource.component === "taskShow" && currentResource.task) {
+            navHeader = currentResource.project.name;
         } else {    // this condition allows control flow to proceed to componentDidUpdate in case currentResource.project is undefined
             navHeader = ""
         }
@@ -126,6 +129,7 @@ class Home extends React.Component {
                         <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1>
 
                         <Switch>
+                            <ProtectedRoute path="/home/projects/:projectId/:taskId" component={TaskShowContainer}/>
                             <ProtectedRoute path="/home/projects/:projectId" component={ProjectShowContainer} />
                             <ProtectedRoute path="/home/projects" component={ProjectIndexContainer} />
                         </Switch>
@@ -140,8 +144,8 @@ const msp = (state, ownProps) => {
     const pathParts = ownProps.location.pathname.split("/");
     const resource = pathParts[pathParts.length - 2];   // Should be either "projects" or "tasks" (if it's blank show home; if it's "home", show projects index )
     const resourceId = pathParts[pathParts.length - 1]; // Should be a number ...
-
-    let currentResource
+    // debugger
+    let currentResource;
     if (resource === "projects") {
         currentResource = {
             component: "projectShow",
@@ -153,12 +157,21 @@ const msp = (state, ownProps) => {
     //         task: state.entities.tasks[resourceId],      // to flesh out later: pass current task as a prop
     //     }
     } else if (resource === "home") {
+        // debugger
         currentResource = {
             component: "projectIndex",
         }
     } else if (resource === "") {
+        // debugger
         currentResource = {
             component: "home",
+        }
+    } else if (!isNaN(parseInt(resource))) {    // if resource is a number (but need to catch other scenarios - like "" and "tasks" - upstream)
+        // debugger
+        currentResource = {
+            component: "taskShow",
+            task: state.entities.tasks[resourceId],
+            project: state.entities.projects[resource]  // in this branch of code, resource is presumably the projectId
         }
     };
 

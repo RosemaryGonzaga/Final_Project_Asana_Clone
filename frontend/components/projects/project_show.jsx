@@ -10,8 +10,9 @@ class ProjectShow extends React.Component {
     }
 
     componentDidMount() {
-        const { fetchProject } = this.props;
+        const { fetchProject, fetchSections } = this.props;
         fetchProject(this.props.match.params.projectId);
+        fetchSections(this.props.match.params.projectId);
     }
 
     handleRedirectToHome(e) {
@@ -22,15 +23,19 @@ class ProjectShow extends React.Component {
     }
 
     render() {
-        const { project, openEditProjectModal, openDeleteProjectModal } = this.props;
+        const { project, openEditProjectModal, openDeleteProjectModal, sections } = this.props;
         console.log(this.props);
         let layout;
         if (!project) {
             return null;
         } else if (project.layout === "list") {
-            layout = <ProjectListView project={project} openEditProjectModal={openEditProjectModal} />;
+            layout = <ProjectListView project={project} 
+                                        openEditProjectModal={openEditProjectModal} 
+                                        sections={sections} />;
         } else {
-            layout = <ProjectBoardView project={project} openEditProjectModal={openEditProjectModal} />;
+            layout = <ProjectBoardView project={project} 
+                                        openEditProjectModal={openEditProjectModal} 
+                                        sections={sections} />;
         }
 
         return (

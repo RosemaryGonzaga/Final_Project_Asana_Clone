@@ -2,16 +2,20 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProjectShow from './project_show';
 import { fetchProject } from '../../actions/project_actions';
+import { fetchSections } from '../../actions/section_actions';
 import { receiveNavHeader } from '../../actions/nav_header_actions';
 import { receiveMainContent } from '../../actions/main_content_actions';
 import { openModal } from '../../actions/modal_actions';
+import { selectAllSections } from '../../reducers/selectors';
 
 const msp = (state, ownProps) => {
     // debugger
     const { projects } = state.entities;
     const projectId = ownProps.match.params.projectId; // is this right?
     const project = projects[projectId];
-    return { project };
+    const sections = selectAllSections(state);
+
+    return { project, sections };
 };
 
 const mdp = dispatch => {
@@ -22,6 +26,7 @@ const mdp = dispatch => {
         receiveMainContent: content => dispatch(receiveMainContent(content)),
         openEditProjectModal: () => dispatch(openModal('editProject')),
         openDeleteProjectModal: () => dispatch(openModal('deleteProject')),
+        fetchSections: projectId => dispatch(fetchSections(projectId)),
     };
 };
 

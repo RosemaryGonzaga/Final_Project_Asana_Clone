@@ -11,7 +11,7 @@ class Api::SectionsController < ApplicationController
 
     def index
         # @sections = current_user.sections
-        current_project = Project.find_by(project_id: params[:projectId])  # need to structure Ajax request to include projectId in the params
+        current_project = Project.find_by(project_id: params[:section][:project_id])  # need to structure Ajax request to include projectId in the params
         @sections = current_project.sections
     end
 

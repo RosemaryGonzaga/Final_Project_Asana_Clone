@@ -10,7 +10,7 @@ class Api::TasksController < ApplicationController
     end
 
     def index
-        @tasks = current_user.tasks
+        @tasks = current_user.project_tasks # get user's project_tasks, which encompasses their assigned_tasks
     end
 
     def show
@@ -46,3 +46,30 @@ class Api::TasksController < ApplicationController
         params.require(:task).permit(:name, :description, :project_id, :section_id, :assignee_id, :due_on, :completed, :completed_at)
     end
 end
+
+
+# # JS code for manual testing w/ AJAX functions in Chrome console:
+# let task_params = {
+#     name: 'first task',
+#     description: 'optional',
+#     project_id: 1,
+#     assignee_id: 15,
+#     due_on: new Date(),
+#     completed: false,
+# }
+
+# $.ajax({
+#     method: 'GET',
+#     url: '/api/projects',
+# })
+
+# $.ajax({
+#     method: "POST",
+#     url: "api/projects",
+#     data: { 
+#         user: {
+#             primary_email: user.primaryEmail,
+#             password: user.password,
+#         }
+#     },
+# })

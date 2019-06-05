@@ -38,23 +38,44 @@ class Home extends React.Component {
         // debugger
         const { currentUser, currentResource } = this.props;
         let navHeader;
+        let layoutIcon;
         if (currentResource.component === "home") {
             navHeader = "Home";
         } else if (currentResource.component === "projectIndex") {
             navHeader = "Projects";
         } else if (currentResource.component === "projectShow" && currentResource.project) {
             navHeader = currentResource.project.name;
+            if (currentResource.project.layout === "list") {
+                // debugger
+                layoutIcon = <i class="fas fa-list"></i>;
+            } else if (currentResource.project.layout === "board") {
+                // debugger
+                layoutIcon = <i class="fab fa-trello"></i>
+            } else {
+                layoutIcon = null;
+            }
         } else {    // this condition allows control flow to proceed to componentDidUpdate in case currentResource.project is undefined
             navHeader = ""
         }
 
         return (
             <div className="home-container">
-                <div className="home-sidebar"><Link to="/home/projects">Projects Index</Link></div>
+                <div className="home-sidebar">
+                    <Link to="/home"><img src={window.asanaLogoHome}
+                            className="home-sidebar-logo"/>
+                    </Link>
+                    <br/>
+                    <ul className="home-sidebar-top">
+                        <li><Link to="/home"><i className="fas fa-home"></i> Home</Link></li>
+                        <li><Link to="/home/projects">Projects</Link></li>
+                        <li><Link to=""><i className="far fa-check-circle"></i>Tasks</Link></li>
+                    </ul>
+                    {/* <Link to="/home/projects">Projects Index</Link> */}
+                </div>
                 <div className="home-main">
                     <div className="home-topbar">
                         <nav className="home-topbar-left">
-                           <div className="home-topbar-left-icon"></div>
+                           <div className="home-topbar-left-icon">{layoutIcon}</div>
                            <div className="home-topbar-left-navs">
                                 <ul className="topbar-project-info">
                                     <li>{navHeader}</li>

@@ -34,7 +34,7 @@
 
 .project-index-item-container:hover {
     background-color: #f6f8f9;
-    transform: translate3d(0px, -10px, 0px);
+    transform: translate3d(0px, -5px, 0px);
 }
 
 
@@ -45,6 +45,21 @@
     border-radius: 20px;
     margin-top: 20px;
     margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-index-item-tile > i {
+    font-size: 22px;
+    color: white;
+    transition-duration: 500ms;
+}
+
+.project-index-item-tile > i:hover {
+    font-size: 22px;
+    color: white;
+    transform: translate3d(0px, -4px, 0px);
 }
 
 .project-index-item-container > p {

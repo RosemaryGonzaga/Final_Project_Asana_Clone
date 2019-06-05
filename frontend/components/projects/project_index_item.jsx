@@ -11,11 +11,20 @@ export const ProjectIndexItem = props => {
     }
 
     const { project } = props;
+    let layoutIcon;
+    if (project.layout === "list") {
+        layoutIcon = <i class="fas fa-list"></i>;
+    } else if (project.layout === "board") {
+        layoutIcon = <i class="fab fa-trello"></i>
+    } else {
+        layoutIcon = null;
+    }
+    
     return (
         <Link to={`/home/projects/${project.id}`} 
                 className="project-index-item-container"
                 onClick={handleClick}>
-            <div className="project-index-item-tile"></div>
+            <div className="project-index-item-tile">{layoutIcon}</div>
             <p>{project.name}</p>
         </Link>
     );

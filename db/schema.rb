@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_02_181602) do
+ActiveRecord::Schema.define(version: 2019_06_05_141122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,37 @@ ActiveRecord::Schema.define(version: 2019_06_02_181602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_projects_on_owner_id"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "due_on"
+    t.integer "project_id", null: false
+    t.integer "assignee_id"
+    t.boolean "completed"
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "layout", null: false
+    t.index ["assignee_id"], name: "index_sections_on_assignee_id"
+    t.index ["project_id"], name: "index_sections_on_project_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "due_on"
+    t.integer "project_id"
+    t.integer "section_id"
+    t.integer "assignee_id"
+    t.boolean "completed"
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignee_id"], name: "index_tasks_on_assignee_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["section_id"], name: "index_tasks_on_section_id"
   end
 
   create_table "users", force: :cascade do |t|

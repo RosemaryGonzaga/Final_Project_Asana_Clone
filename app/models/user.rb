@@ -26,6 +26,11 @@ class User < ApplicationRecord
         foreign_key: :owner_id,
         class_name: :Project
 
+    has_many :tasks,
+        primary_key: :id,
+        foreign_key: :project_id,
+        class_name: :Task
+
     # figvaper
 
     # class methods

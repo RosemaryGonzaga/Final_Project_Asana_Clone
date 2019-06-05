@@ -23,4 +23,14 @@ class Project < ApplicationRecord
         primary_key: :id,
         foreign_key: :owner_id,
         class_name: :User
+
+    has_many :sections,
+        primary_key: :id,
+        foreign_key: :project_id,
+        class_name: :Section
+
+    has_many :tasks,
+        primary_key: :id,
+        foreign_key: :project_id,
+        class_name: :Task
 end

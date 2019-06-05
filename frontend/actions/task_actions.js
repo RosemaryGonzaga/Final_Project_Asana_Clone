@@ -16,6 +16,7 @@ const receiveAllTasks = tasks => {
 };
 
 const receiveTask = task => {
+    // debugger
     return {
         type: RECEIVE_TASK,
         task,

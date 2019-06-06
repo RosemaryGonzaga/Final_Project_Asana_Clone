@@ -68,6 +68,8 @@ class TaskShow extends React.Component {
             completed, completedAt,
             createdAt, updatedAt } = this.state;
 
+        let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
+
 
         // Calculation of time since task creation --> factor out into helper files later?
         const currentDateTime = new Date();
@@ -119,7 +121,7 @@ class TaskShow extends React.Component {
             <div className="task-show-container">
                 <form className="task-show-form" onSubmit={this.handleSubmit}>
                     <h1 className="task-show-header">
-                        <button className="mark-complete-btn">Mark Complete</button>
+                        <button className="mark-complete-btn"><i className="fas fa-check" id="fas-fa-check-task-button"></i>Mark Complete</button>
                         <input type="submit" value="Submit"/>
                         <button>Delete task</button>
                         <button className="task-show-close-btn" >
@@ -131,21 +133,34 @@ class TaskShow extends React.Component {
                             <input type="text" value={name}
                                 onChange={this.handleChange("name")} 
                                 className="task-show-name-input" />
-                            <p>{assignee.primaryEmail}</p>
-                            <p>Due: {dueOn}</p>
+                            <div className="task-show-section1-bottom">
+                                <div className="task-show-assign-button">
+                                    <div className="avatar-task-show-large">{initials}</div>
+                                    <p className="task-show-assign-text">{assignee.primaryEmail}</p>
+                                </div>
+                                <p>Due: {dueOn}</p>
+                            </div>
                         </section>
                         <section className="task-show-section2">
-                            <textarea className="task-show-description-input"
-                                        value={description}
-                                        onChange={this.handleChange("description")}>
-                            </textarea>
-                            <p>{project.name}</p>
-                            <p>{section.name}</p>
+                            <div className="task-show-section2-top">
+                                <i className="fas fa-align-left"></i>
+                                <textarea className="task-show-description-input"
+                                    value={description}
+                                    onChange={this.handleChange("description")}>
+                                </textarea>
+                            </div>
+                            <div className="task-show-section2-bottom">
+                                <i className="far fa-clipboard"></i>
+                                <div className="task-show-project-icon">{project.name}</div>
+                                <div className="task-show-section-label">{section.name}</div>
+                            </div>
                         </section>
-                        <section className="task-show-section3">section 3
-                            <p>{assignee.primaryEmail} created this task.    {timeAgoSinceCreation}</p>
-                            <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
-                            {taskStatusMessage}
+                        <section className="task-show-section3">
+                            <div className="task-show-section3-center">
+                                <p>{assignee.primaryEmail} created this task.    {timeAgoSinceCreation}</p>
+                                <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
+                                {taskStatusMessage}
+                            </div>
                             {/* <div>THIS IS A TEST: {this.state.completed.toString()}</div> */}
                         </section>
                     </div>

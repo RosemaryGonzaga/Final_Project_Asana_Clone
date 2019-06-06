@@ -1,0 +1,13 @@
+.section-container {
+    /* width: 497px;
+    height: 748px; */
+    background-color: white;
+    display: flex;
+    
+}
+
+.section-index-item-container {
+    display: block;
+    height: 20px;
+    background-color: green;
+}

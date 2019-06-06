@@ -31,24 +31,28 @@ class ProjectShow extends React.Component {
         } else if (project.layout === "list") {
             layout = <ProjectListView project={project} 
                                         openEditProjectModal={openEditProjectModal} 
+                                        openDeleteProjectModal={openDeleteProjectModal}
                                         sections={sections} />;
         } else {
             layout = <ProjectBoardView project={project} 
                                         openEditProjectModal={openEditProjectModal} 
+                                        openDeleteProjectModal={openDeleteProjectModal}
                                         sections={sections} />;
         }
 
         return (
             <div className="project-show-container">
-                <Link to="/home/projects" onClick={this.handleRedirectToHome}>Back to all projects</Link>
-                <section className="project-info">
-                    <h1>Name: {project.name}</h1>
+                {layout}
+                {/* <Link to="/home/projects" onClick={this.handleRedirectToHome}>Back to all projects</Link> */}
+                {/* <section className="project-info"> */}
+                    {/* <h1>Name: {project.name}</h1> */}
                     {/* <div>Description: {project.description}</div> */}
                     {/* <div>Layout: {project.layout}</div> */}
-                    <button onClick={openEditProjectModal}>Edit Project!</button>
-                    <button onClick={openDeleteProjectModal}>Delete Project?</button>
-                </section>
-                {layout}
+                    {/* <button onClick={openEditProjectModal}>Edit Project!</button> */}
+                    {/* <button onClick={openDeleteProjectModal}>Delete Project?</button> */}
+                    {/* {layout} */}
+                {/* </section> */}
+                {/* <section>Right section</section> */}
             </div>
         );
     }

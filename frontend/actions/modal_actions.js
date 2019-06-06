@@ -13,3 +13,13 @@ export const closeModal = () => {
         type: CLOSE_MODAL
     });
 };
+
+
+// // tweaking with my own modal actions here
+// export const openEditTaskModal = (modal, taskId) => {
+//     return ({
+//         type: OPEN_MODAL,
+//         modal,
+//         taskId
+//     });
+// };

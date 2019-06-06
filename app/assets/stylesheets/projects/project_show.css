@@ -1,7 +1,6 @@
 .project-show-container {
     /* width: 1190px; */
     /* height: 727px; */
-    background-color: blue;
     display: flex;
     position: absolute;
     top: 15px;
@@ -18,14 +17,34 @@
     /* height: 727px; */
     width: 100%;
     height: 100%;
-    background-color: purple;
     display: flex;
     justify-content: space-between;
+    
 }
+
+
+
+/* MAIN PART OF PROJECT SHOW */
 
 .project-show-list-main-content {
-    background-color: yellow;
+    margin-right: 7px;
     width: 870px;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 0 4px #26151B26;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+    /* position: relative; */
+}
+
+.project-show-list-header {
+    height: 52px;
+    border-bottom: 1px solid #e0e6e8;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 
@@ -33,9 +52,39 @@
 
 
 
-/* right side - either description or task show */
+
+/* RIGHT SIDE - EITHER DESCRIPTION OR TASK SHOW INFO (SHOW / EDIT) */
+
 .project-list-description {
-    background-color: red;
+    margin-left: 7px;
     width: 282px;
     height: 130px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 0 4px #26151B26;
+    padding: 22px 24px;
+    /* color: #848f99;
+    font-size: 12px;
+    font-weight: 500; */
+
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+    /* position: relative; */
 }
+
+.project-list-description > p:first-of-type {
+    color: #848f99;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.project-list-description > p:last-of-type {
+    color: #151b26;
+    font-size: 13px;
+    line-height: 20px;
+    margin-top: 15px;
+}
+
+

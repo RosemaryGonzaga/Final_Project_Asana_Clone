@@ -18,13 +18,17 @@ class ProjectListView extends React.Component {
         // // need to define this as description box or task show component, depending on whether user has clicked a task (section index item) 
         // // pass callback down to section, then down to section index item to set the state here?
         // const rightComponentToRender = (<div className="task-show-wrapper">conditionally render task show component here</div>);
-        const rightComponentToRender = (<div className="project-list-description">Description: {project.description}</div>);
+        const rightComponentToRender = (<div className="project-list-description">
+                                            <p>Description:</p>
+                                            <p>{project.description}</p>
+                                        </div>);
 
         return (
             <div className="project-show-list-layout-wrapper">
                 <div className="project-show-list-main-content">
                     <div className="project-show-list-header">
-                        <h1>Project: {project.name}</h1>
+                        {/* <h1>Project: {project.name}</h1> */}
+                        <button>Add Task</button>
                         <button onClick={openEditProjectModal}>Edit Project!</button>
                         <button onClick={openDeleteProjectModal}>Delete Project?</button>
                     </div>

@@ -50,8 +50,9 @@ class Section extends React.Component {
 
         return (
             <div className="section-container">
-                <div>{section.name}</div>
-                {taskItems}
+                <div className="section-header">{section.name}</div>
+                <ul>{taskItems}</ul>
+                
                 {/* <form>
 
                 </form> */}

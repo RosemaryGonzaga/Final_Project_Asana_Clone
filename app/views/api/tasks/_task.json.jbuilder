@@ -7,3 +7,5 @@ json.assigneeId task.assignee_id
 json.dueOn task.due_on
 json.completed task.completed
 json.completedAt task.completed_at
+json.createdAt task.created_at
+json.updatedAt task.updated_at

@@ -4,10 +4,10 @@ import TaskShow from './task_show';
 import { fetchTask } from '../../actions/task_actions';
 
 const msp = (state, ownProps) => {
-    const { tasks } = state.entities;
+    const { tasks, sections, projects } = state.entities;
     const taskId = ownProps.match.params.taskId;
     const task = tasks[taskId];
-    return { task };
+    return { task, sections, projects };
 };
 
 const mdp = dispatch => {

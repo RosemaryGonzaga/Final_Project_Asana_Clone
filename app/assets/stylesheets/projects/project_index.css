@@ -1,6 +1,7 @@
 .project-index-container {
     height: 800px;
     overflow-y: auto;
+    background-color: white;
 }
 
 .project-index-container > ul {

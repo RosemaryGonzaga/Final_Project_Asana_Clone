@@ -15,26 +15,26 @@ class TaskShow extends React.Component {
         const project = projects[projectId];
         const assignee = users[assigneeId];
 
-        this.state = { name, description, project, 
+        this.state = { id, name, description, project, 
             section, assignee, dueOn, completed, 
             completedAt, createdAt, updatedAt
         };
 
-        // this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.toggleComplete = this.toggleComplete.bind(this);
+    }    
 
     componentDidMount() {
         const { fetchTask } = this.props;
         fetchTask(this.props.match.params.taskId);
     }
 
-
     handleSubmit(e) {
-        // e.preventDefault();
-        // const { createProject } = this.props;
-        // const project = this.state;
+        debugger
+        e.preventDefault();
+        const { updateTask } = this.props;
+        const task = this.state;
+        updateTask(task);
         // createProject(project).then(payload => {
         //     const { project } = payload;
         //     const path = `/home/projects/${project.id}`;
@@ -48,20 +48,18 @@ class TaskShow extends React.Component {
         };
     }
 
-    handleMarkComplete(e) {
-
+    toggleComplete(e) {
+        const { updateTask, fetchTask } = this.props;
+        const { id, completed } = this.state;
+        const completedAt = new Date();
+        const that = this;
+        updateTask({ id, completed: !completed, completedAt }).then(payload => {
+            fetchTask(id);
+            that.setState({ completed: !completed, completedAt });
+        });
     }
 
     render() {
-
-        // const { task, sections, projects, users } = this.props;
-        // const { id, name, description, projectId, 
-        //         sectionId, assigneeId, dueOn, 
-        //         completed, completedAt, 
-        //         createdAt, updatedAt } = task;
-        // const section = sections[sectionId];
-        // const project = projects[projectId];
-        // const assignee = users[assigneeId];
 
         const { id, name, description, project,
             section, assignee, dueOn,
@@ -110,10 +108,23 @@ class TaskShow extends React.Component {
         let taskStatusMessage;
         if (completed) {
             // add checkmark icon inside taskStatusMessage
-            taskStatusMessage = <div>{assignee.primaryEmail} completed this task.</div>
+            let timeSinceCompletion = Date.parse(currentDateTime) - Date.parse(completedAt);
+            let timeAgoSinceCompletion
+            if (timeSinceCompletion > 86400000) {          // format in days
+                timeSinceCompletion /= 86400000;
+                timeAgoSinceCompletion = `${Math.floor(timeSinceCompletion)} days ago`;
+            } else if (timeSinceCompletion > 3600000) {    // format in hours
+                timeSinceCompletion /= 3600000;
+                timeAgoSinceCompletion = `${Math.floor(timeSinceCompletion)} hours ago`;
+            } else if (timeSinceCompletion > 60000) {      // format in minutes
+                timeSinceCompletion /= 60000;
+                timeAgoSinceCompletion = `${Math.floor(timeSinceCompletion)} minutes ago`;
+            } else {
+                timeAgoSinceCompletion = 'just now'
+            }
+            taskStatusMessage = <div>{assignee.primaryEmail} completed this task.  {timeAgoSinceCompletion}</div>
         } else {
             taskStatusMessage = null;
-            // taskStatusMessage = <div>{assignee.primaryEmail} has NOT yet completed this task.</div>
         }
 
 
@@ -121,7 +132,10 @@ class TaskShow extends React.Component {
             <div className="task-show-container">
                 <form className="task-show-form" onSubmit={this.handleSubmit}>
                     <h1 className="task-show-header">
-                        <button className="mark-complete-btn"><i className="fas fa-check" id="fas-fa-check-task-button"></i>Mark Complete</button>
+                        <button className="mark-complete-btn" onClick={this.toggleComplete} type="button">
+                            <i className="fas fa-check" id="fas-fa-check-task-button"></i>
+                            Mark Complete
+                        </button>
                         <input type="submit" value="Submit"/>
                         <button>Delete task</button>
                         <button className="task-show-close-btn" >
@@ -136,9 +150,17 @@ class TaskShow extends React.Component {
                             <div className="task-show-section1-bottom">
                                 <div className="task-show-assign-button">
                                     <div className="avatar-task-show-large">{initials}</div>
-                                    <p className="task-show-assign-text">{assignee.primaryEmail}</p>
+                                    <div>
+                                        <p className="task-show-assign-text1">Assigned to</p>
+                                        <p className="task-show-assign-text2">{assignee.primaryEmail}</p>
+                                    </div>
                                 </div>
-                                <p>Due: {dueOn}</p>
+                                <div className="task-show-due-date-button">
+                                    <div className="task-show-calendar-icon">
+                                        <i className="far fa-calendar"></i>
+                                    </div>
+                                    <p>Due Date</p>
+                                </div>
                             </div>
                         </section>
                         <section className="task-show-section2">
@@ -161,7 +183,6 @@ class TaskShow extends React.Component {
                                 <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
                                 {taskStatusMessage}
                             </div>
-                            {/* <div>THIS IS A TEST: {this.state.completed.toString()}</div> */}
                         </section>
                     </div>
                     <div className="task-show-form-footer"></div>
@@ -174,3 +195,20 @@ class TaskShow extends React.Component {
 export default TaskShow;
 
 
+
+// helper function
+
+function timeAgoFormatted(timeDiffInMS) {
+    if (timeDiffInMS > 86400000) {          // format in days
+        timeDiffInDays = timeDiffInMS / 86400000;
+        return `${Math.floor(timeDiffInDays)} days ago`;
+    } else if (timeDiffInMS > 3600000) {    // format in hours
+        timeDiffInHours = timeDiffInMS / 3600000;
+        return `${Math.floor(timeDiffInHours)} hours ago`;
+    } else if (timeDiffInMS > 60000) {      // format in minutes
+        timeDiffInMinutes = timeDiffInMS / 60000;
+        return `${Math.floor(timeDiffInMinutes)} minutes ago`;
+    } else {
+        return 'just now';
+    }
+}

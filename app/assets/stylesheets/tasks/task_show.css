@@ -61,6 +61,7 @@
     font-size: 13px;
     transition-duration: 400ms;
     transition-property: background-color, border-color, color;
+    cursor: pointer;
 }
 
 .mark-complete-btn:hover {
@@ -131,20 +132,26 @@
 .task-show-assign-button {
     width: 172px;
     height: 40px;
-    border: 1px solid #646f79;
+    border: 1px solid transparent;
     border-radius: 20px;
-    background-color: #f6f8f9;
-    color: #222b37;
+    background-color: white;
+    /* color: #222b37; */
+    color: #151b26;
     font-size: 13px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-
-    /* box-sizing: border-box;
-    padding: 5px 10px;
-    display: inline-block;
-    color: white; */
+    margin-bottom: 4px;
+    transition-duration: 400ms;
+    transition-property: background-color, border-color;
 }
+
+.task-show-assign-button:hover {
+    border: 1px solid #646f79;
+    background-color: #f6f8f9;
+    /* color: #222b37; */
+}
+
 
 .avatar-task-show-large {
     width: 30px;
@@ -162,10 +169,69 @@
     position: relative;
 }
 
-.task-show-assign-text {
+
+.task-show-assign-text1 {
+    font-size: 12px;
+    color: #848f99;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.task-show-assign-text2 {
     width: 117px;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 18px;
+}
+
+.task-show-due-date-button {
+    width: 113px;
+    height: 40px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: white;
+    color: #222b37;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 12px;
+    margin-bottom: 4px;
+    transition-duration: 400ms;
+    transition-property: background-color, border-color, color;
+}
+
+.task-show-due-date-button:hover {
+    border: 1px solid #646f79;
+    background-color: #f6f8f9;
+    color: #222b37;
+}
+
+
+.task-show-calendar-icon {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    /* border: 1px dashed #646f79; */
+    /* border: 1px dashed #848f99; */
+    border: 1px dashed #b7bfc6;
+    padding: none;
+    border-radius: 20px;
+    font-size: 15px;
+    color: #848f99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition-duration: 400ms;
+    transition-property: background-color, border-color, color;
+}
+
+.task-show-due-date-button:hover .task-show-calendar-icon {
+    border: 1px solid #646f79;
+    background-color: #f6f8f9;
+    /* color: #222b37; */
+    color: #646f79;
 }
 
 

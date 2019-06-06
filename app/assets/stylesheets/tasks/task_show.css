@@ -14,13 +14,13 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 3px;
-    /* box-shadow: -2px 2px 4px #26151B26; */
     box-shadow: 0 0 4px #26151B26;
     position: relative;
     /* margin-bottom: 250px; */
 }
 
 
+/* ------ HEADER STYLING ------ */
 
 .task-show-header {
     height: 50px;
@@ -42,7 +42,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 2;
+    z-index: 4;
 }
 
 .task-show-close-btn > img {
@@ -51,14 +51,37 @@
     margin: none;
 } 
 
+.mark-complete-btn {
+    width: 130px;
+    height: 30px;
+    outline: none;
+    border-radius: 3px;
+    border-color: #b7bfc6;
+    color: #646f79;
+    font-size: 13px;
+    transition-duration: 400ms;
+    transition-property: background-color, border-color, color;
+}
 
+.mark-complete-btn:hover {
+    background-color: #f6f8f9;
+    border-color: #646f79;
+    color: #222b37;
+}
+
+
+
+
+/* ------ FORM CONTENT STYLING ------ */
 
 .task-show-form-content {
     box-sizing: border-box;
     padding-left: 30px;
     padding-right: 30px;
-    /* border-bottom: 1px solid #e0e6e8; */
 }
+
+
+/* ------ SECTION 1 STYLING ------ */
 
 .task-show-section1 {
     height: 110px;
@@ -67,12 +90,70 @@
     border-bottom: 1px solid #e0e6e8;
 }
 
+.task-show-name-input {
+    width: 445px;
+    height: 42px;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 24px;
+    color: #151b26;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    transition-duration: 300ms;
+    transition-property: border-color;
+    /* resize: none; */
+}
+
+.task-show-name-input:hover {
+    border-color: #d5dce0;
+}
+
+.task-show-name-input:focus {
+    border-color: #9ca6af;
+    outline: none;
+}
+
+.task-show-description-input {
+    width: 406px;
+    height: 60px;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 13px;
+    color: #151b26;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    transition-duration: 300ms;
+    transition-property: border-color;
+    resize: none;
+}
+
+.task-show-description-input:hover {
+    border-color: #d5dce0;
+}
+
+.task-show-description-input:focus {
+    border-color: #9ca6af;
+    outline: none;
+}
+
+
+
+/* ------ SECTION 2 STYLING ------ */
+
 .task-show-section2 {
     height: 110px;
     background-color: white;
     display: block;
     border-bottom: 1px solid #e0e6e8;
 }
+
+
+
+/* ------ SECTION 3 STYLING ------ */
 
 .task-show-section3 {
     height: 300px;
@@ -82,6 +163,7 @@
 
 
 
+/* ------ FOOTER STYLING ------ */
 
 .task-show-form-footer {
     height: 130px;

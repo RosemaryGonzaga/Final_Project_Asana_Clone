@@ -43,8 +43,8 @@ class ProjectShow extends React.Component {
                 <Link to="/home/projects" onClick={this.handleRedirectToHome}>Back to all projects</Link>
                 <section className="project-info">
                     <h1>Name: {project.name}</h1>
-                    <div>Description: {project.description}</div>
-                    <div>Layout: {project.layout}</div>
+                    {/* <div>Description: {project.description}</div> */}
+                    {/* <div>Layout: {project.layout}</div> */}
                     <button onClick={openEditProjectModal}>Edit Project!</button>
                     <button onClick={openDeleteProjectModal}>Delete Project?</button>
                 </section>

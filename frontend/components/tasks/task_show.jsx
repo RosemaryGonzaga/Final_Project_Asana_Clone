@@ -5,6 +5,7 @@ import React from 'react';
 class TaskShow extends React.Component {
     constructor(props) {
         super(props);
+
         const { task, sections, projects, users } = this.props;
         const { id, name, description, projectId,
             sectionId, assigneeId, dueOn,
@@ -13,17 +14,10 @@ class TaskShow extends React.Component {
         const section = sections[sectionId];
         const project = projects[projectId];
         const assignee = users[assigneeId];
-        this.state = {
-            name,
-            description,
-            project,
-            section,
-            assignee,
-            dueOn,
-            completed,
-            completedAt,
-            createdAt,
-            updatedAt
+
+        this.state = { name, description, project, 
+            section, assignee, dueOn, completed, 
+            completedAt, createdAt, updatedAt
         };
 
         // this.handleSubmit = this.handleSubmit.bind(this);
@@ -125,20 +119,23 @@ class TaskShow extends React.Component {
             <div className="task-show-container">
                 <form className="task-show-form" onSubmit={this.handleSubmit}>
                     <h1 className="task-show-header">
-                        <button>Mark Complete</button>
+                        <button className="mark-complete-btn">Mark Complete</button>
+                        <input type="submit" value="Submit"/>
+                        <button>Delete task</button>
                         <button className="task-show-close-btn" >
                             <img src={window.closeButtonHover} alt="x" />
                         </button>
                     </h1>
                     <div className="task-show-form-content">
                         <section className="task-show-section1">
-                            <input type="text" value={name} id="12345"
-                                onChange={this.handleChange("name")} />
+                            <input type="text" value={name}
+                                onChange={this.handleChange("name")} 
+                                className="task-show-name-input" />
                             <p>{assignee.primaryEmail}</p>
                             <p>Due: {dueOn}</p>
                         </section>
                         <section className="task-show-section2">
-                            <textarea id="editDescription-task"
+                            <textarea className="task-show-description-input"
                                         value={description}
                                         onChange={this.handleChange("description")}>
                             </textarea>

@@ -5,20 +5,31 @@ import React from 'react';
 class TaskShow extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     name: "",
-        //     description: "",
-        //     projectId: "",
-        //     sectionId: "",
-        //     assigneeId: "",
-        //     dueOn: new Date(),
-        //     completed: "public",
-        //     completedAt: this.props.currentUserId
-
-        // };
+        const { task, sections, projects, users } = this.props;
+        const { id, name, description, projectId,
+            sectionId, assigneeId, dueOn,
+            completed, completedAt,
+            createdAt, updatedAt } = task;
+        const section = sections[sectionId];
+        const project = projects[projectId];
+        const assignee = users[assigneeId];
+        this.state = {
+            name,
+            description,
+            project,
+            section,
+            assignee,
+            dueOn,
+            completed,
+            completedAt,
+            createdAt,
+            updatedAt
+        };
 
         // this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    
 
     componentDidMount() {
         const { fetchTask } = this.props;
@@ -38,9 +49,9 @@ class TaskShow extends React.Component {
     }
 
     handleChange(field) {
-        // return e => {
-        //     this.setState({ [field]: e.target.value });
-        // };
+        return e => {
+            this.setState({ [field]: e.target.value });
+        };
     }
 
     handleMarkComplete(e) {
@@ -49,16 +60,22 @@ class TaskShow extends React.Component {
 
     render() {
 
-        const { task, sections, projects, users } = this.props;
-        const { id, name, description, projectId, 
-                sectionId, assigneeId, dueOn, 
-                completed, completedAt, 
-                createdAt, updatedAt } = task;
-        const section = sections[sectionId];
-        const project = projects[projectId];
-        const assignee = users[assigneeId];
+        // const { task, sections, projects, users } = this.props;
+        // const { id, name, description, projectId, 
+        //         sectionId, assigneeId, dueOn, 
+        //         completed, completedAt, 
+        //         createdAt, updatedAt } = task;
+        // const section = sections[sectionId];
+        // const project = projects[projectId];
+        // const assignee = users[assigneeId];
 
-        // Calculation of time since task creation
+        const { id, name, description, project,
+            section, assignee, dueOn,
+            completed, completedAt,
+            createdAt, updatedAt } = this.state;
+
+
+        // Calculation of time since task creation --> factor out into helper files later?
         const currentDateTime = new Date();
         let timeSinceCreation = Date.parse(currentDateTime) - Date.parse(createdAt);
         let timeAgoSinceCreation;
@@ -74,6 +91,7 @@ class TaskShow extends React.Component {
         } else {
             timeAgoSinceCreation = 'just now'
         }
+
 
         // Calculation of time since latest task update
         let timeSinceUpdate = Date.parse(currentDateTime) - Date.parse(updatedAt);
@@ -91,6 +109,18 @@ class TaskShow extends React.Component {
             timeAgoSinceUpdate = 'just now'
         }
 
+
+        // Task completion status
+        let taskStatusMessage;
+        if (completed) {
+            // add checkmark icon inside taskStatusMessage
+            taskStatusMessage = <div>{assignee.primaryEmail} completed this task.</div>
+        } else {
+            taskStatusMessage = null;
+            // taskStatusMessage = <div>{assignee.primaryEmail} has NOT yet completed this task.</div>
+        }
+
+
         return (
             <div className="task-show-container">
                 <form className="task-show-form" onSubmit={this.handleSubmit}>
@@ -102,30 +132,24 @@ class TaskShow extends React.Component {
                     </h1>
                     <div className="task-show-form-content">
                         <section className="task-show-section1">
-                            {/* <input type="text" value={name} id="12345"
-                                onChange={this.handleChange("name")} /> */}
-                            <input type="text" value={name} id="12345"/>
-                            <p>{assigneeId}</p>
-                            <p>{dueOn}</p>
+                            <input type="text" value={name} id="12345"
+                                onChange={this.handleChange("name")} />
+                            <p>{assignee.primaryEmail}</p>
+                            <p>Due: {dueOn}</p>
                         </section>
                         <section className="task-show-section2">
-                            {/* <textarea id="editDescription-task"
+                            <textarea id="editDescription-task"
                                         value={description}
                                         onChange={this.handleChange("description")}>
-                            </textarea> */}
-                            <textarea id="editDescription-task"
-                                        value={description} >
                             </textarea>
-                            {/* <p>{description}</p> */}
                             <p>{project.name}</p>
                             <p>{section.name}</p>
                         </section>
                         <section className="task-show-section3">section 3
                             <p>{assignee.primaryEmail} created this task.    {timeAgoSinceCreation}</p>
                             <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
-                            {/* <p>{assignee.primaryEmail} created this task {createdAt}</p>
-                            <p>{assignee.primaryEmail} updated this task {updatedAt}</p> */}
-                            <p>Completed? {completed.toString()}</p>
+                            {taskStatusMessage}
+                            {/* <div>THIS IS A TEST: {this.state.completed.toString()}</div> */}
                         </section>
                     </div>
                     <div className="task-show-form-footer"></div>

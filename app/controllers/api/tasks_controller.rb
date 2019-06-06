@@ -1,13 +1,13 @@
 class Api::TasksController < ApplicationController
 
     def create
-        debugger
+        # debugger
         @task = Task.new(task_params)
         if @task.save
-            debugger
+            # debugger
             render :show
         else
-            debugger
+            # debugger
             render json: @task.errors.full_messages
         end
     end

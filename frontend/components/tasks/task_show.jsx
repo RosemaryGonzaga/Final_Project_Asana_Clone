@@ -31,7 +31,7 @@ class TaskShow extends React.Component {
     }
 
     handleSubmit(e) {
-        debugger
+        // debugger
         e.preventDefault();
         const { updateTask } = this.props;
         const task = this.state;
@@ -61,24 +61,6 @@ class TaskShow extends React.Component {
     }
 
 
-    // // helper function
-    // timeAgoFormatted(timeDiffInMS) {
-    //     if (timeDiffInMS > 86400000) {          // format in days
-    //         let timeDiffInDays = timeDiffInMS / 86400000;
-    //         return `${Math.floor(timeDiffInDays)} days ago`;
-    //     } else if (timeDiffInMS > 3600000) {    // format in hours
-    //         let timeDiffInHours = timeDiffInMS / 3600000;
-    //         return `${Math.floor(timeDiffInHours)} hours ago`;
-    //     } else if (timeDiffInMS > 60000) {      // format in minutes
-    //         let timeDiffInMinutes = timeDiffInMS / 60000;
-    //         return `${Math.floor(timeDiffInMinutes)} minutes ago`;
-    //     } else {
-    //         return 'just now';
-    //     }
-    // }
-
-
-
     render() {
 
         const { id, name, description, project,
@@ -88,63 +70,21 @@ class TaskShow extends React.Component {
 
         let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
 
-
-        // // Calculation of time since task creation --> factor out into helper files later?
+        // Calculation of time since task creation --> factor out into helper files later?
         const currentDateTime = new Date();
         let timeSinceCreation = Date.parse(currentDateTime) - Date.parse(createdAt);
         const timeAgoSinceCreation = timeAgoFormatted(timeSinceCreation);
-        // let timeAgoSinceCreation;
-        // if (timeSinceCreation > 86400000) {          // format in days
-        //     timeSinceCreation /= 86400000;
-        //     timeAgoSinceCreation = `${Math.floor(timeSinceCreation)} days ago`;
-        // } else if (timeSinceCreation > 3600000) {    // format in hours
-        //     timeSinceCreation /= 3600000;
-        //     timeAgoSinceCreation = `${Math.floor(timeSinceCreation)} hours ago`;
-        // } else if (timeSinceCreation > 60000) {      // format in minutes
-        //     timeSinceCreation /= 60000;
-        //     timeAgoSinceCreation = `${Math.floor(timeSinceCreation)} minutes ago`;
-        // } else {
-        //     timeAgoSinceCreation = 'just now'
-        // }
 
-
-        // // Calculation of time since latest task update
+        // Calculation of time since latest task update
         let timeSinceUpdate = Date.parse(currentDateTime) - Date.parse(updatedAt);
         const timeAgoSinceUpdate = timeAgoFormatted(timeSinceUpdate);
-        // let timeAgoSinceUpdate;
-        // if (timeSinceUpdate > 86400000) {          // format in days
-        //     timeSinceUpdate /= 86400000;
-        //     timeAgoSinceUpdate = `${Math.floor(timeSinceUpdate)} days ago`;
-        // } else if (timeSinceUpdate > 3600000) {    // format in hours
-        //     timeSinceUpdate /= 3600000;
-        //     timeAgoSinceUpdate = `${Math.floor(timeSinceUpdate)} hours ago`;
-        // } else if (timeSinceUpdate > 60000) {      // format in minutes
-        //     timeSinceUpdate /= 60000;
-        //     timeAgoSinceUpdate = `${Math.floor(timeSinceUpdate)} minutes ago`;
-        // } else {
-        //     timeAgoSinceUpdate = 'just now'
-        // }
 
-
-        // // Task completion status
+        // Task completion status
         let taskStatusMessage;
         if (completed) {
             // add checkmark icon inside taskStatusMessage
             let timeSinceCompletion = Date.parse(currentDateTime) - Date.parse(completedAt);
             const timeAgoSinceCompletion = timeAgoFormatted(timeSinceCompletion);
-            // let timeAgoSinceCompletion
-            // if (timeSinceCompletion > 86400000) {          // format in days
-            //     timeSinceCompletion /= 86400000;
-            //     timeAgoSinceCompletion = `${Math.floor(timeSinceCompletion)} days ago`;
-            // } else if (timeSinceCompletion > 3600000) {    // format in hours
-            //     timeSinceCompletion /= 3600000;
-            //     timeAgoSinceCompletion = `${Math.floor(timeSinceCompletion)} hours ago`;
-            // } else if (timeSinceCompletion > 60000) {      // format in minutes
-            //     timeSinceCompletion /= 60000;
-            //     timeAgoSinceCompletion = `${Math.floor(timeSinceCompletion)} minutes ago`;
-            // } else {
-            //     timeAgoSinceCompletion = 'just now'
-            // }
             taskStatusMessage = <div>{assignee.primaryEmail} completed this task.  {timeAgoSinceCompletion}</div>
         } else {
             taskStatusMessage = null;

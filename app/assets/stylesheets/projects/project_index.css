@@ -17,7 +17,6 @@
     width: 150px;
     height: 211px;
     background-color: white;
-    /* border: 1px solid gray; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,7 +38,6 @@
     transform: translate3d(0px, -5px, 0px);
 }
 
-
 .project-index-item-tile {
     background-color: #7a6ff0;
     width: 124px;
@@ -58,9 +56,7 @@
     transition-duration: 500ms;
 }
 
-.project-index-item-tile > i:hover {
-    font-size: 22px;
-    color: white;
+.project-index-item-container:hover > div > i {
     transform: translate3d(0px, -4px, 0px);
 }
 
@@ -68,4 +64,26 @@
     width: 124px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.new-project-tile {
+    background-color: transparent;
+    border: 2px dashed #9ca6af;
+}
+
+.new-project-tile:hover {
+    background-color: white;
+    border-color: #222b37;
+}
+
+.new-project-tile > i {
+    font-size: 22px;
+    color: #9ca6af;
+    transition-duration: 500ms;
+}
+
+.new-project-btn-container:hover > div > i {
+    font-size: 22px;
+    color: #222b37;
+    transform: translate3d(0px, -4px, 0px);
 }

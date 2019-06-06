@@ -52,6 +52,9 @@ class Section extends React.Component {
             <div className="section-container">
                 <div>{section.name}</div>
                 {taskItems}
+                {/* <form>
+
+                </form> */}
             </div>
         );
     }

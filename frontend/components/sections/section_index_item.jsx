@@ -20,6 +20,10 @@ export const SectionIndexItem = props => {
         <Link to={`/home/projects/${task.projectId}/${task.id}`}      // /'home/projects/:projectId/:taskId'
             className="section-index-item-container">
             <p>{task.name}</p>
+
+            {/* <input type="text" value={task.name}
+                onChange={this.handleChange("name")}
+                className="task-show-name-input" /> */}
         </Link>
     );
 };

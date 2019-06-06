@@ -48,11 +48,11 @@ class Home extends React.Component {
     }
 
     render() {
-        // debugger
         const { currentUser, currentResource } = this.props;
         let initials = currentUser.primaryEmail.slice(0,2).toUpperCase();  // this is temporary --> need to grab initials from user's full name
         let navHeader;
         let layoutIcon;
+        let layoutText;
         if (currentResource.component === "home") {
             navHeader = "Home";
         } else if (currentResource.component === "projectIndex") {
@@ -60,11 +60,17 @@ class Home extends React.Component {
         } else if (currentResource.component === "projectShow" && currentResource.project) {
             navHeader = currentResource.project.name;
             if (currentResource.project.layout === "list") {
-                // debugger
                 layoutIcon = <i className="fas fa-list"></i>;
+                layoutText = (
+                    <ul className="topbar-project-views">
+                        <li>List</li>
+                    </ul>);
             } else if (currentResource.project.layout === "board") {
-                // debugger
                 layoutIcon = <i className="fab fa-trello"></i>
+                layoutText = (
+                    <ul className="topbar-project-views">
+                        <li>Board</li>
+                    </ul>);
             } else {
                 layoutIcon = null;
             }
@@ -100,24 +106,15 @@ class Home extends React.Component {
                                     <li></li>
                                     <li></li>
                                 </ul>
-                                <ul className="topbar-project-views">
-                                    <li>List</li>
-                                    <li>Timeline</li>
-                                    <li>Calendar</li>
-                                    <li>Forms</li>
-                                    <li>Conversations</li>
-                                    <li>Progress</li>
-                                    <li>Files</li>
-                                </ul>
+                                {layoutText}
                            </div>
                         </nav>
                         <nav className="home-topbar-right">
                             <ul>
-                                <li>Search</li>
+                                {/* <li>Search</li> */}
                                 <li className="topbar-new-project-button">
                                     <Link to="/projects/new"><i className="fas fa-plus"></i> New</Link>
                                 </li>
-                                <li>Question</li>
                                 <li><button onClick={this.handleClick}>Sign Out</button></li>
                                 <li className={this.state.avatarClass} onClick={this.handleAvatarClick}>
                                     {initials}
@@ -126,7 +123,7 @@ class Home extends React.Component {
                         </nav>
                     </div>
                     <div className="home-main-content">
-                        <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1>
+                        {/* <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1> */}
 
                         <Switch>
                             <ProtectedRoute path="/home/projects/:projectId/:taskId" component={TaskShowContainer}/>

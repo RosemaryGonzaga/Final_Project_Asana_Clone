@@ -101,13 +101,14 @@
 
 .home-topbar-right > ul {
     height: 70px;
-    width: 532px;
+    /* width: 532px; */  /* Comment this back in when I build it other topbar components, like Search */
+    width: 200px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* background-color: #ff5263e6; */
     z-index: 2;
     margin-left: 12px;
+    margin-right: 20px;
 }
 
 .home-topbar-right > li {
@@ -143,7 +144,6 @@
     justify-content: space-around;
     align-items: center;
     position: relative;
-    /* background-color: lightgoldenrodyellow; */
     /* z-index: 2; */
 }
 

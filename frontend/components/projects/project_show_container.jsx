@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProjectShow from './project_show';
 import { fetchProject } from '../../actions/project_actions';
-import { fetchSections } from '../../actions/section_actions';
+import { fetchSections, createSection } from '../../actions/section_actions';
 import { receiveNavHeader } from '../../actions/nav_header_actions';
 import { receiveMainContent } from '../../actions/main_content_actions';
 import { openModal } from '../../actions/modal_actions';
@@ -15,7 +15,10 @@ const msp = (state, ownProps) => {
     const project = projects[projectId];
     const sections = selectAllSections(state);
 
-    return { project, sections };
+    // added this
+    const currentUserId = state.session.id;
+
+    return { project, sections, currentUserId };
 };
 
 const mdp = dispatch => {
@@ -27,6 +30,7 @@ const mdp = dispatch => {
         openEditProjectModal: () => dispatch(openModal('editProject')),
         openDeleteProjectModal: () => dispatch(openModal('deleteProject')),
         fetchSections: projectId => dispatch(fetchSections(projectId)),
+        createSection: section => dispatch(createSection(section)),
     };
 };
 

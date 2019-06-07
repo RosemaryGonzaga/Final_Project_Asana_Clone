@@ -47,6 +47,7 @@ export const fetchSection = id => {
 }
 
 export const createSection = section => {
+    debugger
     return dispatch => {
         return SectionApiUtil.createSection(section)
             .then(payload => dispatch(receiveSection(payload)));

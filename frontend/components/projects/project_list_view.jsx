@@ -13,6 +13,7 @@ class ProjectListView extends React.Component {
         };
         this.handleOpenTaskShowClick = this.handleOpenTaskShowClick.bind(this);
         this.handleAddTaskClick = this.handleAddTaskClick.bind(this);
+        // this.handleAddSection = this.handleAddSection.bind(this);
     }
 
     // componentDidMount() {   // not sure if this is needed (works w/o fetching sections)
@@ -20,10 +21,10 @@ class ProjectListView extends React.Component {
     //     fetchSections
     // }
 
-    componentDidUpdate() {   // not sure if this is needed (works w/o fetching sections)
-        const { fetchSections } = this.props;
-        fetchSections
-    }
+    // componentDidUpdate() {   // not sure if this is needed (works w/o fetching sections)
+    //     const { fetchSections } = this.props;
+    //     fetchSections
+    // }
 
     handleOpenTaskShowClick(e) {
         // e.preventDefault(); // necessary?
@@ -36,6 +37,21 @@ class ProjectListView extends React.Component {
         // debugger
         this.setState({ taskToRenderId: "new task" })
     }
+
+    // handleAddSection(e) {
+    //     // e.preventDefault();
+    //     debugger
+    //     const blankSection = { 
+    //         name: "Section1", 
+    //         description: "", 
+    //         layout: "list", 
+    //         project_id: this.props.project.id, 
+    //         assignee_id: this.props.currentUserId, 
+    //         due_on: "" };
+
+    //     const { createSection } = this.props;
+    //     createSection(blankSection);
+    // }
 
     render() {
         // debugger
@@ -95,6 +111,7 @@ class ProjectListView extends React.Component {
                     </div>
                     <ul>{sectionItems}</ul>
                     <div className="add-section-container"><i className="fas fa-plus"></i>Add Section</div>
+                    {/* <a href="#" className="add-section-container" onClick={this.handleAddSection}><i className="fas fa-plus"></i>Add Section</a> */}
                 </div>
                 
                 { rightComponentToRender }

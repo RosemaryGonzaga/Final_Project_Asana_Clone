@@ -2,9 +2,12 @@ class Api::SectionsController < ApplicationController
 
     def create
         @section = Section.new(section_params)
+        # debugger
         if @section.save
+            # debugger
             render :show
         else
+            # debugger
             render json: @section.errors.full_messages
         end
     end
@@ -49,6 +52,7 @@ class Api::SectionsController < ApplicationController
 
     private
     def section_params
+        # debugger
         params.require(:section).permit(:name, :description, :layout, :project_id, :assignee_id, :due_on, :completed, :completed_at)
     end
 end

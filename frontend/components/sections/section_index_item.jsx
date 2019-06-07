@@ -14,11 +14,13 @@ export const SectionIndexItem = props => {
     //     layoutIcon = null;
     // }
 
-    const { task } = props;
-
+    const { task, handleOpenTaskShowClick } = props;
+    // debugger
     return (
-        <Link to={`/home/projects/${task.projectId}/${task.id}`}      // /'home/projects/:projectId/:taskId'
-            className="section-index-item-container">
+        <Link to={`/home/projects/${task.projectId}/${task.id}`}      // '/home/projects/:projectId/:taskId'
+            className="section-index-item-container"
+            onClick={handleOpenTaskShowClick}
+            id={task.id} >
             <p>{task.name}</p>
 
             {/* <input type="text" value={task.name}

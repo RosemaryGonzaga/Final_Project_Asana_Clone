@@ -12,7 +12,6 @@ class Section extends React.Component {
 
     componentDidMount() {
         const { fetchSection, section, fetchTasks } = this.props;     // need to pass sectionId down from project show
-        // fetchSection(this.props.match.params.projectId);    
         fetchSection(section.id); 
         fetchTasks();
     }
@@ -25,24 +24,11 @@ class Section extends React.Component {
     // }
 
     render() {
-        // const { project, openEditProjectModal, openDeleteProjectModal } = this.props;
-        // const { project } = this.props;
-        // console.log(this.props);
-        // let layout;
-        // if (!project) {
-        //     return null;
-        // } else if (project.layout === "list") {
-        //     layout = <ProjectListView project={project} openEditProjectModal={openEditProjectModal} />;
-        // } else {
-        //     layout = <ProjectBoardView project={project} openEditProjectModal={openEditProjectModal} />;
-        // }
-
-        const { section, tasks } = this.props;
+        const { section, tasks, handleOpenTaskShowClick } = this.props;
 
         const taskItems = tasks.map(task => {
             if (task.sectionId === section.id) {
-                return <SectionIndexItem task={task} key={task.id} section={section} />;
-                // return <div>{task.name}</div>;
+                return <SectionIndexItem task={task} key={task.id} section={section} handleOpenTaskShowClick={handleOpenTaskShowClick} />;
             } else {
                 return null;
             }
@@ -52,10 +38,6 @@ class Section extends React.Component {
             <div className="section-container">
                 <div className="section-header">{section.name}</div>
                 <ul>{taskItems}</ul>
-                
-                {/* <form>
-
-                </form> */}
             </div>
         );
     }

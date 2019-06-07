@@ -34,6 +34,7 @@ class NewProjectForm extends React.Component {
 
     handleChange(field) {
         return e => {
+            // console.log(e.target.id); // remove this later, just for testing
             this.setState({ [field]: e.target.value });
         };
     }

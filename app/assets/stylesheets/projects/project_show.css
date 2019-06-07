@@ -15,7 +15,7 @@
 .project-show-list-layout-wrapper {
     /* width: 1190px; */
     /* height: 727px; */
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -36,6 +36,14 @@
     flex-direction: column;
     justify-content: space-between; */
     /* position: relative; */
+}
+
+.project-show-list-main-content-skinny {
+    margin-right: 7px;
+    width: 655px;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 0 4px #26151B26;
 }
 
 .project-show-list-header {

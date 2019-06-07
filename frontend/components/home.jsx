@@ -123,10 +123,8 @@ class Home extends React.Component {
                         </nav>
                     </div>
                     <div className="home-main-content">
-                        {/* <h1>Welcome, {currentUser.primaryEmail}! This is your home page (for now)</h1> */}
-
                         <Switch>
-                            <ProtectedRoute path="/home/projects/:projectId/:taskId" component={TaskShowContainer}/>
+                            {/* <ProtectedRoute path="/home/projects/:projectId/:taskId" component={TaskShowContainer}/> */}
                             <ProtectedRoute path="/home/projects/:projectId" component={ProjectShowContainer} />
                             <ProtectedRoute path="/home/projects" component={ProjectIndexContainer} />
                         </Switch>

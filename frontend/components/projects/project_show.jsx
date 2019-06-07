@@ -4,10 +4,10 @@ import ProjectBoardView from './project_board_view';
 import { Link } from 'react-router-dom';
 
 class ProjectShow extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleRedirectToHome = this.handleRedirectToHome.bind(this);
-    }
+    // constructor(props) {
+    //     super(props);
+    //     // this.handleRedirectToHome = this.handleRedirectToHome.bind(this);
+    // }
 
     componentDidMount() {
         const { fetchProject, fetchSections } = this.props;
@@ -15,44 +15,20 @@ class ProjectShow extends React.Component {
         fetchSections(this.props.match.params.projectId);
     }
 
-    handleRedirectToHome(e) {
-        // e.preventDefault();
-        const { receiveNavHeader, receiveMainContent } = this.props;  // may need to add constructor method to bind this event handler
-        receiveNavHeader("Home");
-        receiveMainContent("projectIndex");
-    }
-
     render() {
-        const { project, openEditProjectModal, openDeleteProjectModal, sections } = this.props;
-        console.log(this.props);
+        // const { project, openEditProjectModal, openDeleteProjectModal, sections } = this.props;
         let layout;
-        if (!project) {
+        if (!this.props.project) {
             return null;
-        } else if (project.layout === "list") {
-            layout = <ProjectListView project={project} 
-                                        openEditProjectModal={openEditProjectModal} 
-                                        openDeleteProjectModal={openDeleteProjectModal}
-                                        sections={sections} />;
+        } else if (this.props.project.layout === "list") {
+            layout = <ProjectListView {...this.props} />;
         } else {
-            layout = <ProjectBoardView project={project} 
-                                        openEditProjectModal={openEditProjectModal} 
-                                        openDeleteProjectModal={openDeleteProjectModal}
-                                        sections={sections} />;
+            layout = <ProjectBoardView {...this.props} />;
         }
 
         return (
             <div className="project-show-container">
                 {layout}
-                {/* <Link to="/home/projects" onClick={this.handleRedirectToHome}>Back to all projects</Link> */}
-                {/* <section className="project-info"> */}
-                    {/* <h1>Name: {project.name}</h1> */}
-                    {/* <div>Description: {project.description}</div> */}
-                    {/* <div>Layout: {project.layout}</div> */}
-                    {/* <button onClick={openEditProjectModal}>Edit Project!</button> */}
-                    {/* <button onClick={openDeleteProjectModal}>Delete Project?</button> */}
-                    {/* {layout} */}
-                {/* </section> */}
-                {/* <section>Right section</section> */}
             </div>
         );
     }

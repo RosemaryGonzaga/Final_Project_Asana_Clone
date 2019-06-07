@@ -163,14 +163,17 @@ export default TaskShow;
 function timeAgoFormatted(timeDiffInMS) {
     if (timeDiffInMS > 86400000) {          // format in days
         let timeDiffInDays = timeDiffInMS / 86400000;
-        return `${Math.floor(timeDiffInDays)} days ago`;
+        let days = Math.floor(timeDiffInDays) === 1 ? 'day' : 'days';
+        return `${Math.floor(timeDiffInDays)} ${days} ago`;
     } else if (timeDiffInMS > 3600000) {    // format in hours
         let timeDiffInHours = timeDiffInMS / 3600000;
-        return `${Math.floor(timeDiffInHours)} hours ago`;
+        let hours = Math.floor(timeDiffInHours) === 1 ? 'hour' : 'hours';
+        return `${Math.floor(timeDiffInHours)} ${hours} ago`;
     } else if (timeDiffInMS > 60000) {      // format in minutes
         let timeDiffInMinutes = timeDiffInMS / 60000;
-        return `${Math.floor(timeDiffInMinutes)} minutes ago`;
+        let minutes = Math.floor(timeDiffInMinutes) === 1 ? 'minute' : 'minutes';
+        return `${Math.floor(timeDiffInMinutes)} ${minutes} ago`;
     } else {
-        return 'just now';
+        return 'Just now';
     }
 }

@@ -214,6 +214,7 @@
     bottom: 0;
     left: 244px;
     right: 0;
+    /* width: 100%; */
     /* background-color: white; */
     background-color: #f6f8f9;
 }

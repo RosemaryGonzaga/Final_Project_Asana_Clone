@@ -27,7 +27,7 @@ class ProjectShow extends React.Component {
 
     render() {
         const { project, openEditProjectModal, openDeleteProjectModal, sections } = this.props;
-        console.log(this.props);
+        // console.log(this.props);
         let layout;
         if (!project) {
             return null;

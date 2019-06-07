@@ -7,12 +7,19 @@ class AddTask extends React.Component {
     constructor(props) {
         super(props);
 
+        debugger
+
         this.state = {
             name: "", 
             description: "", 
-            project: "",        // need to dispatch project with the id
-            section: "",        // need to dispatch section with the id
-            assignee: "",       // need to dispatch assignee (user with the id
+            projectId: this.props.project.id,
+            project: this.props.project.name,        // need to dispatch project with the id
+            sectionId: Object.keys(this.props.sections)[0],
+            // sectionId: this.props.firstSectionId,
+            // section: this.props.sections[this.props.firstSectionId].name,        // need to dispatch section with the id
+            section: this.props.sections[Object.keys(this.props.sections)[0]].name,        // need to dispatch section with the id
+            assigneeId: this.props.currentUserId,
+            assignee: `${this.props.currentUser.primaryEmail}`,       // need to dispatch assignee (user with the id
             dueOn: "", 
             completed: "",
             completedAt: "",
@@ -22,26 +29,26 @@ class AddTask extends React.Component {
         this.toggleComplete = this.toggleComplete.bind(this);
     }
 
-    componentDidMount() {
-        // debugger
-        // fetchTask(this.props.match.params.taskId);
-        const { fetchTask, task, taskId } = this.props;
-        fetchTask(task.id);
-    }
+    // componentDidMount() {
+    //     // debugger
+    //     // fetchTask(this.props.match.params.taskId);
+    //     const { fetchTask, task, taskId } = this.props;
+    //     fetchTask(task.id);
+    // }
 
-    componentDidUpdate(prevProps) {
-        // debugger
-        if (this.state.id !== this.props.task.id) {
-            this.setState({ ...this.props.task });
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     // debugger
+    //     if (this.state.id !== this.props.task.id) {
+    //         this.setState({ ...this.props.task });
+    //     }
+    // }
 
     handleSubmit(e) {
         // debugger
         e.preventDefault();
-        const { updateTask } = this.props;
+        const { createTask } = this.props;
         const task = this.state;
-        updateTask(task);
+        createTask(task);
         // createProject(project).then(payload => {
         //     const { project } = payload;
         //     const path = `/home/projects/${project.id}`;
@@ -56,11 +63,11 @@ class AddTask extends React.Component {
     }
 
     toggleComplete(e) {
-        const { updateTask, fetchTask } = this.props;
+        const { createTask, fetchTask } = this.props;
         const { id, completed } = this.state;
         const completedAt = new Date();
         const that = this;
-        updateTask({ id, completed: !completed, completedAt }).then(payload => {
+        createTask({ id, completed: !completed, completedAt }).then(payload => {
             fetchTask(id);
             that.setState({ completed: !completed, completedAt });
         });
@@ -74,27 +81,28 @@ class AddTask extends React.Component {
             completed, completedAt,
             createdAt, updatedAt } = this.state;
 
-        let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
+        // let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
+        let initials = assignee.slice(0, 2).toUpperCase(); // use full name later
 
-        // Calculation of time since task creation --> factor out into helper files later?
-        const currentDateTime = new Date();
-        let timeSinceCreation = Date.parse(currentDateTime) - Date.parse(createdAt);
-        const timeAgoSinceCreation = timeAgoFormatted(timeSinceCreation);
+        // // Calculation of time since task creation --> factor out into helper files later?
+        // const currentDateTime = new Date();
+        // let timeSinceCreation = Date.parse(currentDateTime) - Date.parse(createdAt);
+        // const timeAgoSinceCreation = timeAgoFormatted(timeSinceCreation);
 
-        // Calculation of time since latest task update
-        let timeSinceUpdate = Date.parse(currentDateTime) - Date.parse(updatedAt);
-        const timeAgoSinceUpdate = timeAgoFormatted(timeSinceUpdate);
+        // // Calculation of time since latest task update
+        // let timeSinceUpdate = Date.parse(currentDateTime) - Date.parse(updatedAt);
+        // const timeAgoSinceUpdate = timeAgoFormatted(timeSinceUpdate);
 
-        // Task completion status
-        let taskStatusMessage;
-        if (completed) {
-            // add checkmark icon inside taskStatusMessage
-            let timeSinceCompletion = Date.parse(currentDateTime) - Date.parse(completedAt);
-            const timeAgoSinceCompletion = timeAgoFormatted(timeSinceCompletion);
-            taskStatusMessage = <div>{assignee.primaryEmail} completed this task.  {timeAgoSinceCompletion}</div>
-        } else {
-            taskStatusMessage = null;
-        }
+        // // Task completion status
+        // let taskStatusMessage;
+        // if (completed) {
+        //     // add checkmark icon inside taskStatusMessage
+        //     let timeSinceCompletion = Date.parse(currentDateTime) - Date.parse(completedAt);
+        //     const timeAgoSinceCompletion = timeAgoFormatted(timeSinceCompletion);
+        //     taskStatusMessage = <div>{assignee.primaryEmail} completed this task.  {timeAgoSinceCompletion}</div>
+        // } else {
+        //     taskStatusMessage = null;
+        // }
 
 
         return (
@@ -115,13 +123,14 @@ class AddTask extends React.Component {
                         <section className="task-show-section1">
                             <input type="text" value={name}
                                 onChange={this.handleChange("name")}
-                                className="task-show-name-input" />
+                                className="task-show-name-input" 
+                                placeholder="Write a task name"/>
                             <div className="task-show-section1-bottom">
                                 <div className="task-show-assign-button">
                                     <div className="avatar-task-show-large">{initials}</div>
                                     <div>
                                         <p className="task-show-assign-text1">Assigned to</p>
-                                        <p className="task-show-assign-text2">{assignee.primaryEmail}</p>
+                                        <p className="task-show-assign-text2">{assignee}</p>
                                     </div>
                                 </div>
                                 <div className="task-show-due-date-button">
@@ -137,20 +146,21 @@ class AddTask extends React.Component {
                                 <i className="fas fa-align-left"></i>
                                 <textarea className="task-show-description-input"
                                     value={description}
-                                    onChange={this.handleChange("description")}>
+                                    onChange={this.handleChange("description")}
+                                    placeholder="description">
                                 </textarea>
                             </div>
                             <div className="task-show-section2-bottom">
                                 <i className="far fa-clipboard"></i>
-                                <div className="task-show-project-icon">{project.name}</div>
-                                <div className="task-show-section-label">{section.name}</div>
+                                <div className="task-show-project-icon">{project}</div>
+                                <div className="task-show-section-label">{section}</div>
                             </div>
                         </section>
                         <section className="task-show-section3">
                             <div className="task-show-section3-center">
-                                <p>{assignee.primaryEmail} created this task.    {timeAgoSinceCreation}</p>
-                                <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
-                                {taskStatusMessage}
+                                <p>{assignee} created this task.    Just now</p>
+                                <p>{assignee} updated this task.    Just now</p>
+                                {/* {taskStatusMessage} */}
                             </div>
                         </section>
                     </div>

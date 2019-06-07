@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionContainer from '../sections/section_container';
 import TaskShowContainer from '../tasks/task_show_container';
+import AddTaskContainer from '../tasks/add_task_container';
 import { Link } from 'react-router-dom';
 
 class ProjectListView extends React.Component {
@@ -32,12 +33,14 @@ class ProjectListView extends React.Component {
     }
 
     handleAddTaskClick(e) {
+        // debugger
         this.setState({ taskToRenderId: "new task" })
     }
 
     render() {
         // debugger
         const { project, sections, openEditProjectModal, openDeleteProjectModal } = this.props;
+        // const firstSectionId = Object.keys(sections)[0];
         // debugger
         const sectionItems = sections.map(section => {
             return <SectionContainer section={section} key={section.id} handleOpenTaskShowClick={this.handleOpenTaskShowClick} />;
@@ -53,11 +56,27 @@ class ProjectListView extends React.Component {
         // const taskComponent = <div>Id of clicked task: {this.state.taskToRenderId}</div>;
         const taskComponent = <TaskShowContainer taskId={this.state.taskToRenderId}/>;
 
-        let rightComponentToRender = this.state.taskToRenderId !== "description" ? taskComponent : descriptionComponent;
-        let mainContentClass = this.state.taskToRenderId !== "description" ? "project-show-list-main-content-skinny" : "project-show-list-main-content";
-        // let rightComponentToRender = this.state.taskToRenderId ? taskComponent : descriptionComponent;
-        // let mainContentClass = this.state.taskToRenderId ? "project-show-list-main-content-skinny" : "project-show-list-main-content";
+        // const newTaskComponent = <div>Going to render the new task form</div>; // replace with real component later
+        // const newTaskComponent = <AddTaskContainer project={project} sections={sections} />;  
+        const newTaskComponent = <AddTaskContainer project={project} />;  
+        
+
+        // let rightComponentToRender = this.state.taskToRenderId !== "description" ? taskComponent : descriptionComponent;
+        // let mainContentClass = this.state.taskToRenderId !== "description" ? "project-show-list-main-content-skinny" : "project-show-list-main-content";
         // debugger
+
+        let rightComponentToRender = descriptionComponent;
+        let mainContentClass = "project-show-list-main-content";
+        if (this.state.taskToRenderId === "description") {
+            rightComponentToRender = descriptionComponent;
+            mainContentClass = "project-show-list-main-content";
+        } else if (this.state.taskToRenderId === "new task") {
+            rightComponentToRender = newTaskComponent;
+            mainContentClass = "project-show-list-main-content-skinny";
+        } else {
+            rightComponentToRender = taskComponent;
+            mainContentClass = "project-show-list-main-content-skinny";
+        }
 
         return (
             <div className="project-show-list-layout-wrapper">
@@ -65,7 +84,7 @@ class ProjectListView extends React.Component {
                     <div className="project-show-list-header">
                         <Link to={`/home/projects/${project.id}/newtask`}      // '/home/projects/newtask'
                             className="add-task-to-project-button"
-                            // onClick={handleOpenTaskShowClick}
+                            onClick={this.handleAddTaskClick}
                             id="randomTempId" >
                             Add Task!
                         </Link>

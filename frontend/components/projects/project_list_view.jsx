@@ -12,15 +12,20 @@ class ProjectListView extends React.Component {
         this.handleOpenTaskShowClick = this.handleOpenTaskShowClick.bind(this);
     }
 
-    componentDidMount() {   // not sure if this is needed (works w/o fetching sections)
+    // componentDidMount() {   // not sure if this is needed (works w/o fetching sections)
+    //     const { fetchSections } = this.props;
+    //     fetchSections
+    // }
+
+    componentDidUpdate() {   // not sure if this is needed (works w/o fetching sections)
         const { fetchSections } = this.props;
         fetchSections
     }
 
     handleOpenTaskShowClick(e) {
         // e.preventDefault(); // necessary?
-        // debugger
         // this.setState({ taskToRenderId: e.target.id });
+        // debugger
         this.setState({ taskToRenderId: e.currentTarget.id });
     }
 
@@ -44,7 +49,7 @@ class ProjectListView extends React.Component {
 
         let rightComponentToRender = this.state.taskToRenderId ? taskComponent : descriptionComponent;
         let mainContentClass = this.state.taskToRenderId ? "project-show-list-main-content-skinny" : "project-show-list-main-content";
-        
+        // debugger
 
         return (
             <div className="project-show-list-layout-wrapper">

@@ -26,8 +26,17 @@ class TaskShow extends React.Component {
     }    
 
     componentDidMount() {
-        const { fetchTask } = this.props;
-        fetchTask(this.props.match.params.taskId);
+        // debugger
+        // fetchTask(this.props.match.params.taskId);
+        const { fetchTask, task, taskId } = this.props;
+        fetchTask(task.id);
+    }
+
+    componentDidUpdate(prevProps) {
+        // debugger
+        if (this.state.id !== this.props.task.id) {
+            this.setState({ ...this.props.task });
+        }
     }
 
     handleSubmit(e) {

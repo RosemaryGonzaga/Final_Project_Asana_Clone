@@ -31,7 +31,7 @@ project1 = Project.first
 Section.create!({
   name: "To Do",
   description: "",
-  due_on: Wed, 05 Jun 2019 16:53:11 UTC +00:00,
+  due_on: nil,
   project_id: project1.id,
   assignee_id: user1.id,
   completed: false,
@@ -42,7 +42,7 @@ Section.create!({
 Section.create!({
   name: "In Progress",
   description: "",
-  due_on: Wed, 05 Jun 2019 16:53:11 UTC +00:00,
+  due_on: nil,
   project_id: project1.id,
   assignee_id: user1.id,
   completed: false,
@@ -53,7 +53,7 @@ Section.create!({
 Section.create!({
   name: "Done",
   description: "",
-  due_on: Wed, 05 Jun 2019 16:53:11 UTC +00:00,
+  due_on: nil,
   project_id: project1.id,
   assignee_id: user1.id,
   completed: false,

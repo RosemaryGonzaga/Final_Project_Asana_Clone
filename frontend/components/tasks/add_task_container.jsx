@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import TaskShow from './task_show';
+import AddTask from './add_task';
 import { fetchTask, updateTask, deleteTask } from '../../actions/task_actions';
 
 const msp = (state, ownProps) => {
@@ -11,10 +11,10 @@ const msp = (state, ownProps) => {
     // return { task, sections, projects, users };
     // debugger
     const { tasks, sections, projects, users } = state.entities;
-    const taskId = ownProps.taskId;
-    const task = tasks[taskId];
-    return { task, sections, projects, users };
-    // return { sections, projects, users };
+    // const taskId = ownProps.taskId;
+    // const task = tasks[taskId];
+    // return { task, sections, projects, users };
+    return { sections, projects, users };
 };
 
 const mdp = dispatch => {

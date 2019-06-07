@@ -55,9 +55,32 @@
     padding-right: 30px;
 }
 
+.add-section-container {
+    height: 36px;
+    /* width: 595px; */
+    border-bottom: 1px solid #e0e6e8;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    color: #848f99;
+    font-weight: 500;
+    font-size: 16x;
+    text-decoration: none;
+    padding-left: 30px;
+    transition-duration: 300ms;
+    transition-property: color;
+}
 
+.add-section-container > i {
+    margin-right: 10px;
+    transition-duration: 250ms;
+    transition-property: color;
+}
 
-
+.add-section-container:hover,
+.add-section-container:hover > i {
+    color: #32c1ff;
+}
 
 
 

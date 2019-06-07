@@ -21,6 +21,7 @@ export const SectionIndexItem = props => {
             className="section-index-item-container"
             onClick={handleOpenTaskShowClick}
             id={task.id} >
+            <i className="far fa-check-circle" id="fa-check-circle-task-item"></i>
             <p>{task.name}</p>
 
             {/* <input type="text" value={task.name}

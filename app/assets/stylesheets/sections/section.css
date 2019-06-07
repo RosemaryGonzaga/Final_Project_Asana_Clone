@@ -42,8 +42,26 @@
     color: #151b26;
     font-size: 13px;
     text-decoration: none;
+    transition-duration: 250ms;
+    transition-property: color;
 }
 
 .section-index-item-container:last-of-type {
     border-bottom: none;
+}
+
+.section-index-item-container:hover {
+    background-color: #f6f8f9;
+}
+
+#fa-check-circle-task-item {
+    font-size: 20px;
+    margin-right: 10px;
+    transition-duration: 250ms;
+    transition-property: color;
+}
+
+#fa-check-circle-task-item:hover {
+    color: #25e8c8;
+    /* background-color: #e2fffa; */
 }

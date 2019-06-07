@@ -99,15 +99,16 @@ class ProjectListView extends React.Component {
                 <div className={mainContentClass}>
                     <div className="project-show-list-header">
                         <Link to={`/home/projects/${project.id}/newtask`}      // '/home/projects/newtask'
-                            className="add-task-to-project-button"
+                            // className="add-task-to-project-button"
+                            className="random-buttons"
                             onClick={this.handleAddTaskClick}
                             id="randomTempId" >
-                            Add Task!
+                            Add Task
                         </Link>
 
-                        <button>Add Task</button>
-                        <button onClick={openEditProjectModal}>Edit Project!</button>
-                        <button onClick={openDeleteProjectModal}>Delete Project?</button>
+                        {/* <button>Add Task</button> */}
+                        <button className="random-buttons" onClick={openEditProjectModal}>Edit Project</button>
+                        <button className="random-buttons" onClick={openDeleteProjectModal}>Delete Project</button>
                     </div>
                     <ul>{sectionItems}</ul>
                     <div className="add-section-container"><i className="fas fa-plus"></i>Add Section</div>

@@ -1,0 +1,52 @@
+.random-buttons {
+    height: 25px;
+    line-height: 25px;
+    width: 100px;
+    /* width: 62px; */
+    background: linear-gradient(to top bottom, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 300ms;
+    transition-property: background;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.random-buttons > a {
+    height: 25px;
+    line-height: 25px;
+    width: 100px;
+    /* width: 62px; */
+    background: linear-gradient(to top bottom, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 300ms;
+    transition-property: background;
+}
+
+.random-buttons:hover {
+    background: linear-gradient(to top right, #ff1f35, #ff4053 35%, #c99701);
+}
+
+.random-buttons > a {
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+}
+.random-buttons > a > i {
+    color: white;
+    font-size: 11px;
+    margin-right: 2px;
+}
+
+
+.random-buttons:hover {
+    background-color: white;
+    color: gray;
+}

@@ -7,8 +7,103 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+Project.destroy_all
+Section.destroy_all
+Task.destroy_all
 
 User.create!({
     primary_email: "user1@shavasana.com",
     password: "password",
+})
+
+user1 = User.first
+Project.create!({
+    name: "Fix Shavasana",
+    description: "Fullstack project",
+    layout: "list",
+    privacy: "public",
+    due_on: nil,
+    color: nil,
+    owner_id: user1.id,
+})
+
+project1 = Project.first
+Section.create!({
+  name: "To Do",
+  description: "",
+  due_on: Wed, 05 Jun 2019 16:53:11 UTC +00:00,
+  project_id: project1.id,
+  assignee_id: user1.id,
+  completed: false,
+  completed_at: nil,
+  layout: "list"
+})
+
+Section.create!({
+  name: "In Progress",
+  description: "",
+  due_on: Wed, 05 Jun 2019 16:53:11 UTC +00:00,
+  project_id: project1.id,
+  assignee_id: user1.id,
+  completed: false,
+  completed_at: nil,
+  layout: "list"
+})
+
+Section.create!({
+  name: "Done",
+  description: "",
+  due_on: Wed, 05 Jun 2019 16:53:11 UTC +00:00,
+  project_id: project1.id,
+  assignee_id: user1.id,
+  completed: false,
+  completed_at: nil,
+  layout: "list"
+})
+
+section1 = Section.first
+section2 = Section.second
+section3 = Section.third
+Task.create!({
+  name: "Teams",
+  description: "",
+  due_on: nil,
+  project_id: project1.id,
+  section_id: section1.id,
+  assignee_id: user1.id,
+  completed: nil,
+  completed_at: nil,
+})
+
+Task.create!({
+  name: "Profiles",
+  description: "",
+  due_on: nil,
+  project_id: project1.id,
+  section_id: section1.id,
+  assignee_id: user1.id,
+  completed: nil,
+  completed_at: nil,
+})
+
+Task.create!({
+  name: "Beef up Tasks",
+  description: "",
+  due_on: nil,
+  project_id: project1.id,
+  section_id: section2.id,
+  assignee_id: user1.id,
+  completed: nil,
+  completed_at: nil,
+})
+
+Task.create!({
+  name: "Present Shavasana",
+  description: "",
+  due_on: nil,
+  project_id: project1.id,
+  section_id: section2.id,
+  assignee_id: user1.id,
+  completed: nil,
+  completed_at: nil,
 })

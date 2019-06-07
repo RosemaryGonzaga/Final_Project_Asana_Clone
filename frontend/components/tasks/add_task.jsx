@@ -15,8 +15,6 @@ class AddTask extends React.Component {
             projectId: this.props.project.id,
             project: this.props.project.name,        // need to dispatch project with the id
             sectionId: Object.keys(this.props.sections)[0],
-            // sectionId: this.props.firstSectionId,
-            // section: this.props.sections[this.props.firstSectionId].name,        // need to dispatch section with the id
             section: this.props.sections[Object.keys(this.props.sections)[0]].name,        // need to dispatch section with the id
             assigneeId: this.props.currentUserId,
             assignee: `${this.props.currentUser.primaryEmail}`,       // need to dispatch assignee (user with the id

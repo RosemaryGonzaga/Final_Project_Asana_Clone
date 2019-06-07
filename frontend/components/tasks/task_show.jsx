@@ -1,6 +1,6 @@
 import React from 'react';
 // import { closeModal } from '../../actions/modal_actions';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class TaskShow extends React.Component {
@@ -18,11 +18,12 @@ class TaskShow extends React.Component {
 
         this.state = { id, name, description, project, 
             section, assignee, dueOn, completed, 
-            completedAt, createdAt, updatedAt
+            completedAt, createdAt, updatedAt, projectId
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toggleComplete = this.toggleComplete.bind(this);
+        this.handleDeleteTask = this.handleDeleteTask.bind(this);
     }    
 
     componentDidMount() {
@@ -33,10 +34,16 @@ class TaskShow extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        // debugger
-        if (this.state.id !== this.props.task.id) {
+        debugger
+        // if (this.state.id !== this.props.task.id) {
+        //     this.setState({ ...this.props.task });
+        // }
+        if (this.state.id !== prevProps.task.id) {
             this.setState({ ...this.props.task });
         }
+        // if (this.state.id !== this.props.taskIid) {
+        //     this.setState({ ...this.props.task });
+        // }
     }
 
     handleSubmit(e) {
@@ -67,6 +74,12 @@ class TaskShow extends React.Component {
             fetchTask(id);
             that.setState({ completed: !completed, completedAt });
         });
+    }
+
+    handleDeleteTask(e) {
+        e.preventDefault();
+        const { deleteTask } = this.props;
+        deleteTask(this.state.id);
     }
 
 
@@ -109,7 +122,15 @@ class TaskShow extends React.Component {
                             Mark Complete
                         </button>
                         <input type="submit" value="Submit"/>
-                        <button>Delete task</button>
+                        {/* <button onClick={this.handleDeleteTask}>Delete task</button> */}
+
+
+                        <Link to={`/home/projects/${this.state.projectId}`}
+                            className="section-index-item-container"
+                            onClick={this.handleDeleteTask}
+                            id={this.state.id} task={this.state} > Delete task
+                        </Link>
+
                         <button className="task-show-close-btn" >
                             <img src={window.closeButtonHover} alt="x" />
                         </button>

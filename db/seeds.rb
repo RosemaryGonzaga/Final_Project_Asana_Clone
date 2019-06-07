@@ -17,6 +17,7 @@ User.create!({
 })
 
 user1 = User.first
+
 Project.create!({
     name: "Fix Shavasana",
     description: "Fullstack project",
@@ -27,7 +28,19 @@ Project.create!({
     owner_id: user1.id,
 })
 
+Project.create!({
+    name: "Acknowledgements",
+    description: "",
+    layout: "list",
+    privacy: "public",
+    due_on: nil,
+    color: nil,
+    owner_id: user1.id,
+})
+
 project1 = Project.first
+project2 = Project.second
+
 Section.create!({
   name: "To Do",
   description: "",
@@ -106,4 +119,15 @@ Task.create!({
   assignee_id: user1.id,
   completed: nil,
   completed_at: nil,
+})
+
+Section.create!({
+  name: "THANK YOU",
+  description: "",
+  due_on: nil,
+  project_id: project2.id,
+  assignee_id: user1.id,
+  completed: false,
+  completed_at: nil,
+  layout: "list"
 })

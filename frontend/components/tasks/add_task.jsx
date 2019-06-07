@@ -7,7 +7,7 @@ class AddTask extends React.Component {
     constructor(props) {
         super(props);
 
-        debugger
+        // debugger
 
         this.state = {
             name: "", 
@@ -111,8 +111,8 @@ class AddTask extends React.Component {
                             <i className="fas fa-check" id="fas-fa-check-task-button"></i>
                             Mark Complete
                         </button>
-                        <input type="submit" value="Submit" />
-                        <button>Delete task</button>
+                        <input className="random-buttons" type="submit" value="Submit" />
+                        <button className="random-buttons">Delete task</button>
                         <button className="task-show-close-btn" >
                             <img src={window.closeButtonHover} alt="x" />
                         </button>

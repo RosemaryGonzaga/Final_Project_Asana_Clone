@@ -1,9 +1,8 @@
 .random-buttons {
-    height: 25px;
+    height: 30px;
     line-height: 25px;
     width: 100px;
-    /* width: 62px; */
-    background: linear-gradient(to top bottom, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+    background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
     border-radius: 5px;
     cursor: pointer;
     display: flex;
@@ -13,14 +12,17 @@
     transition-property: background;
     text-decoration: none;
     margin-right: 10px;
+    color: white;
+    outline: none;
+    border: none;
+    font-size: 13px;
 }
 
 .random-buttons > a {
     height: 25px;
     line-height: 25px;
     width: 100px;
-    /* width: 62px; */
-    background: linear-gradient(to top bottom, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+    background: linear-gradient(to top right, #ff1f35, #ff4053 35%, #c99701);
     border-radius: 5px;
     cursor: pointer;
     display: flex;
@@ -48,5 +50,10 @@
 
 .random-buttons:hover {
     background-color: white;
-    color: gray;
+    /* color: gray; */
+}
+
+
+#home-logout-btn {
+    width: 70px;
 }

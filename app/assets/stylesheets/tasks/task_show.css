@@ -66,6 +66,7 @@
     transition-duration: 400ms;
     transition-property: background-color, border-color, color;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .mark-complete-btn:hover {

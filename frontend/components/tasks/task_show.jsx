@@ -34,7 +34,7 @@ class TaskShow extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        debugger
+        // debugger
         // if (this.state.id !== this.props.task.id) {
         //     this.setState({ ...this.props.task });
         // }
@@ -121,12 +121,13 @@ class TaskShow extends React.Component {
                             <i className="fas fa-check" id="fas-fa-check-task-button"></i>
                             Mark Complete
                         </button>
-                        <input type="submit" value="Submit"/>
+                        <input className="random-buttons" type="submit" value="Submit"/>
                         {/* <button onClick={this.handleDeleteTask}>Delete task</button> */}
 
 
                         <Link to={`/home/projects/${this.state.projectId}`}
-                            className="section-index-item-container"
+                            // className="section-index-item-container"
+                            className="random-buttons"
                             onClick={this.handleDeleteTask}
                             id={this.state.id} task={this.state} > Delete task
                         </Link>

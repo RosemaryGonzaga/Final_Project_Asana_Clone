@@ -17,6 +17,10 @@
     position: absolute;
     top: 23px;
     left: 23px;
+    font-size: 28px;
+    color: #848f99;
+    /* color: black;
+    color: #ff1f35; */
 }
 
 .x-link-to-home {
@@ -29,6 +33,9 @@
     width: 20px;
     height: 20px;
 }
+
+
+
 
 .new-project-form-container {
     width: 420px;

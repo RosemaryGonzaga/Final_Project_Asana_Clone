@@ -115,7 +115,7 @@ class Home extends React.Component {
                                 <li className="topbar-new-project-button">
                                     <Link to="/projects/new"><i className="fas fa-plus"></i> New</Link>
                                 </li>
-                                <li><button onClick={this.handleClick}>Sign Out</button></li>
+                                <li ><button className="random-buttons" onClick={this.handleClick} id="home-logout-btn">Sign Out</button></li>
                                 <li className={this.state.avatarClass} onClick={this.handleAvatarClick}>
                                     {initials}
                                 </li>

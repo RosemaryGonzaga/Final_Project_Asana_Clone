@@ -11,6 +11,7 @@ import { selectAllSections } from '../../reducers/selectors';
 const msp = (state, ownProps) => {
     // debugger
     const { projects } = state.entities;
+    // const { projects, tasks } = state.entities;
     const projectId = ownProps.match.params.projectId; // is this right?
     const project = projects[projectId];
     const sections = selectAllSections(state);
@@ -19,6 +20,7 @@ const msp = (state, ownProps) => {
     const currentUserId = state.session.id;
 
     return { project, sections, currentUserId };
+    // return { project, sections, tasks, currentUserId };
 };
 
 const mdp = dispatch => {

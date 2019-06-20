@@ -35,15 +35,12 @@ class TaskShow extends React.Component {
 
     componentDidUpdate(prevProps) {
         // debugger
-        // if (this.state.id !== this.props.task.id) {
+        // if (this.state.id !== prevProps.task.id) {
         //     this.setState({ ...this.props.task });
         // }
-        if (this.state.id !== prevProps.task.id) {
+        if (this.state.id.toString() !== prevProps.taskId.toString()) {  // need to use taskId b/c task.id is undefined in prevProps if this component updates after deleting a task
             this.setState({ ...this.props.task });
         }
-        // if (this.state.id !== this.props.taskIid) {
-        //     this.setState({ ...this.props.task });
-        // }
     }
 
     handleSubmit(e) {
@@ -78,8 +75,11 @@ class TaskShow extends React.Component {
 
     handleDeleteTask(e) {
         e.preventDefault();
-        const { deleteTask } = this.props;
+        const { deleteTask, exitTaskShowUponTaskDeletion } = this.props;
         deleteTask(this.state.id);
+        const path = `/home/projects/${this.state.projectId}`;
+        this.props.history.push(path);
+        exitTaskShowUponTaskDeletion();
     }
 
 

@@ -7,6 +7,7 @@ import { closeModal } from '../../actions/modal_actions';
 class EditProjectForm extends React.Component {
     constructor(props) {
         super(props);
+        // debugger
         this.state = {
             id: this.props.project.id,
             name: this.props.project.name,
@@ -74,9 +75,11 @@ const msp = (state, ownProps) => {
     const currentUserId = state.session.id;
     const { projects } = state.entities;
     const pathParts = ownProps.location.pathname.split("/");
-    const projectId = pathParts[pathParts.length - 1];
+    // const projectId = pathParts[pathParts.length - 1];   // this solution breaks when I click "Edit Project" after having opened the newTask form (b/c the url has more stuff at the end)
+    const projectId = pathParts[pathParts.indexOf("projects") + 1];
     // const projectId = ownProps.match.params.projectId;  // params is empty --> need to use same strategy as in Home component's msp (see above line)
     const project = projects[projectId];
+    // debugger
     return ({ currentUserId, project });
 };
 

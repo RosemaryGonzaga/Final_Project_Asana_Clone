@@ -44,9 +44,16 @@ class AddTask extends React.Component {
     handleSubmit(e) {
         // debugger
         e.preventDefault();
-        const { createTask } = this.props;
+        const { createTask, displayTaskShow } = this.props;
         const task = this.state;
-        createTask(task);
+        createTask(task).then(payload => {
+            // debugger
+            displayTaskShow(payload.task.id);
+            const path = `/home/projects/${payload.task.projectId}/${payload.task.id}`;
+            this.props.history.push(path);
+        });
+
+
         // createProject(project).then(payload => {
         //     const { project } = payload;
         //     const path = `/home/projects/${project.id}`;

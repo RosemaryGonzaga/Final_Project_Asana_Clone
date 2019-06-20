@@ -2,6 +2,7 @@ import React from 'react';
 import SectionContainer from '../sections/section_container';
 import TaskShowContainer from '../tasks/task_show_container';
 import AddTaskContainer from '../tasks/add_task_container';
+import EditSectionContainer from '../sections/edit_section_container';
 import { Link } from 'react-router-dom';
 
 class ProjectListView extends React.Component {
@@ -16,6 +17,7 @@ class ProjectListView extends React.Component {
         this.displayTaskShow = this.displayTaskShow.bind(this);
         this.exitTaskShowUponTaskDeletion = this.exitTaskShowUponTaskDeletion.bind(this);
         this.handleAddSection = this.handleAddSection.bind(this);
+        this.handleOpenSectionShowClick = this.handleOpenSectionShowClick.bind(this);
     }
 
     // componentDidMount() {   // not sure if this is needed (works w/o fetching sections)
@@ -49,24 +51,27 @@ class ProjectListView extends React.Component {
         this.setState({ taskToRenderId: "description" });
     }
 
+    handleOpenSectionShowClick(id) {
+        return e => {
+            debugger
+            this.setState({ taskToRenderId: `section${id}` });
+        }
+    }
+
 
 
     handleAddSection(e) {
         e.preventDefault();
-        debugger
+        // debugger
         const blankSection = { 
-            name: "Section1", 
+            name: "New Section", 
             description: "", 
-            layout: "list", 
+            layout: this.props.project.layout,
             projectId: this.props.project.id, 
             assigneeId: this.props.currentUserId, 
             dueOn: "" };
-            // project_id: this.props.project.id, 
-            // assignee_id: this.props.currentUserId, 
-            // due_on: "" };
 
         const { createSection } = this.props;
-        debugger
         createSection(blankSection);
     }
 
@@ -76,7 +81,9 @@ class ProjectListView extends React.Component {
         // const firstSectionId = Object.keys(sections)[0];
         // debugger
         const sectionItems = sections.map(section => {
-            return <SectionContainer section={section} key={section.id} handleOpenTaskShowClick={this.handleOpenTaskShowClick} />;
+            return <SectionContainer section={section} key={section.id} 
+                                        handleOpenTaskShowClick={this.handleOpenTaskShowClick} 
+                                        handleOpenSectionShowClick={this.handleOpenSectionShowClick} />;
         });
 
         // when user first lands on project show page, before clicking any specific tasks, the description will render
@@ -93,6 +100,16 @@ class ProjectListView extends React.Component {
         // pass callback down to AddTaskContainer so Project can know to display the TaskShow instead of AddTask
         // ...when user adds a task
         const newTaskComponent = <AddTaskContainer project={project} displayTaskShow={this.displayTaskShow} />;
+        // debugger
+        // let sectionId = this.state.taskToRenderId.slice();
+        let sectionIdProp = this.state.taskToRenderId;
+        debugger
+        if (isNaN(parseInt(sectionIdProp)) && sectionIdProp.includes("section")) {
+            debugger
+            sectionIdProp = sectionIdProp.slice(7, sectionIdProp.length);
+        }
+        debugger
+        const editSectionComponent = <EditSectionContainer sectionId={sectionIdProp}/>
 
         let rightComponentToRender = descriptionComponent;
         let mainContentClass = "project-show-list-main-content";
@@ -101,6 +118,9 @@ class ProjectListView extends React.Component {
             mainContentClass = "project-show-list-main-content";
         } else if (this.state.taskToRenderId === "new task") {
             rightComponentToRender = newTaskComponent;
+            mainContentClass = "project-show-list-main-content-skinny";
+        } else if (isNaN(parseInt(this.state.taskToRenderId)) && this.state.taskToRenderId.includes("section")) {
+            rightComponentToRender = editSectionComponent;
             mainContentClass = "project-show-list-main-content-skinny";
         } else {
             rightComponentToRender = taskComponent;

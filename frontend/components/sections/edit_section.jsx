@@ -1,60 +1,50 @@
 import React from 'react';
 import { timeAgoFormatted } from '../../util/time_ago_format_helper';
-// import { closeModal } from '../../actions/modal_actions';
 import { Link } from 'react-router-dom';
 
 
-class TaskShow extends React.Component {
+class EditSection extends React.Component {
     constructor(props) {
         super(props);
-
-        const { task, sections, projects, users } = this.props;
+        debugger
+        const { section, sections, projects, users } = this.props;
         const { id, name, description, projectId,
-            sectionId, assigneeId, dueOn,
+            assigneeId, dueOn, layout,
             completed, completedAt,
-            createdAt, updatedAt } = task;
-        const section = sections[sectionId];
+            createdAt, updatedAt } = section;
+        // const section = sections[sectionId];
         const project = projects[projectId];
         const assignee = users[assigneeId];
 
         this.state = { id, name, description, project, 
-            section, assignee, dueOn, completed, 
+            assignee, dueOn, layout, completed, 
             completedAt, createdAt, updatedAt, projectId
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toggleComplete = this.toggleComplete.bind(this);
-        this.handleDeleteTask = this.handleDeleteTask.bind(this);
+        this.handleDeleteSection = this.handleDeleteSection.bind(this);
     }    
 
     componentDidMount() {
         // debugger
-        // fetchTask(this.props.match.params.taskId);
-        const { fetchTask, task, taskId } = this.props;
-        fetchTask(task.id);
+        const { fetchSection, section, sectionId } = this.props;
+        fetchSection(section.id);
     }
 
     componentDidUpdate(prevProps) {
         // debugger
-        // if (this.state.id !== prevProps.task.id) {
-        //     this.setState({ ...this.props.task });
-        // }
-        if (this.state.id.toString() !== prevProps.taskId.toString()) {  // need to use taskId b/c task.id is undefined in prevProps if this component updates after deleting a task
-            this.setState({ ...this.props.task });
+        if (this.state.id.toString() !== prevProps.sectionId.toString()) {  // need to use taskId b/c task.id is undefined in prevProps if this component updates after deleting a task
+            this.setState({ ...this.props.section });
         }
     }
 
     handleSubmit(e) {
         // debugger
         e.preventDefault();
-        const { updateTask } = this.props;
-        const task = this.state;
-        updateTask(task);
-        // createProject(project).then(payload => {
-        //     const { project } = payload;
-        //     const path = `/home/projects/${project.id}`;
-        //     this.props.history.push(path);
-        // });
+        const { updateSection } = this.props;
+        const section = this.state;
+        updateSection(section);
     }
 
     handleChange(field) {
@@ -64,53 +54,56 @@ class TaskShow extends React.Component {
     }
 
     toggleComplete(e) {
-        const { updateTask, fetchTask } = this.props;
+        const { updateSection, fetchSection } = this.props;
         const { id, completed } = this.state;
         const completedAt = new Date();
         const that = this;
-        updateTask({ id, completed: !completed, completedAt }).then(payload => {
-            fetchTask(id);
+        updateSection({ id, completed: !completed, completedAt }).then(payload => {
+            fetchSection(id);
             that.setState({ completed: !completed, completedAt });
         });
     }
 
-    handleDeleteTask(e) {
+    // Right now, user can't delete Section. 
+    // Need to tweak delete functionality so they can only delete an empty section (section with no tasks)
+    handleDeleteSection(e) {
         e.preventDefault();
-        const { deleteTask, exitTaskShowUponTaskDeletion } = this.props;
-        deleteTask(this.state.id);
-        const path = `/home/projects/${this.state.projectId}`;
-        this.props.history.push(path);
-        exitTaskShowUponTaskDeletion();
+        console.log("Working on this feature");
+        // const { deleteTask, exitTaskShowUponTaskDeletion } = this.props;
+        // deleteTask(this.state.id);
+        // const path = `/home/projects/${this.state.projectId}`;
+        // this.props.history.push(path);
+        // exitTaskShowUponTaskDeletion();
     }
 
 
     render() {
 
         const { id, name, description, project,
-            section, assignee, dueOn,
+            assignee, dueOn, layout, 
             completed, completedAt,
             createdAt, updatedAt } = this.state;
 
         let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
 
-        // Calculation of time since task creation --> factor out into helper files later?
+        // Calculation of time since section creation --> factor out into helper files later?
         const currentDateTime = new Date();
         let timeSinceCreation = Date.parse(currentDateTime) - Date.parse(createdAt);
         const timeAgoSinceCreation = timeAgoFormatted(timeSinceCreation);
 
-        // Calculation of time since latest task update
+        // Calculation of time since latest section update
         let timeSinceUpdate = Date.parse(currentDateTime) - Date.parse(updatedAt);
         const timeAgoSinceUpdate = timeAgoFormatted(timeSinceUpdate);
 
-        // Task completion status
-        let taskStatusMessage;
+        // Section completion status
+        let sectionStatusMessage;
         if (completed) {
-            // add checkmark icon inside taskStatusMessage
+            // add checkmark icon inside sectionStatusMessage
             let timeSinceCompletion = Date.parse(currentDateTime) - Date.parse(completedAt);
             const timeAgoSinceCompletion = timeAgoFormatted(timeSinceCompletion);
-            taskStatusMessage = <div>{assignee.primaryEmail} marked this task complete.  {timeAgoSinceCompletion}</div>
+            sectionStatusMessage = <div>{assignee.primaryEmail} marked this section complete.  {timeAgoSinceCompletion}</div>
         } else {
-            taskStatusMessage = null;
+            sectionStatusMessage = null;
         }
 
 
@@ -129,8 +122,8 @@ class TaskShow extends React.Component {
                         <Link to={`/home/projects/${this.state.projectId}`}
                             // className="section-index-item-container"
                             className="random-buttons"
-                            onClick={this.handleDeleteTask}
-                            id={this.state.id} task={this.state} > Delete task
+                            onClick={this.handleDeleteSection}
+                            id={this.state.id} section={this.state} > Delete section
                         </Link>
 
                         <button className="task-show-close-btn" >
@@ -169,14 +162,14 @@ class TaskShow extends React.Component {
                             <div className="task-show-section2-bottom">
                                 <i className="far fa-clipboard"></i>
                                 <div className="task-show-project-icon">{project.name}</div>
-                                <div className="task-show-section-label">{section.name}</div>
+                                {/* <div className="task-show-section-label">{section.name}</div> */}
                             </div>
                         </section>
                         <section className="task-show-section3">
                             <div className="task-show-section3-center">
-                                <p>{assignee.primaryEmail} created this task.    {timeAgoSinceCreation}</p>
-                                <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
-                                {taskStatusMessage}
+                                <p>{assignee.primaryEmail} created this section.    {timeAgoSinceCreation}</p>
+                                <p>{assignee.primaryEmail} updated this section.    {timeAgoSinceUpdate}</p>
+                                {sectionStatusMessage}
                             </div>
                         </section>
                     </div>
@@ -187,25 +180,4 @@ class TaskShow extends React.Component {
     }
 }
 
-export default TaskShow;
-
-
-
-// // helper function --> factor out to util folder
-// function timeAgoFormatted(timeDiffInMS) {
-//     if (timeDiffInMS > 86400000) {          // format in days
-//         let timeDiffInDays = timeDiffInMS / 86400000;
-//         let days = Math.floor(timeDiffInDays) === 1 ? 'day' : 'days';
-//         return `${Math.floor(timeDiffInDays)} ${days} ago`;
-//     } else if (timeDiffInMS > 3600000) {    // format in hours
-//         let timeDiffInHours = timeDiffInMS / 3600000;
-//         let hours = Math.floor(timeDiffInHours) === 1 ? 'hour' : 'hours';
-//         return `${Math.floor(timeDiffInHours)} ${hours} ago`;
-//     } else if (timeDiffInMS > 60000) {      // format in minutes
-//         let timeDiffInMinutes = timeDiffInMS / 60000;
-//         let minutes = Math.floor(timeDiffInMinutes) === 1 ? 'minute' : 'minutes';
-//         return `${Math.floor(timeDiffInMinutes)} ${minutes} ago`;
-//     } else {
-//         return 'Just now';
-//     }
-// }
+export default EditSection;

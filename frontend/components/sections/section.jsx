@@ -2,7 +2,7 @@ import React from 'react';
 import { SectionIndexItem } from './section_index_item';
 // import ProjectListView from './project_list_view';
 // import ProjectBoardView from './project_board_view';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Section extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class Section extends React.Component {
     // }
 
     render() {
-        const { section, tasks, handleOpenTaskShowClick } = this.props;
+        const { section, tasks, handleOpenTaskShowClick, handleOpenSectionShowClick } = this.props;
 
         const taskItems = tasks.map(task => {
             if (task.sectionId === section.id) {
@@ -36,7 +36,14 @@ class Section extends React.Component {
 
         return (
             <div className="section-container">
-                <div className="section-header">{section.name}</div>
+                {/* <div className="section-header">{section.name}</div> */}
+                <Link to={`/home/projects/${section.projectId}/${section.id}`}      // '/home/projects/:projectId/:taskId'
+                    className="section-header"
+                    onClick={handleOpenSectionShowClick(section.id)}
+                    id={section.id} >
+                    <i className="far fa-check-circle" id="fa-check-circle-task-item"></i>
+                    <p>{section.name}</p>
+                </Link>
                 <ul>{taskItems}</ul>
             </div>
         );

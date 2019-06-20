@@ -15,7 +15,7 @@ export const fetchSection = id => {
 
 export const createSection = section => {
     const { name, description, layout, projectId, assigneeId, dueOn, completed, completedAt } = section;
-    // debugger
+    debugger
     return $.ajax({
         method: 'POST',
         url: '/api/sections',

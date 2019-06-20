@@ -42,23 +42,14 @@ class AddTask extends React.Component {
     // }
 
     handleSubmit(e) {
-        // debugger
         e.preventDefault();
         const { createTask, displayTaskShow } = this.props;
         const task = this.state;
         createTask(task).then(payload => {
-            // debugger
             displayTaskShow(payload.task.id);
             const path = `/home/projects/${payload.task.projectId}/${payload.task.id}`;
             this.props.history.push(path);
         });
-
-
-        // createProject(project).then(payload => {
-        //     const { project } = payload;
-        //     const path = `/home/projects/${project.id}`;
-        //     this.props.history.push(path);
-        // });
     }
 
     handleChange(field) {
@@ -88,26 +79,6 @@ class AddTask extends React.Component {
 
         // let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
         let initials = assignee.slice(0, 2).toUpperCase(); // use full name later
-
-        // // Calculation of time since task creation --> factor out into helper files later?
-        // const currentDateTime = new Date();
-        // let timeSinceCreation = Date.parse(currentDateTime) - Date.parse(createdAt);
-        // const timeAgoSinceCreation = timeAgoFormatted(timeSinceCreation);
-
-        // // Calculation of time since latest task update
-        // let timeSinceUpdate = Date.parse(currentDateTime) - Date.parse(updatedAt);
-        // const timeAgoSinceUpdate = timeAgoFormatted(timeSinceUpdate);
-
-        // // Task completion status
-        // let taskStatusMessage;
-        // if (completed) {
-        //     // add checkmark icon inside taskStatusMessage
-        //     let timeSinceCompletion = Date.parse(currentDateTime) - Date.parse(completedAt);
-        //     const timeAgoSinceCompletion = timeAgoFormatted(timeSinceCompletion);
-        //     taskStatusMessage = <div>{assignee.primaryEmail} completed this task.  {timeAgoSinceCompletion}</div>
-        // } else {
-        //     taskStatusMessage = null;
-        // }
 
 
         return (

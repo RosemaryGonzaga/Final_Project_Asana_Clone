@@ -2,6 +2,11 @@ import React from 'react';
 import { timeAgoFormatted } from '../../util/time_ago_format_helper';
 // import { closeModal } from '../../actions/modal_actions';
 import { Link } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+
+// import "react-datepicker/dist/react-datepicker.css";
+// import "node_modules/react-datepicker/dist/react-datepicker.css";   // node_modules/react-datepicker/dist/react-datepicker.css
+// import "../../../node_modules/react-datepicker/dist/react-datepicker.css";   // node_modules/react-datepicker/dist/react-datepicker.css
 
 
 class TaskShow extends React.Component {
@@ -83,6 +88,16 @@ class TaskShow extends React.Component {
         exitTaskShowUponTaskDeletion();
     }
 
+    // TO IMPLEMENT:
+
+    // handleAssignDueDate(e) {
+    //     // 
+    // }
+
+    // openDueDateCalendar(e) {
+    //     // 
+    // }
+
 
     render() {
 
@@ -155,7 +170,9 @@ class TaskShow extends React.Component {
                                         <i className="far fa-calendar"></i>
                                     </div>
                                     <p>Due Date</p>
+                                    
                                 </div>
+                                {/* <DatePicker /> */}
                             </div>
                         </section>
                         <section className="task-show-section2">
@@ -178,6 +195,7 @@ class TaskShow extends React.Component {
                                 <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
                                 {taskStatusMessage}
                             </div>
+                            
                         </section>
                     </div>
                     <div className="task-show-form-footer"></div>

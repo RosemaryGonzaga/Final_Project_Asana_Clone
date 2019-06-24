@@ -67,11 +67,10 @@ class TaskShow extends React.Component {
         const { updateTask } = this.props;
         const task = this.state;
         updateTask(task);
-        // createProject(project).then(payload => {
-        //     const { project } = payload;
-        //     const path = `/home/projects/${project.id}`;
-        //     this.props.history.push(path);
-        // });
+
+        // // Added .then CB so dueDate button toggles its appearance
+        // // ...actually, not needed since I pass onSelect prop to React DatePicker component
+        // updateTask(task).then(payload => this.setState({ dueDateButton: true }));   
     }
 
     handleChange(field) {
@@ -106,9 +105,20 @@ class TaskShow extends React.Component {
 
     toggleDatePicker() {
         const { dueOn, dueDateButton } = this.state
-        let dueDate = dueOn;
+        let dueDate = dueOn;    // dueOn is null if no date chosen
+        let removeBtn = (
+            <div className="remove-btn-hidden">
+                <i className="fas fa-times"></i>
+            </div>
+        );
+        
         if (dueOn) {
             dueDate = `${MONTHS[new Date(dueOn).getMonth()]} ${new Date(dueOn).getDate()}`
+            removeBtn = (
+                <div className="remove-btn-visible" onClick={e => this.setState({ dueOn: null })}>
+                    <i className="fas fa-times"></i>
+                </div>
+            );
         }
 
         if (dueDateButton) {
@@ -119,16 +129,26 @@ class TaskShow extends React.Component {
                         <i className="far fa-calendar"></i>
                     </div>
                     <div className="task-show-due-date-text">
-                        <p>Due Date</p>
+                        <p className="task-show-due-date-label">Due Date</p>
                         <p>{dueDate}</p>
                     </div>
+                    {/* <div onClick={e => this.setState({ dueOn: null })}>
+                        <i class="fas fa-times"></i>
+                    </div> */}
+                    {removeBtn}
                 </div>
             );
         } else {
             return (
                 <DatePicker popperPlacement="bottom-start"
+                    // placeholderText="Click to select a due date"
+                    // selected={dueOn ? new Date(dueOn) : new Date() }
+                    startOpen={true}
+                    selected={dueOn ? new Date(dueOn) : null }
                     onChange={this.handleChange("dueOn")} 
-                    onBlur={() => this.setState({ dueDateButton: true })} />
+                    onSelect={() => this.setState({ dueDateButton: true })}
+                    onClickOutside={() => this.setState({ dueDateButton: true })}/>
+                    // onBlur={() => this.setState({ dueDateButton: true })} />
                     // onSelect={this.handleDueDateSelection}/>
             );
         }

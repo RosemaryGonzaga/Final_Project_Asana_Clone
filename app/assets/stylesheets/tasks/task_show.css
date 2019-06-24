@@ -191,12 +191,14 @@
 }
 
 .task-show-due-date-button {
-    width: 113px;
+    /* width: 113px; */
+    width: 124px;
     height: 40px;
     border: 1px solid transparent;
     border-radius: 20px;
     background-color: white;
-    color: #222b37;
+    /* color: #222b37; */
+    color: #646f79;
     font-size: 13px;
     display: flex;
     justify-content: space-around;
@@ -211,10 +213,67 @@
     /* z-index: 10; */
 }
 
+.task-show-due-date-label {
+    color: #848f99;
+    font-size: 12px;
+    font-weight: 500;
+}
+
 .task-show-due-date-button:hover {
     border: 1px solid #646f79;
     background-color: #f6f8f9;
     color: #222b37;
+}
+
+.task-show-due-date-button:hover > .remove-btn-visible {
+    background-color: #848f99;
+    width: 14px;
+    height: 14px;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.remove-btn-visible {
+    width: 14px;
+    height: 14px;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+/* .task-show-due-date-button > div:last-of-type {
+    width: 14px;
+    height: 14px;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+} */
+
+.task-show-due-date-button:hover > .remove-btn-visible:hover {
+    background-color: #646f79;
+}
+/* .task-show-due-date-button:hover > div:last-of-type:hover {
+    background-color: #646f79;
+} */
+
+.remove-btn-hidden {
+    width: 14px;
+    height: 14px;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.task-show-due-date-button:hover > .remove-btn-hidden {
+    color: #f6f8f9;
 }
 
 

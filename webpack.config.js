@@ -15,7 +15,7 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                test: /\.css$/, loader: "style-loader!css-loader",  // added this for React DatePicker component
+                // test: /\.css$/, loader: "style-loader!css-loader",  // added this for React DatePicker component
                 exclude: /(node_modules)/,
                 use: {
                     loader: 'babel-loader',

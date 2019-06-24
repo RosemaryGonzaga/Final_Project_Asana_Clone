@@ -53,7 +53,7 @@ class ProjectListView extends React.Component {
 
     handleOpenSectionShowClick(id) {
         return e => {
-            debugger
+            // debugger
             this.setState({ taskToRenderId: `section${id}` });
         }
     }
@@ -103,12 +103,12 @@ class ProjectListView extends React.Component {
         // debugger
         // let sectionId = this.state.taskToRenderId.slice();
         let sectionIdProp = this.state.taskToRenderId;
-        debugger
+        // debugger
         if (isNaN(parseInt(sectionIdProp)) && sectionIdProp.includes("section")) {
-            debugger
+            // debugger
             sectionIdProp = sectionIdProp.slice(7, sectionIdProp.length);
         }
-        debugger
+        // debugger
         const editSectionComponent = <EditSectionContainer sectionId={sectionIdProp}/>
 
         let rightComponentToRender = descriptionComponent;

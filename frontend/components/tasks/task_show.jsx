@@ -1,8 +1,9 @@
 import React from 'react';
-import { timeAgoFormatted } from '../../util/time_ago_format_helper';
+import { timeAgoFormatted, MONTHS } from '../../util/time_ago_format_helper';
 // import { closeModal } from '../../actions/modal_actions';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
+import { SectionListDropdown } from './section_list_dropdown';
 
 // import "react-datepicker/dist/react-datepicker.css";
 // import "node_modules/react-datepicker/dist/react-datepicker.css";   // node_modules/react-datepicker/dist/react-datepicker.css
@@ -22,14 +23,21 @@ class TaskShow extends React.Component {
         const project = projects[projectId];
         const assignee = users[assigneeId];
 
-        this.state = { id, name, description, project, 
+        // Local state
+        this.state = { 
+            id, name, description, project, 
             section, assignee, dueOn, completed, 
-            completedAt, createdAt, updatedAt, projectId
+            completedAt, createdAt, updatedAt, projectId,
+            dueDateButton: true,
         };
 
+        // Bind event handlers
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toggleComplete = this.toggleComplete.bind(this);
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+
+        // this.handleDueDateSelection = this.handleDueDateSelection.bind(this);
     }    
 
     componentDidMount() {
@@ -64,7 +72,11 @@ class TaskShow extends React.Component {
 
     handleChange(field) {
         return e => {
-            this.setState({ [field]: e.target.value });
+            if (e.target) {
+                this.setState({ [field]: e.target.value });
+            } else {
+                this.setState({ [field]: e});   // added this for DatePicker (to set DueDate)
+            }
         };
     }
 
@@ -88,19 +100,54 @@ class TaskShow extends React.Component {
         exitTaskShowUponTaskDeletion();
     }
 
-    // TO IMPLEMENT:
+    toggleDatePicker() {
+        const { dueOn, dueDateButton } = this.state
+        let dueDate = dueOn;
+        if (dueOn) {
+            dueDate = `${MONTHS[new Date(dueOn).getMonth()]} ${new Date(dueOn).getDate()}`
+        }
 
-    // handleAssignDueDate(e) {
-    //     // 
+        if (dueDateButton) {
+            return (
+                <div className="task-show-due-date-button"
+                    onClick={e => this.setState({ dueDateButton: false })}>
+                    <div className="task-show-calendar-icon">
+                        <i className="far fa-calendar"></i>
+                    </div>
+                    <div className="task-show-due-date-text">
+                        <p>Due Date</p>
+                        <p>{dueDate}</p>
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <DatePicker popperPlacement="bottom-start"
+                    onChange={this.handleChange("dueOn")} 
+                    onBlur={() => this.setState({ dueDateButton: true })} />
+                    // onSelect={this.handleDueDateSelection}/>
+            );
+        }
+    }
+
+    // // NOTE: need to find a way to auto-save (persist) the dueDate onSelect
+    // // Need to do the same w/ other fields (title & descrip), but implementing some sort of debounce algo
+    // // The below CB doesn't work w/ the JS event loop...?
+    // handleDueDateSelection() {   
+    //     this.handleChange("dueOn");
+    //     const { updateTask } = this.props;
+    //     const task = this.state;
+    //     updateTask(task);
     // }
 
-    // openDueDateCalendar(e) {
-    //     // 
-    // }
+    displaySectionDropdown() {
+
+    }
+
 
 
     render() {
-
+        // debugger
         const { id, name, description, project,
             section, assignee, dueOn,
             completed, completedAt,
@@ -165,14 +212,14 @@ class TaskShow extends React.Component {
                                         <p className="task-show-assign-text2">{assignee.primaryEmail}</p>
                                     </div>
                                 </div>
+                                {/* <DatePicker popperPlacement="bottom-start" />
                                 <div className="task-show-due-date-button">
                                     <div className="task-show-calendar-icon">
                                         <i className="far fa-calendar"></i>
                                     </div>
                                     <p>Due Date</p>
-                                    
-                                </div>
-                                {/* <DatePicker /> */}
+                                </div> */}
+                                {this.toggleDatePicker()}
                             </div>
                         </section>
                         <section className="task-show-section2">
@@ -195,7 +242,6 @@ class TaskShow extends React.Component {
                                 <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
                                 {taskStatusMessage}
                             </div>
-                            
                         </section>
                     </div>
                     <div className="task-show-form-footer"></div>
@@ -206,24 +252,3 @@ class TaskShow extends React.Component {
 }
 
 export default TaskShow;
-
-
-
-// // helper function --> factor out to util folder
-// function timeAgoFormatted(timeDiffInMS) {
-//     if (timeDiffInMS > 86400000) {          // format in days
-//         let timeDiffInDays = timeDiffInMS / 86400000;
-//         let days = Math.floor(timeDiffInDays) === 1 ? 'day' : 'days';
-//         return `${Math.floor(timeDiffInDays)} ${days} ago`;
-//     } else if (timeDiffInMS > 3600000) {    // format in hours
-//         let timeDiffInHours = timeDiffInMS / 3600000;
-//         let hours = Math.floor(timeDiffInHours) === 1 ? 'hour' : 'hours';
-//         return `${Math.floor(timeDiffInHours)} ${hours} ago`;
-//     } else if (timeDiffInMS > 60000) {      // format in minutes
-//         let timeDiffInMinutes = timeDiffInMS / 60000;
-//         let minutes = Math.floor(timeDiffInMinutes) === 1 ? 'minute' : 'minutes';
-//         return `${Math.floor(timeDiffInMinutes)} ${minutes} ago`;
-//     } else {
-//         return 'Just now';
-//     }
-// }

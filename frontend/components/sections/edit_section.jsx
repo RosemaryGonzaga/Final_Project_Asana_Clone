@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class EditSection extends React.Component {
     constructor(props) {
         super(props);
-        debugger
+        // debugger
         const { section, sections, projects, users } = this.props;
         const { id, name, description, projectId,
             assigneeId, dueOn, layout,

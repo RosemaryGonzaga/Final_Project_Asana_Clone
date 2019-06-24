@@ -149,6 +149,7 @@
     margin-bottom: 4px;
     transition-duration: 400ms;
     transition-property: background-color, border-color;
+    margin-right: 10px;
 }
 
 .task-show-assign-button:hover {
@@ -200,10 +201,14 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-left: 12px;
+    /* margin-left: 12px; */
     margin-bottom: 4px;
     transition-duration: 400ms;
     transition-property: background-color, border-color, color;
+    /* display: none; */
+    /* position: absolute; */
+    /* top: -12px; */
+    /* z-index: 10; */
 }
 
 .task-show-due-date-button:hover {
@@ -239,6 +244,9 @@
     color: #646f79;
 }
 
+/* .task-due-date-wrapper {
+    position: relative;
+} */
 
 
 

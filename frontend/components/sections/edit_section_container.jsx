@@ -13,7 +13,7 @@ const msp = (state, ownProps) => {
     const { sections, projects, users } = state.entities;
     const sectionId = ownProps.sectionId;
     const section = sections[sectionId];
-    debugger
+    // debugger
     return { section, sections, projects, users };
 };
 

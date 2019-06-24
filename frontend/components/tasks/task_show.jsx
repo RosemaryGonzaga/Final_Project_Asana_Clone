@@ -28,6 +28,7 @@ class TaskShow extends React.Component {
             id, name, description, project, 
             section, assignee, dueOn, completed, 
             completedAt, createdAt, updatedAt, projectId,
+            sectionId,
             dueDateButton: true,
         };
 
@@ -36,9 +37,12 @@ class TaskShow extends React.Component {
         this.toggleComplete = this.toggleComplete.bind(this);
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.selectSection = this.selectSection.bind(this);
 
         // this.handleDueDateSelection = this.handleDueDateSelection.bind(this);
     }    
+
+
 
     componentDidMount() {
         // debugger
@@ -141,7 +145,20 @@ class TaskShow extends React.Component {
     // }
 
     displaySectionDropdown() {
+        // debugger
+        const sectionDropdown = document.getElementById("section-dropdown-menu")
+        sectionDropdown.className = "section-dropdown-menu";
+        // debugger
+    }
 
+    selectSection(id) {
+        return e => {
+            e.preventDefault();
+            const sectionDropdown = document.getElementById("section-dropdown-menu")
+            sectionDropdown.className = "section-dropdown-menu-hidden";
+            // debugger
+            this.setState({ sectionId: id, section: this.props.sections[id] });
+        };
     }
 
 
@@ -149,9 +166,11 @@ class TaskShow extends React.Component {
     render() {
         // debugger
         const { id, name, description, project,
-            section, assignee, dueOn,
+            sectionId, assignee, dueOn,
             completed, completedAt,
             createdAt, updatedAt } = this.state;
+        
+        const section = this.props.sections[sectionId];
 
         let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
 
@@ -212,13 +231,6 @@ class TaskShow extends React.Component {
                                         <p className="task-show-assign-text2">{assignee.primaryEmail}</p>
                                     </div>
                                 </div>
-                                {/* <DatePicker popperPlacement="bottom-start" />
-                                <div className="task-show-due-date-button">
-                                    <div className="task-show-calendar-icon">
-                                        <i className="far fa-calendar"></i>
-                                    </div>
-                                    <p>Due Date</p>
-                                </div> */}
                                 {this.toggleDatePicker()}
                             </div>
                         </section>
@@ -233,7 +245,14 @@ class TaskShow extends React.Component {
                             <div className="task-show-section2-bottom">
                                 <i className="far fa-clipboard"></i>
                                 <div className="task-show-project-icon">{project.name}</div>
-                                <div className="task-show-section-label">{section.name}</div>
+                                <div className="task-show-section-label" 
+                                        onClick={this.displaySectionDropdown}>
+                                        {/* onClick={() => window.alert("open dropdown!")}> */}
+                                        {/* onMouseLeave={() => window.alert("close dropdown")}> */}
+                                    <p>{section.name}</p>
+                                    <SectionListDropdown sections={this.props.sections} section={section} 
+                                                        selectSection={this.selectSection}/>
+                                </div>
                             </div>
                         </section>
                         <section className="task-show-section3">

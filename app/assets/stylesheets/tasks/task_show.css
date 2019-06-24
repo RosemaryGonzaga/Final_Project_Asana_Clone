@@ -315,7 +315,51 @@
     color: #848f99;
     font-size: 13px;
     margin-left: 8px;
+
+    position: relative;
 }
+
+.section-dropdown-menu {
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    min-width: 185px;
+}
+
+.section-dropdown-menu > li {
+    box-sizing: border-box;
+    padding: 10px;
+    /* padding-left: 10px; */
+    background-color: white;
+    display: flex;
+    align-items: center;
+    color: #151b26;
+}
+
+.section-dropdown-menu > li:hover {
+   /* background-color: #f6f8f9; */
+    background-color: #edf1f2;
+    cursor: pointer;
+}
+
+
+.section-dropdown-menu-hidden {
+    display: none;
+}
+
+.fa-check-visible {
+    margin-right: 5px;
+}
+
+.fa-check-transparent {
+    margin-right: 5px;
+    color: transparent;
+}
+
+
+
 
 .task-show-section2-bottom {
     display: flex;

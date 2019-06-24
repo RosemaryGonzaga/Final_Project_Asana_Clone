@@ -4,6 +4,7 @@ import TaskShowContainer from '../tasks/task_show_container';
 import AddTaskContainer from '../tasks/add_task_container';
 import EditSectionContainer from '../sections/edit_section_container';
 import { Link } from 'react-router-dom';
+import { isEqual } from 'lodash';
 
 class ProjectListView extends React.Component {
     constructor(props) {
@@ -25,10 +26,22 @@ class ProjectListView extends React.Component {
     //     fetchSections
     // }
 
-    // componentDidUpdate() {   // not sure if this is needed (works w/o fetching sections)
-    //     const { fetchSections } = this.props;
-    //     fetchSections
-    // }
+    // This is needed so sections don't get populated in the wrong projects when clicking from one project to another
+    // Also, it fixed the double-click issue!! (before, I needed to double click a task index item to show the task)
+    componentDidUpdate(prevProps, prevState) {
+        // Only fetch sections if they have changed (compare prevProps w/ current props)...
+        // ...or if the taskToRenderId has changed (compare prevState w/ current state)...
+        // ...otherwise you'll be stuck in an infinite loop
+        // Need to use lodash's isEqual to check for equivalence (instead of ===)
+        // NOTE: now there's a blip when switching from one project to another ... 
+        // ...nothing inaccurate but needs to be addressed for smoother UX
+        const equalProps = isEqual(prevProps.sections, this.props.sections);
+        const equalState = isEqual(prevState.taskToRenderId, this.state.taskToRenderId); // check this condition to resolve double-click issue
+        if (!equalProps || !equalState) {
+            const { fetchSections } = this.props;
+            fetchSections(this.state.project.id);
+        }
+    }
 
     handleOpenTaskShowClick(e) {
         this.setState({ taskToRenderId: e.currentTarget.id });  // or e.target.id? (what's the difference?)
@@ -74,6 +87,7 @@ class ProjectListView extends React.Component {
         const { createSection } = this.props;
         createSection(blankSection);
     }
+    
 
     render() {
         // debugger

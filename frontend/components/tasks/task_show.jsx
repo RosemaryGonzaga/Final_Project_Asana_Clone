@@ -111,7 +111,7 @@ class TaskShow extends React.Component {
                 <i className="fas fa-times"></i>
             </div>
         );
-        
+
         if (dueOn) {
             dueDate = `${MONTHS[new Date(dueOn).getMonth()]} ${new Date(dueOn).getDate()}`
             removeBtn = (
@@ -173,7 +173,9 @@ class TaskShow extends React.Component {
 
     selectSection(id) {
         return e => {
-            e.preventDefault();
+            // Note: e.stopPropagation prevents the click from bubbling up to dropdown parent 
+            // (when the click reached the parent, the menu would re-open, so it never looked like the menu closed)
+            e.stopPropagation(); 
             const sectionDropdown = document.getElementById("section-dropdown-menu")
             sectionDropdown.className = "section-dropdown-menu-hidden";
             // debugger

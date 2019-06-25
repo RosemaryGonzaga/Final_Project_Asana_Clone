@@ -10,7 +10,7 @@ import { SectionListDropdown } from './section_list_dropdown';
 // import "../../../node_modules/react-datepicker/dist/react-datepicker.css";   // node_modules/react-datepicker/dist/react-datepicker.css
 
 
-class TaskShow extends React.Component {
+class TaskModal extends React.Component {
     constructor(props) {
         super(props);
 
@@ -24,9 +24,9 @@ class TaskShow extends React.Component {
         const assignee = users[assigneeId];
 
         // Local state
-        this.state = { 
-            id, name, description, project, 
-            section, assignee, dueOn, completed, 
+        this.state = {
+            id, name, description, project,
+            section, assignee, dueOn, completed,
             completedAt, createdAt, updatedAt, projectId,
             sectionId,
             dueDateButton: true,
@@ -38,24 +38,16 @@ class TaskShow extends React.Component {
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.selectSection = this.selectSection.bind(this);
-
-        // this.handleDueDateSelection = this.handleDueDateSelection.bind(this);
-    }    
+    }
 
 
 
     componentDidMount() {
-        // debugger
-        // fetchTask(this.props.match.params.taskId);
-        const { fetchTask, task, taskId } = this.props;
+        const { fetchTask, task } = this.props;
         fetchTask(task.id);
     }
 
     componentDidUpdate(prevProps) {
-        // debugger
-        // if (this.state.id !== prevProps.task.id) {
-        //     this.setState({ ...this.props.task });
-        // }
         if (this.state.id.toString() !== prevProps.taskId.toString()) {  // need to use taskId b/c task.id is undefined in prevProps if this component updates after deleting a task
             this.setState({ ...this.props.task });
         }
@@ -78,7 +70,7 @@ class TaskShow extends React.Component {
             if (e.target) {
                 this.setState({ [field]: e.target.value });
             } else {
-                this.setState({ [field]: e});   // added this for DatePicker (to set DueDate)
+                this.setState({ [field]: e });   // added this for DatePicker (to set DueDate)
             }
         };
     }
@@ -88,6 +80,7 @@ class TaskShow extends React.Component {
         const { id, completed } = this.state;
         // const completedAt = new Date();
         const completedAt = completed ? null : new Date();
+        // const completedAt = completed ? "" : new Date();
         const that = this;
         updateTask({ id, completed: !completed, completedAt }).then(payload => {
             fetchTask(id);
@@ -97,11 +90,12 @@ class TaskShow extends React.Component {
 
     handleDeleteTask(e) {
         e.preventDefault();
-        const { deleteTask, exitTaskShowUponTaskDeletion } = this.props;
+        const { deleteTask } = this.props;  // maybe close mdoal instead of exitTaskShow...
+        // const { deleteTask, exitTaskShowUponTaskDeletion } = this.props;
         deleteTask(this.state.id);
         const path = `/home/projects/${this.state.projectId}`;
         this.props.history.push(path);
-        exitTaskShowUponTaskDeletion();
+        // exitTaskShowUponTaskDeletion();  // close modal instead
     }
 
     toggleDatePicker() {
@@ -145,12 +139,12 @@ class TaskShow extends React.Component {
                     // placeholderText="Click to select a due date"
                     // selected={dueOn ? new Date(dueOn) : new Date() }
                     startOpen={true}
-                    selected={dueOn ? new Date(dueOn) : null }
-                    onChange={this.handleChange("dueOn")} 
+                    selected={dueOn ? new Date(dueOn) : null}
+                    onChange={this.handleChange("dueOn")}
                     onSelect={() => this.setState({ dueDateButton: true })}
-                    onClickOutside={() => this.setState({ dueDateButton: true })}/>
-                    // onBlur={() => this.setState({ dueDateButton: true })} />
-                    // onSelect={this.handleDueDateSelection}/>
+                    onClickOutside={() => this.setState({ dueDateButton: true })} />
+                // onBlur={() => this.setState({ dueDateButton: true })} />
+                // onSelect={this.handleDueDateSelection}/>
             );
         }
     }
@@ -176,7 +170,7 @@ class TaskShow extends React.Component {
         return e => {
             // Note: e.stopPropagation prevents the click from bubbling up to dropdown parent 
             // (when the click reached the parent, the menu would re-open, so it never looked like the menu closed)
-            e.stopPropagation(); 
+            e.stopPropagation();
             const sectionDropdown = document.getElementById("section-dropdown-menu")
             sectionDropdown.className = "section-dropdown-menu-hidden";
             // debugger
@@ -192,7 +186,7 @@ class TaskShow extends React.Component {
             sectionId, assignee, dueOn,
             completed, completedAt,
             createdAt, updatedAt } = this.state;
-        
+
         const section = this.props.sections[sectionId];
 
         let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
@@ -226,7 +220,7 @@ class TaskShow extends React.Component {
                             <i className="fas fa-check" id="fas-fa-check-task-button"></i>
                             Mark Complete
                         </button>
-                        <input className="random-buttons" type="submit" value="Submit"/>
+                        <input className="random-buttons" type="submit" value="Submit" />
                         {/* <button onClick={this.handleDeleteTask}>Delete task</button> */}
 
 
@@ -244,7 +238,7 @@ class TaskShow extends React.Component {
                     <div className="task-show-form-content">
                         <section className="task-show-section1">
                             <input type="text" value={name}
-                                onChange={this.handleChange("name")} 
+                                onChange={this.handleChange("name")}
                                 className="task-show-name-input" />
                             <div className="task-show-section1-bottom">
                                 <div className="task-show-assign-button">
@@ -268,13 +262,13 @@ class TaskShow extends React.Component {
                             <div className="task-show-section2-bottom">
                                 <i className="far fa-clipboard"></i>
                                 <div className="task-show-project-icon">{project.name}</div>
-                                <div className="task-show-section-label" 
-                                        onClick={this.displaySectionDropdown}>
-                                        {/* onClick={() => window.alert("open dropdown!")}> */}
-                                        {/* onMouseLeave={() => window.alert("close dropdown")}> */}
+                                <div className="task-show-section-label"
+                                    onClick={this.displaySectionDropdown}>
+                                    {/* onClick={() => window.alert("open dropdown!")}> */}
+                                    {/* onMouseLeave={() => window.alert("close dropdown")}> */}
                                     <p>{section.name}</p>
-                                    <SectionListDropdown sections={this.props.sections} section={section} 
-                                                        selectSection={this.selectSection}/>
+                                    <SectionListDropdown sections={this.props.sections} section={section}
+                                        selectSection={this.selectSection} />
                                 </div>
                             </div>
                         </section>
@@ -293,4 +287,4 @@ class TaskShow extends React.Component {
     }
 }
 
-export default TaskShow;
+export default TaskModal;

@@ -23,6 +23,7 @@ class ProjectShow extends React.Component {
         } else if (this.props.project.layout === "list") {
             layout = <ProjectListView {...this.props} />;
         } else {
+            // debugger
             layout = <ProjectBoardView {...this.props} />;
         }
 

@@ -1,20 +1,51 @@
 .board-project-wrapper {
+    /* position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px; */
+
     position: relative;
-    height: 100vh;
-    background-color: green;
+    top: -15px;
+    left: -15px;
+    bottom: 0;
+    right: 0;
+    /* height: 100vh; */
+    /* background-color: green; */
+
     /* display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center; */
 }
 
+.board-project-header {
+    position: absolute;
+    /* width: 100vw; */
+    width: 1196px;
+    height: 50px;
+    background-color: green;
+}
+
+
 .board-cols {
+    position: absolute;
+    top: 50px;
+    bottom: -15px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100vw;
+    /* flex-direction: column; */
+    /* justify-content: space-around; */
+    width: 1196px;
+    /* width: 100vw; */
+    padding-left: 10px;
+    background-color: lightblue;
 }
 
 .board-col {
-    width: 254px;
+    width: 300px;
+    margin: 0 10px;
     background-color: purple;
 }

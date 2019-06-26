@@ -11,6 +11,7 @@ class Column extends React.Component {
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleAddTask = this.handleAddTask.bind(this);
     }
 
     componentDidMount() {
@@ -18,7 +19,6 @@ class Column extends React.Component {
         fetchSection(section.id);
         fetchTasks();
     }
-
 
 
     handleSubmit(e) {
@@ -34,6 +34,19 @@ class Column extends React.Component {
         return e => {
             this.setState({ [field]: e.target.value });
         };
+    }
+
+    handleAddTask(e) {
+        e.preventDefault();
+        const { section, currentUserId, createTask } = this.props;
+        // debugger
+        const blankTask = {
+            name: "New task",
+            projectId: section.projectId,
+            sectionId: section.id,
+            assigneeId: currentUserId,
+        };
+        createTask(blankTask);
     }
 
 
@@ -58,7 +71,10 @@ class Column extends React.Component {
                             value={this.state.name} 
                             onChange={this.handleChange("name")}/>
                 </form>
-                <div className="add-task-to-col-btn"><i className="fas fa-plus"></i></div>
+                <a href="#" className="add-task-to-col-btn" 
+                            onClick={this.handleAddTask}>
+                    <i className="fas fa-plus"></i></a>
+                {/* <div className="add-task-to-col-btn"><i className="fas fa-plus"></i></div> */}
                 <ul>{taskItems}</ul>
             </div>
         );

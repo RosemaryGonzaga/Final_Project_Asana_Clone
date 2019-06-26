@@ -100,7 +100,7 @@
     align-items: center;
     font-size: 14px;
     color: #848f99;
-    /* text-decoration: none; */
+    text-decoration: none;
     transition-duration: 300ms;
     transition-property: color;
 }
@@ -115,6 +115,9 @@
     height: 80px;
     border-radius: 3px;
     box-shadow: 0 1px 4px #26151B26;
+    text-decoration: none;
+    color: #151b26;
+    font-size: 13px;
 }
 
 

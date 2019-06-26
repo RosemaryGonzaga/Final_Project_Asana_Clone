@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import TaskModal from './task_modal';
 import { fetchTask, updateTask, deleteTask } from '../../actions/task_actions';
-// import { openModal } from '../../actions/modal_actions';
+import { closeModal } from '../../actions/modal_actions';
 
 const msp = (state, ownProps) => {
     // debugger
@@ -23,7 +23,7 @@ const mdp = dispatch => {
         fetchTask: id => dispatch(fetchTask(id)),
         updateTask: task => dispatch(updateTask(task)),
         deleteTask: id => dispatch(deleteTask(id)),
-        // openModal: modal => dispatch(openModal(modal)),
+        closeModal: () => dispatch(closeModal()),
     };
 };
 

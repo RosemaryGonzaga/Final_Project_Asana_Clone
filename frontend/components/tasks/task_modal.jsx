@@ -1,13 +1,8 @@
 import React from 'react';
 import { timeAgoFormatted, MONTHS } from '../../util/time_ago_format_helper';
-// import { closeModal } from '../../actions/modal_actions';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { SectionListDropdown } from './section_list_dropdown';
-
-// import "react-datepicker/dist/react-datepicker.css";
-// import "node_modules/react-datepicker/dist/react-datepicker.css";   // node_modules/react-datepicker/dist/react-datepicker.css
-// import "../../../node_modules/react-datepicker/dist/react-datepicker.css";   // node_modules/react-datepicker/dist/react-datepicker.css
 
 
 class TaskModal extends React.Component {
@@ -56,13 +51,9 @@ class TaskModal extends React.Component {
     handleSubmit(e) {
         // debugger
         e.preventDefault();
-        const { updateTask } = this.props;
+        const { updateTask, closeModal } = this.props;
         const task = this.state;
-        updateTask(task);
-
-        // // Added .then CB so dueDate button toggles its appearance
-        // // ...actually, not needed since I pass onSelect prop to React DatePicker component
-        // updateTask(task).then(payload => this.setState({ dueDateButton: true }));   
+        updateTask(task).then(() => closeModal());
     }
 
     handleChange(field) {
@@ -90,9 +81,9 @@ class TaskModal extends React.Component {
 
     handleDeleteTask(e) {
         e.preventDefault();
-        const { deleteTask } = this.props;  // maybe close mdoal instead of exitTaskShow...
+        const { deleteTask, closeModal } = this.props;  // maybe close modal instead of exitTaskShow...
         // const { deleteTask, exitTaskShowUponTaskDeletion } = this.props;
-        deleteTask(this.state.id);
+        deleteTask(this.state.id).then(() => closeModal());
         const path = `/home/projects/${this.state.projectId}`;
         this.props.history.push(path);
         // exitTaskShowUponTaskDeletion();  // close modal instead

@@ -22,11 +22,11 @@ const Splash = props => {
                 <a href=""><img src={window.asanaLogoSplash} alt="logo" className="splash-logo-link" /></a>
                 <nav className="splash-right-nav">
                     <ul>
-                        <a href="">Templates</a>
+                        {/* <a href="">Templates</a>
                         <a href="">Product</a>
                         <a href="">Pricing</a>
                         <a href="">Solutions</a>
-                        <a href="">Contact Sales</a>
+                        <a href="">Contact Sales</a> */}
                         <button className="splash-login-button" onClick={() => openModal('login')}>Log In</button>
                         <button className="splash-free-trial-button" onClick={() => openModal('signup')}>Try for free</button>
                     </ul>
@@ -47,10 +47,13 @@ const Splash = props => {
 
                 <div className="splash-section splash-footer">
                     <div className="splash-footer-top">
-                        <a href="https://www.facebook.com/rosemary.gonzaga.1"><i className="fab fa-facebook"></i></a>
+                        {/* <a href="https://www.facebook.com/rosemary.gonzaga.1"><i className="fab fa-facebook"></i></a> */}
                         <a href="https://github.com/RosemaryGonzaga"><i className="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/rosemary-gonzaga-125bb790/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://angel.co/rosemary-gonzaga?public_profile=1"><i class="fab fa-angellist"></i></a>
+                        <a href="https://rosemarygonzaga.github.io/Portfolio/"><i class="fas fa-globe"></i></a>
                     </div>
-                    <footer>
+                    {/* <footer>
                         <ul>
                             <li>English</li>
                             <li>Privacy</li>
@@ -58,7 +61,7 @@ const Splash = props => {
                             <li>Download on the App Store</li>
                             <li>Get it on Google Play</li>
                         </ul>
-                    </footer>
+                    </footer> */}
                 </div>
             </div>
         </div>     

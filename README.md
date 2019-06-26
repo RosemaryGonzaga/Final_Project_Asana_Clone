@@ -41,7 +41,7 @@ This application is built on a stack of backend technologies, including PostgreS
 
 ## Feature Spotlight: User Authentication
 
-Shavasaana incorporates robust user authentication, ensuring users can only view their own team's projects and tasks.
+Shavasana incorporates robust user authentication, ensuring users can only view their own team's projects and tasks.
 
 ---
 

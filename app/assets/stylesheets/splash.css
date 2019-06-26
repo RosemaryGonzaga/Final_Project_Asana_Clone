@@ -4,7 +4,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 1550px;
+    /* height: 1550px; */
+    height: 1440px;
 }
 
 .splash-main-nav {
@@ -52,7 +53,8 @@
 
 
 .splash-right-nav > ul {
-    width: 745px;
+    /* width: 745px; */
+    width: 240px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -191,8 +193,8 @@
 
 
 .splash-footer {
-    /* height: 112px; */
-    height: 220px;
+    /* height: 220px; */
+    height: 110px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -206,18 +208,22 @@
     align-items: center;
 }
 
-.splash-footer > div > a > .fab {
+.splash-footer > div > a > .fab,
+.splash-footer > div > a > .fas {
     font-size: 30px;
     color: white;
 }
 
-.fa-github {
-    margin-right: 90px;
+.fa-github,
+.fa-linkedin,
+.fa-angellist,
+.fa-globe {
+    margin-right: 50px;
 }
 
-.fa-facebook {
+/* .fa-facebook {
     margin-right: 40px;
-}
+} */
 
 
 .splash-footer > footer {

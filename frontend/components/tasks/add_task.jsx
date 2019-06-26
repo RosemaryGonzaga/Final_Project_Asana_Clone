@@ -32,6 +32,7 @@ class AddTask extends React.Component {
         // this.toggleComplete = this.toggleComplete.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.selectSection = this.selectSection.bind(this);
+        this.handleCloseTaskShow = this.handleCloseTaskShow.bind(this);
     }
 
     // componentDidMount() {
@@ -49,6 +50,7 @@ class AddTask extends React.Component {
     // }
 
     handleSubmit(e) {
+        // debugger
         e.preventDefault();
         const { createTask, displayTaskShow } = this.props;
         const task = this.state;
@@ -159,7 +161,14 @@ class AddTask extends React.Component {
         };
     }
 
-
+    handleCloseTaskShow(e) {
+        e.preventDefault();
+        const { exitTaskShowUponTaskDeletion } = this.props;
+        // deleteTask(this.state.id);
+        const path = `/home/projects/${this.state.projectId}`;
+        this.props.history.push(path);
+        exitTaskShowUponTaskDeletion();
+    }
 
 
 
@@ -185,7 +194,7 @@ class AddTask extends React.Component {
                         </button>
                         <input className="random-buttons" type="submit" value="Submit" />
                         <button className="random-buttons">Delete task</button>
-                        <button className="task-show-close-btn" >
+                        <button className="task-show-close-btn" onClick={this.handleCloseTaskShow} >
                             {/* <img src={window.closeButtonHover} alt="x" /> */}
                             <i className="fas fa-times"></i>
                         </button>

@@ -44,10 +44,12 @@ class ProjectListView extends React.Component {
     }
 
     handleOpenTaskShowClick(e) {
+        // debugger
         this.setState({ taskToRenderId: e.currentTarget.id });  // or e.target.id? (what's the difference?)
     }
 
     handleAddTaskClick(e) {
+        // debugger
         this.setState({ taskToRenderId: "new task" })
     }
 
@@ -57,10 +59,12 @@ class ProjectListView extends React.Component {
     // ...(they look the same but are functionally different)
     // NOTE: this is different from the handleOpenTaskShowClick callback
     displayTaskShow(id) {
+        // debugger
         this.setState({ taskToRenderId: id });  // another way to get the id: from redux store
     }
 
     exitTaskShowUponTaskDeletion() {
+        // debugger
         this.setState({ taskToRenderId: "description" });
     }
 
@@ -113,7 +117,8 @@ class ProjectListView extends React.Component {
 
         // pass callback down to AddTaskContainer so Project can know to display the TaskShow instead of AddTask
         // ...when user adds a task
-        const newTaskComponent = <AddTaskContainer project={project} displayTaskShow={this.displayTaskShow} />;
+        const newTaskComponent = <AddTaskContainer project={project} displayTaskShow={this.displayTaskShow}
+                                                exitTaskShowUponTaskDeletion={this.exitTaskShowUponTaskDeletion} />;
         // debugger
         // let sectionId = this.state.taskToRenderId.slice();
         let sectionIdProp = this.state.taskToRenderId;

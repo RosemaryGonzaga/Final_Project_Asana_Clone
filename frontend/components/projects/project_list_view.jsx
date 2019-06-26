@@ -112,6 +112,7 @@ class ProjectListView extends React.Component {
 
         // pass callback down to TaskShowContainer so Project can know to show its description instead of the TaskShow
         // ...when user deletes a task
+        // debugger
         const taskComponent = <TaskShowContainer taskId={this.state.taskToRenderId} 
                                                 exitTaskShowUponTaskDeletion={this.exitTaskShowUponTaskDeletion} />;
 

@@ -1,0 +1,54 @@
+.task-index-container {
+    width: 1000px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 3px;
+    box-shadow: 0 0 4px #26151B26;
+    position: relative;
+    margin: 15px auto;
+    height: 680px;
+    box-sizing: border-box;
+    padding: 0 30px;
+}
+
+
+
+.task-index-item-container {
+    height: 36px;
+    border-bottom: 1px solid #e0e6e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #151b26;
+    font-size: 13px;
+    text-decoration: none;
+    transition-duration: 250ms;
+    transition-property: color;
+    /* box-sizing: border-box;
+    padding: 0 15px; */
+}
+
+.task-index-item-container:last-of-type {
+    border-bottom: none;
+}
+
+.task-index-item-container:hover {
+    background-color: #f6f8f9;
+}
+
+.task-index-item-left {
+    display: flex;
+    align-items: center;
+}
+
+.task-index-item-right {
+    display: flex;
+    align-items: center;
+}
+
+.task-index-item-due-date {
+    margin-left: 10px;
+    font-size: 11px;
+}

@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { logout } from '../actions/session_actions';
 import ProjectIndexContainer from './projects/project_index_container';
 import ProjectShowContainer from './projects/project_show_container';
-import TaskShowContainer from './tasks/task_show_container';
+import TaskIndexContainer from './tasks/task_index_container';
+import Welcome from './welcome';
+// import TaskShowContainer from './tasks/task_show_container';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
 import { fetchProjects } from '../actions/project_actions';
@@ -106,7 +108,8 @@ class Home extends React.Component {
                     <ul className="home-sidebar-top">
                         <li><Link to="/home"><i className="fas fa-home"></i> Home</Link></li>
                         <li><Link to="/home/projects"><i className="fas fa-list fa-list-sidebar"></i>Projects</Link></li>
-                        <li><Link to=""><i className="far fa-check-circle"></i>Tasks</Link></li>
+                        <li><Link to="/home/tasks"><i className="far fa-check-circle"></i>Tasks</Link></li>
+                        {/* <li><Link to=""><i className="far fa-check-circle"></i>Tasks</Link></li> */}
                     </ul>
                     {/* <Link to="/home/projects">Projects Index</Link> */}
                 </div>
@@ -143,6 +146,8 @@ class Home extends React.Component {
                             {/* <ProtectedRoute path="/home/projects/:projectId/:taskId" component={TaskShowContainer}/> */}
                             <ProtectedRoute path="/home/projects/:projectId" component={ProjectShowContainer} />
                             <ProtectedRoute path="/home/projects" component={ProjectIndexContainer} />
+                            <ProtectedRoute path="/home/tasks" component={TaskIndexContainer} />
+                            <ProtectedRoute exact path="/home" component={Welcome} />
                         </Switch>
                     </div>
                 </div>
@@ -156,7 +161,7 @@ const msp = (state, ownProps) => {
     const resource = pathParts[pathParts.length - 2];   // Should be either "projects" or "tasks" (if it's blank show home; if it's "home", show projects index )
     const resourceId = pathParts[pathParts.length - 1]; // Should be a number ...
     const projectId = pathParts[pathParts.indexOf("projects") + 1];
-    debugger
+    // debugger
     let currentResource;
     if (pathParts.includes("projects") && pathParts.length > 3) {   // added this conditional on 6/26 ... may make other conditionals unnecessary
         currentResource = {
@@ -185,7 +190,7 @@ const msp = (state, ownProps) => {
             component: "home",
         }
     } else if (!isNaN(parseInt(resource))) {    // if resource is a number (but need to catch other scenarios - like "" and "tasks" - upstream)
-        debugger
+        // debugger
         currentResource = {
             component: "taskShow",
             task: state.entities.tasks[resourceId],

@@ -2,8 +2,10 @@ import React from 'react';
 
 export const SectionListDropdown = props => {
     const { sections, section, selectSection } = props;
+    // debugger
     const sectionItems = Object.keys(sections).map( sectionId => {
         // only show checkmark next the actual section that this task belongs to
+        // debugger
         const checkClass = section.id.toString() === sectionId.toString() ? "fa-check-visible" : "fa-check-transparent";
         return (
             <li key={sectionId} onClick={selectSection(sectionId)}>

@@ -263,7 +263,8 @@ class TaskShow extends React.Component {
                                 <i className="fas fa-align-left"></i>
                                 <textarea className="task-show-description-input"
                                     value={description}
-                                    onChange={this.handleChange("description")}>
+                                    onChange={this.handleChange("description")}
+                                    placeholder="Description">
                                 </textarea>
                             </div>
                             <div className="task-show-section2-bottom">

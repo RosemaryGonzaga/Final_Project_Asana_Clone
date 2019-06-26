@@ -159,7 +159,7 @@ class ProjectListView extends React.Component {
                     </div>
                     <ul>{sectionItems}</ul>
                     {/* <div className="add-section-container"><i className="fas fa-plus"></i>Add Section</div> */}
-                    <a href="#" className="add-section-container" onClick={this.handleAddSection}><i className="fas fa-plus"></i>Add Section</a>
+                    <a href="#" className="add-section-container" onClick={this.handleAddSection}><i className="fas fa-plus"></i>Add section</a>
                 </div>
                 
                 { rightComponentToRender }

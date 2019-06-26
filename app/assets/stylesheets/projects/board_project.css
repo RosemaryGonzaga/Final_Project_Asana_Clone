@@ -27,7 +27,13 @@
     /* width: 100vw; */
     width: 1196px;
     height: 50px;
-    background-color: green;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    /* background-color: green; */
+    color: #848f99;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 
@@ -41,11 +47,101 @@
     width: 1196px;
     /* width: 100vw; */
     padding-left: 10px;
-    background-color: lightblue;
 }
 
 .board-col {
     width: 300px;
-    margin: 0 10px;
-    background-color: purple;
+    box-sizing: border-box;
+    padding-top: 5px;
+    /* margin: 0 10px; */
+    /* background-color: purple; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition-duration: 500ms;
+    transition-property: border;
+}
+
+.board-col:hover {
+    border: 1px solid lightgray;
+}
+
+.column-name-input {
+    width: 280px;
+    box-sizing: border-box;
+    padding: 5px 0;
+    color: #151b26;
+    font-size: 16px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+.column-name-input:focus {
+    border: 1px solid #9ca6af;
+    border-radius: 3px;
+    outline: none;
+    background-color: white;
+    padding: 5px 10px;
+}
+
+.add-task-to-col-btn {
+    width: 280px;
+    height: 30px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    box-shadow: 0 1px 4px #26151B26;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #848f99;
+    /* text-decoration: none; */
+    transition-duration: 300ms;
+    transition-property: color;
+}
+
+.add-task-to-col-btn:hover {
+    color: #32c1ff;
+    cursor: pointer;
+}
+
+.column-index-item-container {
+    width: 280px;
+    height: 80px;
+    border-radius: 3px;
+    box-shadow: 0 1px 4px #26151B26;
+}
+
+
+
+.add-column-container {
+    height: 36px;
+    border-bottom: 1px solid #e0e6e8;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    color: #848f99;
+    font-weight: 500;
+    font-size: 16x;
+    text-decoration: none;
+    margin-left: 10px;
+    transition-duration: 300ms;
+    transition-property: color;
+    margin-top: 5px;
+}
+
+.add-column-container > i {
+    margin-right: 10px;
+    transition-duration: 250ms;
+    transition-property: color;
+}
+
+.add-column-container:hover,
+.add-column-container:hover > i {
+    color: #32c1ff;
 }

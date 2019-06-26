@@ -46,13 +46,18 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 4;
+    z-index: 10;
 }
 
-.task-show-close-btn > img {
+/* .task-show-close-btn > img {
     height: 12px;
     width: 12px;
     margin: none;
+}  */
+
+.task-show-close-btn > i {
+    font-size: 16px;
+    color: #b7bfc6;
 } 
 
 .mark-complete-btn {

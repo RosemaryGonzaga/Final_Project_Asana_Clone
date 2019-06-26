@@ -127,7 +127,8 @@ class EditSection extends React.Component {
                         </Link>
 
                         <button className="task-show-close-btn" >
-                            <img src={window.closeButtonHover} alt="x" />
+                            {/* <img src={window.closeButtonHover} alt="x" /> */}
+                            <i class="fas fa-times"></i>
                         </button>
                     </h1>
                     <div className="task-show-form-content">

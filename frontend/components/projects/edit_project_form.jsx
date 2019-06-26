@@ -40,7 +40,8 @@ class EditProjectForm extends React.Component {
         return (
             <div className="edit-project-container">
                 <button className="edit-project-close-btn" onClick={closeModal}>
-                    <img src={window.closeButtonHover} alt="x" />
+                    {/* <img src={window.closeButtonHover} alt="x" /> */}
+                    <i class="fas fa-times"></i>
                 </button>
 
                 <div className="edit-project-header">

@@ -22,10 +22,15 @@
     cursor: pointer;
 }
 
-.edit-project-close-btn > img {
+/* .edit-project-close-btn > img {
     height: 12px;
     width: 12px;
     margin: none;
+}  */
+
+.edit-project-close-btn > i {
+    font-size: 16px;
+    color: #b7bfc6;
 } 
 
 .edit-project-header {

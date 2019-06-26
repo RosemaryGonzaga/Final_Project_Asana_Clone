@@ -75,7 +75,23 @@ class Home extends React.Component {
                 layoutIcon = null;
             }
         } else if (currentResource.component === "taskShow" && currentResource.task) {
+            // NOTE: this branch has duplicate logic - need to prune / DRY up code later!
             navHeader = currentResource.project.name;
+            if (currentResource.project.layout === "list") {
+                layoutIcon = <i className="fas fa-list"></i>;
+                layoutText = (
+                    <ul className="topbar-project-views">
+                        <li>List</li>
+                    </ul>);
+            } else if (currentResource.project.layout === "board") {
+                layoutIcon = <i className="fab fa-trello"></i>
+                layoutText = (
+                    <ul className="topbar-project-views">
+                        <li>Board</li>
+                    </ul>);
+            } else {
+                layoutIcon = null;
+            }
         } else {    // this condition allows control flow to proceed to componentDidUpdate in case currentResource.project is undefined
             navHeader = ""
         }
@@ -139,12 +155,19 @@ const msp = (state, ownProps) => {
     const pathParts = ownProps.location.pathname.split("/");
     const resource = pathParts[pathParts.length - 2];   // Should be either "projects" or "tasks" (if it's blank show home; if it's "home", show projects index )
     const resourceId = pathParts[pathParts.length - 1]; // Should be a number ...
-    // debugger
+    const projectId = pathParts[pathParts.indexOf("projects") + 1];
+    debugger
     let currentResource;
-    if (resource === "projects") {
+    if (pathParts.includes("projects") && pathParts.length > 3) {   // added this conditional on 6/26 ... may make other conditionals unnecessary
         currentResource = {
             component: "projectShow",
-            project: state.entities.projects[resourceId],   // pass current project as a prop
+            project: state.entities.projects[projectId],   // pass current project as a prop
+        }
+    } else if (resource === "projects") {
+        currentResource = {
+            component: "projectShow",
+            // project: state.entities.projects[resourceId],   // pass current project as a prop
+            project: state.entities.projects[projectId],   // pass current project as a prop
         }
     // } else if (resource === "tasks") {
     //     currentResource = {
@@ -162,7 +185,7 @@ const msp = (state, ownProps) => {
             component: "home",
         }
     } else if (!isNaN(parseInt(resource))) {    // if resource is a number (but need to catch other scenarios - like "" and "tasks" - upstream)
-        // debugger
+        debugger
         currentResource = {
             component: "taskShow",
             task: state.entities.tasks[resourceId],

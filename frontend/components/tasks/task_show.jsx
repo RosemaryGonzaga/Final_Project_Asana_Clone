@@ -38,7 +38,7 @@ class TaskShow extends React.Component {
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.selectSection = this.selectSection.bind(this);
-
+        this.handleCloseTaskShow = this.handleCloseTaskShow.bind(this);
         // this.handleDueDateSelection = this.handleDueDateSelection.bind(this);
     }    
 
@@ -184,6 +184,14 @@ class TaskShow extends React.Component {
         };
     }
 
+    handleCloseTaskShow(e) {
+        e.preventDefault();
+        const { exitTaskShowUponTaskDeletion } = this.props;
+        const path = `/home/projects/${this.state.projectId}`;
+        this.props.history.push(path);
+        exitTaskShowUponTaskDeletion();
+    }
+
 
 
     render() {
@@ -237,7 +245,7 @@ class TaskShow extends React.Component {
                             id={this.state.id} task={this.state} > Delete task
                         </Link>
 
-                        <button className="task-show-close-btn" >
+                        <button className="task-show-close-btn" onClick={this.handleCloseTaskShow} >
                             {/* <img src={window.closeButtonHover} alt="x" /> */}
                             <i class="fas fa-times"></i>
                         </button>

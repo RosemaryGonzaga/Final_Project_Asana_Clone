@@ -59,6 +59,8 @@ class Home extends React.Component {
             navHeader = "Home";
         } else if (currentResource.component === "projectIndex") {
             navHeader = "Projects";
+        } else if (currentResource.component === "taskIndex") {
+            navHeader = "Tasks";
         } else if (currentResource.component === "projectShow" && currentResource.project) {
             navHeader = currentResource.project.name;
             if (currentResource.project.layout === "list") {
@@ -179,10 +181,15 @@ const msp = (state, ownProps) => {
     //         component: "taskShow",
     //         task: state.entities.tasks[resourceId],      // to flesh out later: pass current task as a prop
     //     }
-    } else if (resource === "home") {
+    } else if (resource === "home" && pathParts.includes("projects")) {
         // debugger
         currentResource = {
             component: "projectIndex",
+        }
+    } else if (resource === "home" && pathParts.includes("tasks")) {
+        // debugger
+        currentResource = {
+            component: "taskIndex",
         }
     } else if (resource === "") {
         // debugger

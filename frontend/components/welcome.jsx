@@ -1,5 +1,6 @@
 import React from 'react';
-// import { TaskIndexItem } from './task_index_item';
+import TaskIndexContainer from './tasks/task_index_container';
+import ProjectIndexContainer from './projects/project_index_container';
 // import { Link } from 'react-router-dom';
 
 class Welcome extends React.Component {
@@ -19,7 +20,8 @@ class Welcome extends React.Component {
         // debugger
         return (
             <div className="welcome-container">
-                WELCOME TO YOUR PAGE!
+                {/* <TaskIndexContainer /> */}
+                <ProjectIndexContainer />
             </div>
         );
     }

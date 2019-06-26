@@ -86,7 +86,7 @@ class AddTask extends React.Component {
             <div className="task-show-container">
                 <form className="task-show-form" onSubmit={this.handleSubmit}>
                     <h1 className="task-show-header">
-                        <button className="mark-complete-btn" onClick={this.toggleComplete} type="button">
+                        <button className="mark-complete-btn" onClick={this.toggleComplete} type="button" disabled>
                             <i className="fas fa-check" id="fas-fa-check-task-button"></i>
                             Mark Complete
                         </button>
@@ -94,7 +94,7 @@ class AddTask extends React.Component {
                         <button className="random-buttons">Delete task</button>
                         <button className="task-show-close-btn" >
                             {/* <img src={window.closeButtonHover} alt="x" /> */}
-                            <i class="fas fa-times"></i>
+                            <i className="fas fa-times"></i>
                         </button>
                     </h1>
                     <div className="task-show-form-content">

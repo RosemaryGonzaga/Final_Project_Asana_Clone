@@ -80,6 +80,18 @@
     color: #222b37;
 }
 
+.mark-complete-btn:disabled {
+    background: transparent;
+    border-color: #b7bfc6;
+    color: #646f79;
+    cursor: auto;
+}
+
+/* .mark-complete-btn:disabled:hover {
+    border-color: #b7bfc6;
+    color: #646f79;
+} */
+
 #fas-fa-check-task-button {
     margin-right: 5px;
 }

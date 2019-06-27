@@ -13,6 +13,7 @@
     left: -15px;
     bottom: 0;
     right: 0;
+    /* overflow-x: scroll; */
     /* height: 100vh; */
     /* background-color: green; */
 
@@ -34,6 +35,10 @@
     color: #848f99;
     font-size: 12px;
     font-weight: 500;
+}
+
+.board-project-header > div:first-of-type {
+    margin-right: 10px
 }
 
 

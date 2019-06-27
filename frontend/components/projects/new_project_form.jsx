@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { createProject } from '../../actions/project_actions';
+import { createSection } from '../../actions/section_actions';
 import ProjectDescription from './project_description_form';
 
 class NewProjectForm extends React.Component {
@@ -23,18 +24,30 @@ class NewProjectForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const { createProject } = this.props;
+        const { createProject, createSection, currentUserId } = this.props;
         const project = this.state;
         createProject(project).then(payload => {
             const { project } = payload;
             const path = `/home/projects/${project.id}`;
-            this.props.history.push(path);
+            // this.props.history.push(path);
+            
+            // TO DO: create blank section with projectId
+            const blankSection = {
+                name: "New Section",
+                description: "",
+                layout: project.layout,
+                projectId: project.id,
+                assigneeId: currentUserId,
+                dueOn: ""
+            };
+            // debugger
+            createSection(blankSection).then(payload => this.props.history.push(path));
+            // this.props.history.push(path);
         });
     }
 
     handleChange(field) {
         return e => {
-            // console.log(e.target.id); // remove this later, just for testing
             this.setState({ [field]: e.target.value });
         };
     }
@@ -137,7 +150,8 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        createProject: project => dispatch(createProject(project))
+        createProject: project => dispatch(createProject(project)),
+        createSection: section => dispatch(createSection(section)),
     };
 }
 

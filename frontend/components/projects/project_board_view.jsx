@@ -46,7 +46,7 @@ class ProjectBoardView extends React.Component {
 
     render() {
         // To do once sections / columns are implemented: map over sections (col) and render them in the 'board-cols' div below
-
+        
         const { project, sections, openEditProjectModal, openDeleteProjectModal } = this.props;
         const columns = sections.map(section => {
             return <ColumnContainer section={section} key={section.id} />;
@@ -56,6 +56,7 @@ class ProjectBoardView extends React.Component {
             <div className="board-project-wrapper">
                 <section className="board-project-header">
                     <div>Show Project Description</div>
+                    <button className="random-buttons" onClick={openDeleteProjectModal}>Delete Project</button>
                 </section>
                 <section className="board-cols">
                     {/* <div className="board-col">To Do</div>

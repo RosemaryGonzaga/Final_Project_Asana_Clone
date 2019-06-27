@@ -28,7 +28,7 @@ export const TaskIndexItem = props => {
             </div>
 
             <div className="task-index-item-right">
-                <div className="task-show-project-icon">{project.name}</div>
+                <div className="task-show-project-icon">{project ? project.name : null}</div>
                 <div className="task-index-item-due-date">{dueDate}</div>
             </div>
         </div>

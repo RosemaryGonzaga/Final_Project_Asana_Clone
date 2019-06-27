@@ -21,7 +21,7 @@ const mdp = dispatch => {
     return {
         // fetchSection: id => dispatch(fetchSection(id)),
         fetchTasks: () => dispatch(fetchTasks()),
-        // fetchProjects: () => dispatch(fetchProjects()),
+        fetchProjects: () => dispatch(fetchProjects()),
         // receiveNavHeader: header => dispatch(receiveNavHeader(header)),
         // receiveMainContent: content => dispatch(receiveMainContent(content)),
     };

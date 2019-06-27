@@ -15,8 +15,14 @@ class TaskIndex extends React.Component {
 
 
     render() {
-        // const { section, tasks, handleOpenTaskShowClick, handleOpenSectionShowClick } = this.props;
         const { tasks, projects } = this.props;
+        // const { tasks, projects, fetchTasks, fetchProjects } = this.props;
+
+        // // Added the below two conditionals to fix blank page after reloading task index
+        // // Not sure if the fix can be attributable to these two lines
+        // // ...also added a ternary on line 31 of TaskIndexItem to prevent keying into project if project is undefined
+        // if (tasks && tasks.length === 0) { fetchTasks() };
+        // if (projects && projects.length === 0) { fetchProjects() };
 
         const today = new Date();
 
@@ -25,7 +31,6 @@ class TaskIndex extends React.Component {
         const upcomingTasks = [];
         const laterTasks = [];
 
-        // const taskItems = tasks.map(task => {
         tasks.forEach(task => {
             const project = projects[task.projectId];
             const dueOn = new Date(task.dueOn);
@@ -37,36 +42,21 @@ class TaskIndex extends React.Component {
                                 dueMonth === today.getMonth() && 
                                 dueYear === today.getFullYear());
             const timeDiff = Date.parse(dueOn) - Date.parse(today);
-            // console.log(taskDueToday);
 
             if (!task.dueOn) {
-                // laterTasks.push(task);
                 laterTasks.push(<TaskIndexItem task={task} key={task.id} project={project} />);
             } else if (taskDueToday) {
-                // todayTasks.push(task);
                 todayTasks.push(<TaskIndexItem task={task} key={task.id} project={project} />);
             } else if (timeDiff < 0) {
-                // missedTasks.push(task);
                 missedTasks.push(<TaskIndexItem task={task} key={task.id} project={project} />);
             } else if (timeDiff > 0 && timeDiff < 432000000) {
-                // upcomingTasks.push(task);
                 upcomingTasks.push(<TaskIndexItem task={task} key={task.id} project={project} />);
             } else {
-                // laterTasks.push(task);
                 laterTasks.push(<TaskIndexItem task={task} key={task.id} project={project} />);
             }
-
-            // return <TaskIndexItem task={task} key={task.id} project={project} />;
         });
-        // debugger
-        // console.log(missedTasks);
-        // console.log(todayTasks);
-        // console.log(upcomingTasks);
-        // console.log(laterTasks);
         return (
             <div className="task-index-container">
-                {/* <ul>{taskItems}</ul> */}
-
                 <h2>Missed Tasks</h2>
                 <ul>{missedTasks}</ul>
 

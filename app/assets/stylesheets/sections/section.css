@@ -26,8 +26,11 @@
     margin-right: 30px;
 }
 
-.main-content-skinny > ul > div > ul > a {
-    width: 595x;
+/* NOTE: need to work out why this style is getting overwritten */
+.main-content-skinny > ul > div > ul,
+.main-content-skinny > ul > div > ul > a,
+.main-content-skinny > ul > div > .section-tasks {
+    width: 595px;
     /* width: 93%; */
     margin-left: 30px;
     margin-right: 30px;

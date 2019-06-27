@@ -44,7 +44,7 @@ class Section extends React.Component {
                     <i className="far fa-check-circle" id="fa-check-circle-task-item"></i>
                     <p>{section.name}</p>
                 </Link>
-                <ul>{taskItems}</ul>
+                <ul className="section-tasks">{taskItems}</ul>
             </div>
         );
     }

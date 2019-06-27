@@ -1,0 +1,50 @@
+.welcome-container {
+    background-color: white;
+    box-sizing: border-box;
+    padding: 20px 0;
+}
+
+.filtered-task-index-container {
+    width: 815px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 3px;
+    position: relative;
+    margin: 0 auto;
+    /* height: 120px; */
+    height: 160px;
+    box-sizing: border-box;
+    padding: 0 13px;
+    overflow-y: auto;
+}
+
+.filtered-task-index-container > h2 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #151b26;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.welcome-project-header {
+    width: 815px;
+    /* height: 70px; */
+    box-sizing: border-box;
+    padding: 0 13px;
+    margin: 0 auto;
+    margin-top: 65px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    background-color: white;
+    /* margin-bottom: -15px; */
+    /* position: relative; */
+}
+
+/* .welcome-project-header > p {
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+} */

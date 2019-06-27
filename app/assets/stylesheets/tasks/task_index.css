@@ -9,10 +9,11 @@
     position: relative;
     margin: 15px auto;
     height: 680px;
+    /* height: 120px; */
     box-sizing: border-box;
     padding: 0 30px;
+    overflow-y: auto;
 }
-
 
 
 .task-index-item-container {
@@ -29,6 +30,15 @@
     /* box-sizing: border-box;
     padding: 0 15px; */
 }
+
+.task-index-container > h2 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #151b26;
+    font-size: 16px;
+    font-weight: 500;
+}
+
 
 .task-index-item-container:last-of-type {
     border-bottom: none;

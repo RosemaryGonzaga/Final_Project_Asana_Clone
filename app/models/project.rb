@@ -12,6 +12,7 @@
 #  owner_id    :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  team_id     :integer
 #
 
 class Project < ApplicationRecord
@@ -32,6 +33,20 @@ class Project < ApplicationRecord
     has_many :tasks,
         through: :sections,
         source: :tasks
+
+    belongs_to :team,
+        primary_key: :id,
+        foreign_key: :team_id,
+        class_name: :Team
+
+    has_many :favorited_project_associations,
+        primary_key: :id,
+        foreign_key: :project_id,
+        class_name: :FavoritedProject
+
+    has_many :followers
+        through: :favorited_project_associations
+        source: :user
 
     # has_many :tasks,
     #     primary_key: :id,

@@ -10,6 +10,7 @@ User.destroy_all
 Project.destroy_all
 Section.destroy_all
 Task.destroy_all
+Team.destroy_all
 
 User.create!({
     primary_email: "user1@shavasana.com",
@@ -18,28 +19,40 @@ User.create!({
 
 user1 = User.first
 
-Project.create!({
-    name: "Fix Shavasana",
-    description: "Fullstack project",
-    layout: "list",
-    privacy: "public",
-    due_on: nil,
-    color: nil,
-    owner_id: user1.id,
+Team.create!({
+  name: "Brooklyn",
+})
+
+team1 = Team.first
+
+TeamMembership.create!({
+  team_id: team1.id,
+  user_id: user1.id,
 })
 
 Project.create!({
-    name: "Acknowledgements",
-    description: "",
+    name: "Project Shavasana",
+    description: "Shavasana is a project management tool inspired by Asana. These tasks outline how to build out its features",
     layout: "list",
     privacy: "public",
     due_on: nil,
     color: nil,
     owner_id: user1.id,
+    team_id: team1.id,
 })
+
+# Project.create!({
+#     name: "Acknowledgements",
+#     description: "",
+#     layout: "list",
+#     privacy: "public",
+#     due_on: nil,
+#     color: nil,
+#     owner_id: user1.id,
+# })
 
 project1 = Project.first
-project2 = Project.second
+# project2 = Project.second
 
 Section.create!({
   name: "To Do",
@@ -121,13 +134,14 @@ Task.create!({
   completed_at: nil,
 })
 
-Section.create!({
-  name: "THANK YOU",
-  description: "",
-  due_on: nil,
-  project_id: project2.id,
-  assignee_id: user1.id,
-  completed: false,
-  completed_at: nil,
-  layout: "list"
-})
+# Section.create!({
+#   name: "THANK YOU",
+#   description: "",
+#   due_on: nil,
+#   project_id: project2.id,
+#   assignee_id: user1.id,
+#   completed: false,
+#   completed_at: nil,
+#   layout: "list"
+# })
+

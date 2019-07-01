@@ -35,6 +35,28 @@ class User < ApplicationRecord
         through: :projects,
         source: :tasks
 
+    has_many :memberships,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :TeamMemberships
+
+    has_many :teams,
+        through: :memberships,
+        source: :team
+
+    has_many :team_projects
+        through: :teams,
+        source: :projects
+
+    has_many :favorited_project_associations,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :FavoritedProject
+
+    has_many :favorite_projects
+        through: :favorited_project_associations
+        source: :project
+
     # figvaper
 
     # class methods

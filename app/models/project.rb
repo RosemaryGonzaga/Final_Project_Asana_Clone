@@ -44,8 +44,8 @@ class Project < ApplicationRecord
         foreign_key: :project_id,
         class_name: :FavoritedProject
 
-    has_many :followers
-        through: :favorited_project_associations
+    has_many :followers,
+        through: :favorited_project_associations,
         source: :user
 
     # has_many :tasks,

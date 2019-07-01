@@ -11,6 +11,8 @@
 #
 
 class Team < ApplicationRecord
+    validates :name, presence: true
+    
     has_many :memberships,
         primary_key: :id,
         foreign_key: :team_id,

@@ -10,6 +10,8 @@
 #
 
 class TeamMembership < ApplicationRecord
+    validates :team_id, :user_id, presence: true
+
     belongs_to :team,
         primary_key: :id,
         foreign_key: :team_id,

@@ -44,7 +44,7 @@ class User < ApplicationRecord
         through: :memberships,
         source: :team
 
-    has_many :team_projects
+    has_many :team_projects,
         through: :teams,
         source: :projects
 
@@ -53,8 +53,8 @@ class User < ApplicationRecord
         foreign_key: :user_id,
         class_name: :FavoritedProject
 
-    has_many :favorite_projects
-        through: :favorited_project_associations
+    has_many :favorite_projects,
+        through: :favorited_project_associations,
         source: :project
 
     # figvaper

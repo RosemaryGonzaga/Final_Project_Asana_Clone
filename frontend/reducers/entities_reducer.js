@@ -3,12 +3,16 @@ import usersReducer from './users_reducer';
 import projectsReducer from './projects_reducer';
 import sectionsReducer from './sections_reducer';
 import tasksReducer from './tasks_reducer';
+import teamsReducer from './teams_reducer';
+import teamMembershipsReducer from './team_memberships_reducer';
 
 const entitiesReducer = combineReducers({
     users: usersReducer,
     projects: projectsReducer,
     sections: sectionsReducer,
     tasks: tasksReducer,
+    teams: teamsReducer,
+    teamMemberships: teamMembershipsReducer,
 });
 
 export default entitiesReducer;

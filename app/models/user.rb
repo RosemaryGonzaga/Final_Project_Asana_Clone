@@ -35,7 +35,7 @@ class User < ApplicationRecord
         through: :projects,
         source: :tasks
 
-    has_many :memberships,
+    has_many :memberships, dependent: :destroy,
         primary_key: :id,
         foreign_key: :user_id,
         class_name: :TeamMembership

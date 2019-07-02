@@ -13,7 +13,7 @@
 class Team < ApplicationRecord
     validates :name, presence: true
     
-    has_many :memberships,
+    has_many :memberships, dependent: :destroy,
         primary_key: :id,
         foreign_key: :team_id,
         class_name: :TeamMembership

@@ -14,7 +14,6 @@ class Api::TeamMembershipsController < ApplicationController
 
     def destroy
         @team_membership = TeamMembership.find_by(id: params[:id])
-        # @team_membership = TeamMembership.find_by(id: team_membership_params[:id])
         if @team_membership.destroy
             render :show
         else
@@ -25,6 +24,5 @@ class Api::TeamMembershipsController < ApplicationController
     private
     def team_membership_params
         params.require(:team_membership).permit(:team_id, :user_id)
-        # params.require(:team_membership).permit(:id, :team_id, :user_id)
     end
 end

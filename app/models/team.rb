@@ -16,7 +16,7 @@ class Team < ApplicationRecord
     has_many :memberships,
         primary_key: :id,
         foreign_key: :team_id,
-        class_name: :TeamMemberships
+        class_name: :TeamMembership
 
     has_many :projects,
         primary_key: :id,

@@ -22,7 +22,9 @@ class Api::ProjectsController < ApplicationController
 
     def index
         # @projects = Project.all
-        @projects = current_user.projects
+        @projects = current_user.projects   # this fetches all projects for which user is the owner --> change this later!
+        
+        # TO DO LATER: get all of user's TEAM projects
     end
 
     def show
@@ -59,6 +61,6 @@ class Api::ProjectsController < ApplicationController
 
     private
     def project_params
-        params.require(:project).permit(:name, :description, :layout, :privacy, :owner_id, :due_on, :color)
+        params.require(:project).permit(:name, :description, :layout, :privacy, :owner_id, :due_on, :color, :team_id)
     end
 end

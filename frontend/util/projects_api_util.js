@@ -14,21 +14,22 @@ export const fetchProject = id => {
 }
 
 export const createProject = project => {
-    const { name, description, layout, privacy, ownerId } = project;
+    const { name, description, layout, privacy, ownerId, teamId } = project;
     return $.ajax({
         method: 'POST',
         url: '/api/projects',
         data: {
             project: {
                 name, description, layout, privacy,
-                owner_id: ownerId
+                owner_id: ownerId,
+                team_id: teamId,
             }
         }
     });
 }
 
 export const updateProject = project => {
-    const { name, description, layout, privacy, ownerId, color, dueOn } = project;
+    const { name, description, layout, privacy, ownerId, color, dueOn, teamId } = project;
     return $.ajax({
         method: 'PATCH',
         url: `/api/projects/${project.id}`,
@@ -37,6 +38,7 @@ export const updateProject = project => {
                 name, description, layout, privacy, color,
                 owner_id: ownerId,
                 due_on: dueOn,
+                team_id: teamId,
             }
         }
     });

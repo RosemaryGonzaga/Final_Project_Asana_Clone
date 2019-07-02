@@ -14,6 +14,10 @@ class NewProjectForm extends React.Component {
             layout: "list",
             privacy: "public",
             ownerId: this.props.currentUserId,
+            // ADD team_id --> how to get this info?
+            // ...track in UI slice of state?
+            // ...or add a field in users table that tracks most viewed team / workspace?
+            // ...(whichever team / workspace was active when the user last signed out?)
             addDescription: false, // not part of project info; testing this as a way to change form height
         };
 

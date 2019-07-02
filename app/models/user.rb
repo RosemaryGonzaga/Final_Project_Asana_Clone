@@ -38,7 +38,7 @@ class User < ApplicationRecord
     has_many :memberships,
         primary_key: :id,
         foreign_key: :user_id,
-        class_name: :TeamMemberships
+        class_name: :TeamMembership
 
     has_many :teams,
         through: :memberships,

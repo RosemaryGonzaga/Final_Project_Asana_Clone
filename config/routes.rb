@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :projects, except: [:new, :edit]
     resources :sections, except: [:new, :edit]  # hopefully this doesn't need to be nested!
     resources :tasks, except: [:new, :edit]     # hopefully this doesn't need to be nested!
+    resources :teams, except: [:new, :edit]
   end
 
 end

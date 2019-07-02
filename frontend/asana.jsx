@@ -5,8 +5,9 @@ import Root from './components/root';
 
 
 // imported these for testing only (remove later):
-import * as SectionApiUtil from './util/sections_api_util';
-import * as ThunkActions from './actions/section_actions';
+import * as TeamApiUtil from './util/teams_api_util';
+import * as TeamMembershipApiUtil from './util/team_memberships_api_util';
+// import * as ThunkActions from './actions/section_actions';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -39,11 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // window.signupThunk = ThunkActions.signup
 // window.loginThunk = ThunkActions.login
 // window.logoutThunk = ThunkActions.logout
-// window.fetchSections = SectionApiUtil.fetchSections;
-// window.fetchSection = SectionApiUtil.fetchSection;
-// window.createSection = SectionApiUtil.createSection;
-// window.updateSection = SectionApiUtil.updateSection;
-// window.deleteSection = SectionApiUtil.deleteSection;
+window.fetchTeams = TeamApiUtil.fetchTeams;
+window.fetchTeam = TeamApiUtil.fetchTeam;
+window.createTeam = TeamApiUtil.createTeam;
+window.updateTeam = TeamApiUtil.updateTeam;
+window.deleteTeam = TeamApiUtil.deleteTeam;
+window.createTeamMembership = TeamMembershipApiUtil.createTeamMembership;
+window.deleteTeamMembership = TeamMembershipApiUtil.deleteTeamMembership;
 // window.fetchSectionsThunk = ThunkActions.fetchSections;
 // window.fetchSectionThunk = ThunkActions.fetchSection;
 // window.createSectionThunk = ThunkActions.createSection;

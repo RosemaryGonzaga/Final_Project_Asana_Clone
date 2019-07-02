@@ -11,6 +11,7 @@
 
 class TeamMembership < ApplicationRecord
     validates :team_id, :user_id, presence: true
+    validates :user_id, uniqueness: { scope: :team_id, message: "User is already part of this team." }
 
     belongs_to :team,
         primary_key: :id,

@@ -1,6 +1,7 @@
 class Api::TeamsController < ApplicationController
     def index
         @teams = current_user.teams
+        # debugger
     end
 
     def show
@@ -44,3 +45,15 @@ class Api::TeamsController < ApplicationController
         params.require(:team).permit(:name, :description, :privacy)
     end
 end
+
+# # CODE FOR TESTING CONTROLLER ACTIONS IN CHROME CONSOLE
+# let team_params = {
+#     name: 'Manhattan',
+#     description: 'one of the 4th floor pods',
+# }
+
+# $.ajax({
+#     method: 'POST',
+#     url: '/api/teams',
+#     data: { team: team_params },
+# })

@@ -18,6 +18,10 @@ class Team < ApplicationRecord
         foreign_key: :team_id,
         class_name: :TeamMembership
 
+    has_many :members,
+        through: :memberships,
+        source: :member
+
     has_many :projects,
         primary_key: :id,
         foreign_key: :team_id,

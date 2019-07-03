@@ -14,19 +14,21 @@ class TaskShow extends React.Component {
     constructor(props) {
         super(props);
 
-        const { task, sections, projects, users } = this.props;
+        // const { task, sections, projects, users } = this.props;
+        const { task, sections, projects } = this.props;
         const { id, name, description, projectId,
             sectionId, assigneeId, dueOn,
             completed, completedAt,
             createdAt, updatedAt } = task;
-        const section = sections[sectionId];
-        const project = projects[projectId];
-        const assignee = users[assigneeId];
+        const section = sections[sectionId];    // move this to the render method? (similar to what I did w/ assignee?)
+        const project = projects[projectId];    // move this to the render method? (similar to what I did w/ assignee?)
+        // const assignee = users[assigneeId];  // assignee only gets set once (constructor method) ... better to set this var's value in the render method
 
         // Local state
         this.state = { 
             id, name, description, project, 
-            section, assignee, dueOn, completed, 
+            // section, assignee, dueOn, completed, 
+            section, assigneeId, dueOn, completed, 
             completedAt, createdAt, updatedAt, projectId,
             sectionId,
             dueDateButton: true,
@@ -52,11 +54,12 @@ class TaskShow extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        // debugger
+        debugger
         // if (this.state.id !== prevProps.task.id) {
         //     this.setState({ ...this.props.task });
         // }
         if (this.state.id.toString() !== prevProps.taskId.toString()) {  // need to use taskId b/c task.id is undefined in prevProps if this component updates after deleting a task
+            debugger
             this.setState({ ...this.props.task });
         }
     }
@@ -197,14 +200,16 @@ class TaskShow extends React.Component {
     render() {
         // debugger
         const { id, name, description, project,
-            sectionId, assignee, dueOn,
+            // sectionId, assignee, dueOn,  // refactored state to track assigneeId, not assignee
+            sectionId, assigneeId, dueOn,
             completed, completedAt,
             createdAt, updatedAt } = this.state;
         
         const section = this.props.sections[sectionId];
 
+        const assignee = this.props.users[assigneeId];
         let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
-        // debugger
+        debugger
         // Calculation of time since task creation --> factor out into helper files later?
         const currentDateTime = new Date();
         let timeSinceCreation = Date.parse(currentDateTime) - Date.parse(createdAt);
@@ -220,6 +225,7 @@ class TaskShow extends React.Component {
             // add checkmark icon inside taskStatusMessage
             let timeSinceCompletion = Date.parse(currentDateTime) - Date.parse(completedAt);
             const timeAgoSinceCompletion = timeAgoFormatted(timeSinceCompletion);
+            // NEED TO REFACTOR THE BELOW LINE - ADD FIELD TO DB THAT STORES WHO MARKED THE TASK COMPLETE
             taskStatusMessage = <div>{assignee.primaryEmail} marked this task complete.  {timeAgoSinceCompletion}</div>
         } else {
             taskStatusMessage = null;
@@ -290,6 +296,7 @@ class TaskShow extends React.Component {
                         </section>
                         <section className="task-show-section3">
                             <div className="task-show-section3-center">
+                                {/* NEED TO REFACTOR THE BELOW TWO LINES - ADD FIELDS TO DB THAT STORES WHO CREATED & LAST UPDATED THE TASK */}
                                 <p>{assignee.primaryEmail} created this task.    {timeAgoSinceCreation}</p>
                                 <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
                                 {taskStatusMessage}

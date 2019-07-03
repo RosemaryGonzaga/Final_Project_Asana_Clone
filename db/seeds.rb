@@ -11,24 +11,55 @@ Project.destroy_all
 Section.destroy_all
 Task.destroy_all
 Team.destroy_all
+TeamMembership.destroy_all
+
 
 User.create!({
-    primary_email: "user1@shavasana.com",
+    primary_email: "demo@shavasana.com",
+    password: "password",
+})
+
+User.create!({
+    primary_email: "friend@shavasana.com",
+    password: "password",
+})
+
+User.create!({
+    primary_email: "stranger@shavasana.com",
     password: "password",
 })
 
 user1 = User.first
+user2 = User.second
+user3 = User.third
+
 
 Team.create!({
   name: "Brooklyn",
 })
 
+Team.create!({
+  name: "Manhattan",
+})
+
 team1 = Team.first
+team2 = Team.second
 
 TeamMembership.create!({
   team_id: team1.id,
   user_id: user1.id,
 })
+
+TeamMembership.create!({
+  team_id: team1.id,
+  user_id: user2.id,
+})
+
+TeamMembership.create!({
+  team_id: team2.id,
+  user_id: user3.id,
+})
+
 
 Project.create!({
     name: "Project Shavasana",
@@ -91,7 +122,7 @@ section1 = Section.first
 section2 = Section.second
 section3 = Section.third
 Task.create!({
-  name: "Teams",
+  name: "User Authentication",
   description: "",
   due_on: nil,
   project_id: project1.id,
@@ -102,7 +133,7 @@ Task.create!({
 })
 
 Task.create!({
-  name: "Profiles",
+  name: "Projects",
   description: "",
   due_on: nil,
   project_id: project1.id,
@@ -113,7 +144,7 @@ Task.create!({
 })
 
 Task.create!({
-  name: "Beef up Tasks",
+  name: "Sections",
   description: "",
   due_on: nil,
   project_id: project1.id,
@@ -124,7 +155,7 @@ Task.create!({
 })
 
 Task.create!({
-  name: "Present Shavasana",
+  name: "Tasks",
   description: "",
   due_on: nil,
   project_id: project1.id,
@@ -144,4 +175,3 @@ Task.create!({
 #   completed_at: nil,
 #   layout: "list"
 # })
-

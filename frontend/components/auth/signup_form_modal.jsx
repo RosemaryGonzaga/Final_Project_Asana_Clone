@@ -32,7 +32,7 @@ class SignupFormModal extends React.Component {
     handleDemoClick(e) {
         e.preventDefault();
         const { login } = this.props;
-        const demoUser = { primaryEmail: "user1@shavasana.com", password: "password" }
+        const demoUser = { primaryEmail: "demo@shavasana.com", password: "password" }
         login(demoUser);
     }
 

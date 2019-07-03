@@ -10,6 +10,8 @@ import Welcome from './welcome';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
 import { fetchProjects } from '../actions/project_actions';
+import { fetchTeams } from '../actions/team_actions';
+import { receiveCurrentTeam, resetCurrentTeam } from '../actions/current_team_actions';
 // import { receiveMainContent } from '../actions/main_content_actions';
 // import { receiveNavHeader } from '../../actions/nav_header_actions';
 // import NewProjectForm from './projects/new_project_form';
@@ -33,13 +35,26 @@ class Home extends React.Component {
         // ...if currentResource.project is undefined, skip that logic until homeComponent has a chance to mount
         // IT WORKED!!!!!!! (see line 47)
         // debugger    
-        this.props.fetchProjects();
+
+        // this.props.fetchProjects();
+        // this.props.fetchTeams();
+        const { fetchProjects, fetchTeams, receiveCurrentTeam } = this.props;
+        fetchProjects();
+        // debugger
+        fetchTeams().then(payload => {
+            const teamId = Object.keys(payload.teams);
+            const team = payload.teams[teamId];
+            // debugger
+            receiveCurrentTeam(team);
+        });
     }
 
     handleClick(e) {
         e.preventDefault();
-        const { logout } = this.props;
-        logout()
+        const { logout, resetCurrentTeam } = this.props;
+        logout().then(() => resetCurrentTeam());
+        // resetCurrentTeam();
+        // logout();
     }
 
     handleAvatarClick(e) {
@@ -50,7 +65,7 @@ class Home extends React.Component {
     }
 
     render() {
-        const { currentUser, currentResource } = this.props;
+        const { currentUser, currentResource, currentTeam } = this.props;
         let initials = currentUser.primaryEmail.slice(0,2).toUpperCase();  // this is temporary --> need to grab initials from user's full name
         let navHeader;
         let layoutIcon;
@@ -113,6 +128,10 @@ class Home extends React.Component {
                         <li><Link to="/home/tasks"><i className="far fa-check-circle"></i>Tasks</Link></li>
                         {/* <li><Link to=""><i className="far fa-check-circle"></i>Tasks</Link></li> */}
                     </ul>
+                    <ul className="home-sidebar-bottom">
+                        {/* <li>{currentTeam === undefined ? null : currentTeam.name}</li> */}
+                        <li>{currentTeam ? currentTeam.name : null}</li>
+                    </ul>
                     {/* <Link to="/home/projects">Projects Index</Link> */}
                 </div>
                 <div className="home-main">
@@ -133,6 +152,7 @@ class Home extends React.Component {
                         <nav className="home-topbar-right">
                             <ul>
                                 {/* <li>Search</li> */}
+                                {/* <li>{currentTeam === undefined ? null : currentTeam.name}</li> */}
                                 <li className="topbar-new-project-button">
                                     <Link to="/projects/new"><i className="fas fa-plus"></i> New</Link>
                                 </li>
@@ -207,13 +227,21 @@ const msp = (state, ownProps) => {
 
     const currentUserId = state.session.id;
     const currentUser = state.entities.users[currentUserId];
-    return ({ currentUser, currentResource });
+
+    // // get current user's current team
+    // const currentTeamId = Object.keys(state.entities.teams)[0];
+    // const currentTeam = state.entities.teams[currentTeamId];
+    const currentTeam = state.ui.currentTeam;
+    return ({ currentUser, currentResource, currentTeam });
 };
 
 const mdp = dispatch => {
     return ({
         logout: () => dispatch(logout()),
         fetchProjects: () => dispatch(fetchProjects()),
+        fetchTeams: () => dispatch(fetchTeams()),
+        receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
+        resetCurrentTeam: team => dispatch(resetCurrentTeam(team)),
     });
 };
 

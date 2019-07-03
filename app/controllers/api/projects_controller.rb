@@ -22,7 +22,8 @@ class Api::ProjectsController < ApplicationController
 
     def index
         # @projects = Project.all
-        @projects = current_user.projects   # this fetches all projects for which user is the owner --> change this later!
+        # @projects = current_user.projects   # this fetches all projects for which user is the owner --> change this later!
+        @projects = current_user.team_projects   # this fetches all projects for the user's currently displayed team / workspace
         
         # TO DO LATER: get all of user's TEAM projects
     end

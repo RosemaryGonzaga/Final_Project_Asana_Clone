@@ -48,6 +48,10 @@ class User < ApplicationRecord
         through: :teams,
         source: :projects
 
+    has_many :team_tasks,
+        through: :team_projects,
+        source: :tasks
+
     has_many :favorited_project_associations,
         primary_key: :id,
         foreign_key: :user_id,

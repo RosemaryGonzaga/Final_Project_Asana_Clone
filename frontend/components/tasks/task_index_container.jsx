@@ -14,7 +14,8 @@ const msp = (state, ownProps) => {
     const tasks = selectAllTasks(state);
     // const projects = selectAllProjects(state);
     const projects = state.entities.projects;
-    return { tasks, projects };
+    const currentUserId = state.session.id;
+    return { tasks, projects, currentUserId };
 };
 
 const mdp = dispatch => {

@@ -13,7 +13,8 @@ class Api::TasksController < ApplicationController
     end
 
     def index
-        @tasks = current_user.project_tasks # get user's project_tasks, which encompasses their assigned_tasks
+        # @tasks = current_user.project_tasks # get user's project_tasks, which encompasses their assigned_tasks
+        @tasks = current_user.team_tasks # get user's project_tasks, which encompasses their assigned_tasks
     end
 
     def show

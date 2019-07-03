@@ -18,12 +18,14 @@ class FilteredTaskIndex extends React.Component {
     }
 
     render() {
-        const { tasks, projects } = this.props;
-
+        const { tasks, projects, currentUserId } = this.props;
+        const userTasks = tasks.filter(task => task.assigneeId === currentUserId);
+        // debugger
         const today = new Date();
         const dueSoon = [];
 
-        tasks.forEach(task => {
+        // tasks.forEach(task => {
+        userTasks.forEach(task => {
             const project = projects[task.projectId];
             const dueOn = new Date(task.dueOn);
             const dueDate = dueOn.getDate();
@@ -55,7 +57,8 @@ class FilteredTaskIndex extends React.Component {
 const msp = (state) => {
     const tasks = selectAllTasks(state);
     const projects = state.entities.projects;
-    return { tasks, projects };
+    const currentUserId = state.session.id;
+    return { tasks, projects, currentUserId };
 };
 
 const mdp = dispatch => {

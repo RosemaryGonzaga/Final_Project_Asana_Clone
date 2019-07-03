@@ -15,7 +15,7 @@ class TaskIndex extends React.Component {
 
 
     render() {
-        const { tasks, projects } = this.props;
+        const { tasks, projects, currentUserId } = this.props;
         // const { tasks, projects, fetchTasks, fetchProjects } = this.props;
 
         // // Added the below two conditionals to fix blank page after reloading task index
@@ -31,7 +31,10 @@ class TaskIndex extends React.Component {
         const upcomingTasks = [];
         const laterTasks = [];
 
-        tasks.forEach(task => {
+        const userTasks = tasks.filter(task => task.assigneeId === currentUserId);
+
+        // tasks.forEach(task => {
+        userTasks.forEach(task => {
             const project = projects[task.projectId];
             const dueOn = new Date(task.dueOn);
             const dueDate = dueOn.getDate();

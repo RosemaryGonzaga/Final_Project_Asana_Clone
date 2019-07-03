@@ -9,3 +9,11 @@ export const selectAllSections = state => {
 export const selectAllTasks = state => {
     return Object.values(state.entities.tasks);
 };
+
+export const selectAllUsers = state => {
+    return Object.values(state.entities.users);
+}
+
+export const selectAllTeams = state => {
+    return Object.values(state.entities.teams);
+}

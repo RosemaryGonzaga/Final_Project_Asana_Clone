@@ -54,12 +54,12 @@ class TaskShow extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        debugger
+        // debugger
         // if (this.state.id !== prevProps.task.id) {
         //     this.setState({ ...this.props.task });
         // }
         if (this.state.id.toString() !== prevProps.taskId.toString()) {  // need to use taskId b/c task.id is undefined in prevProps if this component updates after deleting a task
-            debugger
+            // debugger
             this.setState({ ...this.props.task });
         }
     }
@@ -209,7 +209,7 @@ class TaskShow extends React.Component {
 
         const assignee = this.props.users[assigneeId];
         let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
-        debugger
+        // debugger
         // Calculation of time since task creation --> factor out into helper files later?
         const currentDateTime = new Date();
         let timeSinceCreation = Date.parse(currentDateTime) - Date.parse(createdAt);

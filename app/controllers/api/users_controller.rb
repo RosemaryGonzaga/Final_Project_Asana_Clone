@@ -25,7 +25,7 @@ class Api::UsersController < ApplicationController
     end
 
     def index
-        @users = User.all
+        @users = User.all   # may refactor later to only fetch current user's teammates
     end
 
     private

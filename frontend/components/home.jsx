@@ -6,6 +6,7 @@ import ProjectIndexContainer from './projects/project_index_container';
 import ProjectShowContainer from './projects/project_show_container';
 import TaskIndexContainer from './tasks/task_index_container';
 import Welcome from './welcome';
+import TeamSidebarContainer from './teams/team_sidebar_container';
 // import TaskShowContainer from './tasks/task_show_container';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
@@ -131,8 +132,8 @@ class Home extends React.Component {
                         {/* <li><Link to=""><i className="far fa-check-circle"></i>Tasks</Link></li> */}
                     </ul>
                     <ul className="home-sidebar-bottom">
-                        {/* <li>{currentTeam === undefined ? null : currentTeam.name}</li> */}
-                        <li>{currentTeam ? currentTeam.name : null}</li>
+                        {/* <li>{currentTeam ? currentTeam.name : null}</li> */}
+                        <TeamSidebarContainer />
                     </ul>
                     {/* <Link to="/home/projects">Projects Index</Link> */}
                 </div>

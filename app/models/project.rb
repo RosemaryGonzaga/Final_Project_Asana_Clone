@@ -25,7 +25,7 @@ class Project < ApplicationRecord
         foreign_key: :owner_id,
         class_name: :User
 
-    has_many :sections,
+    has_many :sections, dependent: :destroy,
         primary_key: :id,
         foreign_key: :project_id,
         class_name: :Section

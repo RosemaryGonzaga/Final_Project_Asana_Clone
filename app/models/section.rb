@@ -29,7 +29,7 @@ class Section < ApplicationRecord
         foreign_key: :assignee_id,
         class_name: :User
 
-    has_many :tasks,
+    has_many :tasks, dependent: :destroy,
         primary_key: :id,
         foreign_key: :section_id,
         class_name: :Task

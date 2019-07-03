@@ -18,7 +18,8 @@ class NewProjectForm extends React.Component {
             // ...track in UI slice of state?
             // ...or add a field in users table that tracks most viewed team / workspace?
             // ...(whichever team / workspace was active when the user last signed out?)
-            teamId: this.props.teamId,
+            teamId: this.props.currentTeam.id,
+            team: this.props.currentTeam,
             addDescription: false, // not part of project info; testing this as a way to change form height
         };
 
@@ -150,7 +151,8 @@ class NewProjectForm extends React.Component {
 
 const msp = state => {
     const currentUserId = state.session.id;
-    return ({ currentUserId });
+    const currentTeam = state.ui.currentTeam;
+    return ({ currentUserId, currentTeam });
 };
 
 const mdp = dispatch => {

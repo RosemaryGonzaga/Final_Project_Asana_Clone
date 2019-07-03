@@ -204,7 +204,7 @@ class TaskShow extends React.Component {
         const section = this.props.sections[sectionId];
 
         let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
-
+        // debugger
         // Calculation of time since task creation --> factor out into helper files later?
         const currentDateTime = new Date();
         let timeSinceCreation = Date.parse(currentDateTime) - Date.parse(createdAt);

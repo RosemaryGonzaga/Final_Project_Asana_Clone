@@ -11,6 +11,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
 import { fetchProjects } from '../actions/project_actions';
 import { fetchTeams } from '../actions/team_actions';
+import { fetchUsers } from '../actions/user_actions';
 import { receiveCurrentTeam, resetCurrentTeam } from '../actions/current_team_actions';
 // import { receiveMainContent } from '../actions/main_content_actions';
 // import { receiveNavHeader } from '../../actions/nav_header_actions';
@@ -38,7 +39,8 @@ class Home extends React.Component {
 
         // this.props.fetchProjects();
         // this.props.fetchTeams();
-        const { fetchProjects, fetchTeams, receiveCurrentTeam } = this.props;
+        const { fetchProjects, fetchTeams, fetchUsers, receiveCurrentTeam } = this.props;
+        fetchUsers();
         fetchProjects();
         // debugger
         fetchTeams().then(payload => {
@@ -240,6 +242,7 @@ const mdp = dispatch => {
         logout: () => dispatch(logout()),
         fetchProjects: () => dispatch(fetchProjects()),
         fetchTeams: () => dispatch(fetchTeams()),
+        fetchUsers: () => dispatch(fetchUsers()),
         receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
         resetCurrentTeam: team => dispatch(resetCurrentTeam(team)),
     });

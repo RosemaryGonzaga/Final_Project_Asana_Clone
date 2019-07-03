@@ -101,7 +101,7 @@ Section.create!({
   description: "",
   due_on: nil,
   project_id: project1.id,
-  assignee_id: user1.id,
+  assignee_id: user2.id,
   completed: false,
   completed_at: nil,
   layout: "list"
@@ -121,6 +121,7 @@ Section.create!({
 section1 = Section.first
 section2 = Section.second
 section3 = Section.third
+
 Task.create!({
   name: "User Authentication",
   description: "",
@@ -149,7 +150,7 @@ Task.create!({
   due_on: nil,
   project_id: project1.id,
   section_id: section2.id,
-  assignee_id: user1.id,
+  assignee_id: user2.id,
   completed: nil,
   completed_at: nil,
 })
@@ -160,7 +161,7 @@ Task.create!({
   due_on: nil,
   project_id: project1.id,
   section_id: section2.id,
-  assignee_id: user1.id,
+  assignee_id: user2.id,
   completed: nil,
   completed_at: nil,
 })

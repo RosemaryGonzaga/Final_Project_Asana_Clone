@@ -13,9 +13,9 @@ const receiveAllUsers = users => {
 };
 
 // thunk action creators
-export const fetchUsers = () => {
+export const fetchUsers = teamId => {   // refactored to take in teamId (only need to fetch users associated with a specific team...for now)
     return dispatch => {
-        return UserApiUtil.fetchUsers()
+        return UserApiUtil.fetchUsers(teamId)
             .then(payload => dispatch(receiveAllUsers(payload)));
     };
 }

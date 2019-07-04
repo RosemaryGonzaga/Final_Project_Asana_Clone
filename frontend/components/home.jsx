@@ -41,15 +41,19 @@ class Home extends React.Component {
         // this.props.fetchProjects();
         // this.props.fetchTeams();
         const { fetchProjects, fetchTeams, fetchUsers, receiveCurrentTeam } = this.props;
-        fetchUsers();
-        fetchProjects();
+        // fetchUsers();
+        // fetchProjects();
         // debugger
         fetchTeams().then(payload => {
-            const teamId = Object.keys(payload.teams);
+            // automatically set current team to current user's first team --> REFACTOR LATER
+            const teamId = Object.keys(payload.teams)[0];
             const team = payload.teams[teamId];
             // debugger
             receiveCurrentTeam(team);
+            fetchUsers(team.id);    // fetch team's users (refactored this thunk action creator to take in a teamId)
         });
+        // fetchUsers();
+        fetchProjects();
     }
 
     handleClick(e) {
@@ -243,7 +247,8 @@ const mdp = dispatch => {
         logout: () => dispatch(logout()),
         fetchProjects: () => dispatch(fetchProjects()),
         fetchTeams: () => dispatch(fetchTeams()),
-        fetchUsers: () => dispatch(fetchUsers()),
+        // fetchUsers: () => dispatch(fetchUsers()),
+        fetchUsers: teamId => dispatch(fetchUsers(teamId)), // refactored thunk action creator to take in a teamId
         receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
         resetCurrentTeam: team => dispatch(resetCurrentTeam(team)),
     });

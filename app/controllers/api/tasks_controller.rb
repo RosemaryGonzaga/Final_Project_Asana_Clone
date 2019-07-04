@@ -14,7 +14,9 @@ class Api::TasksController < ApplicationController
 
     def index
         # @tasks = current_user.project_tasks # get user's project_tasks, which encompasses their assigned_tasks
-        @tasks = current_user.team_tasks # get user's project_tasks, which encompasses their assigned_tasks
+        @tasks = current_user.team_tasks # user's team_tasks incldues all tasks for all of the user's teams --> refactor later
+        # TO DO: refactor to only fetch tasks associated with current user's CURRENT TEAM / WORKSPACE
+        # NOTE: b/c projects and tasks are only displayed for a given team / workspace (workspaces are siloed)
     end
 
     def show

@@ -25,7 +25,9 @@ class Api::UsersController < ApplicationController
     end
 
     def index
-        @users = User.all   # may refactor later to only fetch current user's teammates
+        # @users = User.all   # may refactor later to only fetch current user's teammates
+        current_team = Team.find_by(id: params[:team_id])  # structured Ajax request to include teamId in the params
+        @users = current_team.members   # this only fetches current user's current team's teammates
     end
 
     private

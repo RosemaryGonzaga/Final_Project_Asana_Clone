@@ -61,6 +61,15 @@ class User < ApplicationRecord
         through: :favorited_project_associations,
         source: :project
 
+    # added this association for retrieiving current user's teammates
+    # note: the resulting ActiveRecord association includes the current user and also has duplicates
+        # so controller or other logic may need to handle those
+        # ...the JSON response will prob weed out duplicates...
+        # ...but still need to take out the current user
+    has_many :teammates,
+        through: :teams,
+        source: :members
+
     # figvaper
 
     # class methods

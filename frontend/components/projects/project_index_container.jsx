@@ -8,7 +8,9 @@ import { receiveMainContent } from '../../actions/main_content_actions';
 
 const msp = state => {
     const projects = selectAllProjects(state);
-    return { projects };
+    const currentTeam = state.ui.currentTeam;
+    debugger
+    return { projects, currentTeam };
 };
 
 const mdp = dispatch => {

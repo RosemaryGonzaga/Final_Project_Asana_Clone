@@ -17,6 +17,7 @@ class Api::TasksController < ApplicationController
         @tasks = current_user.team_tasks # user's team_tasks incldues all tasks for all of the user's teams --> refactor later
         # TO DO: refactor to only fetch tasks associated with current user's CURRENT TEAM / WORKSPACE
         # NOTE: b/c projects and tasks are only displayed for a given team / workspace (workspaces are siloed)
+            # OR: leave it like this and filter out team-specific tasks on the front end
     end
 
     def show

@@ -25,8 +25,7 @@ class Api::ProjectsController < ApplicationController
         # @projects = current_user.projects   # this fetches all projects for which user is the owner --> change this later!
         @projects = current_user.team_projects   # this fetches all projects for all the user's teams / workspaces --> change this later!
         # TO DO: NEED TO REFACTOR to only get all projects for current user's CURRENTLY DISPLAYED TEAM / WORKSPACE
-        
-        
+            # OR: leave it like this and filter out team-specific projects on the front end
     end
 
     def show

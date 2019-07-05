@@ -9,19 +9,21 @@ class TaskModal extends React.Component {
     constructor(props) {
         super(props);
 
-        const { task, sections, projects, users } = this.props;
+        // const { task, sections, projects, users } = this.props;
+        const { task, sections, projects } = this.props;
         const { id, name, description, projectId,
             sectionId, assigneeId, dueOn,
             completed, completedAt,
             createdAt, updatedAt } = task;
-        const section = sections[sectionId];
-        const project = projects[projectId];
-        const assignee = users[assigneeId];
+        const section = sections[sectionId];    // move this to the render method? (similar to what I did w/ assignee?)
+        const project = projects[projectId];    // move this to the render method? (similar to what I did w/ assignee?)
+        // const assignee = users[assigneeId];  // assignee only gets set once (constructor method) ... better to set this var's value in the render method
 
         // Local state
         this.state = {
             id, name, description, project,
-            section, assignee, dueOn, completed,
+            // section, assignee, dueOn, completed, 
+            section, assigneeId, dueOn, completed, 
             completedAt, createdAt, updatedAt, projectId,
             sectionId,
             dueDateButton: true,
@@ -174,12 +176,14 @@ class TaskModal extends React.Component {
     render() {
         // debugger
         const { id, name, description, project,
-            sectionId, assignee, dueOn,
+            // sectionId, assignee, dueOn,  // refactored state to track assigneeId, not assignee
+            sectionId, assigneeId, dueOn,
             completed, completedAt,
             createdAt, updatedAt } = this.state;
 
         const section = this.props.sections[sectionId];
-
+        debugger
+        const assignee = this.props.users[assigneeId];
         let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
 
         // Calculation of time since task creation --> factor out into helper files later?

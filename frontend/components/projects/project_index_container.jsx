@@ -9,7 +9,7 @@ import { receiveMainContent } from '../../actions/main_content_actions';
 const msp = state => {
     const projects = selectAllProjects(state);
     const currentTeam = state.ui.currentTeam;
-    debugger
+    // debugger
     return { projects, currentTeam };
 };
 

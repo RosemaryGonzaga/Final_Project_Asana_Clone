@@ -182,7 +182,7 @@ class TaskModal extends React.Component {
             createdAt, updatedAt } = this.state;
 
         const section = this.props.sections[sectionId];
-        debugger
+        // debugger
         const assignee = this.props.users[assigneeId];
         let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
 

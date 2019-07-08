@@ -7,6 +7,8 @@ import ProjectShowContainer from './projects/project_show_container';
 import TaskIndexContainer from './tasks/task_index_container';
 import Welcome from './welcome';
 import TeamSidebarContainer from './teams/team_sidebar_container';
+// import { AvatarDropdown } from './dropdowns/avatar_dropdown';
+import AvatarDropdown from './dropdowns/avatar_dropdown';
 // import TaskShowContainer from './tasks/task_show_container';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { ProtectedRoute } from '../util/route_util';
@@ -21,12 +23,12 @@ import { receiveCurrentTeam, resetCurrentTeam } from '../actions/current_team_ac
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            avatarClass: "avatar avatar-not-selected",
-        }
+        // this.state = {
+        //     avatarClass: "avatar avatar-not-selected",   // not needed now that I've refactored the avatar to display dropdown on click
+        // }
 
         this.handleClick = this.handleClick.bind(this);
-        this.handleAvatarClick = this.handleAvatarClick.bind(this);
+        this.displayAvatarDropdown = this.displayAvatarDropdown.bind(this);
     }
 
     componentDidMount() {
@@ -59,11 +61,19 @@ class Home extends React.Component {
         // logout();
     }
 
-    handleAvatarClick(e) {
+    displayAvatarDropdown(e) {
         e.preventDefault();
-        this.setState({ avatarClass: "avatar avatar-selected" });
+        // this.setState({ avatarClass: "avatar avatar-selected" });
         // how do I toggle the class back when a user clicks off the menu? (or selects something from the menu?)
         // is it fair to set a timeout that resets local state? (wouldn't exactly replicate Asana's behavior)
+        const avatarDropdown = document.getElementById("avatar-dropdown-menu")
+        avatarDropdown.className = "avatar-dropdown-menu";
+    }
+
+    closeAvatarDropdown(e) {
+        e.stopPropagation();
+        const avatarDropdown = document.getElementById("avatar-dropdown-menu")
+        avatarDropdown.className = "avatar-dropdown-menu-hidden";
     }
 
     render() {
@@ -159,8 +169,10 @@ class Home extends React.Component {
                                     <Link to="/projects/new"><i className="fas fa-plus"></i> New</Link>
                                 </li>
                                 <li ><button className="random-buttons" onClick={this.handleClick} id="home-logout-btn">Sign Out</button></li>
-                                <li className={this.state.avatarClass} onClick={this.handleAvatarClick}>
+                                {/* <li className={this.state.avatarClass} onClick={this.displayAvatarDropdown}> */}
+                                <li className="avatar" onClick={this.displayAvatarDropdown}>
                                     {initials}
+                                    <AvatarDropdown closeAvatarDropdown={this.closeAvatarDropdown}/>
                                 </li>
                             </ul>                            
                         </nav>

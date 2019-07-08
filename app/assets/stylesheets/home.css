@@ -83,13 +83,13 @@
 }
 
 .team-sidebar-heading,
-.team-sidebar-members {
+.team-sidebar-members,
+.team-sidebar-project-item {
     box-sizing: border-box;
     padding-left: 14px;
     padding-right: 20px;
     display: flex;
     justify-content: space-between;
-
     align-items: center;
     height: 28px;
     transition-duration: 200ms;
@@ -100,7 +100,8 @@
     font-size: 12px;
 }
 
-.team-sidebar-heading:hover {
+.team-sidebar-heading:hover,
+.team-sidebar-project-item:hover {
     background-color: #ffffff14;
 }
 
@@ -110,6 +111,8 @@
     background-color: #ffffff14;
     border-radius: 12px;
     cursor: pointer;
+    transition-duration: 200ms;
+    transition-property: background-color;
 }
 
 .team-sidebar-initials-placeholder:hover {
@@ -127,7 +130,24 @@
     cursor: pointer;
 }
 
+.team-sidebar-project-item {
+    justify-content: flex-start;
+}
 
+.team-sidebar-project-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: #7a6ff0;
+    border-radius: 2px;
+    margin-right: 13px;
+}
+
+.team-sidebar-project-item > div:last-of-type {
+    width: 174px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* without this property, text wraps to another line */
+}
 
 
 

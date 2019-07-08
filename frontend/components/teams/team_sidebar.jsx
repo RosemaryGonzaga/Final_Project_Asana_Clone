@@ -26,13 +26,18 @@ class TeamSidebar extends React.Component {
             teamMembers.push(<li className="team-sidebar-initials-invite-ppl" key="invite-ppl">Invite People</li>)
         }
 
-        // teamMembers = teamMembers.slice(0, 7);    // only show first 7 team members 
+        teamMembers = teamMembers.slice(0, 7);    // only show first 7 team members --> NEED TO TEST THIS LATER
 
         let teamProjects = projects.slice();
         let projectItems = null;
         if (currentTeam) {  // only access currentTeam's id if currentTeam is truthy
             teamProjects = projects.filter(project => project.teamId === currentTeam.id);
-            projectItems = teamProjects.map(project => <li key={project.id}>{project.name}</li>);
+            projectItems = teamProjects.map(project => {
+                return  <li className="team-sidebar-project-item" key={project.id}>
+                        <div className="team-sidebar-project-bullet"></div>
+                            <div>{project.name}</div>
+                        </li>
+            });
         }
 
         // projectItems = projectItems.slice(0, 5);    // only show first 5 projects
@@ -48,12 +53,11 @@ class TeamSidebar extends React.Component {
                 </div>
                 <br /> {/* TEMP BREAK */}
                 <ul className="team-sidebar-members">
-                    {/* <li>{currentTeam ? currentTeam.name : null} members:</li> */}
                     {teamMembers}
                 </ul>
                 <br /> {/* TEMP BREAK */}
                 <ul className="team-sidebar-projects">
-                    <li>{currentTeam ? currentTeam.name : null} projects:</li>
+                    {/* <li>{currentTeam ? currentTeam.name : null} projects:</li> */}
                     {projectItems}
                 </ul>
                 <br /> {/* TEMP BREAK */}

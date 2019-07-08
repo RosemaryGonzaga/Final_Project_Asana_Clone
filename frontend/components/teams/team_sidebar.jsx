@@ -3,10 +3,22 @@ import React from 'react';
 class TeamSidebar extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            numProjectsDisplayed: 5,
+        };
+        this.showMoreProjects = this.showMoreProjects.bind(this);
+    }
+
+    showMoreProjects(num) {
+        return e => {
+            e.preventDefault();
+            this.setState({ numProjectsDisplayed: num });
+        }
     }
 
     render() {
         const { currentTeam, users, projects, teams } = this.props;
+        const { numProjectsDisplayed } = this.state;
         // NEED TO FILTER OUT USERS THAT ARE NOT PART OF THE CURRENT TEAM
         // Opt 1: filter here in this component?
         // Opt 2: modify fetchUsers / Users#index (controller) to only fetch current team's users instead of all users in DB?
@@ -38,9 +50,12 @@ class TeamSidebar extends React.Component {
                             <div>{project.name}</div>
                         </li>
             });
+            projectItems = projectItems.slice(0, numProjectsDisplayed);    // only show first 5 projects, initially
         }
 
-        // projectItems = projectItems.slice(0, 5);    // only show first 5 projects
+        const showMoreProjectsButton = <div className="team-sidebar-show-more" 
+                                        onClick={this.showMoreProjects(teamProjects.length)}>
+                                        Show more projects</div>;
 
         // TEMPORARY?
         const userTeams = teams.map(team => <li>{team.name}</li>);
@@ -57,11 +72,10 @@ class TeamSidebar extends React.Component {
                 </ul>
                 <br /> {/* TEMP BREAK */}
                 <ul className="team-sidebar-projects">
-                    {/* <li>{currentTeam ? currentTeam.name : null} projects:</li> */}
                     {projectItems}
                 </ul>
                 <br /> {/* TEMP BREAK */}
-                <div className="team-sidebar-show-more">Show more projects</div>
+                {numProjectsDisplayed === 5 ? showMoreProjectsButton : null}
                 <br /> {/* TEMP BREAK */}
                 {/* BELOW IS JUST FOR TESTING */}
                 <ul className="team-sidebar-teams">

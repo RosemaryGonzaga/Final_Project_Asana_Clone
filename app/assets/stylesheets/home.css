@@ -78,8 +78,57 @@
     flex-direction: column;
     justify-content: space-between;
     color: #d5dce0;
-    margin-left: 14px;
+    /* margin-left: 14px; */
+    font-size: 14px;
 }
+
+.team-sidebar-heading,
+.team-sidebar-members {
+    box-sizing: border-box;
+    padding-left: 14px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    height: 28px;
+    transition-duration: 200ms;
+    transition-property: background-color;
+}
+
+.team-sidebar-heading > i {
+    font-size: 12px;
+}
+
+.team-sidebar-heading:hover {
+    background-color: #ffffff14;
+}
+
+.team-sidebar-initials-placeholder {
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff14;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.team-sidebar-initials-placeholder:hover {
+    background-color: white;
+}
+
+.team-sidebar-initials-invite-ppl {
+    width: 112px;
+    height: 23px;
+    background-color: #ffffff14;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
 
 
 

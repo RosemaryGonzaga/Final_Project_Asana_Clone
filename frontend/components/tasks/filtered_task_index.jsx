@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { TaskIndexItem } from './task_index_item';
-import { selectAllTasks } from '../../reducers/selectors';
+import { selectAllTasks, selectAllProjects } from '../../reducers/selectors';
 import { fetchTasks } from '../../actions/task_actions';
 // import { Link } from 'react-router-dom';
 
@@ -18,8 +18,21 @@ class FilteredTaskIndex extends React.Component {
     }
 
     render() {
-        const { tasks, projects, currentUserId } = this.props;
-        const userTasks = tasks.filter(task => task.assigneeId === currentUserId);
+        const { tasks, projects, currentUserId, currentTeam, projectsArr } = this.props;
+
+        let teamProjectIds = [];
+        if (currentTeam) {
+            projectsArr.forEach(project => {
+                if (project.teamId === currentTeam.id) { teamProjectIds.push(project.id); }
+            });
+        }
+
+        // const userTasks = tasks.filter(task => task.assigneeId === currentUserId);
+        // Refactored to only show user's tasks that are associated with current team / workspace
+        const userTasks = tasks.filter(task => {
+            return task.assigneeId === currentUserId && teamProjectIds.includes(task.projectId);
+        });
+
         // debugger
         const today = new Date();
         const dueSoon = [];
@@ -57,8 +70,10 @@ class FilteredTaskIndex extends React.Component {
 const msp = (state) => {
     const tasks = selectAllTasks(state);
     const projects = state.entities.projects;
+    const projectsArr = selectAllProjects(state);
     const currentUserId = state.session.id;
-    return { tasks, projects, currentUserId };
+    const currentTeam = state.ui.currentTeam;
+    return { tasks, projects, currentUserId, currentTeam, projectsArr };
 };
 
 const mdp = dispatch => {

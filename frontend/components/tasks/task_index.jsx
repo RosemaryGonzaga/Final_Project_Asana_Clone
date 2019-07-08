@@ -1,6 +1,6 @@
 import React from 'react';
 import { TaskIndexItem } from './task_index_item';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class TaskIndex extends React.Component {
     constructor(props) {
@@ -15,14 +15,14 @@ class TaskIndex extends React.Component {
 
 
     render() {
-        const { tasks, projects, currentUserId } = this.props;
-        // const { tasks, projects, fetchTasks, fetchProjects } = this.props;
+        const { tasks, projects, currentUserId, currentTeam, projectsArr } = this.props;
 
-        // // Added the below two conditionals to fix blank page after reloading task index
-        // // Not sure if the fix can be attributable to these two lines
-        // // ...also added a ternary on line 31 of TaskIndexItem to prevent keying into project if project is undefined
-        // if (tasks && tasks.length === 0) { fetchTasks() };
-        // if (projects && projects.length === 0) { fetchProjects() };
+        let teamProjectIds = [];
+        if (currentTeam) {
+            projectsArr.forEach(project => {
+                if (project.teamId === currentTeam.id) { teamProjectIds.push(project.id); }
+            });
+        }
 
         const today = new Date();
 
@@ -31,7 +31,11 @@ class TaskIndex extends React.Component {
         const upcomingTasks = [];
         const laterTasks = [];
 
-        const userTasks = tasks.filter(task => task.assigneeId === currentUserId);
+        // const userTasks = tasks.filter(task => task.assigneeId === currentUserId);
+        // Refactored to only show user's tasks that are associated with current team / workspace
+        const userTasks = tasks.filter(task => {
+            return task.assigneeId === currentUserId && teamProjectIds.includes(task.projectId);
+        });
 
         // tasks.forEach(task => {
         userTasks.forEach(task => {

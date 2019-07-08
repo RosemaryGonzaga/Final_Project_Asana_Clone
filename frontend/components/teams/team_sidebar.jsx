@@ -75,13 +75,13 @@ class TeamSidebar extends React.Component {
                     {projectItems}
                 </ul>
                 <br /> {/* TEMP BREAK */}
-                {numProjectsDisplayed === 5 ? showMoreProjectsButton : null}
+                {teamProjects.length > 5 && numProjectsDisplayed === 5 ? showMoreProjectsButton : null}
                 <br /> {/* TEMP BREAK */}
                 {/* BELOW IS JUST FOR TESTING */}
-                <ul className="team-sidebar-teams">
+                {/* <ul className="team-sidebar-teams">
                     <li>My teams:</li>
                     {userTeams}
-                </ul>
+                </ul> */}
             </div>
         );
     }

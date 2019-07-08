@@ -149,7 +149,11 @@
     white-space: nowrap; /* without this property, text wraps to another line */
 }
 
-
+.team-sidebar-show-more {
+    margin-left: 14px;
+    font-size: 11px;
+    color: #646f79;
+}
 
 
 /* MAIN: TOPBAR AND MAIN CONTENT */

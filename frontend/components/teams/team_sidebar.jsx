@@ -12,11 +12,18 @@ class TeamSidebar extends React.Component {
         // Opt 2: modify fetchUsers / Users#index (controller) to only fetch current team's users instead of all users in DB?
         // Opt 3: write a parallel fetchUsers / Users#index to allow for both scenarios (will need to fetch all users when inviting new team members?)
         const teamMembers = users.map(user => {
-            const initials = user.primaryEmail.slice(0, 2).toUpperCase(); 
-            // return initials;
+            const initials = user.primaryEmail.slice(0, 2).toUpperCase();
             return <li>{initials}</li>;
         });
-        const teamProjects = projects.map(project => <li>{project.name}</li>);
+
+        let teamProjects = projects.slice();
+        let projectItems = null;
+        if (currentTeam) {  // only access currentTeam's id if currentTeam is truthy
+            teamProjects = projects.filter(project => project.teamId === currentTeam.id);
+            projectItems = teamProjects.map(project => <li>{project.name}</li>);
+        }
+
+        // const teamProjects = projects.map(project => <li>{project.name}</li>);
 
         // TEMPORARY?
         const userTeams = teams.map(team => <li>{team.name}</li>);
@@ -35,7 +42,7 @@ class TeamSidebar extends React.Component {
                 <br /> {/* TEMP BREAK */}
                 <ul className="team-sidebar-projects">
                     <li>{currentTeam ? currentTeam.name : null} projects:</li>
-                    {teamProjects}
+                    {projectItems}
                 </ul>
                 <br /> {/* TEMP BREAK */}
                 <div className="team-sidebar-show-more">Show more projects</div>

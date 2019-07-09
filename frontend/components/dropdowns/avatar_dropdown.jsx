@@ -18,6 +18,7 @@ class AvatarDropdown extends React.Component {
         this.displayMoreOptionsDropdown = this.displayMoreOptionsDropdown.bind(this);
         this.hideMoreOptionsDropdown = this.hideMoreOptionsDropdown.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
+        this.handleChangeTeamClick = this.handleChangeTeamClick.bind(this);
     }
     
     // // Actually, this lifecycle method isn't necessary...
@@ -52,6 +53,14 @@ class AvatarDropdown extends React.Component {
         logout().then(() => resetCurrentTeam());
     };
 
+    handleChangeTeamClick(team) {
+        return e => {
+            const { receiveCurrentTeam, closeAvatarDropdown } = this.props;
+            closeAvatarDropdown(e);
+            receiveCurrentTeam(team);
+        };
+    }
+
    
     render () {
         const { closeAvatarDropdown, currentTeam, teams } = this.props;
@@ -70,9 +79,29 @@ class AvatarDropdown extends React.Component {
             userTeams = teams.map(team => {
                 const checkClass = team.id.toString() === currentTeam.id.toString() ? "fa-check-visible" : "fa-check-transparent";
                 return (
-                    <div onClick={closeAvatarDropdown}>
-                        <i className={`fas fa-check ${checkClass}`}></i>
-                        {team.name}
+                    // <div onClick={this.handleChangeTeamClick(team)}>
+                    //     <a href="http://localhost:3000/#/home">link</a>
+                    //     {/* <a href="https://shavasana.herokuapp.com/#/home">link</a> */}
+                    //     {/* <a href="https://shavasana.herokuapp.com/#/home" target="_blank">link</a> */}
+                    //     <i className={`fas fa-check ${checkClass}`}></i>
+                    //     {team.name}
+                    // </div>
+
+                    // <a href="http://localhost:3000/#/home" onClick={this.handleChangeTeamClick(team)}>
+                    //     {/* <a href="http://localhost:3000/#/home">link</a> */}
+                    //     {/* <a href="https://shavasana.herokuapp.com/#/home">link</a> */}
+                    //     {/* <a href="https://shavasana.herokuapp.com/#/home" target="_blank">link</a> */}
+                    //     <i className={`fas fa-check ${checkClass}`}></i>
+                    //     {team.name}
+                    // </a>
+                    
+                    <div onClick={this.handleChangeTeamClick(team)}>
+                        <a href="http://localhost:3000/#/home">
+                        {/* <a href="https://shavasana.herokuapp.com/#/home"> */}
+                        {/* <a href="https://shavasana.herokuapp.com/#/home" target="_blank"> */}
+                            <i className={`fas fa-check ${checkClass}`}></i>
+                            {team.name}
+                        </a>
                     </div>
                 );
             });
@@ -115,7 +144,7 @@ const mdp = dispatch => {
     return ({
         logout: () => dispatch(logout()),
         resetCurrentTeam: team => dispatch(resetCurrentTeam(team)),
-        // receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
+        receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
         // fetchTeams: () => dispatch(fetchTeams()),
     });
 };

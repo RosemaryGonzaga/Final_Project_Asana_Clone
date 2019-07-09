@@ -48,10 +48,11 @@ const Splash = props => {
                 <div className="splash-section splash-footer">
                     <div className="splash-footer-top">
                         {/* <a href="https://www.facebook.com/rosemary.gonzaga.1"><i className="fab fa-facebook"></i></a> */}
-                        <a href="https://github.com/RosemaryGonzaga"><i className="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/rosemary-gonzaga-125bb790/"><i className="fab fa-linkedin"></i></a>
-                        <a href="https://angel.co/rosemary-gonzaga?public_profile=1"><i className="fab fa-angellist"></i></a>
-                        <a href="https://rosemarygonzaga.github.io/Portfolio/"><i className="fas fa-globe"></i></a>
+                        <a href="https://github.com/RosemaryGonzaga" target="_blank"><i className="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/rosemary-gonzaga-125bb790/" target="_blank"><i className="fab fa-linkedin"></i></a>
+                        <a href="https://angel.co/rosemary-gonzaga?public_profile=1" target="_blank"><i className="fab fa-angellist"></i></a>
+                        <a href="https://www.rosemarygonzaga.com" target="_blank"><i className="fas fa-globe"></i></a>
+                        {/* <a href="https://rosemarygonzaga.github.io/Portfolio/" target="_blank"><i className="fas fa-globe"></i></a> */}
                     </div>
                     {/* <footer>
                         <ul>

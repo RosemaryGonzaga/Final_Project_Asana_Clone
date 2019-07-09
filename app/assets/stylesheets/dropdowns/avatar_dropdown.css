@@ -22,6 +22,8 @@
     height: 40px;
     box-sizing: border-box;
     padding: 10px;
+    /* padding: 16px; */
+    /* padding: 33px; */
     background-color: white;
     display: flex;
     align-items: center;
@@ -47,6 +49,10 @@
 .avatar-dropdown-menu-hidden,
 .more-options-dropdown-menu-hidden {
     display: none;
+}
+
+.avatar-dropdown-menu > section > div > i {
+    margin-right: 9px;
 }
 
 /* MORE OPTIONS DROPDOWN MENU */

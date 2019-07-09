@@ -9,26 +9,29 @@ import { fetchTeams } from '../../actions/team_actions';
 class AvatarDropdown extends React.Component {
     constructor(props) {
         super(props);
-        // const { teams, currentTeam } = this.props;
-        this.state = {
-            teams: null,
-            // currentTeam: null,
-        };
+        // // const { teams, currentTeam } = this.props;
+        // this.state = {
+        //     teams: null,
+        //     // currentTeam: null,
+        // };
 
         this.displayMoreOptionsDropdown = this.displayMoreOptionsDropdown.bind(this);
         this.hideMoreOptionsDropdown = this.hideMoreOptionsDropdown.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
     }
     
-    componentDidMount() {
-        const { teams } = this.state;
-        const { fetchTeams } = this.props;
-        if (!teams) {
-            fetchTeams().then(payload => {
-                this.setState({ teams: Object.values(payload.teams) })
-            });
-        }
-    }
+    // // Actually, this lifecycle method isn't necessary...
+    // // The reason teams was empty before was because I was passing in "null" instead of 
+    // // the msp function i had defined when connecting the presentational component to Redux state
+    // componentDidMount() {
+    //     const { teams } = this.state;
+    //     const { fetchTeams, receiveCurrentTeam, currentTeam } = this.props;
+    //     if (!teams) {
+    //         fetchTeams().then(payload => {
+    //             this.setState({ teams: Object.values(payload.teams) })
+    //         });
+    //     }
+    // }
 
 
     // Event handlers
@@ -51,8 +54,9 @@ class AvatarDropdown extends React.Component {
 
    
     render () {
-        const { closeAvatarDropdown } = this.props;
-        const { teams } = this.state;
+        const { closeAvatarDropdown, currentTeam, teams } = this.props;
+        // const { closeAvatarDropdown, currentTeam } = this.props;
+        // const { teams } = this.state;
 
         // Sub component: another (mini) dropdown
         const moreOptionsDropdown = <div className="more-options-dropdown-menu-hidden" id="more-options-dropdown-menu">
@@ -62,8 +66,16 @@ class AvatarDropdown extends React.Component {
 
         // List of user's teams
         let userTeams = null;
-        if (teams) {
-            userTeams = teams.map(team => <div onClick={closeAvatarDropdown}>{team.name}</div>);
+        if (teams && currentTeam) {
+            userTeams = teams.map(team => {
+                const checkClass = team.id.toString() === currentTeam.id.toString() ? "fa-check-visible" : "fa-check-transparent";
+                return (
+                    <div onClick={closeAvatarDropdown}>
+                        <i className={`fas fa-check ${checkClass}`}></i>
+                        {team.name}
+                    </div>
+                );
+            });
         }
 
         return (
@@ -72,24 +84,24 @@ class AvatarDropdown extends React.Component {
                     {userTeams}
                 </section>
                 <section>
-                    <div onClick={closeAvatarDropdown}>Workspace Settings...</div>
+                    <div onClick={closeAvatarDropdown}><i className="fas fa-check fa-check-transparent"></i>Workspace Settings...</div>
                     <div className="more-options-dropdown-parent"
                         onClick={closeAvatarDropdown}
                         onMouseEnter={this.displayMoreOptionsDropdown}
                         onMouseLeave={this.hideMoreOptionsDropdown}>
+                        <i className="fas fa-check fa-check-transparent"></i>
                         More
                         {moreOptionsDropdown}
                     </div>
                 </section>
                 <section>
-                    <div onClick={closeAvatarDropdown}>My Profile Settings...</div>
-                    <div onClick={this.handleLogoutClick}>Log Out</div>
+                    <div onClick={closeAvatarDropdown}><i className="fas fa-check fa-check-transparent"></i>My Profile Settings...</div>
+                    <div onClick={this.handleLogoutClick}><i className="fas fa-check fa-check-transparent"></i>Log Out</div>
                 </section>
             </div>
         );
     }
 }
-
 
 
 
@@ -102,10 +114,10 @@ const msp = state => {
 const mdp = dispatch => {
     return ({
         logout: () => dispatch(logout()),
-        receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
         resetCurrentTeam: team => dispatch(resetCurrentTeam(team)),
-        fetchTeams: () => dispatch(fetchTeams()),
+        // receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
+        // fetchTeams: () => dispatch(fetchTeams()),
     });
 };
 
-export default connect(null, mdp)(AvatarDropdown);
+export default connect(msp, mdp)(AvatarDropdown);

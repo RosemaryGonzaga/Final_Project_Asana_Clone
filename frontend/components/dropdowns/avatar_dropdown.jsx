@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { logout } from '../../actions/session_actions';
 import { receiveCurrentTeam, resetCurrentTeam } from '../../actions/current_team_actions';
 import { selectAllTeams } from '../../reducers/selectors';
-import { fetchTeams } from '../../actions/team_actions';
+// import { fetchTeams } from '../../actions/team_actions';
+import { openModal } from '../../actions/modal_actions';
 
 
 class AvatarDropdown extends React.Component {
@@ -64,13 +65,13 @@ class AvatarDropdown extends React.Component {
 
    
     render () {
-        const { closeAvatarDropdown, currentTeam, teams } = this.props;
+        const { closeAvatarDropdown, currentTeam, teams, openModal } = this.props;
         // const { closeAvatarDropdown, currentTeam } = this.props;
         // const { teams } = this.state;
 
         // Sub component: another (mini) dropdown
         const moreOptionsDropdown = <div className="more-options-dropdown-menu-hidden" id="more-options-dropdown-menu">
-            <div>Create New Workspace</div>
+            <div onClick={() => openModal('createTeam')}>Create New Workspace</div>
             <div>Remove me from this Workspace</div>
         </div>;
 
@@ -130,6 +131,7 @@ const mdp = dispatch => {
         logout: () => dispatch(logout()),
         resetCurrentTeam: team => dispatch(resetCurrentTeam(team)),
         receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
+        openModal: modal => dispatch(openModal(modal)),
         // fetchTeams: () => dispatch(fetchTeams()),
     });
 };

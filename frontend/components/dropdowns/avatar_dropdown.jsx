@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { logout } from '../../actions/session_actions';
 import { receiveCurrentTeam, resetCurrentTeam } from '../../actions/current_team_actions';
 import { selectAllTeams } from '../../reducers/selectors';
@@ -79,29 +80,13 @@ class AvatarDropdown extends React.Component {
             userTeams = teams.map(team => {
                 const checkClass = team.id.toString() === currentTeam.id.toString() ? "fa-check-visible" : "fa-check-transparent";
                 return (
-                    // <div onClick={this.handleChangeTeamClick(team)}>
-                    //     <a href="http://localhost:3000/#/home">link</a>
-                    //     {/* <a href="https://shavasana.herokuapp.com/#/home">link</a> */}
-                    //     {/* <a href="https://shavasana.herokuapp.com/#/home" target="_blank">link</a> */}
-                    //     <i className={`fas fa-check ${checkClass}`}></i>
-                    //     {team.name}
-                    // </div>
-
-                    // <a href="http://localhost:3000/#/home" onClick={this.handleChangeTeamClick(team)}>
-                    //     {/* <a href="http://localhost:3000/#/home">link</a> */}
-                    //     {/* <a href="https://shavasana.herokuapp.com/#/home">link</a> */}
-                    //     {/* <a href="https://shavasana.herokuapp.com/#/home" target="_blank">link</a> */}
-                    //     <i className={`fas fa-check ${checkClass}`}></i>
-                    //     {team.name}
-                    // </a>
-                    
+                    // NOTE: Can't use target="_blank" with Link component(?)
+                    // Need to use a tag... but in that case, href should specify full url (e.g., https://shavasana.herokuapp.com/#/home)
                     <div onClick={this.handleChangeTeamClick(team)}>
-                        <a href="http://localhost:3000/#/home">
-                        {/* <a href="https://shavasana.herokuapp.com/#/home"> */}
-                        {/* <a href="https://shavasana.herokuapp.com/#/home" target="_blank"> */}
+                        <Link to="/home">
                             <i className={`fas fa-check ${checkClass}`}></i>
                             {team.name}
-                        </a>
+                        </Link>
                     </div>
                 );
             });

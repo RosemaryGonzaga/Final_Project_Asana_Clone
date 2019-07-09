@@ -40,6 +40,10 @@
     text-decoration: none;
     color: #151b26;
     padding-left: 5px;
+    min-width: 252px;
+    height: 40px;
+    display: flex;
+    align-items: center;
 }
 
 .avatar-dropdown-menu > section {

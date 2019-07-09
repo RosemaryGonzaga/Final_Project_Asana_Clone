@@ -10,9 +10,15 @@
     min-height: 231px;
     /* min-height: 275px; */
     /* height: 315px; */
+    box-shadow: 0 0 4px #26151B26;
+    box-shadow: -1px 1px 2px #26151B26;
+    box-shadow: 0 1px 4px #26151B26;
+    box-shadow: 0 1px 3px 0 #151b2626;
+    box-shadow: 0 0 10px #e0e6e8;
 }
 
-.avatar-dropdown-menu > section > div {
+.avatar-dropdown-menu > section > div,
+.more-options-dropdown-menu > div {
     height: 40px;
     box-sizing: border-box;
     padding: 10px;
@@ -24,7 +30,8 @@
     margin: 4px 0;
 }
 
-.avatar-dropdown-menu > section > div:hover {
+.avatar-dropdown-menu > section > div:hover,
+.more-options-dropdown-menu > div:hover {
     background-color: #edf1f2;
     cursor: pointer;
 }
@@ -49,7 +56,7 @@
 
 .more-options-dropdown-menu {
     position: absolute;
-    top: -6px;
+    top: -5px;
     left: -224px;
     z-index: 10;
     background-color: white;

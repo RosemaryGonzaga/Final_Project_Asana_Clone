@@ -57,8 +57,8 @@ class TeamSidebar extends React.Component {
                                         onClick={this.showMoreProjects(teamProjects.length)}>
                                         Show more projects</div>;
 
-        // TEMPORARY?
-        const userTeams = teams.map(team => <li>{team.name}</li>);
+        // // TEMPORARY?
+        // const userTeams = teams.map(team => <li>{team.name}</li>);
 
         return (
             <div className="team-sidebar-container">

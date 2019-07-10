@@ -1,0 +1,35 @@
+.edit-project-container.new-team-container {
+    height: 300px;
+}
+
+.edit-project-header.new-team-header {
+    padding-left: 22px;
+}
+
+.edit-project-header.new-team-header > h1:last-of-type {
+    color: #151b26;
+}
+
+.edit-project-container.edit-project-container.new-team-container > form {
+    height: 260px;
+}
+
+.edit-project-container.new-team-container > form > div > textarea {
+    height: 82px;
+    margin-top: 16px;
+}
+
+.edit-project-container.new-team-container > form > div > label {
+    font-weight: 500;
+    top: -15px;
+}
+
+.edit-project-container.new-team-container > form > input[type="submit"] {
+    width: 135px;
+    height: 42px;
+    margin-top: 40px;
+}
+
+.edit-project-container.new-team-container > form > div > textarea::placeholder {
+    color: #75797b;
+}

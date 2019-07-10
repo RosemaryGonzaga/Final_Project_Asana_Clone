@@ -46,9 +46,10 @@ export const fetchTeam = id => {
 export const createTeam = team => {
     return dispatch => {
         return TeamApiUtil.createTeam(team)
-            .then(payload => {
-                dispatch(receiveTeam(payload)),
-                dispatch(closeModal())
+            .then(payload => {       
+                dispatch(receiveTeam(payload));
+                dispatch(closeModal());
+                return payload; // need to return payload so I can chain another AJAX request in the new team form?
             });
     };
 }

@@ -42,7 +42,8 @@ class Api::TeamsController < ApplicationController
 
     private
     def team_params
-        params.require(:team).permit(:name, :description, :privacy)
+        params.require(:team).permit(:name)
+        # params.require(:team).permit(:name, :description, :privacy)   # not sure if :description and :privacy are needed -> these fields don't appear in the create / manage workspace forms
     end
 end
 

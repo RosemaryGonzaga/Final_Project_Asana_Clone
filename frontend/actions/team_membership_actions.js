@@ -1,5 +1,5 @@
 import * as TeamMembershipApiUtil from '../util/team_memberships_api_util';
-import { closeModal } from './modal_actions';
+// import { closeModal } from './modal_actions';
 
 // action types
 export const RECEIVE_TEAM_MEMBERSHIP = "RECEIVE_TEAM_MEMBERSHIP";
@@ -25,8 +25,7 @@ export const createTeamMembership = teamMembership => {
     return dispatch => {
         return TeamMembershipApiUtil.createTeamMembership(teamMembership)
             .then(payload => {
-                dispatch(receiveTeamMembership(payload)),
-                dispatch(closeModal())
+                dispatch(receiveTeamMembership(payload))
             });
     };
 }
@@ -35,8 +34,7 @@ export const deleteTeamMembership = id => {
     return dispatch => {
         return TeamMembershipApiUtil.deleteTeamMembership(id)
             .then(payload => {
-                dispatch(removeTeamMembership(id)),
-                dispatch(closeModal())
+                dispatch(removeTeamMembership(id))
             });
     };
 }

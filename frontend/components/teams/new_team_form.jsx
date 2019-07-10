@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 import { createTeam } from '../../actions/team_actions';
 import { createTeamMembership } from '../../actions/team_membership_actions';
+import { fetchUserByEmail } from '../../actions/user_actions';
 // import { clearAllUsers, fetchUsers } from '../../actions/user_actions';
 
 
@@ -19,11 +20,33 @@ class NewTeamForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const { createTeam, createTeamMembership, currentUserId } = this.props;
+        const { createTeam, createTeamMembership, currentUserId, fetchUserByEmail } = this.props;
         const { name, members } = this.state;
+        let membersArr = members.split(',');
+        membersArr = membersArr.map(email => {
+            return email.trim();
+        }).filter(email => {
+            return email.length > 2;  // very basic email validation (only search DB if email address is greater than 1)
+        });
         createTeam({ name }).then(team => {
             const teamId = team.id;
-            createTeamMembership({ userId: currentUserId, teamId })   // also do this for the other members
+            createTeamMembership({ userId: currentUserId, teamId })
+                .then(() => {
+                    if (membersArr.length >= 1) {   
+                        membersArr.forEach(email => {
+                            fetchUserByEmail(email).then(response => {
+                                // console.log("The response is: ")
+                                // console.log(response);  // response = {type: "RECEIVE_USER", user: {…}}
+                                const userId = response.user.id;
+                                createTeamMembership({ userId, teamId });
+                                // IMPORTANT TO KEEP IN MIND ABOUT THIS LOOP AND JS ASYNCH:
+                                // the success CB (where createTeamMembership is invoked) will only be invoked
+                                // AFTER the entire forEach loop has finished iterating!
+                                // all synchronous actions execute before asynch actions
+                            })
+                        });
+                    }
+                })
         });
     }
 
@@ -86,8 +109,7 @@ const mdp = dispatch => {
         closeModal: () => dispatch(closeModal()),
         createTeam: team => dispatch(createTeam(team)),
         createTeamMembership: teamMembership => dispatch(createTeamMembership(teamMembership)),
-        // clearAllUsers: () => dispatch(clearAllUsers()),
-        // fetchUsers: teamId => dispatch(fetchUsers(teamId)),
+        fetchUserByEmail: email => dispatch(fetchUserByEmail(email)),
     });
 };
 

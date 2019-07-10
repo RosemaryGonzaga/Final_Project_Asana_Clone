@@ -30,6 +30,27 @@ class Api::UsersController < ApplicationController
         @users = current_team.members   # this only fetches current user's current team's teammates
     end
 
+    def show
+        if params[:email]
+            # NOTE: need case-insensitive search, hence the user of UPPER and #upcase
+            @user = User.where("UPPER(primary_email) LIKE ?", "#{params[:email]}".upcase)
+            # debugger
+            if @user.empty?
+                # debugger
+                render json: "User not found"#, status: 200 
+                # Question: do I need to send a status at all? if so, what type? 200? 422?
+            else
+                # debugger
+                @user = @user.first
+                render :show
+            end
+        else
+            # debugger
+            render json: "You've hit the UsersController#show action and there is no key of :email in the params"#, status: 200 
+            # Question: do I need to send a status at all? if so, what type? 200? 422?
+        end
+    end
+
     private
     def user_params
         params.require(:user).permit(:primary_email, :password)

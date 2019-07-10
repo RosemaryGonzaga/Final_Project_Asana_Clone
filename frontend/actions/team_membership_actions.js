@@ -22,7 +22,9 @@ const removeTeamMembership = teamMembershipId => {
 
 // thunk action creators
 export const createTeamMembership = teamMembership => {
+    // debugger
     return dispatch => {
+        // debugger
         return TeamMembershipApiUtil.createTeamMembership(teamMembership)
             .then(payload => {
                 dispatch(receiveTeamMembership(payload))

@@ -94,7 +94,7 @@ class NewProjectForm extends React.Component {
         return (
             <div className="new-project-page">
                 <Link to="/home/projects" className="arrow-link-to-home">
-                    <i class="fas fa-arrow-left"></i>
+                    <i className="fas fa-arrow-left"></i>
                 </Link>
                 
                 <Link to="/home/projects" className="x-link-to-home">

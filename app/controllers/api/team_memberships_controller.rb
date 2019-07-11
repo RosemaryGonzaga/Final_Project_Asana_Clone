@@ -13,7 +13,10 @@ class Api::TeamMembershipsController < ApplicationController
     end
 
     def destroy
-        @team_membership = TeamMembership.find_by(id: params[:id])
+        # @team_membership = TeamMembership.find_by(id: params[:id])  # refactored AJAX to take in team_id and user_id instead of the team_membership_id
+        @team_membership = TeamMembership.where("team_id = #{team_membership_params[:team_id]} AND 
+                                                user_id = #{team_membership_params[:user_id]}")
+        @team_membership = @team_membership.first
         if @team_membership.destroy
             render :show
         else

@@ -5,7 +5,11 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.8);
+    /* BACKGROUND FOR SPLASH PAGE MODALS */
+    /* background: rgba(0, 0, 0, 0.8); */
+
+    /* BACKGROUND FOR OTHER MODALS (ONCE LOGGED IN) */
+    background: rgba(0, 0, 0, 0.5);
     z-index: 10;
 }
 

@@ -40,11 +40,11 @@ class Home extends React.Component {
         // IT WORKED!!!!!!! (see line 47)
         // debugger    
 
-        const { fetchProjects, fetchTeams, fetchUsers, receiveCurrentTeam } = this.props;
+        const { fetchProjects, fetchTeams, fetchUsers, currentTeam, receiveCurrentTeam } = this.props;
         fetchTeams().then(payload => {
-            // automatically set current team to current user's first team --> REFACTOR LATER
+            // if currentTeam is undefined, automatically set it to current user's first team
             const teamId = Object.keys(payload.teams)[0];
-            const team = payload.teams[teamId];
+            const team = currentTeam ? currentTeam : payload.teams[teamId];
             // debugger
             receiveCurrentTeam(team);
             return fetchUsers(team.id);    // fetch team's users (refactored this thunk action creator to take in a teamId)

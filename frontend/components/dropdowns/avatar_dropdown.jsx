@@ -74,7 +74,7 @@ class AvatarDropdown extends React.Component {
         // Sub component: another (mini) dropdown
         const moreOptionsDropdown = <div className="more-options-dropdown-menu-hidden" id="more-options-dropdown-menu">
             <div onClick={() => openModal('createTeam')}>Create New Workspace</div>
-            <div>Remove me from this Workspace</div>
+            <div onClick={() => openModal('removeUserFromTeam')}>Remove me from this Workspace</div>
         </div>;
 
         // List of user's teams
@@ -85,7 +85,7 @@ class AvatarDropdown extends React.Component {
                 return (
                     // NOTE: Can't use target="_blank" with Link component(?)
                     // Need to use a tag... but in that case, href should specify full url (e.g., https://shavasana.herokuapp.com/#/home)
-                    <div onClick={this.handleChangeTeamClick(team)}>
+                    <div key={team.id} onClick={this.handleChangeTeamClick(team)}>
                         <Link to="/home">
                             <i className={`fas fa-check ${checkClass}`}></i>
                             {team.name}

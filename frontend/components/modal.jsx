@@ -6,6 +6,7 @@ import EditProjectForm from './projects/edit_project_form';
 import DeleteProjectForm from './projects/delete_project_form';
 import NewTeamForm from './teams/new_team_form';
 import TaskModal from './tasks/task_modal_container';
+import DeleteTeamMembershipForm from './teams/delete_team_membership_form';
 import { closeModal } from '../actions/modal_actions';
 
 const Modal = props => {
@@ -37,6 +38,9 @@ const Modal = props => {
             // IMPORTANT: remember to put this break statement... 
             // otherwise, instead of rendering NewTeamForm component, this will return null!
             // (you won't hit the render function of the NewTeamForm component)
+        case "removeUserFromTeam":
+            component = <DeleteTeamMembershipForm />;
+            break;
         default:
             return null;
     }

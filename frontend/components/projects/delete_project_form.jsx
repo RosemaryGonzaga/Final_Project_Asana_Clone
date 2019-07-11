@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { fetchProject, deleteProject } from '../../actions/project_actions';
+import { deleteProject } from '../../actions/project_actions';
+// import { fetchProject, deleteProject } from '../../actions/project_actions';
 import { closeModal } from '../../actions/modal_actions';
 
 class DeleteProjectForm extends React.Component {
@@ -25,8 +26,8 @@ class DeleteProjectForm extends React.Component {
                     <img src={window.closeButtonHover} alt="x" />
                 </button>
 
-                {/* <h1>Delete the '{project.name}' project?</h1> */}
-                <h1>Delete the project?</h1>
+                <h1>Delete the "{project ? project.name : ''}" project?</h1>
+                {/* <h1>Delete the project?</h1> */}
                 <h2>This will delete the project and any associated tasks and sections.</h2>
                 {/* <h2>This will delete the project and any unassigned tasks that are only in this project.</h2> */}
                 <button className="cancel-delete-project" onClick={closeModal}>Cancel</button>

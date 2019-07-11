@@ -1,5 +1,6 @@
 import * as TeamMembershipApiUtil from '../util/team_memberships_api_util';
-// import { closeModal } from './modal_actions';
+import { removeTeam } from './team_actions';
+import { closeModal } from './modal_actions';
 
 // action types
 export const RECEIVE_TEAM_MEMBERSHIP = "RECEIVE_TEAM_MEMBERSHIP";
@@ -32,11 +33,31 @@ export const createTeamMembership = teamMembership => {
     };
 }
 
-export const deleteTeamMembership = id => {
+// Refactored to take in teamId and userId instead of teamMembershipId
+// Right now, front end state doesn't have access to any of the teamMembershipIds
+// ... b/c there's no fetchTeamMemberships action (they're not being added to Redux store)
+export const deleteTeamMembership = teamMembership => { // passed in w/o the teamMembershipId
     return dispatch => {
-        return TeamMembershipApiUtil.deleteTeamMembership(id)
+        return TeamMembershipApiUtil.deleteTeamMembership(teamMembership)
             .then(payload => {
-                dispatch(removeTeamMembership(id))
+                // dispatch removeTeam instead of removeTeamMembership...
+                // ... b/c TeamMemberships aren't being stored in the frontend state (currently), they don't need to be removed
+                // ... but the team DOES need to be removed from Redux store, as long as the person removed from the team is the CURRENT USER
+                // dispatch(closeModal());
+                if (payload.userId === teamMembership.userId) { // close over teamMembership that was passed into thunk action creator
+                    dispatch(removeTeam(payload.teamId));
+                }
+                // return payload; // explicitly returning something so I can chain action on the front end
             });
     };
 }
+
+// // THE OLD WAY
+// export const deleteTeamMembership = id => {
+//     return dispatch => {
+//         return TeamMembershipApiUtil.deleteTeamMembership(id)
+//             .then(payload => {
+//                 dispatch(removeTeamMembership(id))
+//             });
+//     };
+// }

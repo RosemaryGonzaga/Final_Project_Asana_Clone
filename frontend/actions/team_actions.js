@@ -21,7 +21,7 @@ const receiveTeam = team => {
     };
 };
 
-const removeTeam = teamId => {
+export const removeTeam = teamId => {
     return {
         type: REMOVE_TEAM,
         teamId,

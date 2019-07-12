@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 import { createTeam } from '../../actions/team_actions';
 import { createTeamMembership } from '../../actions/team_membership_actions';
-import { fetchUserByEmail } from '../../actions/user_actions';
-// import { clearAllUsers, fetchUsers } from '../../actions/user_actions';
+import { fetchUserByEmail, fetchUsers } from '../../actions/user_actions';
+import { receiveCurrentTeam } from '../../actions/current_team_actions';
 
 
 class NewTeamForm extends React.Component {
@@ -20,7 +20,7 @@ class NewTeamForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const { createTeam, createTeamMembership, currentUserId, fetchUserByEmail } = this.props;
+        const { createTeam, createTeamMembership, currentUserId, fetchUserByEmail, receiveCurrentTeam, fetchUsers } = this.props;
         const { name, members } = this.state;
         let membersArr = members.split(',');
         membersArr = membersArr.map(email => {
@@ -34,11 +34,16 @@ class NewTeamForm extends React.Component {
                 .then(() => {
                     if (membersArr.length >= 1) {   
                         membersArr.forEach(email => {
-                            fetchUserByEmail(email).then(response => {
-                                // console.log("The response is: ")
-                                // console.log(response);  // response = {type: "RECEIVE_USER", user: {…}}
+                            fetchUserByEmail(email).then(response => {  // response = {type: "RECEIVE_USER", user: {…}} 
                                 const userId = response.user.id;
-                                createTeamMembership({ userId, teamId });
+                                createTeamMembership({ userId, teamId }).then(() => fetchUsers(team.id));
+                                // option 2: dispatch receiveCurrentTeam at the same time that receiveTeam is dispatched
+                                // ... in the createTeam thunk action creator (generally, when you create a new team, you'll always want to switch to it.)
+                                // option 3: Josh's suggestion of iterating on the back end --> GO FOR THIS!
+                                // NOTE: the current implementation that chains fetchUsers onto createTeamMembership...
+                                // ...seems unideal. We're also fetching Users again later (inefficient), plus there's a blip
+                                // ...where you can briefly see the users from the previously displayed team.
+
                                 // IMPORTANT TO KEEP IN MIND ABOUT THIS LOOP AND JS ASYNCH:
                                 // the success CB (where createTeamMembership is invoked) will only be invoked
                                 // AFTER the entire forEach loop has finished iterating!
@@ -46,6 +51,8 @@ class NewTeamForm extends React.Component {
                             })
                         });
                     }
+                    receiveCurrentTeam(team);   // when the new team is created, set it as the currentTeam (display its projects, users, and tasks)
+                    fetchUsers(team.id);   // need to fetch users that are part of the new team (this will update the team members shown in the sidebar)
                 })
         });
     }
@@ -110,6 +117,8 @@ const mdp = dispatch => {
         createTeam: team => dispatch(createTeam(team)),
         createTeamMembership: teamMembership => dispatch(createTeamMembership(teamMembership)),
         fetchUserByEmail: email => dispatch(fetchUserByEmail(email)),
+        receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
+        fetchUsers: teamId => dispatch(fetchUsers(teamId)),
     });
 };
 

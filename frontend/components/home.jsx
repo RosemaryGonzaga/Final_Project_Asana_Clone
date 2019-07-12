@@ -78,7 +78,8 @@ class Home extends React.Component {
 
     render() {
         const { currentUser, currentResource, currentTeam } = this.props;
-        let initials = currentUser.primaryEmail.slice(0,2).toUpperCase();  // this is temporary --> need to grab initials from user's full name
+        // debugger
+        let initials = currentUser ? currentUser.primaryEmail.slice(0,2).toUpperCase() : "";  // this is temporary --> need to grab initials from user's full name
         let navHeader;
         let layoutIcon;
         let layoutText;
@@ -245,6 +246,7 @@ const msp = (state, ownProps) => {
     // const currentTeamId = Object.keys(state.entities.teams)[0];
     // const currentTeam = state.entities.teams[currentTeamId];
     const currentTeam = state.ui.currentTeam;
+    // debugger
     return ({ currentUser, currentResource, currentTeam });
 };
 

@@ -6,6 +6,7 @@ import { deleteTeamMembership } from '../../actions/team_membership_actions';
 import { closeModal } from '../../actions/modal_actions';
 import { receiveCurrentTeam } from '../../actions/current_team_actions';
 import { selectAllTeams } from '../../reducers/selectors';
+import { fetchUsers } from '../../actions/user_actions';
 
 class DeleteTeamMembershipForm extends React.Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class DeleteTeamMembershipForm extends React.Component {
 
     handleClick(e) {
         // e.preventDefault(); // remember: preventDefault would stop the Link from routing to '/home'
-        const { currentTeam, currentUserId, teams, deleteTeamMembership, closeModal, receiveCurrentTeam  } = this.props;
+        const { currentTeam, currentUserId, teams, deleteTeamMembership, closeModal, receiveCurrentTeam, fetchUsers  } = this.props;
         
         let newTeam;
         for (let i = 0; i < teams.length; i++) {
@@ -25,8 +26,13 @@ class DeleteTeamMembershipForm extends React.Component {
             }
         }
         deleteTeamMembership({ teamId: currentTeam.id, userId: currentUserId })
-            .then(closeModal())
-            .then(receiveCurrentTeam(newTeam));
+            .then(closeModal());
+            // .then(receiveCurrentTeam(newTeam))
+            // .then(fetchUsers(newTeam.id));
+        if (newTeam) {
+            receiveCurrentTeam(newTeam);   // when the current user is removed from the team, reset the currentTeam (in frontend state)
+            fetchUsers(newTeam.id);        // need to fetch users that are part of the new team (this will update the team members shown in the sidebar)
+        }
     }
 
     render() {
@@ -62,6 +68,7 @@ const mdp = dispatch => {
         deleteTeamMembership: id => dispatch(deleteTeamMembership(id)),
         closeModal: () => dispatch(closeModal()),
         receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
+        fetchUsers: teamId => dispatch(fetchUsers(teamId)),
     };
 }
 

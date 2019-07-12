@@ -43,11 +43,9 @@ export const deleteTeamMembership = teamMembership => { // passed in w/o the tea
                 // dispatch removeTeam instead of removeTeamMembership...
                 // ... b/c TeamMemberships aren't being stored in the frontend state (currently), they don't need to be removed
                 // ... but the team DOES need to be removed from Redux store, as long as the person removed from the team is the CURRENT USER
-                // dispatch(closeModal());
                 if (payload.userId === teamMembership.userId) { // close over teamMembership that was passed into thunk action creator
                     dispatch(removeTeam(payload.teamId));
                 }
-                // return payload; // explicitly returning something so I can chain action on the front end
             });
     };
 }

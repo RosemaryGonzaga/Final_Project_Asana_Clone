@@ -36,7 +36,7 @@ class NewTeamForm extends React.Component {
                         membersArr.forEach(email => {
                             fetchUserByEmail(email).then(response => {  // response = {type: "RECEIVE_USER", user: {…}} 
                                 const userId = response.user.id;
-                                createTeamMembership({ userId, teamId }).then(() => fetchUsers(team.id));
+                                createTeamMembership({ userId, teamId }).then(() => fetchUsers(team.id)); // need this fetchUsers so the last add'l team member is displayed in the sidebar
                                 // option 2: dispatch receiveCurrentTeam at the same time that receiveTeam is dispatched
                                 // ... in the createTeam thunk action creator (generally, when you create a new team, you'll always want to switch to it.)
                                 // option 3: Josh's suggestion of iterating on the back end --> GO FOR THIS!
@@ -51,7 +51,12 @@ class NewTeamForm extends React.Component {
                             })
                         });
                     }
-                    receiveCurrentTeam(team);   // when the new team is created, set it as the currentTeam (display its projects, users, and tasks)
+                    // Refactored to dispatch receiveCurrentTeam when the new team is created
+                    // (in the createTeam thunk action creator)
+                    // So I don't need to dispatch receiveCurrentTeam here
+                    // BUT I still need to fetchUsers twice
+                    // // on line 39, fetchUsers is needed to accurately show all team members when add'l ones are added at the time of team creation
+                    // // on line 60, fetchUsers is needed to accurately show only one team member when the team is created WITHOUT additional users.
                     fetchUsers(team.id);   // need to fetch users that are part of the new team (this will update the team members shown in the sidebar)
                 })
         });

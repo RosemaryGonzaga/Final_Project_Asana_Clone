@@ -1,5 +1,6 @@
 import * as TeamApiUtil from '../util/teams_api_util';
 import { closeModal } from './modal_actions';
+import { receiveCurrentTeam } from './current_team_actions';
 
 // action types
 export const RECEIVE_ALL_TEAMS = "RECEIVE_ALL_TEAMS";
@@ -48,6 +49,7 @@ export const createTeam = team => {
         return TeamApiUtil.createTeam(team)
             .then(payload => {       
                 dispatch(receiveTeam(payload));
+                dispatch(receiveCurrentTeam(payload)); // added this
                 dispatch(closeModal());
                 return payload; // need to return payload so I can chain another AJAX request in the new team form?
             });

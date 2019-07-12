@@ -38,17 +38,18 @@ class DeleteTeamMembershipForm extends React.Component {
     render() {
         const { closeModal, currentTeam } = this.props;
         return (
-            <div className="delete-project-container">
-                <button className="delete-project-close-btn" onClick={closeModal}>
-                    <img src={window.closeButtonHover} alt="x" />
+            <div className="delete-project-container delete-team-membership-container">
+                <button className="delete-project-close-btn delete-team-membership-close-btn" onClick={closeModal}>
+                    {/* <img src={window.closeButtonHover} alt="x" /> */}
+                    <i className="fas fa-times"></i>
                 </button>
 
                 <h1>Remove Yourself from the Workspace?</h1>
                 <h2>If you remove yourself, you won't be able to access any of the projects or tasks in {currentTeam.name}. 
                     If you want to regain access, you'll need to ask a coworker to invite you to the workspace again.</h2>
-                <button className="cancel-delete-project" onClick={closeModal}>Cancel</button>
+                <button className="cancel-delete-project cancel-delete-team-membership" onClick={closeModal}>Cancel</button>
                 <Link to="/home" onClick={this.handleClick}
-                    className="delete-project-button" >Delete
+                    className="delete-project-button delete-team-membership-button" >Remove Me
                 </Link>
 
             </div>

@@ -1,0 +1,24 @@
+.delete-project-container.delete-team-membership-container {
+    height: 210px;
+}
+
+.delete-project-close-btn.delete-team-membership-close-btn {
+    height: 12px;
+    width: 12px;
+    font-size: 18px;
+    color: #b7bfc6;
+}
+
+.delete-project-container.delete-team-membership-container > h2 {
+    margin-top: 20px;
+    margin-right: 30px;
+    line-height: 20px;
+}
+
+.cancel-delete-project.cancel-delete-team-membership {
+    right: 145px;
+}
+
+.delete-project-button.delete-team-membership-button {
+    width: 104px;
+}

@@ -65,6 +65,12 @@ class AvatarDropdown extends React.Component {
         };
     }
 
+    openWorkspaceModal(e) {
+        const { closeAvatarDropdown, openModal } = this.props;
+        closeAvatarDropdown(e);
+        openModal('editTeam');
+    }
+
    
     render () {
         const { closeAvatarDropdown, currentTeam, teams, openModal } = this.props;

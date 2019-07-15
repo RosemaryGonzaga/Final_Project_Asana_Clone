@@ -12,7 +12,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "react": "^16.8.6",
     "react-datepicker": "^2.7.0",
     "react-dom": "^16.8.6",

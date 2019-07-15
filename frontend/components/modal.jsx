@@ -7,6 +7,7 @@ import DeleteProjectForm from './projects/delete_project_form';
 import NewTeamForm from './teams/new_team_form';
 import TaskModal from './tasks/task_modal_container';
 import DeleteTeamMembershipForm from './teams/delete_team_membership_form';
+import WorkspaceSettings from './teams/workspace_settings';
 import { closeModal } from '../actions/modal_actions';
 
 const Modal = props => {
@@ -32,7 +33,6 @@ const Modal = props => {
             component = <TaskModal />;
             break;
         case  "createTeam":
-            // debugger
             component = <NewTeamForm />;
             break;  
             // IMPORTANT: remember to put this break statement... 
@@ -40,6 +40,9 @@ const Modal = props => {
             // (you won't hit the render function of the NewTeamForm component)
         case "removeUserFromTeam":
             component = <DeleteTeamMembershipForm />;
+            break;
+        case "editTeam":
+            component = <WorkspaceSettings />;
             break;
         default:
             return null;

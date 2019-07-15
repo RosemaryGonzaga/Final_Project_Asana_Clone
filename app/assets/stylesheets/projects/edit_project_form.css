@@ -5,7 +5,9 @@
     background: white;
     box-shadow: -1px 1px 2px #26151B26;
     position: relative;
-    margin-bottom: 250px;
+    /* margin-bottom: 250px; */
+    /* NOTE: the margin-bottom actually increases the height of .modal-child...
+    ...which means that if you click just below the .edit-project-container, the modal does NOT close */
 }
 
 .edit-project-close-btn {

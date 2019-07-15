@@ -1,11 +1,10 @@
 .workspace-settings-container {
-    width: 580px;
-    height: 280px;
+    width: 702px;
+    min-height: 224px;
     border-radius: 3px;
     background: white;
     box-shadow: -1px 1px 2px #26151B26;
     position: relative;
-    margin-bottom: 250px;
 }
 
 .workspace-settings-close-btn {
@@ -28,10 +27,11 @@
 } 
 
 .workspace-settings-header {
-    height: 50px;
+    height: 82px;
     border-bottom: 1px solid #e0e6e8;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
     padding-left: 32px;
 }
 
@@ -39,4 +39,29 @@
     font-size: 24px;
     color: #151b26;
     font-weight: 500;
+    margin-top: 12px;
+}
+
+.workspace-settings-nav {
+    display: flex;
+    font-size: 13px;
+    color: #848f99;
+    font-weight: 500;
+    height: 29px;
+}
+
+.workspace-settings-nav > div {
+    margin-right: 32px;
+    cursor: pointer;
+    border-bottom: 2px solid white;
+}
+
+.workspace-settings-nav > .unselected-tab:hover {
+    color: #151b26;
+    border-bottom: 2px solid #b7bfc6;
+}
+
+.workspace-settings-nav > .selected-tab {
+    color: #008ce3;
+    border-bottom: 2px solid #14aaf5;
 }

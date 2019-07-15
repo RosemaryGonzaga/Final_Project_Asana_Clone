@@ -22,6 +22,7 @@ class AvatarDropdown extends React.Component {
         this.hideMoreOptionsDropdown = this.hideMoreOptionsDropdown.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleChangeTeamClick = this.handleChangeTeamClick.bind(this);
+        this.openWorkspaceModal = this.openWorkspaceModal.bind(this);
     }
     
     // // Actually, this lifecycle method isn't necessary...
@@ -107,7 +108,8 @@ class AvatarDropdown extends React.Component {
                     {userTeams}
                 </section>
                 <section>
-                    <div onClick={closeAvatarDropdown}><i className="fas fa-check fa-check-transparent"></i>Workspace Settings...</div>
+                    {/* <div onClick={closeAvatarDropdown}><i className="fas fa-check fa-check-transparent"></i>Workspace Settings...</div> */}
+                    <div onClick={this.openWorkspaceModal}><i className="fas fa-check fa-check-transparent"></i>Workspace Settings...</div>
                     <div className="more-options-dropdown-parent"
                         onClick={closeAvatarDropdown}
                         onMouseEnter={this.displayMoreOptionsDropdown}

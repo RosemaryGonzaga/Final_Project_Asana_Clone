@@ -11,11 +11,23 @@ class WorkspaceSettings extends React.Component {
         this.state = {
             selectedTab: "General"
         };
+
+        this.toggleTab = this.toggleTab.bind(this);
+    }
+
+    toggleTab(e) {
+        const newState = this.state.selectedTab === "General" ? "Members" : "General";
+        this.setState({selectedTab: newState});
     }
 
     render() {
         const { closeModal } = this.props;
-        // const { selectedTab } = this.state;
+        const { selectedTab } = this.state;
+        const generalClass = selectedTab === "General" ? "workspace-settings-general selected-tab" : "workspace-settings-general unselected-tab";
+        const membersClass = selectedTab === "Members" ? "workspace-settings-members selected-tab" : "workspace-settings-members unselected-tab";
+
+        const settingsContent = selectedTab === "General" ? <div>General Settings</div> : <div>Member Settings</div>;
+        
         return (
             <div className="workspace-settings-container">
                 <button className="workspace-settings-close-btn" onClick={closeModal}>
@@ -24,7 +36,13 @@ class WorkspaceSettings extends React.Component {
 
                 <div className="workspace-settings-header">
                     <h1>Workspace Settings </h1>
+                    <nav className="workspace-settings-nav">
+                        <div className={generalClass} onClick={this.toggleTab}>General</div>
+                        <div className={membersClass} onClick={this.toggleTab}>Members</div>
+                    </nav>
                 </div>
+                
+                {settingsContent}
             </div>
         );
     }

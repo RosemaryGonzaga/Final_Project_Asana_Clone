@@ -1,6 +1,7 @@
 import * as TeamMembershipApiUtil from '../util/team_memberships_api_util';
 import { removeTeam } from './team_actions';
 import { closeModal } from './modal_actions';
+import { receiveAllUsers } from './user_actions'; // dispatch this after creating multiple TeamMemberships at once
 
 // action types
 export const RECEIVE_TEAM_MEMBERSHIP = "RECEIVE_TEAM_MEMBERSHIP";
@@ -32,6 +33,23 @@ export const createTeamMembership = teamMembership => {
             });
     };
 }
+
+// NOTE: The arg passed into createTeamMembershipsByEmail is an object with two key-value pairs:
+// { teamId: teamId, emails: [email1, email2, email3, ...] }
+// TeamMemberships will be created for each user (if found by their email)
+export const createTeamMembershipsByEmail = data => {
+    // debugger
+    return dispatch => {
+        // debugger
+        return TeamMembershipApiUtil.createTeamMembershipsByEmail(data)
+            .then(payload => {  // payload should be users that were added to the team
+                // debugger
+                dispatch(receiveAllUsers(payload))
+            });
+    };
+}
+
+
 
 // Refactored to take in teamId and userId instead of teamMembershipId
 // Right now, front end state doesn't have access to any of the teamMembershipIds

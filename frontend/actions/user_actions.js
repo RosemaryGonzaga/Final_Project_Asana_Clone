@@ -6,7 +6,7 @@ export const RECEIVE_USER = "RECEIVE_USER";
 
 
 // regular action creators
-const receiveAllUsers = users => {
+export const receiveAllUsers = users => {
     return {
         type: RECEIVE_ALL_USERS,
         users,

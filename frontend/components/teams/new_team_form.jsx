@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 import { createTeam } from '../../actions/team_actions';
-import { createTeamMembership } from '../../actions/team_membership_actions';
-import { fetchUserByEmail, fetchUsers } from '../../actions/user_actions';
-import { receiveCurrentTeam } from '../../actions/current_team_actions';
+import { createTeamMembership, createTeamMembershipsByEmail } from '../../actions/team_membership_actions';
+import { fetchUsers } from '../../actions/user_actions';
+// import { fetchUserByEmail, fetchUsers } from '../../actions/user_actions';
+// import { receiveCurrentTeam } from '../../actions/current_team_actions';
 
 
 class NewTeamForm extends React.Component {
@@ -12,7 +13,7 @@ class NewTeamForm extends React.Component {
         super(props);
         this.state = {
             name: "Workspace or Team name", // NOTE: this info should be dispatched in createTeam
-            members: "",                    // NOTE: this info should be dispatched in createTeamMembership (one at a time?)
+            members: "",                    // NOTE: this info should be dispatched in createTeamMembershipsByEmail (back end will handle iterating through the array and creating each membership)
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,44 +21,30 @@ class NewTeamForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const { createTeam, createTeamMembership, currentUserId, fetchUserByEmail, receiveCurrentTeam, fetchUsers } = this.props;
+        const { createTeam, createTeamMembership, currentUserId, fetchUsers, createTeamMembershipsByEmail } = this.props;
         const { name, members } = this.state;
+
         let membersArr = members.split(',');
         membersArr = membersArr.map(email => {
             return email.trim();
         }).filter(email => {
             return email.length > 2;  // very basic email validation (only search DB if email address is greater than 1)
         });
+
         createTeam({ name }).then(team => {
             const teamId = team.id;
             createTeamMembership({ userId: currentUserId, teamId })
                 .then(() => {
-                    if (membersArr.length >= 1) {   
-                        membersArr.forEach(email => {
-                            fetchUserByEmail(email).then(response => {  // response = {type: "RECEIVE_USER", user: {…}} 
-                                const userId = response.user.id;
-                                createTeamMembership({ userId, teamId }).then(() => fetchUsers(team.id)); // need this fetchUsers so the last add'l team member is displayed in the sidebar
-                                // option 2: dispatch receiveCurrentTeam at the same time that receiveTeam is dispatched
-                                // ... in the createTeam thunk action creator (generally, when you create a new team, you'll always want to switch to it.)
-                                // option 3: Josh's suggestion of iterating on the back end --> GO FOR THIS!
-                                // NOTE: the current implementation that chains fetchUsers onto createTeamMembership...
-                                // ...seems unideal. We're also fetching Users again later (inefficient), plus there's a blip
-                                // ...where you can briefly see the users from the previously displayed team.
-
-                                // IMPORTANT TO KEEP IN MIND ABOUT THIS LOOP AND JS ASYNCH:
-                                // the success CB (where createTeamMembership is invoked) will only be invoked
-                                // AFTER the entire forEach loop has finished iterating!
-                                // all synchronous actions execute before asynch actions
-                            })
-                        });
+                    if (membersArr.length >= 1) {   // if additional member emails included in the new team submission
+                        let data = { teamId: teamId, emails: membersArr };
+                        createTeamMembershipsByEmail(data).then(() => fetchUsers(team.id)); // update the team members shown in the sidebar
+                    } else {   // if NO additional member emails were included
+                        fetchUsers(team.id);   // update the team members shown in the sidebar (matches newly created team)
                     }
-                    // Refactored to dispatch receiveCurrentTeam when the new team is created
-                    // (in the createTeam thunk action creator)
-                    // So I don't need to dispatch receiveCurrentTeam here
+                    // Refactored to iterate through membersArr on the backend, based on Josh's feedback --> avoids strange behavior stemming from JS aynchronicity
                     // BUT I still need to fetchUsers twice
-                    // // on line 39, fetchUsers is needed to accurately show all team members when add'l ones are added at the time of team creation
-                    // // on line 60, fetchUsers is needed to accurately show only one team member when the team is created WITHOUT additional users.
-                    fetchUsers(team.id);   // need to fetch users that are part of the new team (this will update the team members shown in the sidebar)
+                    // // on line 40, fetchUsers is needed to accurately show all team members when add'l ones are added at the time of team creation
+                    // // on line 42, fetchUsers is needed to accurately show only one team member when the team is created WITHOUT additional users.
                 })
         });
     }
@@ -121,9 +108,10 @@ const mdp = dispatch => {
         closeModal: () => dispatch(closeModal()),
         createTeam: team => dispatch(createTeam(team)),
         createTeamMembership: teamMembership => dispatch(createTeamMembership(teamMembership)),
-        fetchUserByEmail: email => dispatch(fetchUserByEmail(email)),
-        receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
+        createTeamMembershipsByEmail: data => dispatch(createTeamMembershipsByEmail(data)),
         fetchUsers: teamId => dispatch(fetchUsers(teamId)),
+        // fetchUserByEmail: email => dispatch(fetchUserByEmail(email)),
+        // receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
     });
 };
 

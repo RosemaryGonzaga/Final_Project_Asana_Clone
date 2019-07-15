@@ -41,8 +41,11 @@ const Modal = props => {
         case "removeUserFromTeam":
             component = <DeleteTeamMembershipForm />;
             break;
-        case "editTeam":
-            component = <WorkspaceSettings />;
+        case "editTeamGeneralSettings":
+            component = <WorkspaceSettings selectedTab="General"/>;
+            break;
+        case "editTeamMemberSettings":
+            component = <WorkspaceSettings selectedTab="Members" />;
             break;
         default:
             return null;

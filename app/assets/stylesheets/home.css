@@ -98,6 +98,14 @@
 
 .team-sidebar-heading > i {
     font-size: 12px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, .5);
+    transition-duration: 200ms;
+    transition-property: color;
+}
+
+.team-sidebar-heading > i:hover {
+    color: white;
 }
 
 .team-sidebar-heading:hover,

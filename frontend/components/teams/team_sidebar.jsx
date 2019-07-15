@@ -17,7 +17,7 @@ class TeamSidebar extends React.Component {
     }
 
     render() {
-        const { currentTeam, users, projects, teams } = this.props;
+        const { currentTeam, users, projects, teams, openModal } = this.props;
         const { numProjectsDisplayed } = this.state;
         // NEED TO FILTER OUT USERS THAT ARE NOT PART OF THE CURRENT TEAM
         // Opt 1: filter here in this component?
@@ -64,7 +64,7 @@ class TeamSidebar extends React.Component {
             <div className="team-sidebar-container">
                 <div className="team-sidebar-heading">
                     <h2>{currentTeam ? currentTeam.name : null}</h2>
-                    <i className="fas fa-plus"></i>
+                    <i className="fas fa-plus" onClick={() => openModal('editTeamMemberSettings')}></i>
                 </div>
                 <br /> {/* TEMP BREAK */}
                 <ul className="team-sidebar-members">

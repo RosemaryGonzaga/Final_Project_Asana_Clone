@@ -10,9 +10,8 @@ import GeneralWorkspaceSettings from './workspace_settings_general';
 class WorkspaceSettings extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedTab: "General"
-        };
+        const { selectedTab } = this.props;
+        this.state = { selectedTab };
 
         this.toggleTab = this.toggleTab.bind(this);
     }

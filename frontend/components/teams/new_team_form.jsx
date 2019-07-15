@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../actions/modal_actions';
 import { createTeam } from '../../actions/team_actions';
 import { createTeamMembership, createTeamMembershipsByEmail } from '../../actions/team_membership_actions';
@@ -35,18 +36,17 @@ class NewTeamForm extends React.Component {
             const teamId = team.id;
             createTeamMembership({ userId: currentUserId, teamId })
                 .then(() => {
+                    // Refactored to iterate through membersArr on the backend, based on Josh's feedback --> avoids strange behavior stemming from JS aynchronicity
                     if (membersArr.length >= 1) {   // if additional member emails included in the new team submission
                         let data = { teamId: teamId, emails: membersArr };
                         createTeamMembershipsByEmail(data).then(() => fetchUsers(team.id)); // update the team members shown in the sidebar
                     } else {   // if NO additional member emails were included
                         fetchUsers(team.id);   // update the team members shown in the sidebar (matches newly created team)
                     }
-                    // Refactored to iterate through membersArr on the backend, based on Josh's feedback --> avoids strange behavior stemming from JS aynchronicity
-                    // BUT I still need to fetchUsers twice
-                    // // on line 40, fetchUsers is needed to accurately show all team members when add'l ones are added at the time of team creation
-                    // // on line 42, fetchUsers is needed to accurately show only one team member when the team is created WITHOUT additional users.
                 })
         });
+        
+        this.props.history.push('/home'); // if on a project show page when new team is created, direct to home
     }
 
     handleChange(field) {
@@ -115,4 +115,4 @@ const mdp = dispatch => {
     });
 };
 
-export default connect(msp, mdp)(NewTeamForm);
+export default withRouter(connect(msp, mdp)(NewTeamForm));

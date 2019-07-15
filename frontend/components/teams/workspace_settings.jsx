@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 // import { updateTeam } from '../../actions/team_actions';
-import { deleteTeamMembership, createTeamMembershipsByEmail } from '../../actions/team_membership_actions';
-import { fetchUsers } from '../../actions/user_actions';
+// import { deleteTeamMembership, createTeamMembershipsByEmail } from '../../actions/team_membership_actions';
+// import { fetchUsers } from '../../actions/user_actions';
 import GeneralWorkspaceSettings from './workspace_settings_general';
-// import MemberWorkspaceSettings from './workspace_settings_members';
+import MemberWorkspaceSettings from './workspace_settings_members';
 
 class WorkspaceSettings extends React.Component {
     constructor(props) {
@@ -22,18 +22,24 @@ class WorkspaceSettings extends React.Component {
     }
 
     render() {
-        const { closeModal, currentTeam, updateTeam } = this.props;
+        // const { closeModal, currentTeam, updateTeam } = this.props;
+        const { closeModal } = this.props;
         const { selectedTab } = this.state;
+
         const generalClass = selectedTab === "General" ? "workspace-settings-general selected-tab" : "workspace-settings-general unselected-tab";
         const membersClass = selectedTab === "Members" ? "workspace-settings-members selected-tab" : "workspace-settings-members unselected-tab";
-
-        // const settingsContent = selectedTab === "General" ? <GeneralWorkspaceSettings currentTeam={currentTeam} updateTeam={updateTeam} /> : <div>Member Settings</div>;
-        let settingsContent = null;
-        if (selectedTab === "General") {
-            settingsContent = <GeneralWorkspaceSettings />;
-        } else {
-            settingsContent = <div>Member Settings</div>;
-        }
+        const settingsContent = selectedTab === "General" ? <GeneralWorkspaceSettings /> : <MemberWorkspaceSettings />;
+        
+        // let generalClass = "workspace-settings-general unselected-tab";
+        // let membersClass = "workspace-settings-members unselected-tab";
+        // let settingsContent = null;
+        // if (selectedTab === "General") {
+        //     settingsContent = <GeneralWorkspaceSettings />;
+        //     generalClass = "workspace-settings-general selected-tab";
+        // } else {
+        //     settingsContent = <MemberWorkspaceSettings />;
+        //     membersClass = "workspace-settings-members selected-tab";
+        // }
 
         return (
             <div className="workspace-settings-container">
@@ -65,8 +71,8 @@ const mdp = dispatch => {
     return ({
         closeModal: () => dispatch(closeModal()),
         // updateTeam: team => dispatch(updateTeam(team)),
-        deleteTeamMembership: teamMembership => dispatch(deleteTeamMembership(teamMembership)),
-        createTeamMembershipsByEmail: data => dispatch(createTeamMembershipsByEmail(data)),
+        // deleteTeamMembership: teamMembership => dispatch(deleteTeamMembership(teamMembership)),
+        // createTeamMembershipsByEmail: data => dispatch(createTeamMembershipsByEmail(data)),
         fetchUsers: teamId => dispatch(fetchUsers(teamId)),
     });
 };

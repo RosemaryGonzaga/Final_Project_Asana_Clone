@@ -127,3 +127,156 @@
     width: 98px;
     margin-right: 10px;
 }
+
+
+/* MEMBER SETTINGS */
+.member-workspace-settings-container {
+    min-height: 376px;
+    max-height: 610px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.member-workspace-settings-container > section {
+    box-sizing: border-box;
+    padding: 0 30px;
+}
+
+.member-settings-summary {
+    height: 50px;
+    background-color: #fffede;
+    color: rgb(242, 161, 0);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+
+.member-settings-invite-more {
+    height: 148px;
+}
+
+.member-settings-members {
+    display: flex;
+    flex-direction: column;
+    min-height: 178px;
+}
+
+.member-settings-index-item {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #848f99;
+    font-size: 13px;
+}
+
+.member-settings-index-item:hover {
+    background-color: rgba(237, 241, 242, 0.65);
+}
+
+.member-settings-index-item > :first-child {
+    margin-left: 30px;
+}
+
+.member-settings-index-item > :last-child {
+    margin-right: 30px;
+    margin-left: 136px;
+}
+
+.member-settings-avatar.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 16px;
+}
+
+.member-settings-full-name {
+    width: 132px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.member-settings-primary-email {
+    width: 142px;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.member-settings-membership-type {
+    /* width: 200px; */
+    width: 94px;
+    color: transparent;
+}
+
+.member-settings-index-item:hover > .member-settings-membership-type {
+    color: #848f99;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    cursor: pointer;
+}
+
+.member-settings-index-item > .member-settings-membership-type:hover,
+.member-settings-index-item:hover > .member-settings-membership-type:hover {
+    text-decoration-style: solid;
+}
+
+.member-settings-remove-member {
+    width: 50px;
+    color: transparent;
+}
+
+.member-settings-index-item:hover > .member-settings-remove-member {
+    color: #848f99;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    cursor: pointer;
+}
+
+.member-settings-index-item > .member-settings-remove-member:hover,
+.member-settings-index-item:hover > .member-settings-remove-member:hover {
+    text-decoration-style: solid;
+}
+
+.member-settings-index-index-remove-member-banner {
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgba(237, 241, 242, 0.65);
+    color: #151b26;
+    font-size: 11px;
+    box-sizing: border-box;
+    padding: 0 30px;
+}
+
+.member-settings-index-index-remove-member-banner > span {
+    margin-right: 15px;
+}
+
+.member-settings-index-index-remove-member-banner > span:first-of-type {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 475px;
+    white-space: nowrap;
+}
+
+.remove-member-banner-remove-action {
+    /* color: #ff5263; */
+    color: #ed4758;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    cursor: pointer;
+}
+
+.remove-member-banner-cancel-action {
+    color: #848f99;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    cursor: pointer;
+}
+
+.remove-member-banner-remove-action:hover,
+.remove-member-banner-cancel-action:hover {
+    text-decoration-style: solid;
+}

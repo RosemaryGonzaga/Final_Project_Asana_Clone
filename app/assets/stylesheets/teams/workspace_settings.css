@@ -65,3 +65,65 @@
     color: #008ce3;
     border-bottom: 2px solid #14aaf5;
 }
+
+
+
+/* GENERAL SETTINGS */
+.general-workspace-settings-container > form {
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.general-workspace-settings-container > form > div {
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.general-workspace-settings-container > form > div > input {
+    width: 530px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #151b26;
+    outline: none; 
+    border: 1px solid #e0e6e8;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+.general-workspace-settings-container > form > div > input:focus{
+    border: 1px solid #b7bfc6;
+}
+
+.general-workspace-settings-container > form > input[type="submit"] {
+    width: 138px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #14aaf5;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition-duration: 250ms;
+    transition-property: background-color, border;
+    margin-right: 30px;
+}
+
+.general-workspace-settings-container > form > input[type="submit"]:hover {
+    background-color: #008ce3;
+}
+
+.general-workspace-settings-name > label {
+    color: #848f99;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: end;
+    display: inline-block;
+    width: 98px;
+    margin-right: 10px;
+}

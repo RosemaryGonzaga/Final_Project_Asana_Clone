@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
-import { updateTeam } from '../../actions/team_actions';
+// import { updateTeam } from '../../actions/team_actions';
 import { deleteTeamMembership, createTeamMembershipsByEmail } from '../../actions/team_membership_actions';
 import { fetchUsers } from '../../actions/user_actions';
+import GeneralWorkspaceSettings from './workspace_settings_general';
+// import MemberWorkspaceSettings from './workspace_settings_members';
 
 class WorkspaceSettings extends React.Component {
     constructor(props) {
@@ -21,13 +23,19 @@ class WorkspaceSettings extends React.Component {
     }
 
     render() {
-        const { closeModal } = this.props;
+        const { closeModal, currentTeam, updateTeam } = this.props;
         const { selectedTab } = this.state;
         const generalClass = selectedTab === "General" ? "workspace-settings-general selected-tab" : "workspace-settings-general unselected-tab";
         const membersClass = selectedTab === "Members" ? "workspace-settings-members selected-tab" : "workspace-settings-members unselected-tab";
 
-        const settingsContent = selectedTab === "General" ? <div>General Settings</div> : <div>Member Settings</div>;
-        
+        // const settingsContent = selectedTab === "General" ? <GeneralWorkspaceSettings currentTeam={currentTeam} updateTeam={updateTeam} /> : <div>Member Settings</div>;
+        let settingsContent = null;
+        if (selectedTab === "General") {
+            settingsContent = <GeneralWorkspaceSettings />;
+        } else {
+            settingsContent = <div>Member Settings</div>;
+        }
+
         return (
             <div className="workspace-settings-container">
                 <button className="workspace-settings-close-btn" onClick={closeModal}>
@@ -57,7 +65,7 @@ const msp = state => {
 const mdp = dispatch => {
     return ({
         closeModal: () => dispatch(closeModal()),
-        updateTeam: team => dispatch(updateTeam(team)),
+        // updateTeam: team => dispatch(updateTeam(team)),
         deleteTeamMembership: teamMembership => dispatch(deleteTeamMembership(teamMembership)),
         createTeamMembershipsByEmail: data => dispatch(createTeamMembershipsByEmail(data)),
         fetchUsers: teamId => dispatch(fetchUsers(teamId)),

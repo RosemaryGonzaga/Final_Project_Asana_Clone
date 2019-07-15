@@ -60,8 +60,9 @@ export const updateTeam = team => {
     return dispatch => {
         return TeamApiUtil.updateTeam(team)
             .then(payload => {
-                dispatch(receiveTeam(payload)),
-                dispatch(closeModal())
+                dispatch(receiveTeam(payload));
+                dispatch(receiveCurrentTeam(payload)); // added this
+                dispatch(closeModal());
             });
     };
 }

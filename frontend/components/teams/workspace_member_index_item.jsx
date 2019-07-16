@@ -26,7 +26,8 @@ class WorkspaceMemberIndexItem extends React.Component {
         if (user.id === currentUserId) {
             openModal('removeUserFromTeam');
         } else {
-            deleteTeamMembership({ teamId: currentTeam.id, userId: user.id })
+            // 2nd arg will prevent thunk action creator from dispatching removeTeam
+            deleteTeamMembership({ teamId: currentTeam.id, userId: user.id }, "keep team in frontend state") 
                 .then(() => removeUser(user.id));   // remove user from frontend state
         }
     }
@@ -68,7 +69,7 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        deleteTeamMembership: teamMembership => dispatch(deleteTeamMembership(teamMembership)), // teamMembership has team_id and user_id
+        deleteTeamMembership: (teamMembership, optionalFlag) => dispatch(deleteTeamMembership(teamMembership, optionalFlag)), // teamMembership has team_id and user_id
         removeUser: userId => dispatch(removeUser(userId)),
         openModal: modal => dispatch(openModal(modal)),
     };

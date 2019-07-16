@@ -54,14 +54,18 @@ export const createTeamMembershipsByEmail = data => {
 // Refactored to take in teamId and userId instead of teamMembershipId
 // Right now, front end state doesn't have access to any of the teamMembershipIds
 // ... b/c there's no fetchTeamMemberships action (they're not being added to Redux store)
-export const deleteTeamMembership = teamMembership => { // passed in w/o the teamMembershipId
+// export const deleteTeamMembership = teamMembership => { // passed in w/o the teamMembershipId
+export const deleteTeamMembership = (teamMembership, keepTeamFlag) => { // passed in w/o the teamMembershipId
     return dispatch => {
         return TeamMembershipApiUtil.deleteTeamMembership(teamMembership)
             .then(payload => {
                 // dispatch removeTeam instead of removeTeamMembership...
                 // ... b/c TeamMemberships aren't being stored in the frontend state (currently), they don't need to be removed
                 // ... but the team DOES need to be removed from Redux store, as long as the person removed from the team is the CURRENT USER
-                if (payload.userId === teamMembership.userId) { // close over teamMembership that was passed into thunk action creator
+                // ... The 2nd arg passed into this thunk action creator is an optional flag signalling whether to remove the team from the Redux store.
+                // ... If the person removed from the team is the current user, keepTeamFlag will be undefined, so !keepTeamFlag will be truthy.
+                // ... Otherwise, keepTeamFlag will be truthy, and !keepTeamFlag will be falsy (and the removeTeam action creator will NOT be dispatched)
+                if (payload.userId === teamMembership.userId && !keepTeamFlag) { // close over teamMembership that was passed into thunk action creator
                     dispatch(removeTeam(payload.teamId));
                 }
             });

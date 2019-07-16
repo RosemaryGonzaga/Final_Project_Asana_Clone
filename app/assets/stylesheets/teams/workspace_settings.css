@@ -280,3 +280,82 @@
 .remove-member-banner-cancel-action:hover {
     text-decoration-style: solid;
 }
+
+
+/* INVITE MEMBER FORM */
+
+.member-settings-divider {
+    border-top: 3px solid #e0e6e8;
+    margin-bottom: 14px;
+}
+
+.member-settings-invite-more > h1 {
+    color: #646f79;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.invite-member-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 16px;
+    height: 92px;
+}
+
+.invite-member-form-inputs {
+    display: flex;
+    justify-content: space-between;
+    width: 642px;
+}
+
+.invite-member-form-inputs > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.invite-member-form-inputs > div > label {
+    color: #848f99;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.invite-member-form-inputs > div > input {
+    width: 312px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #151b26;
+    margin-top: 6px;
+    outline: none;
+    border: 1px solid #e0e6e8;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+.invite-member-form-inputs > div > input:focus {
+    /* border: 1px solid #b7bfc6; */
+    border: 1px solid #848f99;
+}
+
+
+.invite-member-form > input[type="submit"] {
+    width: 90px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #14aaf5;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition-duration: 250ms;
+    transition-property: background-color, border;
+}
+
+.invite-member-form > input[type="submit"]:disabled {
+    background-color: #edf1f2;
+    border: 1px solid #e0e6e8;
+    color: #b7bfca;
+}

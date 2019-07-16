@@ -48,17 +48,23 @@ class InviteMemberForm extends React.Component {
 
         return (
             <form className="invite-member-form" onSubmit={this.handleSubmit}>
-                <label htmlFor="inviteMemberEmail">EMAIL</label>
-                <input type="email"
-                        id="inviteMemberEmail"
-                        value={email}
-                        onChange={this.handleChange("email")}/>
+                <div className="invite-member-form-inputs">
+                    <div className="invite-member-form-inputs-email">
+                        <label htmlFor="inviteMemberEmail">EMAIL</label>
+                        <input type="email"
+                                id="inviteMemberEmail"
+                                value={email}
+                                onChange={this.handleChange("email")}/>
+                    </div>
 
-                <label htmlFor="inviteMemberName">NAME (OPTIONAL)</label>
-                <input type="text"
-                        id="inviteMemberName"
-                        value={name}
-                        onChange={this.handleChange("name")}/>
+                    <div className="invite-member-form-inputs-name">
+                        <label htmlFor="inviteMemberName">NAME (OPTIONAL)</label>
+                        <input type="text"
+                                id="inviteMemberName"
+                                value={name}
+                                onChange={this.handleChange("name")}/>
+                    </div>
+                </div>
                 
                 <input type="submit" disabled={disabled} value="Send Invite"/>
             </form>

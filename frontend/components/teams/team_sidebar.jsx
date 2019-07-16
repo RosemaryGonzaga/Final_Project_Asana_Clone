@@ -32,10 +32,12 @@ class TeamSidebar extends React.Component {
         if (teamMembers.length <= 3) {
             let i = 1;
             while (teamMembers.length < 3) {
-                teamMembers.push(<li className="team-sidebar-initials-placeholder" key={`blank${i}`}></li>)
+                teamMembers.push(<li className="team-sidebar-initials-placeholder" key={`blank${i}`} 
+                                        onClick={() => openModal('editTeamMemberSettings')}></li>)
                 i++;
             }
-            teamMembers.push(<li className="team-sidebar-initials-invite-ppl" key="invite-ppl">Invite People</li>)
+            teamMembers.push(<li className="team-sidebar-initials-invite-ppl" key="invite-ppl" 
+                                    onClick={() => openModal('editTeamMemberSettings')}>Invite People</li>)
         }
 
         teamMembers = teamMembers.slice(0, 7);    // only show first 7 team members --> NEED TO TEST THIS LATER

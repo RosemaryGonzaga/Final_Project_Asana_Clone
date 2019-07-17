@@ -6,6 +6,7 @@ import ProjectIndexContainer from './projects/project_index_container';
 import ProjectShowContainer from './projects/project_show_container';
 import TaskIndexContainer from './tasks/task_index_container';
 import Welcome from './welcome';
+import TeamShow from './teams/team_show';
 import TeamSidebarContainer from './teams/team_sidebar_container';
 // import { AvatarDropdown } from './dropdowns/avatar_dropdown';
 import AvatarDropdown from './dropdowns/avatar_dropdown';
@@ -89,6 +90,8 @@ class Home extends React.Component {
             navHeader = "Projects";
         } else if (currentResource.component === "taskIndex") {
             navHeader = "Tasks";
+        } else if (currentResource.component === "teamOverview") {
+            navHeader = `${currentTeam ? currentTeam.name : ''}`;
         } else if (currentResource.component === "projectShow" && currentResource.project) {
             navHeader = currentResource.project.name;
             if (currentResource.project.layout === "list") {
@@ -180,6 +183,7 @@ class Home extends React.Component {
                     <div className="home-main-content">
                         <Switch>
                             {/* <ProtectedRoute path="/home/projects/:projectId/:taskId" component={TaskShowContainer}/> */}
+                            <ProtectedRoute path="/home/team-overview" component={TeamShow} />
                             <ProtectedRoute path="/home/projects/:projectId" component={ProjectShowContainer} />
                             <ProtectedRoute path="/home/projects" component={ProjectIndexContainer} />
                             <ProtectedRoute path="/home/tasks" component={TaskIndexContainer} />
@@ -194,7 +198,7 @@ class Home extends React.Component {
 
 const msp = (state, ownProps) => {
     const pathParts = ownProps.location.pathname.split("/");
-    const resource = pathParts[pathParts.length - 2];   // Should be either "projects" or "tasks" (if it's blank show home; if it's "home", show projects index )
+    const resource = pathParts[pathParts.length - 2];   // Should be "projects", "tasks", or "team-overview" (if it's blank show home; if it's "home", show projects index )
     const resourceId = pathParts[pathParts.length - 1]; // Should be a number ...
     const projectId = pathParts[pathParts.indexOf("projects") + 1];
     // debugger
@@ -224,6 +228,11 @@ const msp = (state, ownProps) => {
         // debugger
         currentResource = {
             component: "taskIndex",
+        }
+    } else if (resource === "home" && pathParts.includes("team-overview")) {
+        // debugger
+        currentResource = {
+            component: "teamOverview",
         }
     } else if (resource === "") {
         // debugger

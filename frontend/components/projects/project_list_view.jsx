@@ -21,7 +21,7 @@ class ProjectListView extends React.Component {
         this.handleOpenSectionShowClick = this.handleOpenSectionShowClick.bind(this);
     }
 
-    // componentDidMount() {   // not sure if this is needed (works w/o fetching sections)
+    // componentDidMount() {
     //     const { fetchSections } = this.props;
     //     fetchSections
     // }
@@ -37,17 +37,20 @@ class ProjectListView extends React.Component {
         // ...nothing inaccurate but needs to be addressed for smoother UX
         const equalProps = isEqual(prevProps.sections, this.props.sections);
         const equalState = isEqual(prevState.taskToRenderId, this.state.taskToRenderId); // check this condition to resolve double-click issue
-        if (!equalProps || !equalState) {
-            // debugger
-            // const { fetchSections } = this.props;
-            // fetchSections(this.state.project.id);
-            this.setState({ project: this.props.project });
+        
+        if (!isEqual(prevProps.project, this.props.project)) { // if switching to a new project, reset local state
+            this.setState({ project: this.props.project, taskToRenderId: "description" });
             // NOTE: added setState to address bug that occurred when navigating directly
             // from one list project to another. (The previous project's sections and tasks would render
-            // instead of those associated with the current project.) The bug occurred b/c a previous implementation
-            // would re-fetch sections in componentDidUpdate, but instead what needed to happen was 
-            // this component's state needed to be reset. (The local state keeps track of the current project,
-            // and w/o resetting local state, the old project info would be rendered instead of the new project info.)
+            // instead of those associated with the current project.) 
+            // The local state keeps track of the current project, and w/o resetting local state, 
+            // the old project info would be rendered instead of the new project info.
+            // Also need to reset the "taskToRenderId" (stored in local state) so that the current project's description
+            // renders when switching from one project to another, instead of the last-viewed task from the old project.
+        } else if (!equalProps || !equalState) { // else if project is the same but rendering a different subcomponent, fetch sections
+            const { fetchSections } = this.props;
+            fetchSections(this.state.project.id);
+            // need this branch of code to fix double-click issue
         }
     }
 

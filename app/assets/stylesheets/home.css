@@ -94,6 +94,8 @@
     height: 28px;
     transition-duration: 200ms;
     transition-property: background-color;
+    text-decoration: none;
+    color: #e0e6e8;
 }
 
 .team-sidebar-heading > i {
@@ -263,14 +265,23 @@
     font-size: 14px;
 }
 
+.home-topbar-left-icon-invisible {
+    display: none;
+}
+
 .home-topbar-left-navs {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    /* width: 498px; */
     width: 465px;
     position: absolute;
     left: 75px;
+}
+
+.home-topbar-left-navs.no-icon {
+    left: 20px;
 }
 
 .home-topbar-left-navs > ul {

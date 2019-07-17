@@ -69,10 +69,14 @@ class TeamSidebar extends React.Component {
 
         return (
             <div className="team-sidebar-container">
-                <div className="team-sidebar-heading">
+                {/* <div className="team-sidebar-heading">
                     <h2>{currentTeam ? currentTeam.name : null}</h2>
                     <i className="fas fa-plus" onClick={() => openModal('editTeamMemberSettings')}></i>
-                </div>
+                </div> */}
+                <Link to="/home/team-overview" className="team-sidebar-heading">
+                    <h2>{currentTeam ? currentTeam.name : null}</h2>
+                    <i className="fas fa-plus" onClick={() => openModal('editTeamMemberSettings')}></i>
+                </Link>
                 <br /> {/* TEMP BREAK */}
                 <ul className="team-sidebar-members">
                     {teamMembers}

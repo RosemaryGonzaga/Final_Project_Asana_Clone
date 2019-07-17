@@ -10,7 +10,7 @@ export const ProjectIndexItem = props => {
     //     receiveMainContent("projectShow");
     // }
 
-    const { project } = props;
+    const { project, size } = props;
     let layoutIcon;
     if (project.layout === "list") {
         layoutIcon = <i className="fas fa-list"></i>;
@@ -19,11 +19,13 @@ export const ProjectIndexItem = props => {
     } else {
         layoutIcon = null;
     }
+
+    const sizeClass = size === "small" ? 'small-tile' : '';
     
     return (
         <Link to={`/home/projects/${project.id}`} 
-                className="project-index-item-container">
-            <div className="project-index-item-tile">{layoutIcon}</div>
+            className={`project-index-item-container ${sizeClass}`}>
+            <div className={`project-index-item-tile ${sizeClass}`}>{layoutIcon}</div>
             <p>{project.name}</p>
         </Link>
     );

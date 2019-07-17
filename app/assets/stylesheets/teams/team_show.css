@@ -1,0 +1,123 @@
+/* BLOCKING & GENERAL STYLING */
+
+.team-show-container {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    left: 244px;
+    right: 0;
+    background-color: white;
+}
+
+.team-show-center {
+    /* background-color: blue; */
+    margin: 0 auto;
+    /* width: 918px; */
+    width: 951px;
+    height: 670px;
+    box-sizing: border-box;
+    padding: 50px 56px;
+    padding-right: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.team-show-left {
+    /* background-color: red; */
+    width: 212px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 36px;
+}
+
+.team-show-right {
+    /* background-color: yellow; */
+    /* width: 552px; */
+    width: 600px;
+}
+
+.team-show-left-top {
+    /* background-color: purple; */
+    height: 102px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.team-show-left-bottom {
+    /* background-color: black; */
+    height: 418px;
+}
+
+.team-show-section-header {
+    color: #151b26;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid#edf1f2;
+    box-sizing: border-box;
+    padding-bottom: 18px;
+}
+
+
+
+/* TOP LEFT SECTION (TEAM DESCRIPTION) */
+
+.team-show-description {
+    resize: none;
+    width: 212px;
+    color: #9ca6af;
+    font-size: 13px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.team-show-description::placeholder {
+    /* color: #75797b; */
+    color: #9ca6af;
+    font-size: 13px;
+}
+
+
+
+/* BOTTOM LEFT SECTION (TEAM DESCRIPTION) */
+
+
+
+
+/* RIGHT SECTION (PROJECTS) */
+
+.team-show-section-header.project-header {
+    margin-left: 15px;
+}
+
+.team-show-projects-list {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.project-index-item-container.small-tile {
+    width: 130px;
+    height: 191px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 20px;
+}
+
+.project-index-item-tile.small-tile {
+    width: 100px;
+    height: 100px;
+    margin-top: 15px;
+}
+
+.project-index-item-tile.small-tile > i {
+    font-size: 22px;
+}
+
+.project-index-item-container.small-tile > p {
+    width: 110px;
+}

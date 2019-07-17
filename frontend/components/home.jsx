@@ -92,6 +92,10 @@ class Home extends React.Component {
             navHeader = "Tasks";
         } else if (currentResource.component === "teamOverview") {
             navHeader = `${currentTeam ? currentTeam.name : ''}`;
+            layoutText = (
+                <ul className="topbar-project-views team-overview-tab">
+                    <li>Overview</li>
+                </ul>);
         } else if (currentResource.component === "projectShow" && currentResource.project) {
             navHeader = currentResource.project.name;
             if (currentResource.project.layout === "list") {
@@ -131,6 +135,10 @@ class Home extends React.Component {
             navHeader = ""
         }
 
+        // layoutIcon = layoutIcon ? <div className="home-topbar-left-icon">{layoutIcon}</div> : <div className="home-topbar-left-icon-invisible"></div>;
+        layoutIcon = layoutIcon ? <div className="home-topbar-left-icon">{layoutIcon}</div> : null;
+        const navClass = layoutIcon ? "" : "no-icon";
+
         return (
             <div className="home-container">
                 <div className="home-sidebar">
@@ -153,8 +161,9 @@ class Home extends React.Component {
                 <div className="home-main">
                     <div className="home-topbar">
                         <nav className="home-topbar-left">
-                           <div className="home-topbar-left-icon">{layoutIcon}</div>
-                           <div className="home-topbar-left-navs">
+                           {/* <div className="home-topbar-left-icon">{layoutIcon}</div> */}
+                           {layoutIcon}
+                           <div className={`home-topbar-left-navs ${navClass}`}>
                                 <ul className="topbar-project-info">
                                     <li>{navHeader}</li>
                                     <li></li>

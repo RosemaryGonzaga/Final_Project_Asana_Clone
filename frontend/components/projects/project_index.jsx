@@ -11,7 +11,8 @@ class ProjectIndex extends React.Component {
     }
 
     render() {
-        const { projects, receiveNavHeader, receiveMainContent, currentTeam } = this.props;
+        const { projects, currentTeam } = this.props;
+        // const { projects, receiveNavHeader, receiveMainContent, currentTeam } = this.props;
         // debugger
         // NOTE: THIS COMPONENT RENDERS BEFORE HOME COMPONENT MOUNTS
         // As of 7/4, teams and currentTeam are only fetched when home component mounts
@@ -21,7 +22,8 @@ class ProjectIndex extends React.Component {
         if (currentTeam) {  // only access currentTeam's id if currentTeam is truthy
             teamProjects = projects.filter(project => project.teamId === currentTeam.id);
             projectItems = teamProjects.map(project => {
-                return <ProjectIndexItem project={project} key={project.id} receiveNavHeader={receiveNavHeader} receiveMainContent={receiveMainContent} />;
+                return <ProjectIndexItem project={project} key={project.id} />;
+                // return <ProjectIndexItem project={project} key={project.id} receiveNavHeader={receiveNavHeader} receiveMainContent={receiveMainContent} />;
             });
             const newProjectTile = <NewProjectButton key="newProjBtn" />;
             projectItems.push(newProjectTile); // add new project button here!

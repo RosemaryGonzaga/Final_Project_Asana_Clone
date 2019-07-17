@@ -140,6 +140,9 @@
 
 .team-sidebar-project-item {
     justify-content: flex-start;
+    text-decoration: none;
+    color: #d5dce0;
+    font-size: 13px;
 }
 
 .team-sidebar-project-bullet {

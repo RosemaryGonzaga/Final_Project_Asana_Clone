@@ -1,7 +1,8 @@
 import React from 'react';
 import ProjectListView from './project_list_view';
 import ProjectBoardView from './project_board_view';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { isEqual } from 'lodash';
 
 class ProjectShow extends React.Component {
     // constructor(props) {
@@ -13,6 +14,15 @@ class ProjectShow extends React.Component {
         const { fetchProject, fetchSections } = this.props;
         fetchProject(this.props.match.params.projectId);
         fetchSections(this.props.match.params.projectId);
+    }
+
+    componentDidUpdate(prevProps) {
+        const { project, fetchProject, fetchSections } = this.props;
+        // if (!isEqual(prevProps.sections, this.props.sections)) {
+        if (!isEqual(prevProps.project, project)) {
+            // debugger
+            fetchProject(project.id).then(() => fetchSections(project.id));
+        }
     }
 
     render() {

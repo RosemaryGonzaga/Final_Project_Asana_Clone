@@ -8,7 +8,7 @@ class ProjectBoardView extends React.Component {
         super(props);
         // debugger
         this.state = {
-            project: this.props.project,
+            project: this.props.project, // remember, this only runs once, so state needs to be reset if the project changes
         };
         this.handleAddColumn = this.handleAddColumn.bind(this);  // adde this later
     }
@@ -21,8 +21,15 @@ class ProjectBoardView extends React.Component {
         // NOTE: now there's a blip when switching from one project to another ... 
         // ...nothing inaccurate but needs to be addressed for smoother UX
         if (!isEqual(prevProps.sections, this.props.sections)) {
-            const { fetchSections } = this.props;
-            fetchSections(this.state.project.id);
+            // const { fetchSections } = this.props;
+            // fetchSections(this.state.project.id);
+            this.setState({ project: this.props.project });
+            // NOTE: added setState to address bug that occurred when navigating directly
+            // from one board project to another. (The previous project's sections and tasks would render
+            // instead of those associated with the current project.) The bug occurred b/c a previous implementation
+            // would re-fetch sections in componentDidUpdate, but instead what needed to happen was 
+            // this component's state needed to be reset. (The local state keeps track of the current project,
+            // and w/o resetting local state, the old project info would be rendered instead of the new project info.)
         }
     }
 

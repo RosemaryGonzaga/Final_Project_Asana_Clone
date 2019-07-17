@@ -9,7 +9,7 @@ import { isEqual } from 'lodash';
 class ProjectListView extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = {  // remember, this only runs once, so state needs to be reset if the project changes
             project: this.props.project,    // should we be keeping track of project in local state?
             taskToRenderId: "description",  // when project first renders, display the description box on right
         };
@@ -38,8 +38,16 @@ class ProjectListView extends React.Component {
         const equalProps = isEqual(prevProps.sections, this.props.sections);
         const equalState = isEqual(prevState.taskToRenderId, this.state.taskToRenderId); // check this condition to resolve double-click issue
         if (!equalProps || !equalState) {
-            const { fetchSections } = this.props;
-            fetchSections(this.state.project.id);
+            // debugger
+            // const { fetchSections } = this.props;
+            // fetchSections(this.state.project.id);
+            this.setState({ project: this.props.project });
+            // NOTE: added setState to address bug that occurred when navigating directly
+            // from one list project to another. (The previous project's sections and tasks would render
+            // instead of those associated with the current project.) The bug occurred b/c a previous implementation
+            // would re-fetch sections in componentDidUpdate, but instead what needed to happen was 
+            // this component's state needed to be reset. (The local state keeps track of the current project,
+            // and w/o resetting local state, the old project info would be rendered instead of the new project info.)
         }
     }
 

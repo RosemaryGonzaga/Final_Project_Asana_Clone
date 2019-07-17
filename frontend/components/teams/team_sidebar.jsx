@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class TeamSidebar extends React.Component {
     constructor(props) {
@@ -47,10 +48,14 @@ class TeamSidebar extends React.Component {
         if (currentTeam) {  // only access currentTeam's id if currentTeam is truthy
             teamProjects = projects.filter(project => project.teamId === currentTeam.id);
             projectItems = teamProjects.map(project => {
-                return  <li className="team-sidebar-project-item" key={project.id}>
-                        <div className="team-sidebar-project-bullet"></div>
+                return  (<Link to={`/home/projects/${project.id}`} className="team-sidebar-project-item" key={project.id}>
+                            <div className="team-sidebar-project-bullet"></div>
                             <div>{project.name}</div>
-                        </li>
+                        </Link>);
+                // return  <li className="team-sidebar-project-item" key={project.id}>
+                //         <div className="team-sidebar-project-bullet"></div>
+                //             <div>{project.name}</div>
+                //         </li>
             });
             projectItems = projectItems.slice(0, numProjectsDisplayed);    // only show first 5 projects, initially
         }

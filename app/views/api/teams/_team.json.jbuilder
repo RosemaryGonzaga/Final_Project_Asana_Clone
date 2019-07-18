@@ -1,6 +1,7 @@
 # debugger
 json.id team.id
 json.name team.name
+json.description team.description
 
 
 # NOTE: not sure if :description and :privacy are needed
@@ -10,3 +11,4 @@ json.name team.name
     # leaving them in this jbuilder for now
 # json.description team.description
 # json.privacy team.privacy
+# UPDATE: turns out description is used on the TeamShow component.

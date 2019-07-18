@@ -68,10 +68,17 @@
 .team-show-description {
     resize: none;
     width: 212px;
-    color: #9ca6af;
+    height: 52px;
+    color: #151b26;
     font-size: 13px;
     box-sizing: border-box;
     padding: 5px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    transition-duration: 300ms;
+    transition-property: border-color;
 }
 
 .team-show-description::placeholder {
@@ -79,6 +86,16 @@
     color: #9ca6af;
     font-size: 13px;
 }
+
+.team-show-description:hover {
+    border-color: #d5dce0;
+}
+
+.team-show-description:focus {
+    border-color: #9ca6af;
+    outline: none;
+}
+
 
 
 

@@ -18,7 +18,7 @@ export const TeamShowMemberIndexItem = props => {
             <li className="team-show-member-index-item team-show-see-members-button"
                 onClick={() => openModal('editTeamMemberSettings')}>
                 <div className="team-show-see-all-members-icon">
-                    <i class="fas fa-ellipsis-h"></i>
+                    <i className="fas fa-ellipsis-h"></i>
                 </div>
                 <div className="team-show-see-all-members-text">{user}</div>
             </li>

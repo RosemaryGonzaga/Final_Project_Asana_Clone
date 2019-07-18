@@ -5,10 +5,35 @@ import { TeamShowMemberIndexItem } from './team_show_member_index_item';
 import { NewProjectButton } from '../projects/new_project_button';
 import { ProjectIndexItem } from '../projects/project_index_item';
 import { openModal } from '../../actions/modal_actions';
+import { updateTeam } from '../../actions/team_actions';
+import debounce from '../../util/debounce_util';
 
 class TeamShow extends React.Component {
+    constructor(props) {
+        super(props);
+        const { currentTeam } = this.props;
+        const description = currentTeam ? currentTeam.description : "";
+        this.state = { description };
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidUpdate(_, prevState) {
+        if (prevState !== this.state) {
+            const { currentTeam, updateTeam } = this.props;
+            const updatedTeamParams = { id: currentTeam.id, description: this.state.description };
+            debounce(() => updateTeam(updatedTeamParams), 2000, false)();
+            // updateTeam(updatedTeamParams);
+        }
+    }
+
+    handleChange(e) {
+        this.setState({ description: e.target.value });
+    }
+
     render() {
         const { currentTeam, users, projects, openModal } = this.props;
+        const { description } = this.state;
 
         let teamMembers = users.map(user => {
             return (
@@ -21,25 +46,24 @@ class TeamShow extends React.Component {
 
         let teamProjects = projects.slice();
         let projectItems = null;
-        if (currentTeam) {  // only access currentTeam's id if currentTeam is truthy
+        if (currentTeam) {
             teamProjects = projects.filter(project => project.teamId === currentTeam.id);
             projectItems = teamProjects.map(project => {
                 return <ProjectIndexItem project={project} key={project.id} size="small"/>;
             });
             const newProjectTile = <NewProjectButton key="newProjBtn" size="small"/>;
-            projectItems.unshift(newProjectTile); // add new project button here!
+            projectItems.unshift(newProjectTile); 
         }
 
         return (
             <div className="team-show-container">
-                {/* <div>{currentTeam ? currentTeam.name : ""} Show Page</div> */}
                 <div className="team-show-center">
                     <section className="team-show-left">
                         <form className="team-show-left-top">
                             <div className="team-show-section-header">Description</div>
                             <textarea className="team-show-description"
-                                // value={members}
-                                // onChange={this.handleChange("members")}
+                                value={description}
+                                onChange={this.handleChange}
                                 placeholder="Click to add team description...">
                             </textarea>
                         </form>
@@ -68,6 +92,7 @@ const msp = state => {
 const mdp = dispatch => {
     return {
         openModal: modal => dispatch(openModal(modal)),
+        updateTeam: team => dispatch(updateTeam(team)),
     };
 };
 

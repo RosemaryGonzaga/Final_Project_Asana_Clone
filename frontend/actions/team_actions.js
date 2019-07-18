@@ -57,6 +57,7 @@ export const createTeam = team => {
 }
 
 export const updateTeam = team => {
+    // debugger
     return dispatch => {
         return TeamApiUtil.updateTeam(team)
             .then(payload => {

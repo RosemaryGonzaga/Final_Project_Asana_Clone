@@ -84,6 +84,97 @@
 
 /* BOTTOM LEFT SECTION (TEAM DESCRIPTION) */
 
+.team-show-members {
+    margin-top: 10px;
+    min-height: 152px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.team-show-member-index-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.team-show-member-avatar.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 19px;
+    font-size: 13px;
+    margin-right: 17px;
+    box-sizing: border-box;
+}
+
+.team-show-member-full-name {
+    width: 159px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.team-show-member-primary-email {
+    width: 159px;
+    font-size: 13px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #9ca6af;
+}
+
+.team-show-add-member-icon,
+.team-show-see-all-members-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 19px;
+    margin-right: 17px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-show-add-member-button {
+    cursor: pointer;
+    color: #9ca6af;
+    transition-duration: 200ms;
+    transition-property: background-color;
+    font-size: 13px;
+}
+
+.team-show-add-member-button > .team-show-add-member-icon {
+    border: 2px dashed #9ca6af;
+    transition-duration: 200ms;
+    transition-property: border-color;
+}
+
+.team-show-add-member-button:hover {
+    color: #646f79;
+}
+
+.team-show-add-member-button:hover > .team-show-add-member-icon {
+    border-color: #646f79;
+}
+
+
+.team-show-see-members-button {
+    cursor: pointer;
+    color: #646f79;
+    font-size: 13px;
+}
+
+.team-show-see-members-button > .team-show-see-all-members-icon {
+    background-color: #edf1f2;
+    transition-duration: 200ms;
+    transition-property: background-color;
+}
+
+.team-show-see-members-button:hover > .team-show-see-all-members-icon {
+    background-color: #e1e6e8;
+}
+
 
 
 
@@ -91,6 +182,7 @@
 
 .team-show-section-header.project-header {
     margin-left: 15px;
+    width: 555px;
 }
 
 .team-show-projects-list {

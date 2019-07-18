@@ -1,12 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectAllProjects } from '../../reducers/selectors';
+import { selectAllUsers, selectAllProjects } from '../../reducers/selectors';
+import { TeamShowMemberIndexItem } from './team_show_member_index_item';
 import { NewProjectButton } from '../projects/new_project_button';
 import { ProjectIndexItem } from '../projects/project_index_item';
+import { openModal } from '../../actions/modal_actions';
 
 class TeamShow extends React.Component {
     render() {
-        const { currentTeam, projects } = this.props;
+        const { currentTeam, users, projects, openModal } = this.props;
+
+        let teamMembers = users.map(user => {
+            return (
+                <TeamShowMemberIndexItem key={user.id} user={user} />
+            );
+        });
+
+        teamMembers.unshift(<TeamShowMemberIndexItem key="Add member" user="Add member" openModal={openModal} />)
+        teamMembers.push(<TeamShowMemberIndexItem key="See all members" user="See all members" openModal={openModal} />)
 
         let teamProjects = projects.slice();
         let projectItems = null;
@@ -34,6 +45,7 @@ class TeamShow extends React.Component {
                         </form>
                         <section className="team-show-left-bottom">
                             <div className="team-show-section-header">Members</div>
+                            <ul className="team-show-members">{teamMembers}</ul>
                         </section>
                     </section>
                     <section className="team-show-right">
@@ -48,12 +60,15 @@ class TeamShow extends React.Component {
 
 const msp = state => {
     const currentTeam = state.ui.currentTeam;
+    const users = selectAllUsers(state);
     const projects = selectAllProjects(state);
-    return { currentTeam, projects };
+    return { currentTeam, users, projects };
 };
 
 const mdp = dispatch => {
-    return {};
+    return {
+        openModal: modal => dispatch(openModal(modal)),
+    };
 };
 
 export default connect(msp, mdp)(TeamShow);

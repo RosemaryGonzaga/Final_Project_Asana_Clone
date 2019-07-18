@@ -7,23 +7,26 @@ import { ProjectIndexItem } from '../projects/project_index_item';
 import { openModal } from '../../actions/modal_actions';
 import { updateTeam } from '../../actions/team_actions';
 import debounce from '../../util/debounce_util';
+// import { debounce } from 'lodash';
 
 class TeamShow extends React.Component {
     constructor(props) {
         super(props);
-        const { currentTeam } = this.props;
+        const { currentTeam, updateTeam } = this.props;
         const description = currentTeam ? currentTeam.description : "";
         this.state = { description };
+
+        this.updateTeamApiRequest = debounce(teamParams => updateTeam(teamParams), 2000);
 
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidUpdate(_, prevState) {
         if (prevState !== this.state) {
-            const { currentTeam, updateTeam } = this.props;
-            const updatedTeamParams = { id: currentTeam.id, description: this.state.description };
-            debounce(() => updateTeam(updatedTeamParams), 2000, false)();
-            // updateTeam(updatedTeamParams);
+            const { currentTeam } = this.props;
+            const { description } = this.state;
+            const updatedTeamParams = { id: currentTeam.id, description };
+            this.updateTeamApiRequest(updatedTeamParams);
         }
     }
 
@@ -62,7 +65,7 @@ class TeamShow extends React.Component {
                         <form className="team-show-left-top">
                             <div className="team-show-section-header">Description</div>
                             <textarea className="team-show-description"
-                                value={description}
+                                value={description ? description : ""}
                                 onChange={this.handleChange}
                                 placeholder="Click to add team description...">
                             </textarea>

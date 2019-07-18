@@ -39,6 +39,7 @@ function debounce(callback, interval, immediate) {
             // if (!immediate) callback.apply(that, args);
         };
 
+        // // To simplify, I'm cutting out 
         // // Determine whether to invoke the callback immediately ('leading end execution') or later ('trailing end execution')
         // // ...depending on the value of 'immediate' flag passed into debounce
         // const callNow = immediate && !timeout;

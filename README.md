@@ -28,7 +28,7 @@ Each user can create and join multiple teams. When creating a team, a user can i
 
 Whenever a user joins a team, a new TeamMembership (representing a row in a joins table in the database) is created. A user may join a team in one of two different ways:
 * When a user creates a team, a TeamMembership is automatically created for the given user and the newly created team.
-* When a user invites one or multiple teammates by entering their email addresses, those addresses are sent to the backend, where the TeamMembershipsController retrieves the relevant users and creates a TeamMembership for each one.
+* When a user invites one or multiple teammates by entering their email addresses, those addresses are sent to the backend, where the TeamMembershipsController retrieves the relevant users from the database and creates a TeamMembership for each one.
 
 I configured the flow of data from frontend to backend to handle these two distinct scenarios, as shown in the following code snippets.
 
@@ -154,12 +154,73 @@ end
 ```
 
 
----
+
+## Feature Spotlight: Optimizing autosave using a debounce algorithm to limit API requests
+
+![Debounce](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/debounce-auto-save.gif)
+
+As a user types a description of the team in the form's textbox, the typed contents are auto-saved to the database. Rather than sending a new updateTeam API call to the back end for every letter typed, a single call is made only after the user has stopped typing. (Here, the "user has stopped typing" condition is defined as occurring when the form's local state remains unchanged for a window of two seconds after the last keystroke.)
+
+I achieved this optimization by storing a debounced version of the updateTeam API call as an instance variable in the form component. If the form's local state (which stores the team description) changes, the componentDidUpdate lifecycle method invokes the debounced function.
+
+```
+class TeamShow extends React.Component {
+    constructor(props) {
+        super(props);
+        const { currentTeam, updateTeam } = this.props;
+        const description = currentTeam ? currentTeam.description : "";
+        this.state = { description };
+
+        this.updateTeamApiRequest = debounce(teamParams => updateTeam(teamParams), 2000);
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidUpdate(_, prevState) {
+        if (prevState !== this.state) {
+            const { currentTeam } = this.props;
+            const { description } = this.state;
+            const updatedTeamParams = { id: currentTeam.id, description };
+            this.updateTeamApiRequest(updatedTeamParams);
+        }
+    }
+
+    handleChange(e) {
+        this.setState({ description: e.target.value });
+    }
+
+    // more code (not shown)...
+}
+```
+
+Implemented a simplified debounce algorithm:
+
+```
+function debounce(callback, interval) {
+    let timeout;
+
+    const executedFunction = (...args) => {
+        const later = () => {
+            callback(...args);
+        };
+
+        clearTimeout(timeout);
+        timeout = setTimeout(later, interval);
+    };
+
+    return executedFunction;
+}
+```
 
 
-## Versatile and reusable Modal component
+
+
+## Feature Spotlight: Versatile and reusable Modal component
 
 ![Modal](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/versatile_and_reusable_modal.gif)
+
+Shavasana's versatile modal component exemplifies React's emphasis on reusability and modularity. It conditionally renders various forms involved in logging in; signing up; adding, editing, and deleting various resources (including projects, tasks, and teams).
+
 
 ```
 const Modal = props => {
@@ -236,63 +297,6 @@ class WorkspaceSettings extends React.Component {
 
 
 
----
-
-
-## Using debounce in a form to limit costly API requests
-![Modal](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/debounce-auto-save.gif)
-
-```
-class TeamShow extends React.Component {
-    constructor(props) {
-        super(props);
-        const { currentTeam, updateTeam } = this.props;
-        const description = currentTeam ? currentTeam.description : "";
-        this.state = { description };
-
-        this.updateTeamApiRequest = debounce(teamParams => updateTeam(teamParams), 2000);
-
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    componentDidUpdate(_, prevState) {
-        if (prevState !== this.state) {
-            const { currentTeam } = this.props;
-            const { description } = this.state;
-            const updatedTeamParams = { id: currentTeam.id, description };
-            this.updateTeamApiRequest(updatedTeamParams);
-        }
-    }
-
-    handleChange(e) {
-        this.setState({ description: e.target.value });
-    }
-
-    // more code (not shown)...
-}
-```
-
-Implemented a simplified debounce algorithm
-
-```
-function debounce(callback, interval) {
-    let timeout;
-
-    const executedFunction = (...args) => {
-        const later = () => {
-            callback(...args);
-        };
-
-        clearTimeout(timeout);
-        timeout = setTimeout(later, interval);
-    };
-
-    return executedFunction;
-}
-```
-
-
----
 
 
 ## Future Directions

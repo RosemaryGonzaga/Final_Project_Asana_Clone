@@ -2,7 +2,7 @@
 ## A project and task management tool for boosting team productivity, inspired by Asana
 
 <!-- ![Home page](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/asana_home_logo.png) -->
-![Home page](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme_images/Shavasana_login.gif)
+![Home page](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/Shavasana_login.gif)
 
 Table of contents:
 

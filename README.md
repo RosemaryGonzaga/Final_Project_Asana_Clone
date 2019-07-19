@@ -1,92 +1,36 @@
 # Shavasana
-## A project and task management tool for boosting team productivity, inspired by Asana
+### A project and task management tool for boosting team productivity, inspired by Asana
 
-<!-- ![Home page](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/asana_home_logo.png) -->
-<!-- ![Home page](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/Shavasana_login.gif) -->
-<!-- ![Home page](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/Shavasana_login_large.gif) -->
-![Home page](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/Shavasana_login_short.gif)
+[Live site](https://shavasana.herokuapp.com/#/)
 
-Table of contents:
-
-* [Follow along on the site](https://shavasana.herokuapp.com/#/)
-
-* Why Shavasana?
-
-* Shavasana's technology stack
-
-* Feature Spotlight: User Authentication
-
-* Feature Spotlight: Projects
-
-* Future Directions
-
-* Acknowledgements
-
-
----
-
-
-## Why Shavasana?
-
+<!-- ![Home page](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/Shavasana_login_short.gif) -->
+![Home page](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/Shavasana_login_large.gif)
 
 Shavasana exists to make it easier for teams to collaborate on projects. Users can organize a project's tasks into stages and keep a pulse on the project's overall completion status.
 
 
----
+## Shavasana's Technology Stack
+
+* React / Redux
+* JavaScript
+* JQuery (AJAX)
+* Ruby on Rails
+* PostgreSQL
+* CSS
+* Webpack
 
 
-## Shavasana's technology stack
+## Feature Spotlight: Teams
 
-This application is built on a stack of backend technologies, including PostgreSQL to host the database, Ruby on Rails for managing the data model, JQuery (AJAX), Javascript, React, Redux, HTML, and CSS.
+Each user can create and join multiple teams. When creating a team, a user can invite teammates through their email addresses.
 
+![Teams](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/create_team_and_invite_members.gif)
 
----
+Whenever a user joins a team, a new TeamMembership (representing a row in a joins table in the database) is created. A user may join a team in one of two different ways:
+* When a user creates a team, a TeamMembership is automatically created for the given user and the newly created team.
+* When a user invites one or multiple teammates by entering their email addresses, those addresses are sent to the backend, where the TeamMembershipsController retrieves the relevant users and creates a TeamMembership for each one.
 
-
-## Feature Spotlight: User Authentication
-
-Shavasana incorporates robust user authentication, ensuring users can only view their own team's projects and tasks.
-
----
-
-
-## Feature Spotlight: Projects
-
-Shavasana's users are able to create projects with individual tasks that they can mark complete.
-
----
-
-
-## Future Directions
-
-* Enhancements to existing features:
-    * Refactor code to improve user experience when navigating around the site.
-    * Allow users to add and edit sections.
-    * Implement board layouts for projects.
-    * Add drag-and-drop functionality to reassign tasks to sections.
-    * Users can assign due dates to tasks and projects.
-
-* New features to implement:
-    * Allow users to participate in Teams and work on shared projects.
-    * Build interface by which users can update their profile information.
-    * Add calendar view for visualizing project and task due dates.
-
-
-
----
-
-
-## Acknowledgements
-
-Many thanks to my classmates and the teachers of App Academy!
-
-
----
-
-
-## Code snippets
-
-Adding users to a team by their email addresses.
+I configured the flow of data from frontend to backend to handle these two distinct scenarios, as shown in the following code snippets.
 
 Frontend form component:
 
@@ -129,7 +73,6 @@ handleSubmit(e) {
 }
 
 ```
-
 
 Thunk action creator, asynchronously sends AJAX request to backend:
 
@@ -214,9 +157,9 @@ end
 ---
 
 
-## Code snippets (part 2)
+## Versatile and reusable Modal component
 
-Versatile and reusable Modal component
+![Modal](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/versatile_and_reusable_modal.gif)
 
 ```
 const Modal = props => {
@@ -296,9 +239,8 @@ class WorkspaceSettings extends React.Component {
 ---
 
 
-## Code snippets (part 3): Debounce
-
-Using debounce in a form to limit costly API requests
+## Using debounce in a form to limit costly API requests
+![Modal](https://github.com/RosemaryGonzaga/Final_Project_Asana_Clone/raw/master/app/assets/images/readme%20_images/debounce-auto-save.gif)
 
 ```
 class TeamShow extends React.Component {
@@ -348,3 +290,33 @@ function debounce(callback, interval) {
     return executedFunction;
 }
 ```
+
+
+---
+
+
+## Future Directions
+
+* Enhancements to existing features:
+    * Refactor code to improve user experience when navigating around the site.
+    * Allow users to add and edit sections.
+    * Implement board layouts for projects.
+    * Add drag-and-drop functionality to reassign tasks to sections.
+    * Users can assign due dates to tasks and projects.
+
+* New features to implement:
+    * Allow users to participate in Teams and work on shared projects.
+    * Build interface by which users can update their profile information.
+    * Add calendar view for visualizing project and task due dates.
+
+
+
+---
+
+
+## Acknowledgements
+
+Many thanks to my classmates and the teachers of App Academy!
+
+
+---

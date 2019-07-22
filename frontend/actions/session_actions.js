@@ -49,8 +49,9 @@ export const signup = user => {
         return SessionApiUtil.signup(user)
             .then(
                 successPayload => {
-                    dispatch(receiveCurrentUser(successPayload)),
-                    dispatch(closeModal())
+                    dispatch(receiveCurrentUser(successPayload));
+                    dispatch(closeModal());
+                    return successPayload; // needed to chain another action
                 },
                 rejectPromise => dispatch(receiveErrors(rejectPromise.responseJSON.errors))
             )

@@ -5,6 +5,8 @@ import { merge } from 'lodash';
 // import { clearErrors } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import { signup, clearErrors, login } from '../../actions/session_actions';
+import { createTeam } from '../../actions/team_actions';
+import { createTeamMembership } from '../../actions/team_membership_actions';
 
 class SignupFormMini extends React.Component {
     constructor(props) {
@@ -18,9 +20,15 @@ class SignupFormMini extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const { processForm } = this.props;
+        const { processForm, createTeam, createTeamMembership } = this.props;
         const user = merge({}, this.state);
-        processForm(user);
+        // processForm(user);
+        processForm(user).then(newUser => {
+            createTeam({ name: "Blank Workspace" })
+                .then(team => {
+                    createTeamMembership({ userId: newUser.id, teamId: team.id })
+                });
+        });
     }
 
     handleChange(field) {
@@ -93,6 +101,8 @@ const mdp = dispatch => {
         processForm: user => dispatch(signup(user)),
         clearErrors: () => dispatch(clearErrors()),
         login: user => dispatch(login(user)),
+        createTeam: team => dispatch(createTeam(team)),
+        createTeamMembership: teamMembership => dispatch(createTeamMembership(teamMembership)),
     };
 };
 

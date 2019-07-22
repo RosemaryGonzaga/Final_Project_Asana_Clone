@@ -6,6 +6,11 @@ export const signup = user => {
             user: {
                 primary_email: user.primaryEmail,
                 password: user.password,
+                full_name: "",
+                pronouns: "", 
+                role: "", 
+                department: "", 
+                about: "",
             }
         },
     });

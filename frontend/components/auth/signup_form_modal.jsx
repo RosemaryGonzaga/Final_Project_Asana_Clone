@@ -18,9 +18,15 @@ class SignupFormModal extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const { signup } = this.props;
+        const { signup, createTeam, createTeamMembership } = this.props;
         const user = merge({}, this.state);
-        signup(user);
+        // signup(user);
+        signup(user).then(newUser => {
+            createTeam({ name: "Blank Workspace" })
+                .then(team => {
+                    createTeamMembership({ userId: newUser.id, teamId: team.id })
+                });
+        });
     }
 
     handleChange(field) {

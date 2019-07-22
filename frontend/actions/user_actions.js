@@ -4,6 +4,7 @@ import * as UserApiUtil from '../util/users_api_util';
 export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const REMOVE_USER = "REMOVE_USER";
+export const REMOVE_ALL_USERS = "REMOVE_ALL_USERS";
 
 
 // regular action creators
@@ -29,6 +30,12 @@ export const removeUser = userId => {
     }
 }
 
+export const removeAllUsers = () => {
+    return {
+        type: REMOVE_ALL_USERS,
+    }
+}
+
 
 // thunk action creators
 export const fetchUsers = teamId => {   // refactored to take in teamId (only need to fetch users associated with a specific team...for now)
@@ -44,5 +51,12 @@ export const fetchUserByEmail = email => {
         // debugger
         return UserApiUtil.fetchUserByEmail(email)
             .then(user => dispatch(receiveUser(user)));
+    };
+}
+
+export const updateUser = user => {
+    return dispatch => {
+        return UserApiUtil.updateUser(user)
+            .then(updatedUser => dispatch(receiveUser(updatedUser)));
     };
 }

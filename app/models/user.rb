@@ -10,6 +10,10 @@
 #  photo_url       :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  pronouns        :string
+#  role            :string
+#  department      :string
+#  about           :text
 #
 
 class User < ApplicationRecord

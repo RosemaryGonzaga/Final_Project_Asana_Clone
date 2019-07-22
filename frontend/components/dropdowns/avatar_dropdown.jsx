@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { logout } from '../../actions/session_actions';
 import { receiveCurrentTeam, resetCurrentTeam } from '../../actions/current_team_actions';
 import { selectAllTeams } from '../../reducers/selectors';
-import { fetchUsers } from '../../actions/user_actions';
+import { fetchUsers, removeAllUsers } from '../../actions/user_actions';
 // import { fetchTeams } from '../../actions/team_actions';
 import { openModal } from '../../actions/modal_actions';
 
@@ -51,10 +51,13 @@ class AvatarDropdown extends React.Component {
     };
 
     handleLogoutClick(e) {
-        const { closeAvatarDropdown, logout, resetCurrentTeam } = this.props;
+        const { closeAvatarDropdown, logout, resetCurrentTeam, removeAllUsers } = this.props;
         e.preventDefault();
         closeAvatarDropdown(e);
-        logout().then(() => resetCurrentTeam());
+        logout().then(() => {
+            resetCurrentTeam();
+            removeAllUsers();
+        });
     };
 
     handleChangeTeamClick(team) {
@@ -144,6 +147,7 @@ const mdp = dispatch => {
         receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
         openModal: modal => dispatch(openModal(modal)),
         fetchUsers: teamId => dispatch(fetchUsers(teamId)),
+        removeAllUsers: () => dispatch(removeAllUsers()),
         // clearAllUsers: () => dispatch(clearAllUsers()),
         // fetchTeams: () => dispatch(fetchTeams()),
     });

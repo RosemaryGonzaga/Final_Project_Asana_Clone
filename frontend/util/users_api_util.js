@@ -16,6 +16,21 @@ export const fetchUserByEmail = email => {
     });
 }
 
+export const updateUser = user => {
+    const { primaryEmail, password, fullName, pronouns, role, department, about } = user;
+    return $.ajax({
+        method: "PATCH",
+        url: `api/users/${user.id}`,
+        data: {
+            user: {
+                password, pronouns, role, department, about,
+                primary_email: primaryEmail,
+                full_name: fullName,
+            }
+        },
+    });
+};
+
 // $.ajax({
 //     method: 'GET',
 //     url: '/api/users/search',

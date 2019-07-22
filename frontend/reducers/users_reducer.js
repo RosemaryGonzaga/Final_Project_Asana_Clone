@@ -1,5 +1,5 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import { RECEIVE_ALL_USERS, RECEIVE_USER, REMOVE_USER } from '../actions/user_actions';
+import { RECEIVE_ALL_USERS, RECEIVE_USER, REMOVE_USER, REMOVE_ALL_USERS } from '../actions/user_actions';
 import { merge } from 'lodash';
 
 const usersReducer = (oldState = {}, action) => {
@@ -18,6 +18,8 @@ const usersReducer = (oldState = {}, action) => {
             const newState = merge({}, oldState);
             delete newState[userId]
             return newState;
+        case REMOVE_ALL_USERS:
+            return {};
         default:
             return oldState;
     }

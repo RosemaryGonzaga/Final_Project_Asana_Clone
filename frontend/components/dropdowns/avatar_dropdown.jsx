@@ -23,6 +23,7 @@ class AvatarDropdown extends React.Component {
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleChangeTeamClick = this.handleChangeTeamClick.bind(this);
         this.openWorkspaceModal = this.openWorkspaceModal.bind(this);
+        this.openProfileModal = this.openProfileModal.bind(this);
     }
     
     // // Actually, this lifecycle method isn't necessary...
@@ -76,6 +77,12 @@ class AvatarDropdown extends React.Component {
         // openModal('editTeamMemberSettings');
     }
 
+    openProfileModal(e) {
+        const { closeAvatarDropdown, openModal } = this.props;
+        closeAvatarDropdown(e);
+        openModal('openProfileSettings');
+    }
+
    
     render () {
         const { closeAvatarDropdown, currentTeam, teams, openModal } = this.props;
@@ -124,7 +131,8 @@ class AvatarDropdown extends React.Component {
                     </div>
                 </section>
                 <section>
-                    <div onClick={closeAvatarDropdown}><i className="fas fa-check fa-check-transparent"></i>My Profile Settings...</div>
+                    {/* <div onClick={closeAvatarDropdown}><i className="fas fa-check fa-check-transparent"></i>My Profile Settings...</div> */}
+                    <div onClick={this.openProfileModal}><i className="fas fa-check fa-check-transparent"></i>My Profile Settings...</div>
                     <div onClick={this.handleLogoutClick}><i className="fas fa-check fa-check-transparent"></i>Log Out</div>
                 </section>
             </div>

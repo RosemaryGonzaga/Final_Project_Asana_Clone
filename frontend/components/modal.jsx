@@ -8,6 +8,8 @@ import NewTeamForm from './teams/new_team_form';
 import TaskModal from './tasks/task_modal_container';
 import DeleteTeamMembershipForm from './teams/delete_team_membership_form';
 import WorkspaceSettings from './teams/workspace_settings';
+import ProfileSettings from './profile/profile_settings_tabs';
+import LogoutModal from './profile/account_settings_logout_modal';
 import { closeModal } from '../actions/modal_actions';
 
 const Modal = props => {
@@ -46,6 +48,12 @@ const Modal = props => {
             break;
         case "editTeamMemberSettings":
             component = <WorkspaceSettings selectedTab="Members" />;
+            break;
+        case "openProfileSettings":
+            component = <ProfileSettings />;
+            break;
+        case "logout":
+            component = <LogoutModal />;
             break;
         default:
             return null;

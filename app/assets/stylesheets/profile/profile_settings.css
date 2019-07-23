@@ -1,0 +1,402 @@
+.profile-settings-container {
+    width: 702px;
+    min-height: 224px;
+    max-height: 691px;
+    overflow-y: scroll;
+    border-radius: 3px;
+    background: white;
+    box-shadow: -1px 1px 2px #26151B26;
+    position: relative;
+}
+
+.profile-settings-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    height: 12px;
+    width: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-settings-close-btn > i {
+    font-size: 16px;
+    color: #b7bfc6;
+} 
+
+.profile-settings-header {
+    height: 82px;
+    border-bottom: 1px solid #e0e6e8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 32px;
+}
+
+.profile-settings-header > h1 {
+    font-size: 24px;
+    color: #151b26;
+    font-weight: 500;
+    margin-top: 12px;
+}
+
+.profile-settings-nav {
+    display: flex;
+    font-size: 13px;
+    color: #848f99;
+    font-weight: 500;
+    height: 29px;
+}
+
+.profile-settings-nav > div {
+    margin-right: 32px;
+    cursor: pointer;
+    border-bottom: 2px solid white;
+}
+
+.profile-settings-nav > .unselected-tab:hover {
+    color: #151b26;
+    border-bottom: 2px solid #b7bfc6;
+}
+
+.profile-settings-nav > .selected-tab {
+    color: #008ce3;
+    border-bottom: 2px solid #14aaf5;
+}
+
+
+/* PROFILE SETTINGS: PROFILE */
+
+.profile-settings-profile-container {
+    padding: 15px 30px;
+}
+
+.profile-settings-profile-container > form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.profile-settings-profile-container > form > div {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-settings-profile-container > form > .profile-settings-avatar {
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 0px;
+}
+
+.profile-settings-avatar-label {
+    color: #848f99;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.profile-settings-avatar-main {
+    display: flex;
+    align-items: center;
+}
+
+.profile-settings-avatar-main-img-frame {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #e0e6e8;
+    border-radius: 50%;
+    border: 1px dashed #d5dce0;
+    transition-duration: 200ms;
+    transition-property: border;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.profile-settings-avatar-main-img-frame:hover {
+    border: 2px solid #14aaf5;
+}
+
+.profile-settings-avatar-main-text {
+    margin-left: 15px;
+}
+
+.profile-settings-avatar-main-text-top {
+    width: 550px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-settings-avatar-main-text-top > span:first-of-type {
+    color: #14aaf5;
+    font-size: 13px;
+    cursor: pointer;
+    line-height: 20px;
+    transition-duration: 200ms;
+    transition-property: color, text-decoration;
+}
+
+.profile-settings-avatar-main-text-top > span:first-of-type:hover {
+    color: #32c1ff;
+    text-decoration: underline;
+}
+
+.profile-settings-avatar-radio-inputs {
+    width: 410px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.profile-settings-avatar-radio-inputs.hidden {
+    display: none;
+}
+
+.profile-settings-avatar-radio-inputs > div {
+    display: flex;
+    align-items: center;
+}
+
+.profile-settings-avatar-main-text-bottom {
+    color: #848f99;
+    font-size: 11px;
+    line-height: 20px;
+}
+
+/* Profile: inputs */
+
+.profile-settings-label {
+    color: #848f99;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+    width: 98px;
+    margin-bottom: 13px;
+}
+
+.profile-settings-input {
+    width: 305px;
+    height: 40px;
+    padding: 9px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #151b26;
+    outline: none; 
+    border: 1px solid #e0e6e8;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.profile-settings-input.long-input {
+    width: 642px;
+    height: 70px;
+    resize: none;
+    margin-top: 0px; /* to offset styling inherited from new_project_form.css (line 94)*/
+}
+
+.profile-settings-input::placeholder,
+.profile-settings-input.long-input::placeholder {
+    color: #9ca6af
+}
+
+.profile-settings-input:focus {
+    border: 1px solid #b7bfc6;
+}
+
+.profile-settings-profile-container > form > input[type="submit"] {
+    width: 138px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #14aaf5;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition-duration: 250ms;
+    transition-property: background-color, border;
+    margin-left: 504px;
+    margin-top: 36px;
+}
+
+.profile-settings-profile-container > form > input[type="submit"]:hover {
+    background-color: #008ce3;
+}
+
+
+/* PROFILE SETTINGS: ACCOUNT */
+
+.profile-settings-account-container {
+    padding: 15px 30px;
+}
+
+.account-settings-section {
+    box-sizing: border-box;
+    height: 102px;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid #e0e6e8;
+}
+
+.account-settings-section:first-of-type {
+    height: 128px;
+    padding-top: 10px;
+    border-top: none;
+}
+
+.account-settings-section-label {
+    color: #151b26;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.account-settings-section-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.account-settings-section-tagline {
+    color: #848f99;
+    font-size: 13px;
+    /* font-weight: 500; */
+}
+
+.account-settings-section-link {
+    color: #14aaf5;
+    font-size: 13px;
+    cursor: pointer;
+    transition-duration: 200ms;
+    transition-property: color, text-decoration;
+}
+
+.account-settings-section-link:hover {
+    color: #32c1ff;
+    text-decoration: underline;
+}
+
+
+/* PASSWORD RESET FORM */
+
+.account-settings-section.change-password-section {
+    min-height: 331px;
+}
+
+.account-settings-section > form {
+    /* min-height: 271px; */
+    min-height: 242px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 19px;
+}
+
+.account-settings-section > form > div {
+    display: flex;
+    align-items: center;
+}
+
+/* Password: inputs */
+.change-password-form-label {
+    width: 100px;
+    margin-bottom: 0;
+    margin-right: 10px;
+    line-height: 16px;
+    text-align: end;
+}
+
+.change-password-form-input {
+    width: 530px;
+}
+
+
+/* Password: buttons */
+
+.change-password-form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.change-password-form-buttons > input[type="submit"] {
+    width: 52px;
+    height: 32px;
+    border: none;
+    border-radius: 5px;
+    background-color: #14aaf5;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition-duration: 250ms;
+    transition-property: background-color, border;
+    /* margin-left: 504px;
+    margin-top: 36px; */
+}
+
+.change-password-form-buttons > input[type="submit"]:hover {
+    background-color: #008ce3;
+}
+
+.change-password-form-buttons > input[type="submit"]:disabled,
+.change-password-submit-button:disabled {
+    background-color: #edf1f2;
+    border: 1px solid #e0e6e8;
+    color: #b7bfca;
+}
+
+.cancel-change-password {
+    width: 65px;
+    height: 32px;
+    border-radius: 3px;
+    border: 1px solid #b7bfc6;
+    color: #646f79;
+    font-size: 13px;
+    cursor: pointer;
+    transition-duration: 250ms;
+    transition-property: background-color, border, color;
+    /* position: absolute;
+    right: 120px;
+    bottom: 16px; */
+    box-sizing: border-box;
+    margin-left: 510px;
+}
+
+.cancel-change-password:hover {
+    background-color: #f6f8f9;
+    border: 1px solid #646f79;
+    color: #222b37;
+}
+
+/* Password: errors */
+.change-password-form-errors {
+    color: #ff5263;
+    font-size: 12px;
+    margin-left: 120px;
+}
+
+/* LOGOUT MODAL */
+
+.delete-project-container.logout-modal-container {
+    height: 175px;
+}
+
+.cancel-delete-project.logout-modal-button {
+    right: 207px;
+}
+
+.delete-project-button.logout-modal-button {
+    width: 167px;
+}

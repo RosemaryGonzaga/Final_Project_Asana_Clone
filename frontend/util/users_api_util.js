@@ -17,7 +17,7 @@ export const fetchUserByEmail = email => {
 }
 
 export const updateUser = user => {
-    const { primaryEmail, password, fullName, pronouns, role, department, about } = user;
+    const { primaryEmail, password, fullName, photoUrl, pronouns, role, department, about } = user;
     return $.ajax({
         method: "PATCH",
         url: `api/users/${user.id}`,
@@ -26,6 +26,7 @@ export const updateUser = user => {
                 password, pronouns, role, department, about,
                 primary_email: primaryEmail,
                 full_name: fullName,
+                photo_url: photoUrl,
             }
         },
     });

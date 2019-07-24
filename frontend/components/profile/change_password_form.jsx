@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateUser } from '../../actions/user_actions';
+import { checkPassword, updateUser } from '../../actions/user_actions';
 import { closeModal } from '../../actions/modal_actions';
 
 class ChangePasswordForm extends React.Component {
@@ -17,10 +17,23 @@ class ChangePasswordForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const { updateUser, closeModal, currentUser } = this.props;
-        // before updating user, first need to check credentials
-        updateUser({ id: currentUser.id, password: this.state.newPassword });
-        closeModal();
+        const { checkPassword, updateUser, closeModal, currentUser, renderErrors } = this.props;
+        const { currentPassword, newPassword } = this.state;
+
+        // Before updating user, first need to check credentials
+        const userCredentials = {
+            primaryEmail: currentUser.primaryEmail,
+            password: currentPassword,
+        };
+        checkPassword(userCredentials).then(
+            successResponse => {
+                updateUser({ id: currentUser.id, password: newPassword });
+                closeModal();
+            },
+            failureResponse => {
+                renderErrors();
+            }
+        );
     }
 
     handleChange(field) {
@@ -102,6 +115,7 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
+        checkPassword: user => dispatch(checkPassword(user)),
         updateUser: user => dispatch(updateUser(user)),
         closeModal: () => dispatch(closeModal()),
     };

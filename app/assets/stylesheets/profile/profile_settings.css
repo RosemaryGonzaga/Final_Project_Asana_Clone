@@ -400,3 +400,23 @@
 .delete-project-button.logout-modal-button {
     width: 167px;
 }
+
+/* ERRORS */
+
+.account-settings-errors {
+    background-color: #fffede;
+    color: #646f79;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 15px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.account-settings-errors > i {
+    margin-right: 15px;
+    font-size: 18px;
+    color: #f12659
+}

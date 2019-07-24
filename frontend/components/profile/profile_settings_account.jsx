@@ -12,27 +12,23 @@ class ProfileSettingsAccount extends React.Component {
         super(props);
         this.state = {
             changePassword: false,
+            showPasswordErrors: false,
         };
 
         this.hidePasswordForm = this.hidePasswordForm.bind(this);
-        // this.handleLogoutClick = this.handleLogoutClick.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
     }
 
     hidePasswordForm() {
         this.setState({ changePassword: false });
     }
 
-    // handleLogoutClick(e) {
-    //     const { closeModal, logout, resetCurrentTeam, removeAllUsers } = this.props;
-    //     closeModal();
-    //     logout().then(() => {
-    //         resetCurrentTeam();
-    //         removeAllUsers();
-    //     });
-    // };
+    renderErrors() {
+        this.setState({ showPasswordErrors: true });
+    }
 
     render() {
-        const { changePassword } = this.state;
+        const { changePassword, showPasswordErrors } = this.state;
         const { openModal } = this.props;
 
         let passwordSection;
@@ -40,7 +36,7 @@ class ProfileSettingsAccount extends React.Component {
             passwordSection = (
                 <section className="account-settings-section change-password-section">
                     <div className="account-settings-section-label">Password</div>
-                    <ChangePasswordForm hidePasswordForm={this.hidePasswordForm}/>
+                    <ChangePasswordForm hidePasswordForm={this.hidePasswordForm} renderErrors={this.renderErrors}/>
                 </section>
             );
         } else {
@@ -55,9 +51,23 @@ class ProfileSettingsAccount extends React.Component {
             );
         }
 
+        let passwordErrors = null;
+
+        if (showPasswordErrors) {
+            passwordErrors = (
+                <div className="account-settings-errors">
+                    <i className="fas fa-exclamation-triangle"></i>
+                    <span>You have entered your current password incorrectly.</span>
+                </div>
+            );
+        }
+
 
         return (
             <div className="profile-settings-account-container">
+
+                {passwordErrors}
+
                 <section className="account-settings-section">
                     <div className="account-settings-section-label">Organizations and Workspaces</div>
                     <div className="account-settings-section-bottom">

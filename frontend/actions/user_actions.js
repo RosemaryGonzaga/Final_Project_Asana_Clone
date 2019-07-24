@@ -54,6 +54,16 @@ export const fetchUserByEmail = email => {
     };
 }
 
+// This uses the same backend route as fetchUserByEmail,
+// but it is used to check a logged in user's password.
+// It will hit the #show action of the UsersController.
+export const checkPassword = user => {
+    return dispatch => {
+        return UserApiUtil.checkPassword(user)
+            // .then(user => dispatch(receiveUser(user)));
+    };
+}
+
 export const updateUser = user => {
     return dispatch => {
         return UserApiUtil.updateUser(user)

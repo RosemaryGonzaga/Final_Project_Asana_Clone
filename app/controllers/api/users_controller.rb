@@ -44,8 +44,14 @@ class Api::UsersController < ApplicationController
                 @user = @user.first
                 render :show
             end
-        else
-            # debugger
+        elsif params[:user][:primary_email] && params[:user][:password]
+            @user = User.find_by_credentials(params[:user][:primary_email], params[:user][:password])
+            if @user
+                render :show, status: 200
+            else
+                render json: 'You have entered your current password incorrectly.', status: 401
+            end
+        else 
             render json: "You've hit the UsersController#show action and there is no key of :email in the params"#, status: 200 
             # Question: do I need to send a status at all? if so, what type? 200? 422?
         end

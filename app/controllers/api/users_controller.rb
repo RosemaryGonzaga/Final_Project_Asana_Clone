@@ -66,14 +66,14 @@ class Api::UsersController < ApplicationController
         end
     end
 
-    # def destroy
-    #     @user = User.find_by(id: params[:id])
-    #     if @user.destroy
-    #         render :show
-    #     else
-    #         render json: @user.errors.full_messages
-    #     end
-    # end
+    def destroy
+        @user = User.find_by(id: params[:id])
+        if @user.destroy
+            render :show
+        else
+            render json: @user.errors.full_messages
+        end
+    end
 
     private
     def user_params

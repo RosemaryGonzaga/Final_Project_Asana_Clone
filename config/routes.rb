@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'static_pages#root'
 
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:new, :create, :update, :index, :show]  # later: add destroy
+    resources :users, only: [:new, :create, :update, :index, :show, :destroy]  # later: add destroy
     resource :session, only: [:new, :create, :destroy]
     resources :projects, except: [:new, :edit]
     resources :sections, except: [:new, :edit]  # hopefully this doesn't need to be nested!

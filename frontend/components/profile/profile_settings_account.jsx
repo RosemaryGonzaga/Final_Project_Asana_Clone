@@ -20,7 +20,8 @@ class ProfileSettingsAccount extends React.Component {
         this.renderErrors = this.renderErrors.bind(this);
     }
 
-    hidePasswordForm() {
+    hidePasswordForm(e) {
+        e.preventDefault();
         this.setState({ changePassword: false });
     }
 
@@ -106,7 +107,7 @@ class ProfileSettingsAccount extends React.Component {
                     <div className="account-settings-section-label">Deactivation</div>
                     <div className="account-settings-section-bottom">
                         <div className="account-settings-section-tagline">Remove access to all organizations and workspaces in Asana</div>
-                        <div className="account-settings-section-link">Deactivate account</div>
+                        <div className="account-settings-section-link" onClick={() => openModal('deactivateAccount')}>Deactivate account</div>
                     </div>
                 </section>
             </div>

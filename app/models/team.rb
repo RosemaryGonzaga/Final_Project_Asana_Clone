@@ -22,7 +22,7 @@ class Team < ApplicationRecord
         through: :memberships,
         source: :member
 
-    has_many :projects,
+    has_many :projects, dependent: :destroy,
         primary_key: :id,
         foreign_key: :team_id,
         class_name: :Project

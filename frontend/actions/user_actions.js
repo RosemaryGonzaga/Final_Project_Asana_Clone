@@ -70,3 +70,13 @@ export const updateUser = user => {
             .then(updatedUser => dispatch(receiveUser(updatedUser)));
     };
 }
+
+export const deleteUser = id => {
+    return dispatch => {
+        return UserApiUtil.deleteUser(id)
+            .then(payload => {
+                dispatch(removeUser(id))
+            }
+        );
+    };
+}

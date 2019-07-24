@@ -473,3 +473,12 @@
 .account-settings-workspaces-right > li:last-of-type:hover {
     text-decoration-style: solid;
 }
+
+/* Deactivate Account Modal */
+.cancel-delete-project.deactivate-account-button {
+    right: 138px;
+}
+
+.delete-project-button.deactivate-account-button {
+    width: 98px;
+}

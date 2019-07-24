@@ -10,6 +10,7 @@ import DeleteTeamMembershipForm from './teams/delete_team_membership_form';
 import WorkspaceSettings from './teams/workspace_settings';
 import ProfileSettings from './profile/profile_settings_tabs';
 import LogoutModal from './profile/account_settings_logout_modal';
+import DeactivateAccount from './profile/deactivate_account_modal';
 import { closeModal } from '../actions/modal_actions';
 
 const Modal = props => {
@@ -57,6 +58,9 @@ const Modal = props => {
             break;
         case "logout":
             component = <LogoutModal />;
+            break;
+        case "deactivateAccount":
+            component = <DeactivateAccount />;
             break;
         default:
             return null;

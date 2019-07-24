@@ -48,11 +48,9 @@ export const updateUser = user => {
     });
 };
 
-// $.ajax({
-//     method: 'GET',
-//     url: '/api/users/search',
-//     data: { email },
-// }).then(response => {
-//     console.log(response);
-//     debugger
-// });
+export const deleteUser = id => {
+    return $.ajax({
+        method: 'DELETE',
+        url: `/api/users/${id}`,
+    });
+}

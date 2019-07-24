@@ -7,9 +7,9 @@ import ProfileSettingsAccount from './profile_settings_account';
 class ProfileSettingsTabs extends React.Component {
     constructor(props) {
         super(props);
-        // const { selectedTab } = this.props;
-        // this.state = { selectedTab };
-        this.state = { selectedTab: "Profile" };
+        const { selectedTab } = this.props;
+        this.state = { selectedTab };
+        // this.state = { selectedTab: "Profile" };
 
         this.toggleTab = this.toggleTab.bind(this);
     }

@@ -50,7 +50,10 @@ const Modal = props => {
             component = <WorkspaceSettings selectedTab="Members" />;
             break;
         case "openProfileSettings":
-            component = <ProfileSettings />;
+            component = <ProfileSettings selectedTab="Profile"/>;
+            break;
+        case "openAccountSettings":
+            component = <ProfileSettings selectedTab="Account"/>;
             break;
         case "logout":
             component = <LogoutModal />;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { closeModal } from '../../actions/modal_actions';
+import { closeModal, openModal } from '../../actions/modal_actions';
 import { logout } from '../../actions/session_actions';
 import { resetCurrentTeam } from '../../actions/current_team_actions';
 import { removeAllUsers } from '../../actions/user_actions';
@@ -21,7 +21,7 @@ class LogoutModal extends React.Component {
     };
 
     render() {
-        const { closeModal } = this.props;
+        const { closeModal, openModal } = this.props;
         return (
             <div className="delete-project-container logout-modal-container">
                 <button className="delete-project-close-btn delete-team-membership-close-btn" onClick={closeModal}>
@@ -31,7 +31,8 @@ class LogoutModal extends React.Component {
                 <h1>Log out all sessions</h1>
                 <h2>Logging out will sign you out of all web browsers and mobile apps including this current browser. 
                     This will not reset your password.</h2>
-                <button className="cancel-delete-project logout-modal-button" onClick={closeModal}>Cancel</button>
+                {/* <button className="cancel-delete-project logout-modal-button" onClick={closeModal}>Cancel</button> */}
+                <button className="cancel-delete-project logout-modal-button" onClick={() => openModal('openAccountSettings')}>Cancel</button>
                 <button onClick={this.handleLogoutClick}
                     className="delete-project-button logout-modal-button" >Log out all sessions
                 </button>
@@ -53,6 +54,7 @@ const mdp = dispatch => {
         logout: () => dispatch(logout()),
         resetCurrentTeam: () => dispatch(resetCurrentTeam()),
         removeAllUsers: () => dispatch(removeAllUsers()),
+        openModal: modal => dispatch(openModal(modal)),
     };
 };
 

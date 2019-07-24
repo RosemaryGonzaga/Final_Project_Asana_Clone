@@ -1,3 +1,5 @@
+/* PROFILE SETTINGS: TABS */
+
 .profile-settings-container {
     width: 702px;
     min-height: 224px;
@@ -244,7 +246,7 @@
 
 .account-settings-section {
     box-sizing: border-box;
-    height: 102px;
+    min-height: 102px;
     padding: 30px 0;
     display: flex;
     flex-direction: column;
@@ -253,7 +255,7 @@
 }
 
 .account-settings-section:first-of-type {
-    height: 128px;
+    min-height: 128px;
     padding-top: 10px;
     border-top: none;
 }
@@ -272,7 +274,6 @@
 .account-settings-section-tagline {
     color: #848f99;
     font-size: 13px;
-    /* font-weight: 500; */
 }
 
 .account-settings-section-link {
@@ -289,14 +290,13 @@
 }
 
 
-/* PASSWORD RESET FORM */
+/* Account settings: Password reset form */
 
 .account-settings-section.change-password-section {
     min-height: 331px;
 }
 
 .account-settings-section > form {
-    /* min-height: 271px; */
     min-height: 242px;
     display: flex;
     flex-direction: column;
@@ -309,7 +309,6 @@
     align-items: center;
 }
 
-/* Password: inputs */
 .change-password-form-label {
     width: 100px;
     margin-bottom: 0;
@@ -321,9 +320,6 @@
 .change-password-form-input {
     width: 530px;
 }
-
-
-/* Password: buttons */
 
 .change-password-form-buttons {
     display: flex;
@@ -342,8 +338,6 @@
     cursor: pointer;
     transition-duration: 250ms;
     transition-property: background-color, border;
-    /* margin-left: 504px;
-    margin-top: 36px; */
 }
 
 .change-password-form-buttons > input[type="submit"]:hover {
@@ -367,9 +361,6 @@
     cursor: pointer;
     transition-duration: 250ms;
     transition-property: background-color, border, color;
-    /* position: absolute;
-    right: 120px;
-    bottom: 16px; */
     box-sizing: border-box;
     margin-left: 510px;
 }
@@ -380,14 +371,13 @@
     color: #222b37;
 }
 
-/* Password: errors */
 .change-password-form-errors {
     color: #ff5263;
     font-size: 12px;
     margin-left: 120px;
 }
 
-/* LOGOUT MODAL */
+/* Account settings: Logout modal */
 
 .delete-project-container.logout-modal-container {
     height: 175px;
@@ -401,7 +391,7 @@
     width: 167px;
 }
 
-/* ERRORS */
+/* Account settings: errors */
 
 .account-settings-errors {
     background-color: #fffede;
@@ -418,5 +408,68 @@
 .account-settings-errors > i {
     margin-right: 15px;
     font-size: 18px;
-    color: #f12659
+    color: #f12659;
+}
+
+
+/* Account settings: Workspaces (Teams) */
+
+.account-settings-section-label.workspaces {
+    margin-bottom: 15px;
+}
+
+.account-settings-section-bottom.workspaces {
+    min-height: 57px;
+}
+
+.account-settings-workspaces-left,
+.account-settings-workspaces-right {
+    box-sizing: border-box;
+    padding: 10px;
+    min-height: 57px;
+    display: flex;
+}
+
+.account-settings-workspaces-left {
+    justify-content: flex-end;
+    width: 158px;
+    /* border-right: 1px solid #d5dce0; */
+}
+
+.account-settings-workspaces-right {
+    flex-direction: column;
+    justify-content: space-between;
+    width: 484px;
+    border-left: 1px solid #d5dce0;
+}
+
+.account-settings-section-tagline.workspaces {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.account-settings-workspaces-right {
+    color: #151b26;
+    font-size: 13px;
+    font-weight: 500;
+    justify-content: space-between;
+}
+
+.account-settings-workspaces-right > li {
+    /* display: block; */
+    line-height: 18px;
+    margin-bottom: 5px;
+}
+
+.account-settings-workspaces-right > li:last-of-type {
+    color: #848f99;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    cursor: pointer;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.account-settings-workspaces-right > li:last-of-type:hover {
+    text-decoration-style: solid;
 }

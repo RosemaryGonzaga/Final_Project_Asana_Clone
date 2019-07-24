@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateUser } from '../../actions/user_actions';
 import { closeModal, openModal } from '../../actions/modal_actions';
+import { selectAllTeams } from '../../reducers/selectors';
 // import { logout } from '../../actions/session_actions';
 // import { resetCurrentTeam } from '../../actions/current_team_actions';
 // import { removeAllUsers } from '../../actions/user_actions';
@@ -29,8 +30,20 @@ class ProfileSettingsAccount extends React.Component {
 
     render() {
         const { changePassword, showPasswordErrors } = this.state;
-        const { openModal } = this.props;
+        const { openModal, teams } = this.props;
 
+        // Password form errors
+        let passwordErrors = null;
+        if (showPasswordErrors) {
+            passwordErrors = (
+                <div className="account-settings-errors">
+                    <i className="fas fa-exclamation-triangle"></i>
+                    <span>You have entered your current password incorrectly.</span>
+                </div>
+            );
+        }
+
+        // Conditionally render password section or form
         let passwordSection;
         if (changePassword) {
             passwordSection = (
@@ -51,14 +64,13 @@ class ProfileSettingsAccount extends React.Component {
             );
         }
 
-        let passwordErrors = null;
-
-        if (showPasswordErrors) {
-            passwordErrors = (
-                <div className="account-settings-errors">
-                    <i className="fas fa-exclamation-triangle"></i>
-                    <span>You have entered your current password incorrectly.</span>
-                </div>
+        // User's workspaces (teams)
+        let userTeams = null;
+        if (teams) {
+            userTeams = teams.map(team => <li key={team.id}>{team.name}</li>);
+            userTeams.push(
+                <li key="createTeam" onClick={() => openModal('createTeam')}
+                    className="account-settings-create-new-workspace">Create new workspace</li>
             );
         }
 
@@ -69,10 +81,14 @@ class ProfileSettingsAccount extends React.Component {
                 {passwordErrors}
 
                 <section className="account-settings-section">
-                    <div className="account-settings-section-label">Organizations and Workspaces</div>
-                    <div className="account-settings-section-bottom">
-                        <div className="account-settings-section-tagline"></div>
-                        <div className="account-settings-section-link"></div>
+                    <div className="account-settings-section-label workspaces">Organizations and Workspaces</div>
+                    <div className="account-settings-section-bottom workspaces">
+                        <div className="account-settings-workspaces-left">
+                            <div className="account-settings-section-tagline workspaces">Workspaces</div>
+                        </div>
+                        <ul className="account-settings-workspaces-right">
+                            {userTeams}
+                        </ul>
                     </div>
                 </section>
 
@@ -101,7 +117,8 @@ class ProfileSettingsAccount extends React.Component {
 const msp = state => {
     const currentUserId = state.session.id;
     const currentUser = state.entities.users[currentUserId];
-    return { currentUser };
+    const teams = selectAllTeams(state);
+    return { currentUser, teams };
 };
 
 const mdp = dispatch => {

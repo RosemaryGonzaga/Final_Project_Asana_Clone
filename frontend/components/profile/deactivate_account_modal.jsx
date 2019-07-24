@@ -22,7 +22,21 @@ class DeactivateAccount extends React.Component {
     };
 
     render() {
-        const { closeModal, openModal } = this.props;
+        const { closeModal, openModal, currentUser } = this.props;
+
+        let deactivationMessage;
+        let deactivationButton = null;
+        if (currentUser.primaryEmail === "demo@shavasana.com") {
+            deactivationMessage = "Sorry, you cannot deactivate the demo user account.";
+        } else {
+            deactivationMessage = "Deactivation is permanent and cannot be undone. Once your account is deactivated, you can no longer log in to any Organizations or Workspaces in Shavasana.";
+            deactivationButton = (
+                <button onClick={this.handleDeactivateAccount}
+                    className="delete-project-button deactivate-account-button" >Deactivate
+                </button>
+            );
+        };
+
         return (
             <div className="delete-project-container logout-modal-container">
                 <button className="delete-project-close-btn delete-team-membership-close-btn" onClick={closeModal}>
@@ -30,12 +44,9 @@ class DeactivateAccount extends React.Component {
                 </button>
 
                 <h1>Account Deactivation</h1>
-                <h2>Deactivation is permanent and cannot be undone. Once your account is deactivated, 
-                    you can no longer log in to any Organizations or Workspaces in Shavasana.</h2>
+                <h2>{deactivationMessage}</h2>
                 <button className="cancel-delete-project deactivate-account-button" onClick={() => openModal('openAccountSettings')}>Cancel</button>
-                <button onClick={this.handleDeactivateAccount}
-                    className="delete-project-button deactivate-account-button" >Deactivate
-                </button>
+                {deactivationButton}
 
             </div>
         );

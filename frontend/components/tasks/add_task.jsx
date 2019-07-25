@@ -2,6 +2,7 @@ import React from 'react';
 import { timeAgoFormatted, MONTHS } from '../../util/time_ago_format_helper';
 import DatePicker from 'react-datepicker';
 import { SectionListDropdown } from './section_list_dropdown';
+import UserListDropdown from './user_list_dropdown';
 // import { timeAgoFormatted } from '../../util/time_ago_format_helper';
 // import { closeModal } from '../../actions/modal_actions';
 // import { Link } from 'react-router-dom';
@@ -21,7 +22,7 @@ class AddTask extends React.Component {
             sectionId: Object.keys(this.props.sections)[0],
             section: this.props.sections[Object.keys(this.props.sections)[0]].name,        // need to dispatch section with the id
             assigneeId: this.props.currentUserId,
-            assignee: `${this.props.currentUser.primaryEmail}`,       // need to dispatch assignee (user with the id
+            // assignee: `${this.props.currentUser.primaryEmail}`,       // need to dispatch assignee (user with the id
             dueOn: "", 
             completed: "",
             completedAt: "",
@@ -33,6 +34,7 @@ class AddTask extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.selectSection = this.selectSection.bind(this);
         this.handleCloseTaskShow = this.handleCloseTaskShow.bind(this);
+        this.selectUser = this.selectUser.bind(this);
     }
 
     // componentDidMount() {
@@ -146,6 +148,11 @@ class AddTask extends React.Component {
         // debugger
     }
 
+    displayUserDropdown() {
+        const userDropdown = document.getElementById("user-dropdown-menu")
+        userDropdown.className = "user-dropdown-menu";
+    }
+
     selectSection(id) {
         // debugger
         return e => {
@@ -159,6 +166,45 @@ class AddTask extends React.Component {
             this.setState({ sectionId: id, section: this.props.sections[id].name });
             // this.setState({ sectionId: id, section: this.props.sections[id] });
         };
+    }
+
+    selectUser(id) {
+        return e => {
+            e.stopPropagation();
+            const userDropdown = document.getElementById("user-dropdown-menu")
+            userDropdown.className = "user-dropdown-menu-hidden";
+            this.setState({ assigneeId: id });
+        };
+    }
+
+    toggleTaskAssignment() {
+        const { assigneeId } = this.state;
+        const { users } = this.props;
+        const assignee = users[assigneeId];
+        const { fullName, primaryEmail } = assignee;
+
+        let initials = "";
+        if (fullName) {
+            const nameParts = fullName.trim().split(' ');
+            if (nameParts.length > 1) {
+                initials = nameParts.slice(0, 2).map(part => part.slice(0, 1).toUpperCase());
+            } else {
+                initials = fullName.slice(0, 2);
+            }
+        } else {
+            initials = primaryEmail.slice(0, 2);
+        }
+
+        return (
+            <div className="task-show-assign-button" onClick={this.displayUserDropdown}>
+                <div className="avatar-task-show-large">{initials}</div>
+                <div>
+                    <p className="task-show-assign-text1">Assigned to</p>
+                    <p className="task-show-assign-text2">{fullName ? fullName : primaryEmail}</p>
+                    <UserListDropdown selectUser={this.selectUser} />
+                </div>
+            </div>
+        );
     }
 
     handleCloseTaskShow(e) {
@@ -175,12 +221,16 @@ class AddTask extends React.Component {
     render() {
 
         const { id, name, description, project,
-            section, assignee, dueOn,
+            section, assigneeId, dueOn,
             completed, completedAt,
             createdAt, updatedAt, sectionId } = this.state;
 
+        const { currentUser } = this.props;
+
+        const assignee = this.props.users[assigneeId];
+
         // let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
-        let initials = assignee.slice(0, 2).toUpperCase(); // use full name later
+        // let initials = assignee.slice(0, 2).toUpperCase(); // use full name later
 
 
         return (
@@ -206,14 +256,14 @@ class AddTask extends React.Component {
                                 className="task-show-name-input" 
                                 placeholder="Write a task name"/>
                             <div className="task-show-section1-bottom">
-                                <div className="task-show-assign-button">
+                                {/* <div className="task-show-assign-button">
                                     <div className="avatar-task-show-large">{initials}</div>
                                     <div>
                                         <p className="task-show-assign-text1">Assigned to</p>
                                         <p className="task-show-assign-text2">{assignee}</p>
-                                        {/* <p className="task-show-assign-text2">{assignee.primaryEmail}</p> */}
                                     </div>
-                                </div>
+                                </div> */}
+                                {this.toggleTaskAssignment()}
                                 {this.toggleDatePicker()}
                                 {/* <div className="task-show-due-date-button">
                                     <div className="task-show-calendar-icon">
@@ -249,8 +299,8 @@ class AddTask extends React.Component {
                         </section>
                         <section className="task-show-section3">
                             <div className="task-show-section3-center">
-                                <p>{assignee} created this task.    Just now</p>
-                                <p>{assignee} updated this task.    Just now</p>
+                                <p>{currentUser.fullName ? currentUser.fullName : currentUser.primaryEmail} created this task.    Just now</p>
+                                <p>{currentUser.fullName ? currentUser.fullName : currentUser.primaryEmail} updated this task.    Just now</p>
                                 {/* {taskStatusMessage} */}
                             </div>
                         </section>

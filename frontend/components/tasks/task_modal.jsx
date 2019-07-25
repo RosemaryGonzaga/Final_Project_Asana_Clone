@@ -227,10 +227,12 @@ class TaskModal extends React.Component {
             completed, completedAt,
             createdAt, updatedAt } = this.state;
 
+        const { currentUser } = this.props;
+
         const section = this.props.sections[sectionId];
         // debugger
         const assignee = this.props.users[assigneeId];
-        let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
+        // let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
 
         // Calculation of time since task creation --> factor out into helper files later?
         const currentDateTime = new Date();
@@ -247,7 +249,7 @@ class TaskModal extends React.Component {
             // add checkmark icon inside taskStatusMessage
             let timeSinceCompletion = Date.parse(currentDateTime) - Date.parse(completedAt);
             const timeAgoSinceCompletion = timeAgoFormatted(timeSinceCompletion);
-            taskStatusMessage = <div>{assignee.primaryEmail} marked this task complete.  {timeAgoSinceCompletion}</div>
+            taskStatusMessage = <div>{currentUser.fullName ? currentUser.fullName : currentUser.primaryEmail} marked this task complete.  {timeAgoSinceCompletion}</div>
         } else {
             taskStatusMessage = null;
         }
@@ -317,8 +319,8 @@ class TaskModal extends React.Component {
                         </section>
                         <section className="task-show-section3">
                             <div className="task-show-section3-center">
-                                <p>{assignee.primaryEmail} created this task.    {timeAgoSinceCreation}</p>
-                                <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
+                                <p>{currentUser.fullName ? currentUser.fullName : currentUser.primaryEmail} created this task.    {timeAgoSinceCreation}</p>
+                                <p>{currentUser.fullName ? currentUser.fullName : currentUser.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
                                 {taskStatusMessage}
                             </div>
                         </section>

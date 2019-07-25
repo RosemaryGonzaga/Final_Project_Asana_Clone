@@ -13,7 +13,9 @@ const msp = (state, ownProps) => {
     const { tasks, sections, projects, users } = state.entities;
     const taskId = ownProps.taskId;
     const task = tasks[taskId];
-    return { task, sections, projects, users };
+    const currentUserId = state.session.id;
+    const currentUser = users[currentUserId];
+    return { task, sections, projects, users, currentUser };
     // return { sections, projects, users };
 };
 

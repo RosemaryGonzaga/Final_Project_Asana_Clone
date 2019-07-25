@@ -252,6 +252,8 @@ class TaskShow extends React.Component {
             sectionId, assigneeId, dueOn,
             completed, completedAt,
             createdAt, updatedAt } = this.state;
+
+        const { currentUser } = this.props;
         
         const section = this.props.sections[sectionId];
 
@@ -274,7 +276,7 @@ class TaskShow extends React.Component {
             let timeSinceCompletion = Date.parse(currentDateTime) - Date.parse(completedAt);
             const timeAgoSinceCompletion = timeAgoFormatted(timeSinceCompletion);
             // NEED TO REFACTOR THE BELOW LINE - ADD FIELD TO DB THAT STORES WHO MARKED THE TASK COMPLETE
-            taskStatusMessage = <div>{assignee.primaryEmail} marked this task complete.  {timeAgoSinceCompletion}</div>
+            taskStatusMessage = <div>{currentUser.fullName ? currentUser.fullName : currentUser.primaryEmail} marked this task complete.  {timeAgoSinceCompletion}</div>
         } else {
             taskStatusMessage = null;
         }
@@ -346,8 +348,8 @@ class TaskShow extends React.Component {
                         <section className="task-show-section3">
                             <div className="task-show-section3-center">
                                 {/* NEED TO REFACTOR THE BELOW TWO LINES - ADD FIELDS TO DB THAT STORES WHO CREATED & LAST UPDATED THE TASK */}
-                                <p>{assignee.primaryEmail} created this task.    {timeAgoSinceCreation}</p>
-                                <p>{assignee.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
+                                <p>{currentUser.fullName ? currentUser.fullName : currentUser.primaryEmail} created this task.    {timeAgoSinceCreation}</p>
+                                <p>{currentUser.fullName ? currentUser.fullName : currentUser.primaryEmail} updated this task.    {timeAgoSinceUpdate}</p>
                                 {taskStatusMessage}
                             </div>
                         </section>

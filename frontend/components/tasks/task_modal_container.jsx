@@ -14,8 +14,11 @@ const msp = (state, ownProps) => {
     const taskId = pathParts[pathParts.indexOf("projects") + 2];
     const task = tasks[taskId];
 
+    const currentUserId = state.session.id;
+    const currentUser = users[currentUserId];
+
     // debugger
-    return { task, sections, projects, users, taskId };
+    return { task, sections, projects, users, taskId, currentUser };
 };
 
 const mdp = dispatch => {

@@ -9,6 +9,10 @@
     color: #b7bfc6;
 }
 
+.delete-project-container.delete-team-membership-container.two-line-header > h1 {
+    height: 76px;
+}
+
 .delete-project-container.delete-team-membership-container > h2 {
     margin-top: 20px;
     margin-right: 30px;

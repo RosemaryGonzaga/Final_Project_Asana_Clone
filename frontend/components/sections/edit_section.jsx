@@ -77,7 +77,7 @@ class EditSection extends React.Component {
     // Need to tweak delete functionality so they can only delete an empty section (section with no tasks)
     handleDeleteSection(e) {
         e.preventDefault();
-        console.log("Working on this feature");
+        // console.log("Working on this feature");
         const { sections, deleteSection, exitTaskShowUponTaskDeletion } = this.props;
         if (Object.keys(sections).length > 1) {
             deleteSection(this.state.id);

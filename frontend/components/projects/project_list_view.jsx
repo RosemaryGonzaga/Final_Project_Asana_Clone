@@ -140,7 +140,8 @@ class ProjectListView extends React.Component {
             sectionIdProp = sectionIdProp.slice(7, sectionIdProp.length);
         }
         // debugger
-        const editSectionComponent = <EditSectionContainer sectionId={sectionIdProp}/>
+        const editSectionComponent = <EditSectionContainer sectionId={sectionIdProp}
+                                                exitTaskShowUponTaskDeletion={this.exitTaskShowUponTaskDeletion} />
 
         let rightComponentToRender = descriptionComponent;
         let mainContentClass = "project-show-list-main-content";

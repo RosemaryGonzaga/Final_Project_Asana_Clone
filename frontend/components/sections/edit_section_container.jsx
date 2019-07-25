@@ -13,8 +13,10 @@ const msp = (state, ownProps) => {
     const { sections, projects, users } = state.entities;
     const sectionId = ownProps.sectionId;
     const section = sections[sectionId];
+    const currentUserId = state.session.id;
+    const currentUser = users[currentUserId];
     // debugger
-    return { section, sections, projects, users };
+    return { section, sections, projects, users, currentUser };
 };
 
 const mdp = dispatch => {

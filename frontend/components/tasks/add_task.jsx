@@ -3,6 +3,8 @@ import { timeAgoFormatted, MONTHS } from '../../util/time_ago_format_helper';
 import DatePicker from 'react-datepicker';
 import { SectionListDropdown } from './section_list_dropdown';
 import UserListDropdown from './user_list_dropdown';
+import AvatarToken from '../avatars/avatar_token';
+
 // import { timeAgoFormatted } from '../../util/time_ago_format_helper';
 // import { closeModal } from '../../actions/modal_actions';
 // import { Link } from 'react-router-dom';
@@ -183,21 +185,9 @@ class AddTask extends React.Component {
         const assignee = users[assigneeId];
         const { fullName, primaryEmail } = assignee;
 
-        let initials = "";
-        if (fullName) {
-            const nameParts = fullName.trim().split(' ');
-            if (nameParts.length > 1) {
-                initials = nameParts.slice(0, 2).map(part => part.slice(0, 1).toUpperCase());
-            } else {
-                initials = fullName.slice(0, 2);
-            }
-        } else {
-            initials = primaryEmail.slice(0, 2);
-        }
-
         return (
             <div className="task-show-assign-button" onClick={this.displayUserDropdown}>
-                <div className="avatar-task-show-large">{initials}</div>
+                <AvatarToken user={assignee} size="medium" />
                 <div>
                     <p className="task-show-assign-text1">Assigned to</p>
                     <p className="task-show-assign-text2">{fullName ? fullName : primaryEmail}</p>

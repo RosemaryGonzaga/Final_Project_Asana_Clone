@@ -1,0 +1,37 @@
+.avatar-token {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: none;
+    border-radius: 50%;
+    position: relative;
+    color: white;
+
+    /* default size and color */
+    width: 30px;
+    height: 30px;
+    background-color: #eec300;
+    border: 1px solid #be9c09;
+    font-size: 11px;
+}
+
+.avatar-token.large-token {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+}
+
+.avatar-token.medium-token {
+    width: 30px;
+    height: 30px;
+}
+
+.avatar-token.small-token {
+    width: 24px;
+    height: 24px;
+}
+
+.avatar-token.pointer {
+    cursor: pointer;
+}

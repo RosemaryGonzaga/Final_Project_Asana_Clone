@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AvatarToken from '../avatars/avatar_token';
 
 class TeamSidebar extends React.Component {
     constructor(props) {
@@ -27,7 +28,8 @@ class TeamSidebar extends React.Component {
         // Implemented option 2
         let teamMembers = users.map(user => {
             const initials = user.primaryEmail.slice(0, 2).toUpperCase();
-            return <li className="team-sidebar-initials avatar" key={user.id}>{initials}</li>;
+            return <li className="team-sidebar-initials" key={user.id}><AvatarToken user={user} size="small" pointer="pointer" /></li>;
+            // return <li className="team-sidebar-initials avatar" key={user.id}>{initials}</li>;
         });
 
         if (teamMembers.length <= 3) {

@@ -17,6 +17,7 @@ import { fetchProjects } from '../actions/project_actions';
 import { fetchTeams } from '../actions/team_actions';
 import { fetchUsers } from '../actions/user_actions';
 import { receiveCurrentTeam, resetCurrentTeam } from '../actions/current_team_actions';
+import AvatarToken from './avatars/avatar_token';
 // import { receiveMainContent } from '../actions/main_content_actions';
 // import { receiveNavHeader } from '../../actions/nav_header_actions';
 // import NewProjectForm from './projects/new_project_form';
@@ -182,10 +183,15 @@ class Home extends React.Component {
                                     <Link to="/projects/new"><i className="fas fa-plus"></i> New</Link>
                                 </li>
                                 {/* <li ><button className="random-buttons" onClick={this.handleClick} id="home-logout-btn">Sign Out</button></li> */}
-                                <li className="avatar" onClick={this.displayAvatarDropdown}>
+                                
+                                {/* <li className="avatar" onClick={this.displayAvatarDropdown}>
                                     {initials}
                                     <AvatarDropdown closeAvatarDropdown={this.closeAvatarDropdown}/>
-                                </li>
+                                </li> */}
+                                <AvatarToken user={currentUser} size="small" 
+                                    pointer="pointer" onClick={this.displayAvatarDropdown}
+                                    dropdown={<AvatarDropdown closeAvatarDropdown={this.closeAvatarDropdown} />} />
+
                             </ul>                            
                         </nav>
                     </div>

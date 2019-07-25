@@ -1,4 +1,5 @@
 import React from 'react';
+import AvatarToken from '../avatars/avatar_token';
 
 export const TeamShowMemberIndexItem = props => {
     const { user, openModal } = props;
@@ -24,10 +25,12 @@ export const TeamShowMemberIndexItem = props => {
             </li>
         );
     } else {
-        const initials = user.primaryEmail.slice(0, 2).toUpperCase();
+        // const initials = user.primaryEmail.slice(0, 2).toUpperCase();
         return (
             <li className="team-show-member-index-item">
-                <div className="team-show-member-avatar avatar">{initials}</div>
+                <AvatarToken user={user} size="large" />
+                {/* <div className="team-show-member-avatar"></div> */}
+                {/* <div className="team-show-member-avatar avatar">{initials}</div> */}
                 <div className="team-show-member-text">
                     {/* later, replace user.primaryEmail with user.fullName */}
                     <div className="team-show-member-full-name">{user.primaryEmail}</div>

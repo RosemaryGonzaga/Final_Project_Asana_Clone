@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { deleteTeamMembership } from '../../actions/team_membership_actions';
 import { removeUser } from '../../actions/user_actions';
 import { openModal } from '../../actions/modal_actions';
+import AvatarToken from '../avatars/avatar_token';
 
 class WorkspaceMemberIndexItem extends React.Component {
     constructor(props) {
@@ -34,12 +35,13 @@ class WorkspaceMemberIndexItem extends React.Component {
 
     render() {
         const { user } = this.props;
-        const initials = user.primaryEmail.slice(0, 2).toUpperCase();
+        // const initials = user.primaryEmail.slice(0, 2).toUpperCase();
         
         if (!this.state.removeMember) {
             return (
                 <li className="member-settings-index-item">
-                    <div className="member-settings-avatar avatar">{initials}</div>
+                    <AvatarToken user={user} size="medium" />
+                    {/* <div className="member-settings-avatar avatar">{initials}</div> */}
                     {/* later, replace user.primaryEmail with user.fullName */}
                     <div className="member-settings-full-name">{user.primaryEmail}</div>
                     {/* see note two lines up */}

@@ -115,13 +115,17 @@
     margin-bottom: 20px;
 }
 
-.team-show-member-avatar.avatar {
+/* .team-show-member-avatar.avatar {
     width: 36px;
     height: 36px;
     border-radius: 19px;
     font-size: 13px;
     margin-right: 17px;
     box-sizing: border-box;
+} */
+
+.team-show-member-text {
+    margin-left: 17px;
 }
 
 .team-show-member-full-name {

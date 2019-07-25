@@ -4,6 +4,7 @@ import { timeAgoFormatted, MONTHS } from '../../util/time_ago_format_helper';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { SectionListDropdown } from './section_list_dropdown';
+import UserListDropdown from './user_list_dropdown';
 
 // import "react-datepicker/dist/react-datepicker.css";
 // import "node_modules/react-datepicker/dist/react-datepicker.css";   // node_modules/react-datepicker/dist/react-datepicker.css
@@ -20,7 +21,7 @@ class TaskShow extends React.Component {
             sectionId, assigneeId, dueOn,
             completed, completedAt,
             createdAt, updatedAt } = task;
-        const section = sections[sectionId];    // move this to the render method? (similar to what I did w/ assignee?)
+        // const section = sections[sectionId];    // move this to the render method? (similar to what I did w/ assignee?)
         const project = projects[projectId];    // move this to the render method? (similar to what I did w/ assignee?)
         // const assignee = users[assigneeId];  // assignee only gets set once (constructor method) ... better to set this var's value in the render method
 
@@ -28,7 +29,7 @@ class TaskShow extends React.Component {
         this.state = { 
             id, name, description, project, 
             // section, assignee, dueOn, completed, 
-            section, assigneeId, dueOn, completed, 
+            assigneeId, dueOn, completed, 
             completedAt, createdAt, updatedAt, projectId,
             sectionId,
             dueDateButton: true,
@@ -41,6 +42,8 @@ class TaskShow extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.selectSection = this.selectSection.bind(this);
         this.handleCloseTaskShow = this.handleCloseTaskShow.bind(this);
+        this.selectUser = this.selectUser.bind(this);
+        // this.toggleTaskAssignment = this.toggleTaskAssignment.bind(this);
         // this.handleDueDateSelection = this.handleDueDateSelection.bind(this);
     }    
 
@@ -175,6 +178,11 @@ class TaskShow extends React.Component {
         // debugger
     }
 
+    displayUserDropdown() {
+        const userDropdown = document.getElementById("user-dropdown-menu")
+        userDropdown.className = "user-dropdown-menu";
+    }
+
     selectSection(id) {
         return e => {
             // Note: e.stopPropagation prevents the click from bubbling up to dropdown parent 
@@ -183,7 +191,17 @@ class TaskShow extends React.Component {
             const sectionDropdown = document.getElementById("section-dropdown-menu")
             sectionDropdown.className = "section-dropdown-menu-hidden";
             // debugger
-            this.setState({ sectionId: id, section: this.props.sections[id] });
+            this.setState({ sectionId: id });
+            // this.setState({ sectionId: id, section: this.props.sections[id] });
+        };
+    }
+
+    selectUser(id) {
+        return e => {
+            e.stopPropagation();
+            const userDropdown = document.getElementById("user-dropdown-menu")
+            userDropdown.className = "user-dropdown-menu-hidden";
+            this.setState({ assigneeId: id });
         };
     }
 
@@ -193,6 +211,36 @@ class TaskShow extends React.Component {
         const path = `/home/projects/${this.state.projectId}`;
         this.props.history.push(path);
         exitTaskShowUponTaskDeletion();
+    }
+
+    toggleTaskAssignment() {
+        const { assigneeId } = this.state;
+        const { users } = this.props;
+        const assignee = users[assigneeId];
+        const { fullName, primaryEmail } = assignee;
+
+        let initials = "";
+        if (fullName) {
+            const nameParts = fullName.trim().split(' ');
+            if (nameParts.length > 1) {
+                initials = nameParts.slice(0, 2).map(part => part.slice(0, 1).toUpperCase());
+            } else {
+                initials = fullName.slice(0, 2);
+            }
+        } else {
+            initials = primaryEmail.slice(0, 2);
+        }
+
+        return (
+            <div className="task-show-assign-button" onClick={this.displayUserDropdown}>
+                <div className="avatar-task-show-large">{initials}</div>
+                <div>
+                    <p className="task-show-assign-text1">Assigned to</p>
+                    <p className="task-show-assign-text2">{fullName ? fullName : primaryEmail}</p>
+                    <UserListDropdown selectUser={this.selectUser} />
+                </div>
+            </div>
+        );
     }
 
 
@@ -208,7 +256,7 @@ class TaskShow extends React.Component {
         const section = this.props.sections[sectionId];
 
         const assignee = this.props.users[assigneeId];
-        let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
+        // let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
         // debugger
         // Calculation of time since task creation --> factor out into helper files later?
         const currentDateTime = new Date();
@@ -262,13 +310,14 @@ class TaskShow extends React.Component {
                                 onChange={this.handleChange("name")} 
                                 className="task-show-name-input" />
                             <div className="task-show-section1-bottom">
-                                <div className="task-show-assign-button">
+                                {/* <div className="task-show-assign-button">
                                     <div className="avatar-task-show-large">{initials}</div>
                                     <div>
                                         <p className="task-show-assign-text1">Assigned to</p>
                                         <p className="task-show-assign-text2">{assignee.primaryEmail}</p>
                                     </div>
-                                </div>
+                                </div> */}
+                                {this.toggleTaskAssignment()}
                                 {this.toggleDatePicker()}
                             </div>
                         </section>

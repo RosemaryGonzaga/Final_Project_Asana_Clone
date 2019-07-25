@@ -152,7 +152,9 @@
 }
 
 .task-show-assign-button {
-    width: 172px;
+    /* width: 172px; */
+    min-width: 142px;
+    max-width: 172px;
     height: 40px;
     border: 1px solid transparent;
     border-radius: 20px;
@@ -161,12 +163,17 @@
     color: #151b26;
     font-size: 13px;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
     margin-bottom: 4px;
     transition-duration: 400ms;
     transition-property: background-color, border-color;
     margin-right: 10px;
+    box-sizing: border-box;
+    padding-left: 4px;
+    padding-right: 6px;
+    cursor: pointer;
+    position: relative;
 }
 
 .task-show-assign-button:hover {
@@ -198,13 +205,18 @@
     color: #848f99;
     font-weight: 500;
     line-height: 16px;
+    margin-left: 10px;
 }
 
 .task-show-assign-text2 {
-    width: 117px;
+    /* width: 117px; */
+    min-width: 70px;
+    max-width: 117px;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 18px;
+    margin-left: 10px;
+    white-space: nowrap;
 }
 
 .task-show-due-date-button {
@@ -221,6 +233,7 @@
     justify-content: space-around;
     align-items: center;
     /* margin-left: 12px; */
+    cursor: pointer;
     margin-bottom: 4px;
     transition-duration: 400ms;
     transition-property: background-color, border-color, color;
@@ -391,11 +404,12 @@
     color: #848f99;
     font-size: 13px;
     margin-left: 8px;
-
+    cursor: pointer;
     position: relative;
 }
 
-.section-dropdown-menu {
+.section-dropdown-menu,
+.user-dropdown-menu {
     position: absolute;
     z-index: 10;
     background-color: white;
@@ -404,7 +418,16 @@
     min-width: 185px;
 }
 
-.section-dropdown-menu > li {
+.user-dropdown-menu {
+    width: 452px;
+    max-height: 192px;
+    overflow-y: scroll;
+    right: 0;
+    top: 40px;
+}
+
+.section-dropdown-menu > li,
+.user-dropdown-menu > li {
     box-sizing: border-box;
     padding: 10px;
     /* padding-left: 10px; */
@@ -414,14 +437,26 @@
     color: #151b26;
 }
 
-.section-dropdown-menu > li:hover {
+.user-dropdown-menu > li {
+    white-space: nowrap;
+}
+
+.user-dropdown-menu > li > p:last-of-type {
+    color: #848f99;
+    font-size: 11px;
+    margin-left: 12px;
+}
+
+.section-dropdown-menu > li:hover,
+.user-dropdown-menu > li:hover {
    /* background-color: #f6f8f9; */
     background-color: #edf1f2;
     cursor: pointer;
 }
 
 
-.section-dropdown-menu-hidden {
+.section-dropdown-menu-hidden,
+.user-dropdown-menu-hidden {
     display: none;
 }
 

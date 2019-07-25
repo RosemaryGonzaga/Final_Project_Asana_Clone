@@ -78,11 +78,13 @@ class EditSection extends React.Component {
     handleDeleteSection(e) {
         e.preventDefault();
         console.log("Working on this feature");
-        // const { deleteTask, exitTaskShowUponTaskDeletion } = this.props;
-        // deleteTask(this.state.id);
-        // const path = `/home/projects/${this.state.projectId}`;
-        // this.props.history.push(path);
-        // exitTaskShowUponTaskDeletion();
+        const { sections, deleteSection, exitTaskShowUponTaskDeletion } = this.props;
+        if (Object.keys(sections).length > 1) {
+            deleteSection(this.state.id);
+            const path = `/home/projects/${this.state.projectId}`;
+            this.props.history.push(path);
+            exitTaskShowUponTaskDeletion();
+        }
     }
 
     displayUserDropdown() {
@@ -196,7 +198,7 @@ class EditSection extends React.Component {
             completed, completedAt,
             createdAt, updatedAt } = this.state;
 
-        const { currentUser } = this.props;
+        const { currentUser, sections } = this.props;
 
         // let initials = assignee.primaryEmail.slice(0, 2).toUpperCase(); // use full name later
 
@@ -220,6 +222,19 @@ class EditSection extends React.Component {
             sectionStatusMessage = null;
         }
 
+        let deleteSectionButton = null;
+
+        if (Object.keys(sections).length > 1) {
+            deleteSectionButton = (
+                <Link to={`/home/projects/${this.state.projectId}`}
+                    // className="section-index-item-container"
+                    className="random-buttons"
+                    onClick={this.handleDeleteSection}
+                    id={this.state.id} section={this.state} > Delete section
+                </Link>
+            );
+        }
+
 
         return (
             <div className="task-show-container">
@@ -233,12 +248,14 @@ class EditSection extends React.Component {
                         {/* <button onClick={this.handleDeleteTask}>Delete task</button> */}
 
 
-                        <Link to={`/home/projects/${this.state.projectId}`}
+                        {/* <Link to={`/home/projects/${this.state.projectId}`}
                             // className="section-index-item-container"
                             className="random-buttons"
                             onClick={this.handleDeleteSection}
                             id={this.state.id} section={this.state} > Delete section
-                        </Link>
+                        </Link> */}
+
+                        {deleteSectionButton}
 
                         <button className="task-show-close-btn" onClick={this.handleCloseTaskShow} >
                             {/* <img src={window.closeButtonHover} alt="x" /> */}

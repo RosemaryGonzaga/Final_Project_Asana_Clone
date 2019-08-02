@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { updateTask } from '../../actions/task_actions';
 
 class SectionIndexItem extends React.Component {
 
     constructor(props) {
         super(props);
+        
         this.toggleComplete = this.toggleComplete.bind(this);
     }
 
@@ -22,13 +23,15 @@ class SectionIndexItem extends React.Component {
     }
 
     render() {
-        const { task, handleOpenTaskShowClick } = this.props;
+        const { task, handleOpenTaskShowClick, taskId } = this.props;
 
         const completedClass = task.completed ? "completed" : "";
 
+        const selectedClass = task.id.toString() === taskId.toString() ? "selected" : "";
+        // debugger
         return (
             <Link to={`/home/projects/${task.projectId}/${task.id}`}      // '/home/projects/:projectId/:taskId'
-                className="section-index-item-container"
+                className={`section-index-item-container ${selectedClass}`}
                 onClick={handleOpenTaskShowClick}
                 id={task.id} >
                 <div className={`check-task-circle ${completedClass}`}
@@ -45,10 +48,18 @@ class SectionIndexItem extends React.Component {
     }
 }
 
+const msp = (state, ownProps) => {
+    // const { tasks } = state.entities;
+    const pathParts = ownProps.location.pathname.split("/");
+    const taskId = pathParts[pathParts.length - 1];
+    // const task = tasks[taskId];
+    return { taskId };
+};
+
 const mdp = dispatch => {
     return {
         updateTask: task => dispatch(updateTask(task)),
     };
 };
 
-export default connect(null, mdp)(SectionIndexItem);
+export default withRouter(connect(msp, mdp)(SectionIndexItem));

@@ -25,6 +25,10 @@
     border-color: #848F99;
 }
 
+.section-header.selected {
+    background-color: #edf8ff;
+}
+
 /* .section-header-text {
     color: #151b26;
 }
@@ -66,11 +70,18 @@
 }
 
 .section-index-item-container:last-of-type {
-    border-bottom: none;
+    /* border-bottom: none; */
+    border-bottom: 1px solid transparent;
 }
 
 .section-index-item-container:hover {
     background-color: #f6f8f9;
+    border-bottom: 1px solid #e0e6e8;
+}
+
+.section-index-item-container.selected {
+    background-color: #edf8ff;
+    /* border-color: transparent; */
 }
 
 .check-task-circle {

@@ -24,7 +24,7 @@ class Section extends React.Component {
     // }
 
     render() {
-        const { section, tasks, handleOpenTaskShowClick, handleOpenSectionShowClick } = this.props;
+        const { section, tasks, handleOpenTaskShowClick, handleOpenSectionShowClick, sectionId } = this.props;
 
         const taskItems = tasks.map(task => {
             if (task.sectionId === section.id) {
@@ -36,11 +36,13 @@ class Section extends React.Component {
 
         const completionClass = section.completed ? "completed" : "";
 
+        const selectedClass = section.id.toString() === sectionId.toString() ? "selected" : "";
+
         return (
             <div className="section-container">
                 {/* <div className="section-header">{section.name}</div> */}
                 <Link to={`/home/projects/${section.projectId}/${section.id}`}      // '/home/projects/:projectId/:taskId'
-                    className={`section-header ${completionClass}`}
+                    className={`section-header ${completionClass} ${selectedClass}`}
                     onClick={handleOpenSectionShowClick(section.id)}
                     id={section.id} >
                     {/* <div className={`check-task-circle ${completedClass}`}>

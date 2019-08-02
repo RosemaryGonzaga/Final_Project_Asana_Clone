@@ -7,7 +7,9 @@ import { selectAllTasks } from '../../reducers/selectors';
 
 const msp = (state, ownProps) => {
     const tasks = selectAllTasks(state);
-    return { tasks };
+    const pathParts = ownProps.location.pathname.split("/");
+    const sectionId = pathParts[pathParts.length - 1];
+    return { tasks, sectionId };
 };
 
 const mdp = dispatch => {

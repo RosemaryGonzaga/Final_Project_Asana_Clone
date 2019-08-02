@@ -1,36 +1,54 @@
 import React from 'react';
-import TaskShowContainer from '../tasks/task_show_container';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { updateTask } from '../../actions/task_actions';
 
-export const SectionIndexItem = props => {
+class SectionIndexItem extends React.Component {
 
-    // const { section } = props;
-    // let layoutIcon;
-    // if (section.layout === "list") {
-    //     layoutIcon = <i className="fas fa-list"></i>;
-    // } else if (section.layout === "board") {
-    //     layoutIcon = <i className="fab fa-trello"></i>
-    // } else {
-    //     layoutIcon = null;
-    // }
+    constructor(props) {
+        super(props);
+        this.toggleComplete = this.toggleComplete.bind(this);
+    }
 
-    const { task, handleOpenTaskShowClick } = props;
+    toggleComplete(e) {
+        const { task, updateTask } = this.props;
+        const { id, completed } = task;
+        const completedAt = completed ? null : new Date();
+        updateTask({ id, completed: !completed, completedAt })
+        // const that = this;
+        // updateTask({ id, completed: !completed, completedAt }).then(payload => {
+        //     fetchTask(id);
+        // });
+    }
 
-    const completedClass = task.completed ? "completed" : "";
+    render() {
+        const { task, handleOpenTaskShowClick } = this.props;
 
-    return (
-        <Link to={`/home/projects/${task.projectId}/${task.id}`}      // '/home/projects/:projectId/:taskId'
-            className="section-index-item-container"
-            onClick={handleOpenTaskShowClick}
-            id={task.id} >
-            <div className={`check-task-circle ${completedClass}`}>
-                <i className="fas fa-check task-item"></i>
-            </div>
-            <p className={`task-item-name ${completedClass}`}>{task.name}</p>
+        const completedClass = task.completed ? "completed" : "";
 
-            {/* <input type="text" value={task.name}
-                onChange={this.handleChange("name")}
-                className="task-show-name-input" /> */}
-        </Link>
-    );
+        return (
+            <Link to={`/home/projects/${task.projectId}/${task.id}`}      // '/home/projects/:projectId/:taskId'
+                className="section-index-item-container"
+                onClick={handleOpenTaskShowClick}
+                id={task.id} >
+                <div className={`check-task-circle ${completedClass}`}
+                    onClick={this.toggleComplete}>
+                    <i className="fas fa-check task-item"></i>
+                </div>
+                <p className={`task-item-name ${completedClass}`}>{task.name}</p>
+
+                {/* <input type="text" value={task.name}
+                    onChange={this.handleChange("name")}
+                    className="task-show-name-input" /> */}
+            </Link>
+        );
+    }
+}
+
+const mdp = dispatch => {
+    return {
+        updateTask: task => dispatch(updateTask(task)),
+    };
 };
+
+export default connect(null, mdp)(SectionIndexItem);

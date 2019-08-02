@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionIndexItem } from './section_index_item';
+import SectionIndexItem from './section_index_item';
 // import ProjectListView from './project_list_view';
 // import ProjectBoardView from './project_board_view';
 import { Link } from 'react-router-dom';

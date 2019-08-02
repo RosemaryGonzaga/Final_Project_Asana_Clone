@@ -63,7 +63,11 @@ class TaskShow extends React.Component {
         //     this.setState({ ...this.props.task });
         // }
         if (this.state.id.toString() !== prevProps.taskId.toString()) {  // need to use taskId b/c task.id is undefined in prevProps if this component updates after deleting a task
-            // debugger
+            this.setState({ ...this.props.task });
+        }
+
+        // Update "Mark Complete / Completed" button if the task's completion status has changed
+        if (this.props.task.completed !== prevProps.task.completed) {
             this.setState({ ...this.props.task });
         }
     }
@@ -309,7 +313,7 @@ class TaskShow extends React.Component {
 
                         <button className="task-show-close-btn" onClick={this.handleCloseTaskShow} >
                             {/* <img src={window.closeButtonHover} alt="x" /> */}
-                            <i class="fas fa-times"></i>
+                            <i className="fas fa-times"></i>
                         </button>
                     </h1>
                     <div className="task-show-form-content">

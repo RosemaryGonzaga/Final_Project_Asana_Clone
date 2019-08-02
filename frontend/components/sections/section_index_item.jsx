@@ -15,14 +15,18 @@ export const SectionIndexItem = props => {
     // }
 
     const { task, handleOpenTaskShowClick } = props;
-    // debugger
+
+    const completedClass = task.completed ? "completed" : "";
+
     return (
         <Link to={`/home/projects/${task.projectId}/${task.id}`}      // '/home/projects/:projectId/:taskId'
             className="section-index-item-container"
             onClick={handleOpenTaskShowClick}
             id={task.id} >
-            <i className="far fa-check-circle" id="fa-check-circle-task-item"></i>
-            <p>{task.name}</p>
+            <div className={`check-task-circle ${completedClass}`}>
+                <i className="fas fa-check task-item"></i>
+            </div>
+            <p className={`task-item-name ${completedClass}`}>{task.name}</p>
 
             {/* <input type="text" value={task.name}
                 onChange={this.handleChange("name")}

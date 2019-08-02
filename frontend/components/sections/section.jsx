@@ -34,15 +34,19 @@ class Section extends React.Component {
             }
         });
 
+        const completionClass = section.completed ? "completed" : "";
+
         return (
             <div className="section-container">
                 {/* <div className="section-header">{section.name}</div> */}
                 <Link to={`/home/projects/${section.projectId}/${section.id}`}      // '/home/projects/:projectId/:taskId'
-                    className="section-header"
+                    className={`section-header ${completionClass}`}
                     onClick={handleOpenSectionShowClick(section.id)}
                     id={section.id} >
-                    <i className="far fa-check-circle" id="fa-check-circle-task-item"></i>
-                    <p>{section.name}</p>
+                    {/* <div className={`check-task-circle ${completedClass}`}>
+                        <i className="fas fa-check task-item"></i>
+                    </div> */}
+                    <p className={`section-header-text ${completionClass}`}>{section.name}</p>
                 </Link>
                 <ul className="section-tasks">{taskItems}</ul>
             </div>

@@ -68,7 +68,7 @@
     border-color: #b7bfc6;
     color: #646f79;
     font-size: 13px;
-    transition-duration: 400ms;
+    transition-duration: 200ms;
     transition-property: background-color, border-color, color;
     cursor: pointer;
     margin-right: 10px;
@@ -94,6 +94,23 @@
 
 #fas-fa-check-task-button {
     margin-right: 5px;
+}
+
+
+.mark-complete-btn.completed {
+    width: 107px;
+    border-color: #25e8c8;
+    color: white;
+    background-color: #25e8c8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 9px 2px;
+}
+
+.mark-complete-btn.completed:hover {
+    background-color: #00bf9c;
+    border-color: #00bf9c;
 }
 
 

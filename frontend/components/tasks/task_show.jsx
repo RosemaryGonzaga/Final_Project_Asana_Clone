@@ -270,15 +270,32 @@ class TaskShow extends React.Component {
             taskStatusMessage = null;
         }
 
+        const markCompleteBtn = (
+            <button className="mark-complete-btn" onClick={this.toggleComplete} type="button">
+                <i className="fas fa-check" id="fas-fa-check-task-button"></i>
+                Mark Complete
+            </button>
+        );
+
+        const completedBtn = (
+            <button className="mark-complete-btn completed" onClick={this.toggleComplete} type="button">
+                <i className="fas fa-check" id="fas-fa-check-task-button-completed"></i>
+                Completed
+            </button>
+        );
+
+        const completionStatusBtn = completed ? completedBtn : markCompleteBtn;
+
 
         return (
             <div className="task-show-container">
                 <form className="task-show-form" onSubmit={this.handleSubmit}>
                     <h1 className="task-show-header">
-                        <button className="mark-complete-btn" onClick={this.toggleComplete} type="button">
+                        {/* <button className="mark-complete-btn" onClick={this.toggleComplete} type="button">
                             <i className="fas fa-check" id="fas-fa-check-task-button"></i>
                             Mark Complete
-                        </button>
+                        </button> */}
+                        {completionStatusBtn}
                         <input className="random-buttons" type="submit" value="Submit"/>
                         {/* <button onClick={this.handleDeleteTask}>Delete task</button> */}
 

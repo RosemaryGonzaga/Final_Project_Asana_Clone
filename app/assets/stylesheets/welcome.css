@@ -61,3 +61,15 @@
 .filtered-task-index-container > ul > .section-index-item-container {
     padding-left: 10px;
 }
+
+.filtered-task-index-container > ul > .no-tasks-msg {
+    font-size: 13px;
+    color: #848f99;
+    margin: 0 auto;
+}
+
+.filtered-task-index-container > .no-tasks-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

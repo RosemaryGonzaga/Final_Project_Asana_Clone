@@ -36,7 +36,7 @@ class FilteredTaskIndex extends React.Component {
 
         // debugger
         const today = new Date();
-        const dueSoon = [];
+        let dueSoon = [];
 
         // tasks.forEach(task => {
         userTasks.forEach(task => {
@@ -57,12 +57,14 @@ class FilteredTaskIndex extends React.Component {
                     showProject={true} showDate={true} showAssignee={false} />);
             }
         });
-
+        
+        const dueTasksClass = dueSoon.length > 0 ? "" : "no-tasks-msg";
+        const noTasksMsg = <li className="no-tasks-msg">No tasks due in the next five days</li>;
         // debugger
         return (
             <div className="filtered-task-index-container"> 
                 <h2>Tasks Due Soon</h2>
-                <ul>{dueSoon}</ul>
+                <ul className={`${dueTasksClass}`}>{dueSoon.length > 0 ? dueSoon : noTasksMsg}</ul>
             </div>
         );
     }

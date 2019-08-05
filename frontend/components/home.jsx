@@ -18,6 +18,7 @@ import { fetchTeams } from '../actions/team_actions';
 import { fetchUsers } from '../actions/user_actions';
 import { receiveCurrentTeam, resetCurrentTeam } from '../actions/current_team_actions';
 import AvatarToken from './avatars/avatar_token';
+import { openModal } from '../actions/modal_actions';
 // import { receiveMainContent } from '../actions/main_content_actions';
 // import { receiveNavHeader } from '../../actions/nav_header_actions';
 // import NewProjectForm from './projects/new_project_form';
@@ -31,6 +32,7 @@ class Home extends React.Component {
 
         this.handleClick = this.handleClick.bind(this);
         this.displayAvatarDropdown = this.displayAvatarDropdown.bind(this);
+        this.openProfileSettingsModal = this.openProfileSettingsModal.bind(this);
     }
 
     componentDidMount() {
@@ -78,6 +80,11 @@ class Home extends React.Component {
         avatarDropdown.className = "avatar-dropdown-menu-hidden";
     }
 
+    openProfileSettingsModal(e) {
+        const { openModal } = this.props;
+        openModal('openProfileSettings');
+    }
+
     render() {
         const { currentUser, currentResource, currentTeam } = this.props;
         // debugger
@@ -98,7 +105,7 @@ class Home extends React.Component {
         } else if (currentResource.component === "taskIndex") {
             navHeader = `${firstName}'s Tasks - ${currentTeam ? currentTeam.name : ''}`;
             avatarToken = <AvatarToken user={currentUser} size="small"
-                pointer="pointer" onClick={this.displayAvatarDropdown} />;
+                pointer="pointer" onClick={this.openProfileSettingsModal} />;
         } else if (currentResource.component === "teamOverview") {
             navHeader = `${currentTeam ? currentTeam.name : ''}`;
             layoutText = (
@@ -298,6 +305,7 @@ const mdp = dispatch => {
         fetchUsers: teamId => dispatch(fetchUsers(teamId)), // refactored thunk action creator to take in a teamId
         receiveCurrentTeam: team => dispatch(receiveCurrentTeam(team)),
         resetCurrentTeam: team => dispatch(resetCurrentTeam(team)),
+        openModal: modal => dispatch(openModal(modal)),
     });
 };
 

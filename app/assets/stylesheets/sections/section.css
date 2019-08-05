@@ -150,3 +150,19 @@
 .section-index-item-due-date.today {
     color: #00bf9c;
 }
+
+.section-index-item-right > .task-show-project-icon {
+    margin-right: 8px;
+    width: 75px;
+    height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    font-size: 11px;
+    padding: 2px 8px;
+}
+
+.section-index-item-right > .task-show-project-icon:hover {
+    background-color: #6558ee;
+}

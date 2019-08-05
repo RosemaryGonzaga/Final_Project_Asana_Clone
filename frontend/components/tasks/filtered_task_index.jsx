@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { TaskIndexItem } from './task_index_item';
+// import { TaskIndexItem } from './task_index_item';
+import SectionIndexItem from '../sections/section_index_item';
 import { selectAllTasks, selectAllProjects } from '../../reducers/selectors';
 import { fetchTasks } from '../../actions/task_actions';
 // import { Link } from 'react-router-dom';
@@ -51,7 +52,9 @@ class FilteredTaskIndex extends React.Component {
             const timeDiff = Date.parse(dueOn) - Date.parse(today);
 
             if (taskDueToday || (timeDiff > 0 && timeDiff < 172800000)) {
-                dueSoon.push(<TaskIndexItem task={task} key={task.id} project={project} />);
+                // dueSoon.push(<TaskIndexItem task={task} key={task.id} project={project} />);
+                dueSoon.push(<SectionIndexItem task={task} key={task.id}
+                    showProject={true} showDate={true} showAssignee={false} />);
             }
         });
 

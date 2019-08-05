@@ -81,16 +81,24 @@ class Home extends React.Component {
     render() {
         const { currentUser, currentResource, currentTeam } = this.props;
         // debugger
-        let initials = currentUser ? currentUser.primaryEmail.slice(0,2).toUpperCase() : "";  // this is temporary --> need to grab initials from user's full name
+        // let initials = currentUser ? currentUser.primaryEmail.slice(0,2).toUpperCase() : "";  // this is temporary --> need to grab initials from user's full name
+        let firstName;
+        if (currentUser) {
+            firstName = currentUser.fullName ? currentUser.fullName.split(" ")[0] : currentUser.primaryEmail.split("@")[0];
+        }
+
         let navHeader;
         let layoutIcon;
         let layoutText;
+        let avatarToken = null;
         if (currentResource.component === "home") {
             navHeader = "Home";
         } else if (currentResource.component === "projectIndex") {
             navHeader = "Projects";
         } else if (currentResource.component === "taskIndex") {
-            navHeader = "Tasks";
+            navHeader = `${firstName}'s Tasks - ${currentTeam ? currentTeam.name : ''}`;
+            avatarToken = <AvatarToken user={currentUser} size="small"
+                pointer="pointer" onClick={this.displayAvatarDropdown} />;
         } else if (currentResource.component === "teamOverview") {
             navHeader = `${currentTeam ? currentTeam.name : ''}`;
             layoutText = (
@@ -138,7 +146,13 @@ class Home extends React.Component {
 
         // layoutIcon = layoutIcon ? <div className="home-topbar-left-icon">{layoutIcon}</div> : <div className="home-topbar-left-icon-invisible"></div>;
         layoutIcon = layoutIcon ? <div className="home-topbar-left-icon">{layoutIcon}</div> : null;
-        const navClass = layoutIcon ? "" : "no-icon";
+        // const navClass = layoutIcon ? "" : "no-icon";
+        let navClass = "no-icon";
+        if (layoutIcon) {
+            navClass = "";
+        } else if (avatarToken) {
+            navClass = "avatar-icon";
+        }
 
         return (
             <div className="home-container">
@@ -148,9 +162,9 @@ class Home extends React.Component {
                     </Link>
                     <br/>
                     <ul className="home-sidebar-top">
-                        <li><Link to="/home"><i className="fas fa-home"></i> Home</Link></li>
+                        <li><Link to="/home"><i className="fas fa-home"></i>Home</Link></li>
                         <li><Link to="/home/projects"><i className="fas fa-list fa-list-sidebar"></i>Projects</Link></li>
-                        <li><Link to="/home/tasks"><i className="far fa-check-circle"></i>Tasks</Link></li>
+                        <li><Link to="/home/tasks"><i className="far fa-check-circle"></i>My Tasks</Link></li>
                         {/* <li><Link to=""><i className="far fa-check-circle"></i>Tasks</Link></li> */}
                     </ul>
                     <ul className="home-sidebar-bottom">
@@ -163,6 +177,7 @@ class Home extends React.Component {
                     <div className="home-topbar">
                         <nav className="home-topbar-left">
                            {/* <div className="home-topbar-left-icon">{layoutIcon}</div> */}
+                           {avatarToken}
                            {layoutIcon}
                            <div className={`home-topbar-left-navs ${navClass}`}>
                                 <ul className="topbar-project-info">

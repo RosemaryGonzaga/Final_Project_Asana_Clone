@@ -166,6 +166,7 @@
     margin-left: 14px;
     font-size: 11px;
     color: #646f79;
+    cursor: pointer;
 }
 
 
@@ -269,6 +270,11 @@
     display: none;
 }
 
+.home-topbar-left > .avatar-token {
+    position: absolute;
+    left: 20px;
+}
+
 .home-topbar-left-navs {
     display: flex;
     flex-direction: column;
@@ -282,6 +288,10 @@
 
 .home-topbar-left-navs.no-icon {
     left: 20px;
+}
+
+.home-topbar-left-navs.avatar-icon {
+    left: 55px;
 }
 
 .home-topbar-left-navs > ul {

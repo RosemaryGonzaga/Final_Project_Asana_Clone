@@ -17,17 +17,23 @@
 }
 
 .avatar-token.large-token {
+    min-width: 36px; /* NOTE: min-width and min-height are specified to prevent tokens from getting 'squished' */
+    min-height: 36px;
     width: 36px;
     height: 36px;
     font-size: 13px;
 }
 
 .avatar-token.medium-token {
+    min-width: 30px;
+    min-height: 30px;
     width: 30px;
     height: 30px;
 }
 
 .avatar-token.small-token {
+    min-width: 24px;
+    min-height: 24px;
     width: 24px;
     height: 24px;
 }

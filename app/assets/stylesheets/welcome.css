@@ -2,6 +2,7 @@
     background-color: white;
     box-sizing: border-box;
     padding: 20px 0;
+    /* overflow-y: auto; */
 }
 
 .filtered-task-index-container {
@@ -17,7 +18,7 @@
     height: 160px;
     box-sizing: border-box;
     padding: 0 13px;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 .filtered-task-index-container > h2 {
@@ -34,7 +35,7 @@
     box-sizing: border-box;
     padding: 0 13px;
     margin: 0 auto;
-    margin-top: 65px;
+    margin-top: 55px;
     font-size: 16px;
     line-height: 20px;
     font-weight: 500;
@@ -48,3 +49,15 @@
     z-index: 10;
     background-color: white;
 } */
+
+.filtered-task-index-container > ul {
+    border: 2px solid #e8ecee;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px 0 rgba(21,27,38,.08);
+    overflow-y: auto;
+    height: 110px;
+}
+
+.filtered-task-index-container > ul > .section-index-item-container {
+    padding-left: 10px;
+}

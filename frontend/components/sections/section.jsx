@@ -28,7 +28,9 @@ class Section extends React.Component {
 
         const taskItems = tasks.map(task => {
             if (task.sectionId === section.id) {
-                return <SectionIndexItem task={task} key={task.id} section={section} handleOpenTaskShowClick={handleOpenTaskShowClick} />;
+                return <SectionIndexItem task={task} key={task.id} section={section} 
+                        handleOpenTaskShowClick={handleOpenTaskShowClick} 
+                        showProject={false} showDate={true} showAssignee={true} />;
             } else {
                 return null;
             }

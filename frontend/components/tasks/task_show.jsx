@@ -349,7 +349,7 @@ class TaskShow extends React.Component {
                                         onClick={this.displaySectionDropdown}>
                                         {/* onClick={() => window.alert("open dropdown!")}> */}
                                         {/* onMouseLeave={() => window.alert("close dropdown")}> */}
-                                    <p>{section.name}</p>
+                                    <p>{section.name}  <i className="fas fa-angle-down"></i></p>
                                     <SectionListDropdown sections={this.props.sections} section={section} 
                                                         selectSection={this.selectSection}/>
                                 </div>

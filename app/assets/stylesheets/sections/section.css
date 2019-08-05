@@ -61,6 +61,7 @@
     /* width: 595px; */
     border-bottom: 1px solid #e0e6e8;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     /* color: #151b26; */
     font-size: 13px;
@@ -82,6 +83,12 @@
 .section-index-item-container.selected {
     background-color: #edf8ff;
     /* border-color: transparent; */
+}
+
+.section-index-item-left,
+.section-index-item-right {
+    display: flex;
+    align-items: center;
 }
 
 .check-task-circle {
@@ -124,4 +131,22 @@
 
 .task-item-name.completed {
     color: #b7bfc6;
+}
+
+.section-index-item-due-date {
+    font-size: 11px;
+    color: #646f79;
+    margin-right: 8px;
+}
+
+.section-index-item-due-date.completed {
+    color: #b7bfc6;
+}
+
+.section-index-item-due-date.past {
+    color: #ed4758;
+}
+
+.section-index-item-due-date.today {
+    color: #00bf9c;
 }

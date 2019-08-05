@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateUser } from '../../actions/user_actions';
 import { closeModal } from '../../actions/modal_actions';
+import AvatarIcon from '../avatars/avatar_icon';
 
 class ProfileSettingsProfile extends React.Component {
     constructor(props) {
@@ -37,22 +38,24 @@ class ProfileSettingsProfile extends React.Component {
     render() {
         const { fullName, photoUrl, pronouns, role, department, about, changeAvatar } = this.state;
 
-        const avatarImages = {
-            kiwi: <i className="fas fa-kiwi-bird"></i>,
-            cat: <i className="fas fa-cat"></i>,
-            dog: <i className="fas fa-dog"></i>,
-            frog: <i className="fas fa-frog"></i>,
-            dove: <i className="fas fa-dove"></i>,
-            dragon: <i className="fas fa-dragon"></i>,
-            fish: <i className="fas fa-fish"></i>,
-            hippo: <i className="fas fa-hippo"></i>,
-        };
+        // const avatarImages = {
+        //     kiwi: <i className="fas fa-kiwi-bird"></i>,
+        //     cat: <i className="fas fa-cat"></i>,
+        //     dog: <i className="fas fa-dog"></i>,
+        //     frog: <i className="fas fa-frog"></i>,
+        //     dove: <i className="fas fa-dove"></i>,
+        //     dragon: <i className="fas fa-dragon"></i>,
+        //     fish: <i className="fas fa-fish"></i>,
+        //     hippo: <i className="fas fa-hippo"></i>,
+        // };
 
-        const avatar = avatarImages.hasOwnProperty(photoUrl) ? avatarImages[photoUrl] : <i className="fas fa-user"></i>;
+        // const avatar = avatarImages.hasOwnProperty(photoUrl) ? avatarImages[photoUrl] : <i className="fas fa-user"></i>;
 
         const avatarRadioInputsClass = changeAvatar ? "" : " hidden";
-        
-        const avatarRadioInputs = Object.keys(avatarImages).map(key => {
+       
+        const avatarKeys = ["kiwi", "cat", "dog", "frog", "dove", "dragon", "fish", "hippo"];
+
+        const avatarRadioInputs = avatarKeys.map(key => {
             const key2 = key === "kiwi" ? "-bird" : "";
             let input;
             if (key === photoUrl) {
@@ -80,7 +83,8 @@ class ProfileSettingsProfile extends React.Component {
                         <span className="profile-settings-avatar-label">Your avatar</span>
                         <div className="profile-settings-avatar-main">
                             <div className="profile-settings-avatar-main-img-frame" onClick={() => this.setState({ changeAvatar: true })}>
-                                {avatar}
+                                {/* {avatar} */}
+                                <AvatarIcon photoUrl={photoUrl} />
                             </div>
                             <div className="profile-settings-avatar-main-text">
                                 <div className="profile-settings-avatar-main-text-top">

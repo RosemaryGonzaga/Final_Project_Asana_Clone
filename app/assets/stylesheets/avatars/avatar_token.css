@@ -32,6 +32,18 @@
     height: 24px;
 }
 
+.avatar-token.large-token > i {
+    font-size: 20px;
+}
+
+.avatar-token.medium-token > i {
+   font-size: 16px;
+} 
+
+.avatar-token.small-token > i {
+    font-size: 15px;
+}
+
 .avatar-token.pointer {
     cursor: pointer;
 }

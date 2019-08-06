@@ -27,8 +27,12 @@ class TeamSidebar extends React.Component {
         // Opt 3: write a parallel fetchUsers / Users#index to allow for both scenarios (will need to fetch all users when inviting new team members?)
         // Implemented option 2
         let teamMembers = users.map(user => {
-            const initials = user.primaryEmail.slice(0, 2).toUpperCase();
-            return <li className="team-sidebar-initials" key={user.id}><AvatarToken user={user} size="small" pointer="pointer" /></li>;
+            // const initials = user.primaryEmail.slice(0, 2).toUpperCase();
+            return <li className="team-sidebar-initials" key={user.id}>
+                <AvatarToken user={user} size="small" pointer="pointer" 
+                    tooltip="standard" tooltipPos={["justify-left", "below"]} 
+                    idProp={`team-sidebar-avatar-${user.id}`} />
+            </li>;
             // return <li className="team-sidebar-initials avatar" key={user.id}>{initials}</li>;
         });
 
@@ -41,6 +45,13 @@ class TeamSidebar extends React.Component {
             }
             teamMembers.push(<li className="team-sidebar-initials-invite-ppl" key="invite-ppl" 
                                     onClick={() => openModal('editTeamMemberSettings')}>Invite People</li>)
+        } else if (teamMembers.length < 7) {
+            let i = 1;
+            while (teamMembers.length < 7) {
+                teamMembers.push(<li className="team-sidebar-initials-placeholder" key={`blank${i}`}
+                    onClick={() => openModal('editTeamMemberSettings')}></li>)
+                i++;
+            }
         }
 
         teamMembers = teamMembers.slice(0, 7);    // only show first 7 team members --> NEED TO TEST THIS LATER

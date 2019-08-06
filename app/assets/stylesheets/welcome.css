@@ -10,12 +10,12 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-around; */
     border-radius: 3px;
     position: relative;
     margin: 0 auto;
     /* height: 120px; */
-    height: 160px;
+    min-height: 160px;
     box-sizing: border-box;
     padding: 0 13px;
     /* overflow-y: auto; */
@@ -55,7 +55,11 @@
     border-radius: 8px;
     box-shadow: 0 5px 20px 0 rgba(21,27,38,.08);
     overflow-y: auto;
-    height: 110px;
+    /* height: 110px; */
+    min-height: 40px;
+    max-height: 114px;
+    box-sizing: border-box;
+    margin-top: 8px;
 }
 
 .filtered-task-index-container > ul > .section-index-item-container {

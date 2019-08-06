@@ -38,9 +38,9 @@ class TeamShow extends React.Component {
         const { currentTeam, users, projects, openModal } = this.props;
         const { description } = this.state;
 
-        let teamMembers = users.map(user => {
+        let teamMembers = users.map((user, idx) => {
             return (
-                <TeamShowMemberIndexItem key={user.id} user={user} />
+                <TeamShowMemberIndexItem key={user.id} user={user} idx={idx} />
             );
         });
 

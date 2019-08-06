@@ -2,7 +2,7 @@ import React from 'react';
 import AvatarToken from '../avatars/avatar_token';
 
 export const TeamShowMemberIndexItem = props => {
-    const { user, openModal } = props;
+    const { user, openModal, idx } = props;
     
     if (user === "Add member") {
         return (
@@ -26,9 +26,12 @@ export const TeamShowMemberIndexItem = props => {
         );
     } else {
         // const initials = user.primaryEmail.slice(0, 2).toUpperCase();
+        let tooltipPos = ["justify-left", "below"];
+        if (idx > 3) tooltipPos[1] = "above";
         return (
             <li className="team-show-member-index-item">
-                <AvatarToken user={user} size="large" />
+                <AvatarToken user={user} size="large" idProp={`team-show-avatar-${user.id}`}
+                    tooltip="standard" tooltipPos={tooltipPos} />
                 {/* <div className="team-show-member-avatar"></div> */}
                 {/* <div className="team-show-member-avatar avatar">{initials}</div> */}
                 <div className="team-show-member-text">

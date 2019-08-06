@@ -53,3 +53,121 @@
 .avatar-token.pointer {
     cursor: pointer;
 }
+
+
+/* AvatarTooltip Styling */
+
+.avatar-tooltip.hidden {
+    display: none;
+    /* opacity: 0; */
+}
+
+.avatar-tooltip {
+    position: absolute;
+    width: 181px;
+    height: 135px;
+    border-radius: 10px;
+    background-color: #eec300;
+    z-index: 1000;
+    /* transition-delay: 400ms;
+    transition-property: opacity; */
+}
+
+.avatar-tooltip.above {
+    bottom: 28px;
+}
+
+.avatar-tooltip.below {
+    top: 28px;
+}
+
+.avatar-tooltip.justify-left {
+    left: 0;
+}
+
+.avatar-tooltip.justify-right {
+    right: 0;
+}
+
+
+.large-token > .avatar-tooltip.above {
+    bottom: 38px;
+}
+
+.large-token > .avatar-tooltip.below {
+    top: 38px;
+}
+
+.avatar-tooltip-bridge {
+    position: absolute;
+    height: 18px;
+    width: 24px;
+    background-color: transparent;
+    /* background-color: red; */
+}
+
+.avatar-tooltip.above > .avatar-tooltip-bridge {
+    bottom: -18px;
+}
+
+.avatar-tooltip.below > .avatar-tooltip-bridge {
+    top: -18px;
+}
+
+.avatar-tooltip.justify-left > .avatar-tooltip-bridge {
+    left: 0;
+}
+
+.avatar-tooltip.justify-right > .avatar-tooltip-bridge {
+    right: 0;
+}
+
+.large-token > .avatar-tooltip > .avatar-tooltip-bridge {
+    width: 36px;
+}
+
+.avatar-tooltip-top {
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-tooltip-top > i {
+    font-size: 80px;
+}
+
+.avatar-tooltip-bottom {
+    height: 45px;
+    background: linear-gradient(to bottom, #e3c041, #7d6920);
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.avatar-tooltip-bottom > p {
+    margin-left: 17px;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.edit-profile-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    border: 1px solid white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    box-shadow: 0 0 5px #26151B26, inset 0 0 5px #26151B26;
+}
+
+.edit-profile-btn:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 5px #26151B26;
+}

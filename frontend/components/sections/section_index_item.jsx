@@ -64,7 +64,8 @@ class SectionIndexItem extends React.Component {
         }
         
         const assignee = users[task.assigneeId];
-        const assigneeToken = assignee ? <AvatarToken user={assignee} size="small" pointer="pointer"/> : null;
+        const randomKey = Math.floor(Math.random() * 100000); // pass as prop to AvatarToken, which passes the prop to AvatarTooltip (for precise control of the correct tooltip on hover)
+        const assigneeToken = assignee ? <AvatarToken user={assignee} size="small" pointer="pointer" tooltip="standard" tooltipPos={["justify-right", "below"]} idProp={`task-index-item-${randomKey}`}/> : null;
 
         const clickHandler = handleOpenTaskShowClick ? handleOpenTaskShowClick : e => e.preventDefault();
 

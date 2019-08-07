@@ -57,7 +57,8 @@
 
 /* AvatarTooltip Styling */
 
-.avatar-tooltip.hidden {
+.avatar-tooltip.hidden,
+.small-user-info-tooltip.hidden {
     display: none;
     /* opacity: 0; */
 }
@@ -149,6 +150,8 @@
     margin-left: 17px;
     margin-bottom: 6px;
     font-size: 14px;
+    overflow: hidden;
+    text-overflow: clip;
 }
 
 .edit-profile-btn {
@@ -170,4 +173,53 @@
     background-color: white;
     color: black;
     box-shadow: 0 0 5px #26151B26;
+}
+
+/* Small User Info Tooltip */
+
+.small-user-info-tooltip {
+    position: absolute;
+    top: 34px;
+    right: -14px;
+
+    /* width: 110px; */
+    min-height: 55px;
+    min-width: 66px;
+    max-width: 172px;
+    width: auto;
+    
+    border-radius: 4px;
+    background-color: #1d222c;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.small-user-info-tooltip > i {
+    position: absolute;
+    top: -22px;
+    right: 12px;
+    color: #1d222c;
+    font-size: 38px;
+}
+
+.small-user-info-tooltip > h1 {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    /* width: auto; */
+    max-width: 152px;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.small-user-info-tooltip > h2 {
+    color: #868f98;
+    font-size: 11px;
+    margin-top: 2px;
 }

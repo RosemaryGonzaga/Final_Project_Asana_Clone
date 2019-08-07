@@ -209,7 +209,9 @@ class Home extends React.Component {
                                 </li> */}
                                 <AvatarToken user={currentUser} size="small" 
                                     pointer="pointer" onClick={this.displayAvatarDropdown}
-                                    dropdown={<AvatarDropdown closeAvatarDropdown={this.closeAvatarDropdown} />} />
+                                    dropdown={<AvatarDropdown closeAvatarDropdown={this.closeAvatarDropdown} />} 
+                                    tooltip="small" tooltipPos={["justify-right", "below"]} 
+                                    idProp={`home-topbar-menu-avatar`} />
 
                             </ul>                            
                         </nav>

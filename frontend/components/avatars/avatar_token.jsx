@@ -1,6 +1,7 @@
 import React from 'react';
 import AvatarIcon from './avatar_icon';
 import AvatarTooltip from './avatar_tooltip';
+import SmallUserInfoTooltip from './small_user_info_tooltip';
 
 class AvatarToken extends React.Component {
     constructor(props) {
@@ -67,7 +68,7 @@ class AvatarToken extends React.Component {
             // tooltipElement = <AvatarTooltip user={user} xPos={xPos} yPos={yPos}/>;
             tooltipElement = <AvatarTooltip user={user} tooltipPos={tooltipPos} idProp={idProp} />;
         } else if (tooltip === "small") {   // small dark gray tooltip (ex: AvatarToken in upper-right corner)
-            tooltipElement = <AvatarTooltip user={user} tooltipPos={tooltipPos} idProp={idProp} />; // assign a different component
+            tooltipElement = <SmallUserInfoTooltip user={user} tooltipPos={tooltipPos} idProp={idProp} />; // assign a different component
         }
 
         return (

@@ -163,7 +163,7 @@ class Home extends React.Component {
 
         return (
             <div className="home-container">
-                <div className="home-sidebar">
+                {/* <div className="home-sidebar">
                     <Link to="/home"><img src={window.asanaLogoHome}
                             className="home-sidebar-logo"/>
                     </Link>
@@ -172,14 +172,11 @@ class Home extends React.Component {
                         <li><Link to="/home"><i className="fas fa-home"></i>Home</Link></li>
                         <li><Link to="/home/projects"><i className="fas fa-list fa-list-sidebar"></i>Projects</Link></li>
                         <li><Link to="/home/tasks"><i className="far fa-check-circle"></i>My Tasks</Link></li>
-                        {/* <li><Link to=""><i className="far fa-check-circle"></i>Tasks</Link></li> */}
                     </ul>
                     <ul className="home-sidebar-bottom">
-                        {/* <li>{currentTeam ? currentTeam.name : null}</li> */}
                         <TeamSidebarContainer />
                     </ul>
-                    {/* <Link to="/home/projects">Projects Index</Link> */}
-                </div>
+                </div> */}
                 <div className="home-main">
                     <div className="home-topbar">
                         <nav className="home-topbar-left">
@@ -219,7 +216,6 @@ class Home extends React.Component {
                     </div>
                     <div className="home-main-content">
                         <Switch>
-                            {/* <ProtectedRoute path="/home/projects/:projectId/:taskId" component={TaskShowContainer}/> */}
                             <ProtectedRoute path="/home/team-overview" component={TeamShow} />
                             <ProtectedRoute path="/home/projects/:projectId" component={ProjectShowContainer} />
                             <ProtectedRoute path="/home/projects" component={ProjectIndexContainer} />
@@ -227,6 +223,20 @@ class Home extends React.Component {
                             <ProtectedRoute exact path="/home" component={Welcome} />
                         </Switch>
                     </div>
+                </div>
+                <div className="home-sidebar">
+                    <Link to="/home"><img src={window.asanaLogoHome}
+                        className="home-sidebar-logo" />
+                    </Link>
+                    <br />
+                    <ul className="home-sidebar-top">
+                        <li><Link to="/home"><i className="fas fa-home"></i>Home</Link></li>
+                        <li><Link to="/home/projects"><i className="fas fa-list fa-list-sidebar"></i>Projects</Link></li>
+                        <li><Link to="/home/tasks"><i className="far fa-check-circle"></i>My Tasks</Link></li>
+                    </ul>
+                    <ul className="home-sidebar-bottom">
+                        <TeamSidebarContainer />
+                    </ul>
                 </div>
             </div>
         );

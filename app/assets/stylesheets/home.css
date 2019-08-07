@@ -19,6 +19,7 @@
     height: 100%;
     background-color: #151b26;
     /* z-index: 2; */
+    overflow: visible;
 }
 
 .home-sidebar-logo {
@@ -80,6 +81,7 @@
     color: #d5dce0;
     /* margin-left: 14px; */
     font-size: 14px;
+    overflow: visible;
 }
 
 .team-sidebar-heading,
@@ -167,6 +169,10 @@
     font-size: 11px;
     color: #646f79;
     cursor: pointer;
+}
+
+.team-sidebar-members {
+    overflow: visible;
 }
 
 
@@ -327,16 +333,18 @@
 /* MAIN CONTENT STYLING */
 
 .home-main-content {
-    /* display: flex;
-    justify-content: space-between; */
     position: fixed;
     top: 70px;
     bottom: 0;
     left: 244px;
     right: 0;
-    /* width: 100%; */
-    /* background-color: white; */
-    background-color: #f6f8f9;
+    /* position: absolute;
+    top: 70px;
+    bottom: 0;
+    left: 0px;
+    right: 0;
+    background-color: #f6f8f9; */
+    /* z-index: 1; */
 }
 
 
